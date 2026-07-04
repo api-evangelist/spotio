@@ -1,0 +1,128 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: SPOTIO
+providerId: spotio
+created: '2026-07-04'
+modified: '2026-07-04'
+reconciled: false
+tags:
+- Field Sales
+- Sales Engagement
+- Territory Management
+- Plans
+description: >-
+  SPOTIO is sold as a per-user SaaS subscription for field sales teams, with a
+  published five-user minimum and annual or quarterly billing (SPOTIO typically
+  requires a custom quote and a demo). Publicly reported tiers are Team, Business,
+  and Pro, plus a custom Enterprise tier. API and webhook access is part of the
+  platform - most commonly associated with the higher (Pro / Enterprise) tiers for
+  custom integrations - rather than a separately metered API product. The
+  per-user rates below are drawn from third-party pricing aggregators and should
+  be reconciled against a current SPOTIO quote; they may vary by configuration.
+notes: >-
+  SPOTIO does not publish a fully transparent pricing page; figures below come
+  from public pricing directories (G2, Capterra, and others) captured in 2026 and
+  are approximate. The Open API and webhooks are entitlements of the subscription,
+  not a usage-metered API plan. Confirm current tiers, the five-user minimum, and
+  which tier unlocks API access directly with SPOTIO.
+sources:
+- https://spotio.com/
+- https://spotio.com/integrations/
+- https://www.g2.com/products/spotio/pricing
+- https://www.capterra.com/p/157701/SPOTIO/pricing/
+plans:
+- id: spotio-team
+  name: Team
+  type: paid
+  description: >-
+    Entry field sales plan with territory management, activity tracking, and
+    appointment setting for smaller outside sales teams. Subject to SPOTIO's
+    five-user minimum.
+  entries:
+  - label: Per User Subscription
+    name: team_per_user
+    type: subscription
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '39'
+    currency: USD
+    userMultiplied: true
+  elements:
+  - name: Territory Management
+  - name: Activity Tracking
+  - name: Appointment Setting
+- id: spotio-business
+  name: Business
+  type: paid
+  description: >-
+    Mid-tier plan adding deeper sales engagement, reporting, and CRM sync
+    capabilities for growing field teams.
+  entries:
+  - label: Per User Subscription
+    name: business_per_user
+    type: subscription
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '69'
+    currency: USD
+    userMultiplied: true
+  elements:
+  - name: Sales Engagement
+  - name: Reporting and Analytics
+  - name: CRM Sync
+- id: spotio-pro
+  name: Pro
+  type: paid
+  description: >-
+    Advanced plan for larger sales organizations with complex needs, typically
+    where custom integrations via the Open API and webhooks come into play.
+  entries:
+  - label: Per User Subscription
+    name: pro_per_user
+    type: subscription
+    metric: user
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: '129'
+    currency: USD
+    userMultiplied: true
+  elements:
+  - name: Advanced Reporting
+  - name: Open API Access
+  - name: Webhooks
+  - name: Priority Support
+- id: spotio-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom-quoted plan for large field organizations - deepest CRM/ERP
+    integrations (Salesforce two-way sync, Dynamics 365, NetSuite, SAP),
+    dedicated support, security review, and negotiated terms. Contact SPOTIO.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Enterprise CRM/ERP Integrations
+  - name: Open API and Webhooks
+  - name: Dedicated Support
+  - name: Custom Onboarding
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

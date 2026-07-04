@@ -1,0 +1,142 @@
+aid: spotio
+url: https://raw.githubusercontent.com/api-evangelist/spotio/refs/heads/main/apis.yml
+name: SPOTIO
+kind: company
+description: SPOTIO is a field sales engagement and territory management platform for
+  outside sales teams - lead and prospect tracking, activity logging, territory
+  mapping and assignment, route optimization, appointment setting, and pipeline
+  visibility, delivered through a mobile-first field app and a web console. For
+  custom integrations beyond its native Salesforce, HubSpot, Microsoft Dynamics 365,
+  Pipedrive, and Zapier connectors, SPOTIO publishes a documented Open REST API and
+  outbound webhooks. The developer portal (developer.spotio2.com, powered by
+  Stoplight) covers a curl quickstart and token authentication; full endpoint
+  reference access is oriented toward enterprise customers with an API key, so the
+  logical APIs below are honestly modeled from SPOTIO's documented product surface
+  and webhook event catalog rather than a published OpenAPI definition.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Field Sales
+- Sales Engagement
+- Territory Management
+- CRM
+- Lead Tracking
+- Outside Sales
+- Sales Enablement
+created: '2026-07-04'
+modified: '2026-07-04'
+specificationVersion: '0.19'
+apis:
+- aid: spotio:spotio-leads-api
+  name: SPOTIO Leads API
+  tags:
+  - Leads
+  - Prospects
+  - CRM
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  properties:
+  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+    type: Documentation
+  - url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
+    type: Webhooks
+  description: Create, read, update, and delete leads and prospects, including custom
+    data-object fields, stages, and location. Lead lifecycle changes are also
+    delivered as outbound webhook events (lead.added, lead.updated, lead.deleted).
+    Endpoints modeled from SPOTIO's documented product surface and webhook catalog.
+- aid: spotio:spotio-activities-api
+  name: SPOTIO Activities API
+  tags:
+  - Activities
+  - Visits
+  - Tracking
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  properties:
+  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+    type: Documentation
+  - url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
+    type: Webhooks
+  description: Log and retrieve rep activities - visits, calls, notes, and stage
+    changes - against leads and appointments. Confirmed by the webhook event catalog
+    (activity.created, activity.updated, activity.deleted, activity.done). Endpoints
+    modeled from SPOTIO's documented product surface and webhook catalog.
+- aid: spotio:spotio-appointments-api
+  name: SPOTIO Appointments API
+  tags:
+  - Appointments
+  - Scheduling
+  - Calendar
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  properties:
+  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+    type: Documentation
+  - url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
+    type: Webhooks
+  description: Schedule and manage field appointments tied to leads and reps.
+    Confirmed by the webhook event catalog (appointment.created, appointment.updated,
+    appointment.deleted). Endpoints modeled from SPOTIO's documented product surface
+    and webhook catalog.
+- aid: spotio:spotio-territories-api
+  name: SPOTIO Territories API
+  tags:
+  - Territories
+  - Mapping
+  - Assignment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  properties:
+  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+    type: Documentation
+  description: Define and manage sales territories - geographic boundaries, coverage,
+    and rep assignment - central to SPOTIO's territory management product. Modeled
+    from SPOTIO's documented product surface; not yet confirmed against a published
+    OpenAPI definition.
+- aid: spotio:spotio-users-reps-api
+  name: SPOTIO Users & Reps API
+  tags:
+  - Users
+  - Reps
+  - Teams
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  properties:
+  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+    type: Documentation
+  description: Manage users and field reps - roles, team membership, and territory
+    assignment - that own leads, activities, and appointments. Modeled from SPOTIO's
+    documented product surface; not yet confirmed against a published OpenAPI
+    definition.
+- aid: spotio:spotio-pipelines-api
+  name: SPOTIO Pipelines & Data Objects API
+  tags:
+  - Pipelines
+  - Data Objects
+  - Stages
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://support.spotio.com/hc/en-us/articles/11712242070807-Configuring-Data-Objects
+  properties:
+  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+    type: Documentation
+  - url: https://support.spotio.com/hc/en-us/articles/11712242070807-Configuring-Data-Objects
+    type: Documentation
+  description: Read and configure pipelines, stages, and custom data objects that
+    structure how leads move through a sales process. Based on SPOTIO's configurable
+    data-object model; endpoints modeled, not yet confirmed against a published
+    OpenAPI definition.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/spotio
+- type: Website
+  url: https://spotio.com
+- type: Documentation
+  url: https://developer.spotio2.com/
+- type: Webhooks
+  url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
+- type: Integrations
+  url: https://spotio.com/integrations/
+- type: Plans
+  url: plans/spotio-plans-pricing.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
