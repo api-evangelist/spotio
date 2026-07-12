@@ -125,6 +125,10 @@ apis:
     data-object model; endpoints modeled, not yet confirmed against a published
     OpenAPI definition.
 common:
+- type: TrustCenter
+  url: security/spotio-trust-center.yml
+- type: DomainSecurity
+  url: security/spotio-domain-security.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/spotio
 - type: Website

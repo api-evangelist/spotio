@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://spotio.com/features/security-compliance/
+url: https://spotio.com/features/security-compliance/
+certifications:
+- SOC 2
+- GDPR
+evidence:
+- source: https://spotio.com/features/security-compliance/
+  keywords:
+  - soc 2
+  - gdpr
