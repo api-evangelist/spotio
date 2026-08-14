@@ -2,17 +2,17 @@ aid: spotio
 url: https://raw.githubusercontent.com/api-evangelist/spotio/refs/heads/main/apis.yml
 name: SPOTIO
 kind: company
-description: SPOTIO is a field sales engagement and territory management platform for
-  outside sales teams - lead and prospect tracking, activity logging, territory
-  mapping and assignment, route optimization, appointment setting, and pipeline
-  visibility, delivered through a mobile-first field app and a web console. For
-  custom integrations beyond its native Salesforce, HubSpot, Microsoft Dynamics 365,
-  Pipedrive, and Zapier connectors, SPOTIO publishes a documented Open REST API and
-  outbound webhooks. The developer portal (developer.spotio2.com, powered by
-  Stoplight) covers a curl quickstart and token authentication; full endpoint
-  reference access is oriented toward enterprise customers with an API key, so the
-  logical APIs below are honestly modeled from SPOTIO's documented product surface
-  and webhook event catalog rather than a published OpenAPI definition.
+description: 'SPOTIO is a field sales engagement and territory management platform for outside sales teams - lead
+  and prospect tracking, activity logging, territory mapping and assignment, route optimization, appointment setting,
+  and pipeline visibility, delivered through a mobile-first field app and a web console. Behind that product is
+  a substantial and genuinely public API: SPOTIO 2.0 is an OpenAPI 3.0.1 contract of 238 paths and 295 operations
+  across 39 capabilities, published from SPOTIO''s own Stoplight project at developer.spotio2.com and exportable
+  without authentication. Authentication is a bearer JWT minted from a clientId/secret pair; collections page on
+  a scrollId cursor; and SPOTIO''s data model is polymorphic - there is no fixed Lead entity, only a tenant-defined
+  DataObject whose types, stages and fields are read from a Workflow before anything can be written. SPOTIO also
+  operates a first-party remote MCP server at app.spotio2.com/mcp, authenticated with a SPOTIO-MCP-KEY that the
+  API itself mints, plus a signed outbound webhook system covering ten lead, activity and appointment events. It
+  publishes no SDK in any language, no idempotency contract, no rate limits and no security.txt.'
 accessModel:
   pricing: paid
   onboarding: approval
@@ -34,109 +34,706 @@ tags:
 - Lead Tracking
 - Outside Sales
 - Sales Enablement
+- Route Optimization
+- Geospatial
+- Webhooks
+- MCP
+- Door to Door
 created: '2026-07-04'
-modified: '2026-07-04'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 apis:
-- aid: spotio:spotio-leads-api
-  name: SPOTIO Leads API
+- aid: spotio:spotio-activitiesv2-api
+  name: SPOTIO Activities V2 API
+  description: 'The controller is responsible for handling the creation, updating, and retrieval of activities.
+
+    Mainly the controller allow to manage activities (current and done)'
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
-  - Leads
-  - Prospects
-  - CRM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - ActivitiesV2
   properties:
-  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
-    type: Documentation
-  - url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
-    type: Webhooks
-  description: Create, read, update, and delete leads and prospects, including custom
-    data-object fields, stages, and location. Lead lifecycle changes are also
-    delivered as outbound webhook events (lead.added, lead.updated, lead.deleted).
-    Endpoints modeled from SPOTIO's documented product surface and webhook catalog.
-- aid: spotio:spotio-activities-api
-  name: SPOTIO Activities API
+  - type: OpenAPI
+    url: openapi/spotio-activitiesv2-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-activitiesv2-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-appointmentsv2-api
+  name: SPOTIO Appointments V2 API
+  description: 'The controller is responsible for handling the creation, updating, deleting and retrieval of appointment.
+
+    Mainly the controller allow to manage appointment (current and future).
+
+    Every appointment has related activity.'
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
-  - Activities
-  - Visits
-  - Tracking
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - AppointmentsV2
   properties:
-  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
-    type: Documentation
-  - url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
-    type: Webhooks
-  description: Log and retrieve rep activities - visits, calls, notes, and stage
-    changes - against leads and appointments. Confirmed by the webhook event catalog
-    (activity.created, activity.updated, activity.deleted, activity.done). Endpoints
-    modeled from SPOTIO's documented product surface and webhook catalog.
-- aid: spotio:spotio-appointments-api
-  name: SPOTIO Appointments API
+  - type: OpenAPI
+    url: openapi/spotio-appointmentsv2-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-appointmentsv2-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-autoplays-api
+  name: SPOTIO Autoplays API
+  description: 'The controller provides various endpoints for managing autoplays, which are automated workflows
+    that can be triggered for dataObject in application.
+
+    Allowed is adding / editing contacts and changing step status.'
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
-  - Appointments
-  - Scheduling
-  - Calendar
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - Autoplays
   properties:
-  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
-    type: Documentation
-  - url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
-    type: Webhooks
-  description: Schedule and manage field appointments tied to leads and reps.
-    Confirmed by the webhook event catalog (appointment.created, appointment.updated,
-    appointment.deleted). Endpoints modeled from SPOTIO's documented product surface
-    and webhook catalog.
+  - type: OpenAPI
+    url: openapi/spotio-autoplays-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-autoplays-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-businesscards-api
+  name: SPOTIO Business Cards API
+  description: The Business Cards API allows managing business card and their related operations, such as fetching
+    details, listing, creating, updating, cloning, sharing, previewing, downloading, and rendering business cards,
+    as well as managing business card settings.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - BusinessCards
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-businesscards-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-businesscards-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-calendarsettings-api
+  name: SPOTIO Calendar Settings API
+  description: The controller is responsible for managing calendar settings. Setup for company users calendar.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - CalendarSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-calendarsettings-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-calendarsettings-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-communication-api
+  name: SPOTIO Communication API
+  description: API for communication activities. You can retrieve data about communication activities. You can also
+    marks calls, emails, texts as seen/read.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Communication
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-communication-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-communication-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-communicationtemplates-api
+  name: SPOTIO Communication Templates API
+  description: "The controller is responsible for managing company templates. \nTemplates for text messages and\
+    \ emails. \nThe controller allows creating new templates which can include information about dataObjects and\
+    \ current user.\nAll templates that users can use to send SMS/MMS/Email to customers. Users can send them manually\
+    \ or automatically using the autoplay feature."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - CommunicationTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-communicationtemplates-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-communicationtemplates-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-connectors-api
+  name: SPOTIO Connectors API
+  description: "The controller is responsible for managing company links (connectors). \nThe controller allows creating\
+    \ new connectors which user can use them on web or mobile app. \nConnector can can include information about\
+    \ dataObjects and current user."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Connectors
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-connectors-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-connectors-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-contracts-api
+  name: SPOTIO Contracts API
+  description: The controller is responsible for gets information about contracts templates and signed documents
+    / files.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-contracts-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-contracts-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-dataobjects-api
+  name: SPOTIO Data Objects API
+  description: The controller is responsible for manages the data objects and their related operations like creating,
+    retrieving, updating, and deleting data objects, as well as some bulk actions.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - DataObjects
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-dataobjects-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-dataobjects-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-dataobjectsbulkjobs-api
+  name: SPOTIO Data Objects Bulk Jobs API
+  description: 'Bulk operations on data objects. Flow: Create job -> Upload NDJSON data -> Start processing -> Poll
+    progress -> Download results -> Cleanup.'
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - DataObjectsBulkJobs
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-dataobjectsbulkjobs-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-dataobjectsbulkjobs-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-dataobjectssearch-api
+  name: SPOTIO Data Objects Search API
+  description: "This controller is responsible for searching data objects.\n    There are available endpoints for:\n\
+    \    * simple global searches - return only basic information about data objects\n    * searching on lists -\
+    \ return more information about data objects\n\n    Sorting (ascending by default, use `-` prefix to sort descending):\n\
+    \    * updatedat\n    * value\n    * visitscount\n    * lastvisitdate\n    * distance\n    * nextactivitytime\n\
+    \    * lastvisitresult"
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - DataObjectsSearch
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-dataobjectssearch-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-dataobjectssearch-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-documents-api
+  name: SPOTIO Documents API
+  description: "The controller is responsible for handling the upload and retrieval of documents.\n    Documents\
+    \ can be attached to data object, activity or be available company wide."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-documents-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-documents-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-exports-api
+  name: SPOTIO Exports API
+  description: 'The controller is responsible for exporting data from the application, such as exporting  dataObjects
+    (leads) and activities.
+
+    The result of the export is a CSV file.'
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-exports-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-exports-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-filters-api
+  name: SPOTIO Filters API
+  description: "The controller is responsible for handling operations on filter objects. Filter can be used throughout\
+    \ the system to filter data.\n    It can be passed wherever filterId query parameter or property is available.\n\
+    \    Some apis are exposed through FiltersV1 and some through FiltersV2 both can be used interchangeably."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Filters
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-filters-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-filters-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-filtersv2-api
+  name: SPOTIO Filters V2 API
+  description: "The controller is responsible for handling operations on filter objects. Filter can be used throughout\
+    \ the system to filter data.\n    It can be passed wherever filterId query parameter or property is available.\n\
+    \    Some apis are exposed through Filters and some through FiltersV2 both can be used interchangeably."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - FiltersV2
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-filtersv2-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-filtersv2-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-generatecontent-api
+  name: SPOTIO Generate Content API
+  description: The controller is responsible for content generating for text messages and emails.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - GenerateContent
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-generatecontent-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-generatecontent-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-layouts-api
+  name: SPOTIO Layouts API
+  description: The Layouts API from SPOTIO — 8 operation(s) for layouts.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Layouts
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-layouts-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-layouts-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-leaderboards-api
+  name: SPOTIO Leaderboards API
+  description: The controller is responsible for leaderboards.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Leaderboards
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-leaderboards-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-leaderboards-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-mcp-api
+  name: SPOTIO MCP API
+  description: "The controller is responsible for handling operations related to MCP.\n    It provides endpoints\
+    \ for generating, retrieving, deactivating, and regenerating MCP keys.\n    These keys are used for authenticating\
+    \ and authorizing access to MCP Server."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Mcp
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-mcp-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-mcp-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-multichannelcommunication-api
+  name: SPOTIO Multi Channel Communication API
+  description: The controller is responsible for text messages management. Sending messages to customers
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - MultiChannelCommunication
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-multichannelcommunication-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-multichannelcommunication-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-myreports-api
+  name: SPOTIO My Reports API
+  description: The controller is responsible for managing MyReports in a web application, creation, updating and
+    rendering MyReports.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - MyReports
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-myreports-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-myreports-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-notificationsv2-api
+  name: SPOTIO Notifications V2 API
+  description: "The controller is responsible for handling operations on notification objects.\n    Notifications\
+    \ are created automatically when creating appointments with reminder property set.\n    Push notifications are\
+    \ supported through this module."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - NotificationsV2
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-notificationsv2-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-notificationsv2-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-pinsv2-api
+  name: SPOTIO Pins V2 API
+  description: Pins API handles searching and retrieving pins with details. It provides operations including fetching
+    pins by viewport, getting pin details with data objects, searching for pins with specific criteria, and finding
+    the nearest pins to a given location.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - PinsV2
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-pinsv2-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-pinsv2-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-reports-api
+  name: SPOTIO Reports API
+  description: The controller is responsible exporting data by selected report type.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-reports-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-reports-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-routesv2-api
+  name: SPOTIO Routes V2 API
+  description: API for routes. You can manage routes and calculate route based on stops list. You can also start
+    a new trip based on the route.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - RoutesV2
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-routesv2-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-routesv2-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-teams-api
+  name: SPOTIO Teams API
+  description: "The controller is responsible for handling operations on teams creating, updating, deleting, and\
+    \ retrieving team data. \nThe controller also handles adding users to teams, getting a list of all teams in\
+    \ a company and deleting teams at once."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-teams-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-teams-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
 - aid: spotio:spotio-territories-api
   name: SPOTIO Territories API
+  description: The controller is responsible for getting all territories for a company.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
   - Territories
-  - Mapping
-  - Assignment
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
   properties:
-  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
-    type: Documentation
-  description: Define and manage sales territories - geographic boundaries, coverage,
-    and rep assignment - central to SPOTIO's territory management product. Modeled
-    from SPOTIO's documented product surface; not yet confirmed against a published
-    OpenAPI definition.
-- aid: spotio:spotio-users-reps-api
-  name: SPOTIO Users & Reps API
+  - type: OpenAPI
+    url: openapi/spotio-territories-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-territories-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-trips-api
+  name: SPOTIO Trips API
+  description: "The controller is responsible for handling operations on trip objects.\n    Trips are created from\
+    \ routes and record places that user visited during the trip.\n    Some apis are exposed through Trips and some\
+    \ through TripsV2 both can be used interchangeably."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Trips
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-trips-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-trips-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-tripsv2-api
+  name: SPOTIO Trips V2 API
+  description: "The controller is responsible for handling operations on trip objects.\n    Trips are created from\
+    \ routes and record places that user visited during the trip.\n    Some apis are exposed through Trips and some\
+    \ through TripsV2 both can be used interchangeably."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - TripsV2
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-tripsv2-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-tripsv2-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-uploadcare-api
+  name: SPOTIO Upload Care API
+  description: Handles file upload operations
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - UploadCare
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-uploadcare-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-uploadcare-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-users-api
+  name: SPOTIO Users API
+  description: 'The controller is responsible for handling the creation, updating, deleting Spotio Users.
+
+    This controller allow users to exchange of credentials for a token.'
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
   - Users
-  - Reps
-  - Teams
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
   properties:
-  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
-    type: Documentation
-  description: Manage users and field reps - roles, team membership, and territory
-    assignment - that own leads, activities, and appointments. Modeled from SPOTIO's
-    documented product surface; not yet confirmed against a published OpenAPI
-    definition.
-- aid: spotio:spotio-pipelines-api
-  name: SPOTIO Pipelines & Data Objects API
+  - type: OpenAPI
+    url: openapi/spotio-users-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-users-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-usertracking-api
+  name: SPOTIO User Tracking API
+  description: User tracking API. You can configure Spotio to track users which using the app. Using the following
+    methods you can retrieve tracking data.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
-  - Pipelines
-  - Data Objects
-  - Stages
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://support.spotio.com/hc/en-us/articles/11712242070807-Configuring-Data-Objects
+  - UserTracking
   properties:
-  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
-    type: Documentation
-  - url: https://support.spotio.com/hc/en-us/articles/11712242070807-Configuring-Data-Objects
-    type: Documentation
-  description: Read and configure pipelines, stages, and custom data objects that
-    structure how leads move through a sales process. Based on SPOTIO's configurable
-    data-object model; endpoints modeled, not yet confirmed against a published
-    OpenAPI definition.
+  - type: OpenAPI
+    url: openapi/spotio-usertracking-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-usertracking-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-webhooks-api
+  name: SPOTIO Webhooks API
+  description: "The controller is responsible for handling webhooks related operations. \nIt provides methods for\
+    \ retrieving available webhook scopes, getting all webhooks for the current company, creating a new webhook,\
+    \ updating an existing webhook and deleting a webhook by its ID.\nMore information about webhooks and how it\
+    \ works can be found in the section 'Group Web hooks'"
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-webhooks-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-webhooks-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-workflowactivitytemplates-api
+  name: SPOTIO Workflow Activity Templates API
+  description: "Activity templates are used to define type of activities in the system.\n    To create activity\
+    \ from the activity template refer to the ActivitiesController.\n    Each activity template can have multiple\
+    \ activity results which can assigned in the moment of\ncompleting the activity."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - WorkflowActivityTemplates
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-workflowactivitytemplates-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-workflowactivitytemplates-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-workflowdataobjects-api
+  name: SPOTIO Workflow Data Objects API
+  description: "This controller is responsible for managing data object definitions.\n    Data object definition\
+    \ consists of field and stages definitions.\n    To create records from the definition refer to DataObjectsController."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - WorkflowDataObjects
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-workflowdataobjects-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-workflowdataobjects-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-workflowfields-api
+  name: SPOTIO Workflow Fields API
+  description: Api is responsible for the comprehensive management of fields associated with data objects within
+    a workflow. This includes functionality for retrieving available and existing fields, creating new fields, updating
+    field properties, deleting fields, and reordering fields within a data object. Additionally, the controller
+    enables the removal of a field from multiple data objects.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - WorkflowFields
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-workflowfields-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-workflowfields-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-workflowsettings-api
+  name: SPOTIO Workflow Settings API
+  description: Workflow Settings API provides operations including fetching full workflow settings for company as
+    well as retrieving and updating workflow company properties.
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - WorkflowSettings
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-workflowsettings-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-workflowsettings-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
+- aid: spotio:spotio-workflowstages-api
+  name: SPOTIO Workflow Stages API
+  description: "This controller is responsible for managing stages definitions.\n    You can split stages in 3 groups,\
+    \ each group can have different set of stages.\n    The available groups are: active, won and lost.\n    Stages\
+    \ can be assigned to data objects to represent state of the record.\n    To create records from the definition\
+    \ refer to DataObjectsController."
+  humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  tags:
+  - WorkflowStages
+  properties:
+  - type: OpenAPI
+    url: openapi/spotio-workflowstages-api-openapi.yml
+  - type: Overlay
+    url: overlays/spotio-workflowstages-overlay.yaml
+  - type: Documentation
+    url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  - type: APIReference
+    url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+  baseURL: https://api.spotio2.com
 common:
+- type: AgenticAccess
+  url: agentic-access/spotio-agentic-access.yml
+- type: Authentication
+  url: authentication/spotio-authentication.yml
 - type: TrustCenter
   url: security/spotio-trust-center.yml
 - type: DomainSecurity
@@ -153,6 +750,67 @@ common:
   url: https://spotio.com/integrations/
 - type: Plans
   url: plans/spotio-plans-pricing.yml
+- type: MCPServer
+  url: mcp/spotio-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/spotio-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/spotio-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Conventions
+  url: conventions/spotio-conventions.yml
+- type: ErrorCatalog
+  url: errors/spotio-problem-types.yml
+- type: DataModel
+  url: data-model/spotio-data-model.yml
+- type: Lifecycle
+  url: lifecycle/spotio-lifecycle.yml
+- type: StatusPage
+  url: https://status.spotio2.com/
+- type: ChangeLog
+  url: changelog/spotio-changelog.yml
+- type: ChangeLog
+  url: https://support.spotio.com/release-notes
+- type: Conformance
+  url: conformance/spotio-conformance.yml
+- type: Compliance
+  url: https://spotio.com/features/security-compliance/
+- type: Webhooks
+  url: asyncapi/spotio-webhooks.yml
+- type: Sandbox
+  url: sandbox/spotio-sandbox.yml
+- type: RateLimits
+  url: rate-limits/spotio-rate-limits.yml
+- type: Packages
+  url: packages/spotio-packages.yml
+- type: DeveloperPortal
+  url: https://developer.spotio2.com/
+- type: APIReference
+  url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
+- type: GettingStarted
+  url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+- type: Support
+  url: https://support.spotio.com/
+- type: Blog
+  url: https://spotio.com/resources/
+- type: GitHubOrganization
+  url: https://github.com/Spotio
+- type: Pricing
+  url: https://spotio.com/plans/
+- type: Login
+  url: https://app.spotio2.com/
+- type: SignUp
+  url: https://spotio.com/request-a-demo/
+- type: TermsOfService
+  url: https://spotio.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://spotio.com/privacy-policy/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 104
+  pass: local-v1
