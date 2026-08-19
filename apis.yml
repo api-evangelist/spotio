@@ -41,7 +41,7 @@ tags:
 - Door to Door
 created: '2026-07-04'
 modified: '2026-08-13'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: spotio:spotio-activitiesv2-api
   name: SPOTIO Activities V2 API
