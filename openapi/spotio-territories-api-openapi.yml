@@ -1,0 +1,800 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Territories API
+  description: The controller is responsible for getting all territories for a company.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Territories
+  description: The controller is responsible for getting all territories for a company.
+paths:
+  /api/Territories/all:
+    get:
+      tags:
+      - Territories
+      summary: Get all existing territories
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryBasic'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryBasic'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryBasic'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Territories:
+    post:
+      tags:
+      - Territories
+      summary: Add a new territory
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryToAddOrModify'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryToAddOrModify'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryToAddOrModify'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryToAddOrModify'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryToAddOrModify'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Territories/{id}:
+    get:
+      tags:
+      - Territories
+      summary: Get existing territory
+      parameters:
+      - name: optimized
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: id
+        in: path
+        description: Territory Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    put:
+      tags:
+      - Territories
+      summary: Update existing territory
+      parameters:
+      - name: id
+        in: path
+        description: Territory Id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.UpdateModel'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.UpdateModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.UpdateModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.UpdateModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.UpdateModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Territories.TerritoryFull'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Territories/{id}/geojson:
+    get:
+      tags:
+      - Territories
+      summary: Get territory in GeoJSON format
+      parameters:
+      - name: optimized
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: addPolyline
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: path
+        description: Territory Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Territories.TerritoryFull:
+      type: object
+      description: A complete territory object with polygons, area, locations, zips, and boundaries.
+      additionalProperties: false
+      properties:
+        locations:
+          type:
+          - array
+          - 'null'
+          description: The locations within the territory.
+          items:
+            type: string
+        zips:
+          type:
+          - array
+          - 'null'
+          description: The zip codes within the territory.
+          items:
+            type: string
+        properties:
+          type:
+          - array
+          - 'null'
+          description: The properties of the territory.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties'
+        polygons:
+          type:
+          - array
+          - 'null'
+          description: The list of polygons that define the territory shape.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommonModels.Polygon'
+        area:
+          type: number
+          description: The area of the territory in square meters.
+          format: double
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the territory.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the territory.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color associated with the territory.
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The identifier of the parent territory, if exists.
+        global:
+          type: boolean
+          description: A flag indicating whether the territory is global.
+        userIds:
+          type:
+          - array
+          - 'null'
+          description: The list of user IDs associated with the territory.
+          items:
+            type: string
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the territory was last updated.
+          format: date-time
+    Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties:
+      type: object
+      description: Represents the properties of a location within a territory.
+      additionalProperties: false
+      properties:
+        country:
+          type:
+          - string
+          - 'null'
+          description: The name of the country.
+        state:
+          type:
+          - string
+          - 'null'
+          description: The name of the state or province.
+        zipCode:
+          type:
+          - string
+          - 'null'
+          description: The postal code or zip code of the location.
+        city:
+          type:
+          - string
+          - 'null'
+          description: The name of the city or town.
+        county:
+          type:
+          - string
+          - 'null'
+          description: The name of the county or district.
+    Spotio.Frontend.ViewModel.Territories.TerritoryToAddOrModify:
+      type: object
+      additionalProperties: false
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the territory
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color assigned to the territory
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent territory (if any)
+        polygons:
+          type:
+          - array
+          - 'null'
+          description: The polygons that make up the territory
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommonModels.Polygon'
+        locations:
+          type:
+          - array
+          - 'null'
+          description: The locations included in the territory
+          items:
+            type: string
+        zips:
+          type:
+          - array
+          - 'null'
+          description: The ZIP codes included in the territory
+          items:
+            type: string
+        userIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the users assigned to the territory
+          items:
+            type: string
+        properties:
+          type:
+          - array
+          - 'null'
+          description: Additional properties of the territory (e.g. country, state, etc.)
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties'
+    Spotio.Frontend.ViewModel.CommonModels.PolygonPoint:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+    Spotio.Frontend.ViewModel.Territories.UpdateModel:
+      type: object
+      description: Model used to update a territory.
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          description: The ID of the territory to update.
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the territory.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color of the territory.
+        parentId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the parent territory, if exists.
+          format: int32
+        userId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the user who owns the territory.
+          format: int32
+        polygons:
+          type:
+          - array
+          - 'null'
+          description: The polygons that define the territory.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommonModels.Polygon'
+        locations:
+          type:
+          - array
+          - 'null'
+          description: The locations included in the territory.
+          items:
+            type: string
+        zips:
+          type:
+          - array
+          - 'null'
+          description: The ZIP codes included in the territory.
+          items:
+            type: string
+        properties:
+          type:
+          - array
+          - 'null'
+          description: The boundaries properties of the territory.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties'
+        userIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the users who can access the territory.
+          items:
+            type: string
+        global:
+          type: boolean
+          description: Indicates whether the territory is global.
+        areaInMeters:
+          type: number
+          description: The area of the territory in meters.
+          format: double
+        areaInFoots:
+          type: number
+          description: The area of the territory in foots.
+          format: double
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the territory was last updated.
+          format: date-time
+    Spotio.Frontend.ViewModel.Territories.TerritoryBasic:
+      type: object
+      description: Basic information about a territory.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the territory.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the territory.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color associated with the territory.
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The identifier of the parent territory, if exists.
+        global:
+          type: boolean
+          description: A flag indicating whether the territory is global.
+        userIds:
+          type:
+          - array
+          - 'null'
+          description: The list of user IDs associated with the territory.
+          items:
+            type: string
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the territory was last updated.
+          format: date-time
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.CommonModels.Polygon:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        geoId:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        properties:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties'
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommonModels.PolygonPoint'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

@@ -1,0 +1,293 @@
+{
+  "item": [
+    {
+      "id": "7eb15dc0-f5de-46c8-87e2-32ea0287fe18",
+      "name": "UploadCare",
+      "description": {
+        "content": "Handles file upload operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "85a55691-c5de-48e0-8b4c-2523e3958b09",
+          "name": "Get upload signature",
+          "request": {
+            "name": "Get upload signature",
+            "description": {
+              "content": "\"Generates a time-limited signature for secure file uploads to SPOTIO storage .\n                After getting the response upload file like this (provide your file, and use response data):\n                curl -F \"UPLOADCARE_PUB_KEY=response.publicKey\" \\\n                     -F \"signature=response.signature\" \\\n                     -F \"expire=response.expire\" \\\n                     -F \"file=@yourfile.jpg\" \\\n                     \"response.uploadUrl\"\n                Curl request is going to return: uploadResponse = { file: string },\n                to build url to the file that will be accepted by spotio, use:\n                `${response.cdnUrl}/${uploadResponse.file}/`\n            \"",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "UploadCare",
+                "signature"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "464f1bdf-2907-40af-bcf2-962ccf57eae8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "UploadCare",
+                    "signature"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"expire\": 5874,\n  \"signature\": \"string\",\n  \"uploadUrl\": null,\n  \"publicKey\": \"string\",\n  \"cdnUrl\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f064187-670f-40d8-9a3a-57236eff8dc0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "UploadCare",
+                    "signature"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36e54b74-a23e-4c21-9a2b-f6b44a9199f9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "UploadCare",
+                    "signature"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dbda0c58-8624-4d5d-b69a-8ce9771610e2",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "UploadCare",
+                    "signature"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2d00e826-5ead-4848-980e-dbd153073286",
+    "name": "Spotio 2.0 Upload Care API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Handles file upload operations\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

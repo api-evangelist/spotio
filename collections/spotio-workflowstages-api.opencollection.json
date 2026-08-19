@@ -1,0 +1,230 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Workflow Stages API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "WorkflowStages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get stages groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/workflow/dataObjects/:dataObjectId/stages",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of all stage groups for the specified data object ID."
+        },
+        {
+          "info": {
+            "name": "Create stage in group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/workflow/dataObjects/:dataObjectId/stages/:group",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new stage in the specified stages group for the given data object type ID. The request body should include the necessary data to create the stage."
+        },
+        {
+          "info": {
+            "name": "Update stages group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/workflow/dataObjects/:dataObjectId/stages/:group",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the specified stages group for the given data object type ID and group name. This endpoint requires the user to have the `WorkflowSettingsAccess` permission. The `StagesGroupRequest` body should contain the updated stages group data. Returns a `StagesGroupResponse` object representing the updated stages group."
+        },
+        {
+          "info": {
+            "name": "Update stage in group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/workflow/dataObjects/:dataObjectId/stages/:group/:stageId",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a stage within a specified group for a given data object type. Returns the updated stage if successful."
+        },
+        {
+          "info": {
+            "name": "Delete stage in group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotio2.com/api/workflow/dataObjects/:dataObjectId/stages/:group/:stageId",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a specific stage from a group within a workflow."
+        },
+        {
+          "info": {
+            "name": "Move stage to another group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/workflow/dataObjects/:dataObjectId/stages/:group/:stageId/move",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Moves a workflow stage to another group within a specified data object type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

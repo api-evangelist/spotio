@@ -1,0 +1,522 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Connectors API
+  description: "\nThe controller is responsible for managing company links (connectors). \nThe controller allows creating new connectors which user can use them on web or mobile app. \nConnector can can include information about dataObjects and current user.\n"
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Connectors
+  description: "\nThe controller is responsible for managing company links (connectors). \nThe controller allows creating new connectors which user can use them on web or mobile app. \nConnector can can include information about dataObjects and current user.\n"
+paths:
+  /api/Connectors:
+    post:
+      tags:
+      - Connectors
+      summary: Create a new connector
+      description: "\nA connector can include user / dataObject variables.  \nAppropriate format is required  \n#### Web Regex - website url  `https://spotio2.com`\n* ^(((?i)(http|https):\\/\\/){1}(\\w+)+([\\p{L}0-9_ \\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\,{}]*)?)$  \n#### Mobile Regex - deep link   `slack://open?team={TEAM_ID}`\n* ^(((\\w+):\\/\\/){1}([\\p{L}0-9_ \\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\,{}]*)?)$\n"
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - Connectors
+      summary: Get all available connector for dataObject Type ID)
+      description: When DataObjectTypeId is empty return global connetors
+      parameters:
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      - name: sort
+        in: query
+        schema:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.SortDirection'
+      - name: dataObjectTypeId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.PagedResult%601%5B%5BSpotio.Frontend.ViewModel.Connectors.ConnectorSimple%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.PagedResult%601%5B%5BSpotio.Frontend.ViewModel.Connectors.ConnectorSimple%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.PagedResult%601%5B%5BSpotio.Frontend.ViewModel.Connectors.ConnectorSimple%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Connectors/{id}:
+    patch:
+      tags:
+      - Connectors
+      summary: Patch the connector if user have a permission
+      description: " Update connector details.\nA connector can include user / dataObject variables.  \nAppropriate format is required  \n#### Web Regex - website url  `https://spotio2.com`\n* ^(((?i)(http|https):\\/\\/){1}(\\w+)+([\\p{L}0-9_ \\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\,{}]*)?)$  \n#### Mobile Regex - deep link   `slack://open?team={TEAM_ID}`\n* ^(((\\w+):\\/\\/){1}([\\p{L}0-9_ \\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\,{}]*)?)$\n"
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - Connectors
+      summary: Delete the communication template (admin only)
+      parameters:
+      - name: id
+        in: path
+        description: The unique identifier for the connector
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - Connectors
+      summary: Get a connector by ID
+      description: Retrieves a connector by its unique ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorFull'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Connectors/profile:
+    get:
+      tags:
+      - Connectors
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorSimple'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorSimple'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorSimple'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Connectors/variables:
+    get:
+      tags:
+      - Connectors
+      summary: Get available variables for dataObjectType ID
+      parameters:
+      - name: dataObjectTypeId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: scope
+        in: query
+        schema:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorScope'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Variables.Variable'
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Variables.Variable'
+            text/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Variables.Variable'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Connectors/variables/all:
+    get:
+      tags:
+      - Connectors
+      summary: Get all available variables
+      description: List of variables which a user can use to create a new connector
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Variables.Variable'
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Variables.Variable'
+            text/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Variables.Variable'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Connectors.ConnectorScope:
+      type: string
+      enum:
+      - DataObject
+      - Global
+      - Profile
+    Spotio.Frontend.ViewModel.Connectors.SortDirection:
+      type: string
+      enum:
+      - Asc
+      - Desc
+    Spotio.Frontend.ViewModel.Connectors.ConnectorFull:
+      type: object
+      description: A full representation of a connector.
+      additionalProperties: false
+      properties:
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the company that owns the connector.
+        createdById:
+          type: integer
+          description: The ID of the user who created the connector.
+          format: int32
+        updatedById:
+          type: integer
+          description: The ID of the user who last updated the connector.
+          format: int32
+        updatedAt:
+          type: string
+          description: The date and time when the connector was last updated.
+          format: date-time
+        createdAt:
+          type: string
+          description: The date and time when the connector was created.
+          format: date-time
+        headers:
+          type:
+          - array
+          - 'null'
+          description: The headers to be included with the connector.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorHeader'
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the connector
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the connector
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorType'
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the connector
+        enabled:
+          type: boolean
+          description: Indicates whether the connector is enabled
+        availableInMobile:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the connector is available in mobile
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type from workflow settings
+        scope:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorScope'
+    Spotio.Frontend.ViewModel.Connectors.ConnectorType:
+      type: string
+      enum:
+      - Web
+      - App
+    Spotio.Frontend.ViewModel.Connectors.ConnectorSimple:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the connector
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the connector
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorType'
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the connector
+        enabled:
+          type: boolean
+          description: Indicates whether the connector is enabled
+        availableInMobile:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the connector is available in mobile
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type from workflow settings
+        scope:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorScope'
+    Spotio.Frontend.ViewModel.Connectors.ConnectorRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the connector (unique).
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorType'
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the connector.
+        enabled:
+          type: boolean
+          description: Indicates whether the connector is enabled.
+        headers:
+          type:
+          - array
+          - 'null'
+          description: The headers of the connector.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorHeader'
+        scope:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorScope'
+        availableInMobile:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the connector is available on mobile.
+        dataObjectTypeId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the data object type from workflow settings.
+          format: int32
+    Spotio.Frontend.ViewModel.Connectors.ConnectorHeader:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Variables.Variable:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

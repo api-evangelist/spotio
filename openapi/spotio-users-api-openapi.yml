@@ -1,0 +1,2656 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Users API
+  description: '
+
+    The controller is responsible for handling the creation, updating, deleting Spotio Users.
+
+    This controller allow users to exchange of credentials for a token.
+
+    '
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Users
+  description: '
+
+    The controller is responsible for handling the creation, updating, deleting Spotio Users.
+
+    This controller allow users to exchange of credentials for a token.
+
+    '
+paths:
+  /api/Users:
+    post:
+      tags:
+      - Users
+      summary: Create a new Spotio User
+      description: Create a new user for my company. Email has to be unique
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/auth/token:
+    post:
+      tags:
+      - Users
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.TokenRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.TokenRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.TokenRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.TokenRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.TokenRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.Tokens'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.Tokens'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.Tokens'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/{id}:
+    put:
+      tags:
+      - Users
+      summary: Update exising user by id
+      description: Update user details. Required user permission for update user.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserDetails'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/{id}/block:
+    post:
+      tags:
+      - Users
+      summary: Block existing user by Id
+      description: Block existing user for my company
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/details:
+    get:
+      tags:
+      - Users
+      summary: Get users list with search parameters.
+      description: Get company users details.
+      parameters:
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      - name: territoryId
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+      - name: query
+        in: query
+        schema:
+          type: string
+      - name: teamId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users:
+    get:
+      tags:
+      - Users
+      summary: Get user list
+      parameters:
+      - name: territoryIds
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/list:
+    get:
+      tags:
+      - Users
+      summary: Get paginated user list (deprecated, use /api/v2/users/list)
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: territoryIds
+        in: query
+        schema:
+          type: string
+      - name: userIds
+        in: query
+        schema:
+          type: string
+      - name: chatUserIds
+        in: query
+        schema:
+          type: string
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: statuses
+        in: query
+        schema:
+          type: string
+      - name: showOnlyVisible
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersListResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersListResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      deprecated: true
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/v2/users/list:
+    get:
+      tags:
+      - Users
+      summary: Get paginated and filtered user list
+      parameters:
+      - name: territoryIds
+        in: query
+        schema:
+          type: string
+      - name: userIds
+        in: query
+        schema:
+          type: string
+      - name: chatUserIds
+        in: query
+        schema:
+          type: string
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: statuses
+        in: query
+        schema:
+          type: string
+      - name: roles
+        in: query
+        schema:
+          type: string
+      - name: visible
+        in: query
+        schema:
+          type: boolean
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 20
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersListResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersListResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/externalSystemUserId:
+    get:
+      tags:
+      - Users
+      summary: Get user by external system user id
+      parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/search:
+    get:
+      tags:
+      - Users
+      summary: Search users
+      parameters:
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: groups
+        in: query
+        schema:
+          type: string
+      - name: territoryGlobalAccess
+        in: query
+        schema:
+          type: boolean
+      - name: hasSpotioPhone
+        in: query
+        schema:
+          type: boolean
+      - name: visible
+        in: query
+        schema:
+          type: boolean
+      - name: visibleInReports
+        in: query
+        schema:
+          type: boolean
+      - name: scrollId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - Users
+      summary: Search users
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/search/totalCount:
+    get:
+      tags:
+      - Users
+      summary: Search users total count
+      parameters:
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: groups
+        in: query
+        schema:
+          type: string
+      - name: territoryGlobalAccess
+        in: query
+        schema:
+          type: boolean
+      - name: hasSpotioPhone
+        in: query
+        schema:
+          type: boolean
+      - name: visible
+        in: query
+        schema:
+          type: boolean
+      - name: visibleInReports
+        in: query
+        schema:
+          type: boolean
+      - name: scrollId
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - Users
+      summary: Search users total count
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserSearchRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/{id}/invite:
+    post:
+      tags:
+      - Users
+      summary: Resend invitation for user
+      description: Send once again an invitation email for the user who should join to our company.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserFull'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserFull'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.UserFull'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/{userId}/profile-picture:
+    put:
+      tags:
+      - Users
+      summary: Change user profile picture
+      description: Change the profile picture for a user by providing an image URL.
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ChangeProfilePictureRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ChangeProfilePictureRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ChangeProfilePictureRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ChangeProfilePictureRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ChangeProfilePictureRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/users/apitoken:
+    post:
+      tags:
+      - Users
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ApiTokenRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ApiTokenRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ApiTokenRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ApiTokenRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ApiTokenRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ApiTokenResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ApiTokenResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.ApiTokenResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Authorization.Client.DTO.WebStatus:
+      type: string
+      enum:
+      - NotSet
+      - NotConfirmed
+      - Confirmed
+    Spotio.Frontend.ViewModel.Users.Tokens:
+      type: object
+      description: The response containing access and refresh tokens.
+      additionalProperties: false
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+          description: The access token.
+        refreshToken:
+          type:
+          - string
+          - 'null'
+          description: The refresh token.
+        tokenExpiresIn:
+          type: integer
+          description: The time in seconds until the access token expires.
+          format: int64
+        refreshExpiresIn:
+          type: integer
+          description: The time in seconds until the refresh token expires.
+          format: int64
+        createdAt:
+          type: integer
+          description: The Unix timestamp in seconds when the tokens were created.
+          format: int64
+    Spotio.Frontend.ViewModel.Users.UserSearchRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        groups:
+          type:
+          - array
+          - 'null'
+          enum:
+          - active
+          - trialing
+          - pending
+          - idle
+          - suspended
+          - readonly
+          - sales
+          - manager
+          - admin
+          - null
+          uniqueItems: true
+          items:
+            type: string
+        territoryGlobalAccess:
+          type:
+          - boolean
+          - 'null'
+        hasSpotioPhone:
+          type:
+          - boolean
+          - 'null'
+        scrollId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        visible:
+          type:
+          - boolean
+          - 'null'
+        visibleInReports:
+          type:
+          - boolean
+          - 'null'
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Users.ChangeProfilePictureRequest:
+      type: object
+      description: Request to change a user's profile picture
+      additionalProperties: false
+      properties:
+        pictureUrl:
+          type:
+          - string
+          - 'null'
+          description: 'URL of the image to set as profile picture. Set to null to remove the profile picture. Maximum length: 2000 characters. Supported formats: JPEG, PNG. Maximum file size: 5MB.'
+    Spotio.Frontend.ViewModel.Users.ApiTokenRequest:
+      type: object
+      description: A request object used to authenticate a client and get an API token.
+      additionalProperties: false
+      properties:
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the client making the request.
+        secret:
+          type:
+          - string
+          - 'null'
+          description: The secret used to authenticate the client.
+        impersonatedUserId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the user to impersonate.
+          format: int32
+    Spotio.Frontend.ViewModel.Users.UserDetails:
+      type: object
+      description: Represents a simple user object.
+      additionalProperties: false
+      properties:
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the user's company.
+        phone:
+          type:
+          - string
+          - 'null'
+          description: The user's phone number.
+        territoryIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the territories the user is assigned to.
+          items:
+            type: string
+        isGoogleAccount:
+          type: boolean
+          description: Indicates whether the user's account is a Google account.
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user's details were last updated.
+          format: date-time
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user's account was created.
+          format: date-time
+        os:
+          type:
+          - string
+          - 'null'
+          description: The operating system used by the user.
+        lastLoginAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user last logged in.
+          format: date-time
+        inviter:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.SimpleUser'
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: The user's timezone.
+        chatLogin:
+          type:
+          - string
+          - 'null'
+          description: The user's chat login.
+        chatPassword:
+          type:
+          - string
+          - 'null'
+          description: The user's chat password.
+        weeklyUpdates:
+          type: boolean
+          description: Indicates whether the user has opted in to receive weekly updates.
+        dailyUpdates:
+          type: boolean
+          description: Indicates whether the user has opted in to receive daily updates.
+        companyName:
+          type:
+          - string
+          - 'null'
+          description: The name of the company the user belongs to.
+        teamsIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the teams the user is a member of.
+          items:
+            type: string
+        invitedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        deletable:
+          type: boolean
+        suspended:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the user is suspended.
+        chatUserId:
+          type:
+          - integer
+          - 'null'
+          description: The chat user ID of the user.
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user.
+        status:
+          type:
+          - string
+          - 'null'
+          description: The status of the user.
+        isReadonly:
+          type: boolean
+          description: Whether the user is readonly.
+          readOnly: true
+        isInSalesforce:
+          type: boolean
+          description: Whether the user is in Salesforce.
+        territoryGlobalAccess:
+          type: boolean
+          description: Whether the user has global territory access.
+        visible:
+          type: boolean
+          description: Whether the user is visible.
+        visibleInReports:
+          type: boolean
+          description: Whether the user is visible in reports.
+        externalSystemUserId:
+          type:
+          - string
+          - 'null'
+          description: The external system user ID.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the user.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the user. [Admin, Manager, Sales]
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+        userPicUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL to the user's profile picture.
+        authorizationProvider:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
+    Spotio.Frontend.ViewModel.Users.UserFull:
+      type: object
+      description: User with full details
+      additionalProperties: false
+      properties:
+        attentionUpdates:
+          type: boolean
+          description: Whether the user has attention updates
+        language:
+          type:
+          - string
+          - 'null'
+          description: The user's language
+        dateFormat:
+          type:
+          - string
+          - 'null'
+          description: The user's date format
+        timeFormat:
+          type:
+          - string
+          - 'null'
+          description: The user's time format
+        hashedId:
+          type:
+          - string
+          - 'null'
+          description: The hashed ID of the user
+          readOnly: true
+        trial:
+          type: boolean
+          description: Whether the user is on trial
+        trialDaysLeft:
+          type: integer
+          description: The number of trial days left for the user
+          format: int32
+        availableFeatures:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AvailableFeatures'
+        units:
+          type:
+          - string
+          - 'null'
+          description: The units used by the user
+        channels:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.Channels'
+        emailConfirmed:
+          type: boolean
+          description: Whether the user's email is confirmed
+        salesforceEnabled:
+          type: boolean
+          description: Whether Salesforce is enabled for the user
+        hailtraceEnabled:
+          type: boolean
+          description: Whether Hailtrace is enabled for the user
+        paymentsSystemId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the user's payments system
+        paymentsPlan:
+          type:
+          - string
+          - 'null'
+          description: The user's payment plan
+        webStatus:
+          $ref: '#/components/schemas/Spotio.Authorization.Client.DTO.WebStatus'
+        invitationAcceptedAt:
+          type:
+          - string
+          - 'null'
+          description: The date the user accepted the invitation
+          format: date-time
+        spotioPhoneNumber:
+          type:
+          - string
+          - 'null'
+          description: The user's Spotio phone number
+        pushNotificationId:
+          type:
+          - string
+          - 'null'
+          description: The user's push notification ID
+        integratedEmail:
+          type:
+          - string
+          - 'null'
+          description: The user's integrated email
+        activeDirectoryEnabled:
+          type: boolean
+          description: Whether Active Directory is enabled for the user
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the user's company.
+        phone:
+          type:
+          - string
+          - 'null'
+          description: The user's phone number.
+        territoryIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the territories the user is assigned to.
+          items:
+            type: string
+        isGoogleAccount:
+          type: boolean
+          description: Indicates whether the user's account is a Google account.
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user's details were last updated.
+          format: date-time
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user's account was created.
+          format: date-time
+        os:
+          type:
+          - string
+          - 'null'
+          description: The operating system used by the user.
+        lastLoginAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user last logged in.
+          format: date-time
+        inviter:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.SimpleUser'
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: The user's timezone.
+        chatLogin:
+          type:
+          - string
+          - 'null'
+          description: The user's chat login.
+        chatPassword:
+          type:
+          - string
+          - 'null'
+          description: The user's chat password.
+        weeklyUpdates:
+          type: boolean
+          description: Indicates whether the user has opted in to receive weekly updates.
+        dailyUpdates:
+          type: boolean
+          description: Indicates whether the user has opted in to receive daily updates.
+        companyName:
+          type:
+          - string
+          - 'null'
+          description: The name of the company the user belongs to.
+        teamsIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the teams the user is a member of.
+          items:
+            type: string
+        invitedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        deletable:
+          type: boolean
+        suspended:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the user is suspended.
+        chatUserId:
+          type:
+          - integer
+          - 'null'
+          description: The chat user ID of the user.
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user.
+        status:
+          type:
+          - string
+          - 'null'
+          description: The status of the user.
+        isReadonly:
+          type: boolean
+          description: Whether the user is readonly.
+          readOnly: true
+        isInSalesforce:
+          type: boolean
+          description: Whether the user is in Salesforce.
+        territoryGlobalAccess:
+          type: boolean
+          description: Whether the user has global territory access.
+        visible:
+          type: boolean
+          description: Whether the user is visible.
+        visibleInReports:
+          type: boolean
+          description: Whether the user is visible in reports.
+        externalSystemUserId:
+          type:
+          - string
+          - 'null'
+          description: The external system user ID.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the user.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the user. [Admin, Manager, Sales]
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+        userPicUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL to the user's profile picture.
+        authorizationProvider:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
+    Spotio.Frontend.ViewModel.Users.User:
+      type: object
+      description: Represents a simple user object.
+      additionalProperties: false
+      properties:
+        suspended:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the user is suspended.
+        chatUserId:
+          type:
+          - integer
+          - 'null'
+          description: The chat user ID of the user.
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user.
+        status:
+          type:
+          - string
+          - 'null'
+          description: The status of the user.
+        isReadonly:
+          type: boolean
+          description: Whether the user is readonly.
+          readOnly: true
+        isInSalesforce:
+          type: boolean
+          description: Whether the user is in Salesforce.
+        territoryGlobalAccess:
+          type: boolean
+          description: Whether the user has global territory access.
+        visible:
+          type: boolean
+          description: Whether the user is visible.
+        visibleInReports:
+          type: boolean
+          description: Whether the user is visible in reports.
+        externalSystemUserId:
+          type:
+          - string
+          - 'null'
+          description: The external system user ID.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the user.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the user. [Admin, Manager, Sales]
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+        userPicUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL to the user's profile picture.
+        authorizationProvider:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
+    Spotio.Frontend.ViewModel.Users.AvailableFeatures:
+      type: object
+      additionalProperties: false
+      properties:
+        myReports:
+          type: boolean
+        canCreatePublicReports:
+          type: boolean
+        territories:
+          type: boolean
+        leadMachineFields:
+          type: boolean
+        leadMachineGen:
+          type: boolean
+        leadMachineCreditsBuy:
+          type: boolean
+        chat:
+          type: boolean
+        dashboard:
+          type: boolean
+        dashboardReports:
+          type: boolean
+        attachments:
+          type: boolean
+        econtracts:
+          type: boolean
+        insights:
+          type: boolean
+        customFilters:
+          type: boolean
+        pinColorization:
+          type: boolean
+        admin:
+          type: boolean
+        adminUsers:
+          type: boolean
+        adminManageUsers:
+          type: boolean
+        adminCompanySettings:
+          type: boolean
+        adminCustomActivities:
+          type: boolean
+        adminStages:
+          type: boolean
+        adminCustomFields:
+          type: boolean
+        adminBilling:
+          type: boolean
+        adminIntegrations:
+          type: boolean
+        leadsImport:
+          type: boolean
+          readOnly: true
+        dataObjectsImport:
+          type: boolean
+        leadsExport:
+          type: boolean
+          readOnly: true
+        dataObjectsExport:
+          type: boolean
+        activitiesExport:
+          type: boolean
+        userTracking:
+          type: boolean
+        calendar:
+          type: boolean
+        integrationsGoogleCalendar:
+          type: boolean
+        integrationsZapier:
+          type: boolean
+        seeAllTerritoriesIfLimited:
+          type: boolean
+        locationVerification:
+          type: boolean
+        territoryHierarchy:
+          type: boolean
+        leadAssignee:
+          type: boolean
+          readOnly: true
+        dataObjectAssignee:
+          type: boolean
+        dashboardLeaderboardTerritory:
+          type: boolean
+        dashboardLeaderboardUser:
+          type: boolean
+        adminSecurity:
+          type: boolean
+        calendarAssignOwner:
+          type: boolean
+        calendarCompanyFilters:
+          type: boolean
+        customFilterByTerritory:
+          type: boolean
+        customFilterByUser:
+          type: boolean
+        adminDocs:
+          type: boolean
+        dashboardSalesRepStats:
+          type: boolean
+        globalSearch:
+          type: boolean
+        branding:
+          type: boolean
+        googlePlaces:
+          type: boolean
+        infoTap:
+          type: boolean
+        integrationsSalesforce:
+          type: boolean
+        kmlLayer:
+          type: boolean
+        canChangeInfoTap:
+          type: boolean
+        apiAccess:
+          type: boolean
+        leadMachineAccess:
+          type: boolean
+        leadMachineB2BAccess:
+          type: boolean
+        integrationsHailTrace:
+          type: boolean
+        loggedAsCustomerSupport:
+          type: boolean
+        integrationsAcculynx:
+          type: boolean
+        mapTerritoriesTab:
+          type: boolean
+        bulkChange:
+          type: boolean
+        bulkAddToRoute:
+          type: boolean
+        bulkSchedule:
+          type: boolean
+        bulkReassign:
+          type: boolean
+        bulkStageChange:
+          type: boolean
+        bulkDelete:
+          type: boolean
+        resetActivityHistoryOnReassignment:
+          type: boolean
+        editAllLeads:
+          type: boolean
+          readOnly: true
+        editAllDataObjects:
+          type: boolean
+        deleteLeads:
+          type: boolean
+          readOnly: true
+        deleteDataObjects:
+          type: boolean
+        deleteOwnLeads:
+          type: boolean
+          readOnly: true
+        deleteOwnDataObjects:
+          type: boolean
+        enforceStrongPassword:
+          type: boolean
+        createTerritoriesOutsideAssigned:
+          type: boolean
+        accessReports:
+          type: boolean
+        showAllLeads:
+          type: boolean
+          readOnly: true
+        showAllDataObjects:
+          type: boolean
+        showDetailedLeads:
+          type: boolean
+          readOnly: true
+        showDetailedDataObjects:
+          type: boolean
+        gpsTrails:
+          type: boolean
+        gpsTrailsHistory:
+          type: boolean
+        integrationsSolo:
+          type: boolean
+        c3Access:
+          type: boolean
+        createCommunicationTemplates:
+          type: boolean
+        canChangeAutoVisits:
+          type: boolean
+        routing:
+          type: boolean
+        autoPlay:
+          type: boolean
+        autoPlayManagement:
+          type: boolean
+        canChangeEContracts:
+          type: boolean
+        teams:
+          type: boolean
+        editTerritoriesOutsideAssigned:
+          type: boolean
+        deleteTerritoriesOutsideAssigned:
+          type: boolean
+        assignUsersToTerritoriesOutsideAssigned:
+          type: boolean
+        createTerritoriesWithinAssigned:
+          type: boolean
+        editTerritoriesWithinAssigned:
+          type: boolean
+        deleteTerritoriesWithinAssigned:
+          type: boolean
+        assignUsersToTerritoriesWithinAssigned:
+          type: boolean
+        seeAllTeams:
+          type: boolean
+        createTeamsOutsideAssigned:
+          type: boolean
+        editTeamsOutsideAssigned:
+          type: boolean
+        deleteTeamsOutsideAssigned:
+          type: boolean
+        assignUsersToTeamsOutsideAssigned:
+          type: boolean
+        createTeamsWithinAssigned:
+          type: boolean
+        editTeamsWithinAssigned:
+          type: boolean
+        deleteTeamsWithinAssigned:
+          type: boolean
+        assignUsersToTeamsWithinAssigned:
+          type: boolean
+        createUsers:
+          type: boolean
+        editUsers:
+          type: boolean
+        canChangePersonalData:
+          type: boolean
+        canAccessRepOverview:
+          type: boolean
+        teamsWithHierarchy:
+          type: boolean
+        editReadonlyCustomFields:
+          type: boolean
+        mccMails:
+          type: boolean
+        businessCards:
+          type: boolean
+        canDeleteContacts:
+          type: boolean
+        canProvisionSpotioNumbers:
+          type: boolean
+        multipleSalesforceIntegrationsEnabled:
+          type: boolean
+        workflowSettingsAccess:
+          type: boolean
+        canEditWorkflow:
+          type: boolean
+        canEditDataObjectsNames:
+          type: boolean
+        canHaveMoreLostStages:
+          type: boolean
+        canRemoveLastStageInGroup:
+          type: boolean
+        spotioNumberMmsCapability:
+          type:
+          - boolean
+          - 'null'
+        canCreatePublicMyReports:
+          type: boolean
+        canCreateByRoleMyReports:
+          type: boolean
+        basicAiAssistantAccess:
+          type: boolean
+        advancedAiAssistantAccess:
+          type: boolean
+        aiSummariesAccess:
+          type: boolean
+        workatoAccess:
+          type: boolean
+        sendCalendarInvitation:
+          type: boolean
+        emailIntegrationAccess:
+          type: boolean
+        emailTemplatesAccess:
+          type: boolean
+        bulkEmailsAccess:
+          type: boolean
+        textTemplatesAccess:
+          type: boolean
+        bulkTextsAccess:
+          type: boolean
+        emailAiGeneration:
+          type: boolean
+        textAiGeneration:
+          type: boolean
+        callRecording:
+          type: boolean
+        canMergeRecords:
+          type: boolean
+        aiVoiceMode:
+          type: boolean
+        mcpAccess:
+          type: boolean
+        canCreateDataObjects:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: boolean
+        baseAdminPermission:
+          type: boolean
+        baseManagerPermission:
+          type: boolean
+        baseSalesPermission:
+          type: boolean
+        aiPerformingActionsAccess:
+          type: boolean
+        salesScreenAccess:
+          type: boolean
+        winsHubAccess:
+          type: boolean
+        aiNextBestActionAccess:
+          type: boolean
+    Spotio.Frontend.ViewModel.Users.Channels:
+      type: object
+      additionalProperties: false
+      properties:
+        leads:
+          type:
+          - string
+          - 'null'
+        mapUsers:
+          type:
+          - string
+          - 'null'
+        activities:
+          type:
+          - string
+          - 'null'
+        activitiesV2:
+          type:
+          - string
+          - 'null'
+        session:
+          type:
+          - string
+          - 'null'
+        notifications:
+          type:
+          - string
+          - 'null'
+        territories:
+          type:
+          - string
+          - 'null'
+        customFields:
+          type:
+          - string
+          - 'null'
+        users:
+          type:
+          - string
+          - 'null'
+        stages:
+          type:
+          - string
+          - 'null'
+        activityTemplates:
+          type:
+          - string
+          - 'null'
+        company:
+          type:
+          - string
+          - 'null'
+        appointments:
+          type:
+          - string
+          - 'null'
+        appointmentsV2:
+          type:
+          - string
+          - 'null'
+        activityResults:
+          type:
+          - string
+          - 'null'
+        refresh:
+          type:
+          - string
+          - 'null'
+        refreshUser:
+          type:
+          - string
+          - 'null'
+        notificationsFeed:
+          type:
+          - string
+          - 'null'
+        notificationsV2Feed:
+          type:
+          - string
+          - 'null'
+        autoplays:
+          type:
+          - string
+          - 'null'
+        imports:
+          type:
+          - string
+          - 'null'
+        dataObjectsUser:
+          type:
+          - string
+          - 'null'
+        dataObjectsCompany:
+          type:
+          - string
+          - 'null'
+        workflow:
+          type:
+          - string
+          - 'null'
+        refreshUsersList:
+          type:
+          - string
+          - 'null'
+        refreshUserData:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Users.TokenRequest:
+      type: object
+      description: The request for a new access token.
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address associated with the account.
+        fingerPrint:
+          type:
+          - string
+          - 'null'
+          description: The fingerprint of the device requesting the token.
+        source:
+          type:
+          - string
+          - 'null'
+          description: The source of the request (e.g. mobile app, web app).
+        password:
+          type:
+          - string
+          - 'null'
+          description: The password associated with the account.
+        refreshToken:
+          type:
+          - string
+          - 'null'
+          description: The refresh token used to obtain a new access token.
+        platform:
+          $ref: '#/components/schemas/Spotio.Authorization.Client.DTO.Platform'
+        phone:
+          type:
+          - string
+          - 'null'
+          description: The phone number associated with the account.
+        code:
+          type:
+          - string
+          - 'null'
+          description: The verification code associated with the account for mobile.
+    Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        userCount:
+          type: integer
+          format: int32
+    Spotio.Frontend.ViewModel.Users.UserSearchResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+        scrollId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    Spotio.Frontend.ViewModel.Users.AuthorizationProvider:
+      type: string
+      enum:
+      - Spotio
+      - ActiveDirectory
+      - Saml
+    Spotio.Frontend.ViewModel.Users.SimpleUser:
+      type: object
+      description: Represents a simple user object.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the user.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the user. [Admin, Manager, Sales]
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+        userPicUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL to the user's profile picture.
+        authorizationProvider:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
+    Spotio.Authorization.Client.DTO.Platform:
+      type: string
+      enum:
+      - Web
+      - Ios
+      - Android
+      - Api
+    Spotio.Frontend.ViewModel.Users.ApiTokenResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Users.UsersListResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll ID for pagination. Use this value in the next request to get the next page. Null if there are no more results.
+        items:
+          type:
+          - array
+          - 'null'
+          description: List of users for the current page
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

@@ -1,0 +1,257 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Trips API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Trips",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get List of Trips",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Trips",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endFrom",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTo",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ownerIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of trips based on the provided parameters, filtered by the query string 'q', and paginated using 'scrollId' parameter. Allows filtering by 'routeId', 'from', 'to', 'endFrom', 'endTo' and 'ownerIds' parameters."
+        },
+        {
+          "info": {
+            "name": "Get trip summary data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Trips/summary",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "routeId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a summary of trip data based on specified filters. For filterId refert o FiltersController"
+        },
+        {
+          "info": {
+            "name": "Get active trip for the current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Trips/active",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves the active trip details for the current user, if one exists."
+        },
+        {
+          "info": {
+            "name": "Get the estimated time of arrival for a trip",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Trips/:id/arriving-time",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the estimated time of arrival for the specified trip, based on the current location of the user."
+        },
+        {
+          "info": {
+            "name": "Export trip details to PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Trips/:id/export/pdf",
+            "headers": [
+              {
+                "name": "x-app-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "locale",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export trip details to PDF"
+        },
+        {
+          "info": {
+            "name": "Export trip details to CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Trips/:id/export/csv",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export trip details to CSV"
+        },
+        {
+          "info": {
+            "name": "Export multiple trip details to selected file type",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Trips/export/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export multiple trip details to selected file type"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

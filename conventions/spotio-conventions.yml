@@ -1,0 +1,178 @@
+generated: '2026-08-13'
+method: searched
+source: https://developer.spotio2.com/docs/spotio2/qu2ht3gipl905-introduction
+derived_from: openapi/_original/spotio-swagger.json
+docs:
+- https://developer.spotio2.com/docs/spotio2/qu2ht3gipl905-introduction
+- https://developer.spotio2.com/docs/spotio2/3f682d2s8ezln-authenticating-to-the-rest-api
+- https://developer.spotio2.com/docs/spotio2/o5nz1a7nbyivu-paginating-and-sorting
+- https://developer.spotio2.com/docs/spotio2/8l7aj7gsg81ix-status-codes-and-errors
+- https://developer.spotio2.com/docs/spotio2/a56edkm4m96ez-filtering-collections
+
+base_url: https://api.spotio2.com
+test_base_url: https://app-test.spotio2.com
+media: json-only
+notes:
+- SPOTIO supports JSON only; invalid JSON in a request body returns 400 Bad Request.
+- All dates and times are ISO-8601.
+- All client/server communication is over HTTPS.
+- 'Enum field names and values are always camelCase - state is "ready", never "Ready".'
+
+authentication:
+  style: bearer-jwt
+  header: 'Authorization: Bearer <token>'
+  scheme_name: Bearer
+  declared_as: apiKey in header (Authorization) in the OpenAPI securitySchemes
+  token_mint: POST /api/users/apitoken
+  token_mint_credentials: clientId + secret, created in the SPOTIO web app under Settings -> Integrations -> API Access
+  token_lifetime: 30 days
+  token_revocation: a token is revoked at expiry and cannot be reused; expired tokens return 401
+  privilege_model: >-
+    An API key inherits the role and privileges of the SPOTIO user account that
+    created it. SPOTIO's own guidance is to mint production keys under an account
+    that will not be suspended, because suspending the user revokes the integration.
+  artifact: authentication/spotio-authentication.yml
+
+idempotency:
+  supported: false
+  evidence: >-
+    No Idempotency-Key (or equivalent) header or parameter appears anywhere in the
+    295 published operations, and SPOTIO's conventions documentation does not
+    describe request replay semantics. Retry-safety is left to the caller. This is
+    recorded as a genuine absence - no Idempotency pointer is emitted in apis.yml.
+  partial_mitigations:
+  - >-
+    DataObject writes accept `externalDataObjectId`, a caller-owned foreign key
+    that can be used to detect a record you already created, but it is a matching
+    field rather than an idempotency contract.
+  - >-
+    Bulk writes go through DataObjectsBulkJobs, where a job id makes a retry
+    observable (poll progress) rather than blindly repeated.
+
+pagination:
+  style: cursor
+  cursor_field: scrollId
+  request_parameter: scrollId
+  page_size_parameter: perPage
+  response_fields:
+  - scrollId
+  - totalCount
+  - items
+  termination: continue re-requesting with the returned scrollId until scrollId is null
+  parameter_occurrences: 41 operations declare a scrollId query parameter; 5 declare perPage
+  unpaginated_collections:
+  - Stages
+  - Custom Fields
+  - Activity Templates
+  - Users
+  note: >-
+    Those four collections return every record in the first response and carry no
+    scrollId - an agent must not loop on them waiting for a cursor.
+
+filtering:
+  style: persisted-filter-object
+  parameter: filterId
+  occurrences: 43 operations declare a filterId query parameter
+  workflow: >-
+    Create a filter first (POST /api/filters with title plus the attributes you want
+    to constrain - date range, dataObjectTypeIds, ...), then pass the returned filter
+    id as filterId on any collection endpoint that declares it.
+  note: Some surfaces are exposed through Filters (v1) and some through FiltersV2; SPOTIO states the two are interchangeable.
+
+sorting:
+  parameter: sortBy
+  occurrences: 11 operations declare a sortBy query parameter
+
+field_selection:
+  supported: false
+  note: >-
+    No sparse-fieldset or expand parameter is published. Custom-field breadth is a
+    property of the DataObject model itself, resolved through
+    GET /api/workflow/dataObjects/full rather than through a query parameter.
+
+metadata:
+  style: workflow-defined custom fields
+  discovery: GET /api/workflow/dataObjects/full returns the complete workflow structure - types, stages and every field definition with its id
+  field_discovery: GET /api/workflow/dataObjects/{dataObjectId}/fields returns each field with its stageConstraints, systemRole and options
+  note: >-
+    SPOTIO has no free-form `metadata` bag. Every custom attribute is a declared
+    field with a numeric fieldId, and writes address fields by fieldId, not by name.
+    An agent must resolve the workflow before it can write a DataObject.
+
+request_tracing:
+  request_id_header: null
+  note: >-
+    No request-id or correlation-id header is documented or declared in the spec.
+    An `x-app-version` header parameter appears on 31 operations, but it identifies
+    the client build, not the request.
+
+versioning:
+  scheme: uri-path (partial)
+  detail: >-
+    SPOTIO runs two path generations side by side rather than a single version
+    prefix. Newer surfaces sit under /api/v2/... (activities, appointments) while
+    the bulk of the API is unversioned /api/<Resource>. Several resources are dual
+    published - /api/v2/activities and /api/ActivitiesV2 both exist, and Trips /
+    TripsV2 and Filters / FiltersV2 are described by SPOTIO as usable
+    interchangeably.
+  info_version: v1
+  no_version_header: true
+  artifact: lifecycle/spotio-lifecycle.yml
+
+resource_updates:
+  put: body must contain the complete resource (all fields)
+  patch: 18 operations accept PATCH, via application/json-patch+json or application/merge-patch+json
+  exception: >-
+    On DataObjects, a top-level key missing from an update is NOT removed from the
+    model - the one documented exception to full-replacement PUT semantics.
+
+error_envelope:
+  rfc9457: false
+  shape: '{"errors": {"<field or fieldTempId>": "<message>"}}'
+  entity_level_key: '_'
+  artifact: errors/spotio-problem-types.yml
+
+rate_limit_signaling:
+  published: false
+  headers: []
+  status_on_exhaustion: null
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header is documented, and 429 is
+    declared on none of the 295 operations. See rate-limits/spotio-rate-limits.yml.
+
+long_running_operations:
+  exports:
+    pattern: submit-then-poll
+    submit: POST /api/Exports/dataObjects
+    poll: GET /api/Exports/{exportId}
+    terminal_field: state
+    terminal_value: ready
+    result_field: url (a download URL for the generated CSV)
+    docs: https://developer.spotio2.com/docs/spotio2/e8leh9956dljs-working-with-exports
+  bulk_jobs:
+    pattern: create -> upload NDJSON -> start -> poll -> download -> clean up
+    upload_format: NDJSON, one BulkDataObjectRequest per line
+    job_states: [Open, UploadComplete, InProgress, Ingested, JobComplete, Failed, Aborted]
+    file_states: [Uploaded, Processing, Processed, Failed]
+    docs: https://developer.spotio2.com/docs/spotio2/8zeggtfnhfk9t-working-with-bulk-jobs
+
+events:
+  webhooks: true
+  webhook_management: /api/Webhooks (CRUD) and GET /api/Webhooks/scopes
+  signature_header: X-Signature
+  signature_algorithm: hex-encoded HMAC-SHA256 of the request body, keyed with your secret
+  retries: up to 3 retries with increasing intervals when the endpoint does not answer 200
+  timeout: 10 seconds per delivery
+  realtime_alternative: >-
+    SPOTIO's Introduction names "Ably realtime events" as a second event transport
+    alongside HTTP webhooks, but publishes no channel catalog, no AsyncAPI and no
+    connection guide for it.
+  artifact: asyncapi/spotio-webhooks.yml
+
+cross_links:
+  authentication: authentication/spotio-authentication.yml
+  errors: errors/spotio-problem-types.yml
+  lifecycle: lifecycle/spotio-lifecycle.yml
+  rate_limits: rate-limits/spotio-rate-limits.yml
+  data_model: data-model/spotio-data-model.yml
+  sandbox: sandbox/spotio-sandbox.yml

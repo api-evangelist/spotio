@@ -1,0 +1,111 @@
+generated: '2026-08-13'
+method: searched
+source: openapi/_original/spotio-swagger.json
+docs: https://spotio.com/features/security-compliance/
+provider: SPOTIO
+providerId: spotio
+
+standards:
+- id: openapi-3
+  conforms: true
+  evidence: >-
+    SPOTIO publishes a real OpenAPI 3.0.1 document (238 paths, 295 operations, 510
+    component schemas) from its own Stoplight project, exported at
+    https://api.stoplight.io/projects/cHJqOjIzMTU4MQ/branches/main/export/spotio-swagger.json
+- id: openapi-3.1
+  conforms: false
+  evidence: source document declares openapi 3.0.1; the refined copies in openapi/ are normalised to 3.2.0 by this pipeline, which is our transform and not a provider claim
+- id: rest
+  conforms: true
+  evidence: resource-oriented paths, standard verbs, JSON-only media types
+- id: json
+  conforms: true
+  evidence: 'SPOTIO Introduction: "Currently we only support JSON format."'
+- id: iso-8601
+  conforms: true
+  evidence: 'SPOTIO Introduction: "The format for date and times is ISO-8601."'
+- id: json-patch
+  conforms: true
+  evidence: 18 PATCH operations accept application/json-patch+json (RFC 6902) and application/merge-patch+json (RFC 7386)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    errors are returned as a vendor errors object keyed by field name;
+    application/problem+json appears nowhere in the document
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: no Sunset or Deprecation header support is documented; no deprecation policy is published
+- id: rate-limit-headers
+  conforms: false
+  evidence: no RateLimit-*, X-RateLimit-* or Retry-After header is documented, and 429 is declared on 0 of 295 operations
+- id: idempotency-key
+  conforms: false
+  evidence: no Idempotency-Key header or parameter exists anywhere in the document
+- id: oauth2
+  conforms: false
+  evidence: >-
+    the only securityScheme is `Bearer`, declared as apiKey in the Authorization
+    header. Tokens are minted with a clientId+secret pair at POST /api/users/apitoken.
+    That is a proprietary token exchange, not RFC 6749, and there is no
+    /.well-known/oauth-authorization-server on any host.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every SPOTIO host
+- id: jwt
+  conforms: true
+  evidence: 'securityScheme description: "Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`"'
+- id: hmac-webhook-signing
+  conforms: true
+  evidence: outbound webhooks carry X-Signature, a hex-encoded HMAC-SHA256 of the request body keyed with the customer secret
+- id: mcp
+  conforms: true
+  evidence: >-
+    first-party remote MCP server at https://app.spotio2.com/mcp, authenticated with
+    a SPOTIO-MCP-KEY minted by the four /api/Mcp/keys/* operations. Probed 2026-08-13.
+- id: a2a
+  conforms: false
+  evidence: no agent card at /.well-known/agent-card.json or /.well-known/agent.json on any of five hosts
+- id: asyncapi
+  conforms: false
+  evidence: an event surface exists (10 webhook events) but is described in prose only; no AsyncAPI document is published
+- id: geojson
+  conforms: true
+  evidence: GET /api/Territories/{id}/geojson returns a territory as GeoJSON (RFC 7946)
+- id: ndjson
+  conforms: true
+  evidence: DataObjects bulk jobs ingest newline-delimited JSON upload files
+- id: cursor-pagination
+  conforms: true
+  evidence: scrollId cursor declared on 41 operations, with a documented null-terminates contract
+
+compliance:
+  published: true
+  url: https://spotio.com/features/security-compliance/
+  certifications:
+  - name: SOC 2 Type II
+    detail: >-
+      "SOC 2 Type II certified, covering all five Trust Services Criteria: Security,
+      Availability, Processing Integrity, Confidentiality, and Privacy." Independently
+      audited; report available under NDA.
+  - name: GDPR
+    detail: >-
+      Stated commitment to GDPR compliance with EU data centres available for data
+      residency, plus published support for data retention and right-to-erasure obligations.
+  not_claimed:
+  - ISO 27001
+  - HIPAA
+  - PCI DSS
+  - FedRAMP
+  security_controls:
+  - TLS 1.2+ in transit, enterprise-grade encryption at rest
+  - hosted on Microsoft Azure with multi-region redundancy (US and EU regions)
+  - Cloudflare WAF and DDoS mitigation
+  - role-based access control with automated audit logs
+  - stated 99.9% uptime
+
+x-evidence:
+- url: https://spotio.com/features/security-compliance/
+  http_status: 200
+  fetched: '2026-08-13'
+- source: openapi/_original/spotio-swagger.json
+  fetched: '2026-08-13'

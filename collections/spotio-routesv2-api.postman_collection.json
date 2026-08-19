@@ -1,0 +1,2221 @@
+{
+  "item": [
+    {
+      "id": "43c93015-a2d8-412d-a22e-0f2c1d24e555",
+      "name": "RoutesV2",
+      "description": {
+        "content": "API for routes. You can manage routes and calculate route based on stops list. You can also start a new trip based on the route.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27a6c03c-a998-41bb-b36a-5d3bc3f39cd3",
+          "name": "Create new route.",
+          "request": {
+            "name": "Create new route.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "routes",
+                "v2"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"status\": \"<string>\",\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "efbc2859-628f-4e5e-815d-afb3ad941dfe",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"status\": \"<string>\",\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"ownerId\": \"string\",\n  \"notes\": \"string\",\n  \"name\": null,\n  \"status\": \"<string>\",\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"totalDistance\": 5151,\n  \"totalTimeInSeconds\": 3896,\n  \"stops\": [\n    \"\",\n    \"\"\n  ],\n  \"overviewPolyline\": \"string\",\n  \"permissionsStatus\": \"<string>\",\n  \"scheduledDate\": \"1960-10-09T21:12:01.134Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1f7b8b7-67df-4c05-bc4f-ac9a8754dc79",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"status\": \"<string>\",\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"memberName\": \"string\",\n  \"filePath\": null,\n  \"line\": 5451,\n  \"aggregateError\": {\n    \"message\": \"string\",\n    \"memberName\": null,\n    \"filePath\": null,\n    \"line\": 4658\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "036ee5e2-b4dc-447a-a886-ba3902e013a0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"status\": \"<string>\",\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da9a7189-2f62-491c-9848-ecc93c513e6f",
+          "name": "Update the route.",
+          "request": {
+            "name": "Update the route.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "routes",
+                "v2",
+                ":id"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86a2e023-5479-4f55-bd04-0e6c0ecb7ef8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"ownerId\": \"string\",\n  \"notes\": \"string\",\n  \"name\": null,\n  \"status\": \"<string>\",\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"totalDistance\": 5151,\n  \"totalTimeInSeconds\": 3896,\n  \"stops\": [\n    \"\",\n    \"\"\n  ],\n  \"overviewPolyline\": \"string\",\n  \"permissionsStatus\": \"<string>\",\n  \"scheduledDate\": \"1960-10-09T21:12:01.134Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f068d164-d7f0-425b-b1c1-644d6f52f8d1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"memberName\": \"string\",\n  \"filePath\": null,\n  \"line\": 5451,\n  \"aggregateError\": {\n    \"message\": \"string\",\n    \"memberName\": null,\n    \"filePath\": null,\n    \"line\": 4658\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e697aeb4-9390-4445-8cb6-56dff2aca8e7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f41dbfa1-f243-4c22-9175-cd78b3cc832d",
+          "name": "Get the route by id.",
+          "request": {
+            "name": "Get the route by id.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "routes",
+                "v2",
+                ":id"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Id of the route."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f8a07063-61fb-41d4-b47c-36ede5b0be1f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the route."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"ownerId\": \"string\",\n  \"notes\": \"string\",\n  \"name\": null,\n  \"status\": \"<string>\",\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"totalDistance\": 5151,\n  \"totalTimeInSeconds\": 3896,\n  \"stops\": [\n    \"\",\n    \"\"\n  ],\n  \"overviewPolyline\": \"string\",\n  \"permissionsStatus\": \"<string>\",\n  \"scheduledDate\": \"1960-10-09T21:12:01.134Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fdf2328-b7ae-4dd9-a6fa-a13379803e5f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the route."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"memberName\": \"string\",\n  \"filePath\": null,\n  \"line\": 5451,\n  \"aggregateError\": {\n    \"message\": \"string\",\n    \"memberName\": null,\n    \"filePath\": null,\n    \"line\": 4658\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ef147d9-0897-46d8-b8d1-d96fe0a2df69",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the route."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38b75304-5e2b-4947-a2fb-8f7913ec05a3",
+          "name": "Get a preview of the first route scheduled for today for the calling user, intended for the home screen widget.",
+          "request": {
+            "name": "Get a preview of the first route scheduled for today for the calling user, intended for the home screen widget.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "routes",
+                "v2",
+                "preview"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3e77338b-0e86-41ce-bb50-dced465a01d2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "preview"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"route\": {\n    \"id\": \"string\",\n    \"ownerId\": \"string\",\n    \"notes\": null,\n    \"name\": null,\n    \"status\": \"<string>\",\n    \"options\": {\n      \"type\": \"<string>\",\n      \"avoidTolls\": \"<boolean>\",\n      \"avoidHighways\": \"<boolean>\",\n      \"optimization\": \"<string>\"\n    },\n    \"totalDistance\": 6999,\n    \"totalTimeInSeconds\": 3024,\n    \"stops\": [\n      \"\",\n      \"\"\n    ],\n    \"overviewPolyline\": \"string\",\n    \"permissionsStatus\": \"<string>\",\n    \"scheduledDate\": \"2011-07-22T03:46:33.553Z\"\n  },\n  \"recommendedStops\": [\n    \"\",\n    \"\"\n  ],\n  \"mapCenter\": {\n    \"lat\": 5583.994611379001,\n    \"lng\": null,\n    \"updatedAt\": \"2014-10-29T23:46:49.569Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47300b3d-6762-43c0-b6ed-576a89f33410",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "preview"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"memberName\": \"string\",\n  \"filePath\": null,\n  \"line\": 5451,\n  \"aggregateError\": {\n    \"message\": \"string\",\n    \"memberName\": null,\n    \"filePath\": null,\n    \"line\": 4658\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c905b495-644e-4a79-bdec-2e16ae76a7f5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "preview"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68613ab4-529c-49c3-8801-a95cd752adec",
+          "name": "Calculate the route.",
+          "request": {
+            "name": "Calculate the route.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "routes",
+                "v2",
+                "calculate"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10d522f1-631f-4a29-880d-a84957b36a46",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "calculate"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalDistance\": 8761,\n  \"totalTimeInSeconds\": 5876,\n  \"activityTimeInSeconds\": 2552,\n  \"totalTimeAndActivityTimeInSeconds\": 7549,\n  \"stops\": null,\n  \"overviewPolyline\": \"string\",\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6c6d533-90f2-42c7-8354-1ee8084d2584",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "calculate"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"memberName\": \"string\",\n  \"filePath\": null,\n  \"line\": 5451,\n  \"aggregateError\": {\n    \"message\": \"string\",\n    \"memberName\": null,\n    \"filePath\": null,\n    \"line\": 4658\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "886da0d6-3229-4e46-bc2c-130ec642743a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "calculate"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d739c6d7-3f5b-48eb-a209-8378520e6e20",
+          "name": "Enhance the route.",
+          "request": {
+            "name": "Enhance the route.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "routes",
+                "v2",
+                "enhance"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3221a4cf-8057-4af0-ad21-84880630f8cd",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "enhance"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalDistance\": 4584,\n  \"totalTimeInSeconds\": 8116,\n  \"activityTimeInSeconds\": 9511,\n  \"totalTimeAndActivityTimeInSeconds\": 5879,\n  \"stops\": [\n    \"\",\n    \"\"\n  ],\n  \"overviewPolyline\": null,\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c239f98-3e1e-4781-ab6d-1f8f9b2aa8c7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "enhance"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"memberName\": \"string\",\n  \"filePath\": null,\n  \"line\": 5451,\n  \"aggregateError\": {\n    \"message\": \"string\",\n    \"memberName\": null,\n    \"filePath\": null,\n    \"line\": 4658\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85192367-87bd-4b50-aded-f67ec25ba7e3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "enhance"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b284e514-41ec-48e3-826c-cc2f101ffec8",
+          "name": "Start the trip based on the route.",
+          "request": {
+            "name": "Start the trip based on the route.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "routes",
+                "v2",
+                ":id",
+                "start"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Id of the route."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a3666f12-c22f-4eb4-9f80-0b940e9601bf",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id",
+                    "start"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the route."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": null,\n  \"name\": null,\n  \"ownerId\": \"string\",\n  \"routeId\": null,\n  \"status\": \"Finished\",\n  \"totalDistance\": 1975,\n  \"totalTimeInSeconds\": 4588,\n  \"options\": {\n    \"type\": \"<string>\",\n    \"avoidTolls\": \"<boolean>\",\n    \"avoidHighways\": \"<boolean>\",\n    \"optimization\": \"<string>\"\n  },\n  \"stops\": [\n    \"\",\n    \"\"\n  ],\n  \"numberOfStops\": 589,\n  \"overviewPolyline\": \"string\",\n  \"activityTimeInSeconds\": 9882,\n  \"totalTimeAndActivityTimeInSeconds\": 1012\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51ceec64-f728-4444-b182-39060f59f27b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id",
+                    "start"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the route."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"memberName\": \"string\",\n  \"filePath\": null,\n  \"line\": 5451,\n  \"aggregateError\": {\n    \"message\": \"string\",\n    \"memberName\": null,\n    \"filePath\": null,\n    \"line\": 4658\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c519887e-4c2b-4672-b053-52c39a050b1c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    ":id",
+                    "start"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Id of the route."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "410a85cd-2edb-48e7-b972-c822f971c8c3",
+          "name": "Get recommended stops for the route.",
+          "request": {
+            "name": "Get recommended stops for the route.",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "routes",
+                "v2",
+                "recommended-stops"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a14a3350-0cd9-4dd5-a77b-9d430f742287",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "recommended-stops"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"stops\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "462743f4-55df-43ff-8840-c61709ecbc95",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "recommended-stops"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"memberName\": \"string\",\n  \"filePath\": null,\n  \"line\": 5451,\n  \"aggregateError\": {\n    \"message\": \"string\",\n    \"memberName\": null,\n    \"filePath\": null,\n    \"line\": 4658\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a4d4e37-71a3-4c70-8b56-304871fb7ac6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "routes",
+                    "v2",
+                    "recommended-stops"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"stops\": \"<array,null>\",\n  \"scheduledDate\": \"<string,null-date-time>\",\n  \"ownerId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "18eafee1-76b6-428a-8120-0a243fb1d203",
+    "name": "Spotio 2.0 Routes V2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for routes. You can manage routes and calculate route based on stops list. You can also start a new trip based on the route.\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

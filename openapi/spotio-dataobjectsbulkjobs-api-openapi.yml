@@ -1,0 +1,652 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Data Objects Bulk Jobs API
+  description: 'Bulk operations on data objects. Flow: Create job -> Upload NDJSON data -> Start processing -> Poll progress -> Download results -> Cleanup.'
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: DataObjectsBulkJobs
+  description: 'Bulk operations on data objects. Flow: Create job -> Upload NDJSON data -> Start processing -> Poll progress -> Download results -> Cleanup.'
+paths:
+  /api/jobs/dataObjects/bulk:
+    post:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Create a bulk job
+      description: 'Creates a new bulk job for the specified data object type. After creation, upload NDJSON data files, then start processing. Allowed operations: ''create'', ''update'', ''patch''.'
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/jobs/dataObjects/bulk/inprogress:
+    get:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Get in-progress bulk jobs
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/jobs/dataObjects/bulk/{id}:
+    get:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Get a bulk job
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/jobs/dataObjects/bulk/{id}/data:
+    put:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Upload bulk job data
+      description: Upload an NDJSON file (one JSON object per line) as the raw request body. Each line must be a valid JSON object matching the BulkDataObjectRequest schema (see Schemas section for field definitions). Multiple files can be uploaded to the same job. Content-Type should be application/octet-stream.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Upload NDJSON data. Each line must be a valid JSON object matching the schema.
+        required: true
+        content:
+          application/x-ndjson:
+            schema:
+              $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Bulks.BulkDataObjectRequest'
+            examples:
+              default:
+                value: '{"Fields": [{"FieldId": "f-title", "Label": "Title", "Value": "Value A", "FormattedValue": "Value A"}], "TypeId": 101, "OwnerId": 1}
+
+                  {"Fields": [{"FieldId": "f-title", "Label": "Title", "Value": "Value B", "FormattedValue": "Value B"}], "TypeId": 101, "OwnerId": 2}
+
+                  {"Fields": [{"FieldId": "f-email", "Label": "Email", "Value": "test@example.com", "FormattedValue": "test@example.com"}], "TypeId": 101, "OwnerId": 1, "Pin": {"Id": "ChIJ...", "Lat": 40.7128, "Lng": -74.0060, "Address": "290 Broadway, New York, NY 10007, USA", "Street": "Broadway", "HouseNumber": "290", "Zip": "10007", "City": "New York", "Country": "USA", "ShortAddress": "290 Broadway"}}'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Bulks.BulkDataObjectRequest'
+            examples:
+              default:
+                value: '{"Fields": [{"FieldId": "f-title", "Label": "Title", "Value": "Value A", "FormattedValue": "Value A"}], "TypeId": 101, "OwnerId": 1}
+
+                  {"Fields": [{"FieldId": "f-title", "Label": "Title", "Value": "Value B", "FormattedValue": "Value B"}], "TypeId": 101, "OwnerId": 2}
+
+                  {"Fields": [{"FieldId": "f-email", "Label": "Email", "Value": "test@example.com", "FormattedValue": "test@example.com"}], "TypeId": 101, "OwnerId": 1, "Pin": {"Id": "ChIJ...", "Lat": 40.7128, "Lng": -74.0060, "Address": "290 Broadway, New York, NY 10007, USA", "Street": "Broadway", "HouseNumber": "290", "Zip": "10007", "City": "New York", "Country": "USA", "ShortAddress": "290 Broadway"}}'
+      responses:
+        '200':
+          description: File uploaded successfully
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFile'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFile'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFile'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        default:
+          description: Error
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/jobs/dataObjects/bulk/{id}/start:
+    post:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Start processing a bulk job
+      description: Marks the job as ready for processing. At least one data file must be uploaded before starting. The job must be in 'Open' state.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/jobs/dataObjects/bulk/{id}/progress:
+    get:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Get bulk job progress
+      description: Returns current processing progress including per-file breakdown of processed and failed records.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobProgress'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobProgress'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobProgress'
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/jobs/dataObjects/bulk/{id}/results/succeeded:
+    get:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Download succeeded results
+      description: Downloads an NDJSON file with successfully processed records. Each line contains FileId, DataObjectId, and the original Data.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/jobs/dataObjects/bulk/{id}/results/failed:
+    get:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Download failed results
+      description: Downloads an NDJSON file with failed records. Each line contains FileId, Error message, and the original Data.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/jobs/dataObjects/bulk/{id}/cleanup:
+    delete:
+      tags:
+      - DataObjectsBulkJobs
+      summary: Cleanup a bulk job
+      description: 'Cleans up bulk job resources: drops the staging data table, deletes result files, and/or deletes uploaded files. The job state is set to ''Aborted''. All flags default to true.'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        operation:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type: integer
+          format: int32
+        createdById:
+          type: integer
+          format: int32
+        createdDate:
+          type: string
+          format: date-time
+        updatedDate:
+          type: string
+          format: date-time
+        state:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFile:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        bulkJobId:
+          type:
+          - string
+          - 'null'
+        partNumber:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int64
+        recordCount:
+          type: integer
+          format: int32
+        state:
+          type:
+          - string
+          - 'null'
+        createdDate:
+          type: string
+          format: date-time
+    Spotio.DataObjects.Client.Contract.Bulks.BulkPin:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        shortAddress:
+          type:
+          - string
+          - 'null'
+        skipGeocoding:
+          type: boolean
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobProgress:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        operation:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type: integer
+          format: int32
+        createdById:
+          type: integer
+          format: int32
+        createdDate:
+          type: string
+          format: date-time
+        processingStartedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        totalRecordsToProcess:
+          type: integer
+          format: int32
+        recordsProcessed:
+          type: integer
+          format: int32
+        recordsFailed:
+          type: integer
+          format: int32
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        files:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFileProgress'
+    Spotio.DataObjects.Client.Contract.Bulks.BulkFieldValue:
+      type: object
+      additionalProperties: false
+      properties:
+        fieldId:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+        formattedValue:
+          type:
+          - string
+          - 'null'
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFileProgress:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        partNumber:
+          type: integer
+          format: int32
+        state:
+          type:
+          - string
+          - 'null'
+        recordCount:
+          type: integer
+          format: int32
+        recordsProcessed:
+          type: integer
+          format: int32
+        recordsFailed:
+          type: integer
+          format: int32
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        operation:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type: integer
+          format: int32
+    Spotio.DataObjects.Client.Contract.Bulks.BulkDataObjectRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        ownerId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        pin:
+          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Bulks.BulkPin'
+        source:
+          type:
+          - string
+          - 'null'
+        externalDataObjectId:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Bulks.BulkFieldValue'
+        typeId:
+          type: integer
+          format: int32
+        parentId:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        collaboratorIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dropDataTable:
+          type: boolean
+        deleteResultFiles:
+          type: boolean
+        deleteUploadedFiles:
+          type: boolean
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

@@ -1,0 +1,499 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Generate Content API
+  description: '
+
+    The controller is responsible for content generating for text messages and emails.
+
+    '
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: GenerateContent
+  description: '
+
+    The controller is responsible for content generating for text messages and emails.
+
+    '
+paths:
+  /api/generatecontent/{type}/suggestions:
+    get:
+      tags:
+      - GenerateContent
+      parameters:
+      - name: context
+        in: query
+        schema:
+          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
+      - name: type
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Spotio.AI.Client.Dto.CommunicationType'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/generatecontent/email:
+    post:
+      tags:
+      - GenerateContent
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/generatecontent/emailTemplate:
+    post:
+      tags:
+      - GenerateContent
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailTemplateRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailTemplateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailTemplateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailTemplateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailTemplateRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/generatecontent/text:
+    post:
+      tags:
+      - GenerateContent
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/generatecontent/textTemplate:
+    post:
+      tags:
+      - GenerateContent
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextTemplateRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextTemplateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextTemplateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextTemplateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GenerateTextTemplateRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/generatecontent/dataObjects/{dataObjectId}/summary:
+    post:
+      tags:
+      - GenerateContent
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedRecordSummaryResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedRecordSummaryResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.GeneratedRecordSummaryResponse'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.GenerateContent.GenerateTextRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        context:
+          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
+        action:
+          type:
+          - string
+          - 'null'
+        otherPrompt:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        textId:
+          type:
+          - string
+          - 'null'
+    Spotio.AI.Client.Dto.CommunicationType:
+      type: string
+      enum:
+      - Email
+      - EmailTemplate
+      - Text
+      - TextTemplate
+    Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailTemplateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        context:
+          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
+        action:
+          type:
+          - string
+          - 'null'
+        otherPrompt:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.GenerateContent.GenerateTextTemplateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        context:
+          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
+        action:
+          type:
+          - string
+          - 'null'
+        otherPrompt:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.GenerateContent.GeneratedRecordSummaryResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        date:
+          type: string
+          format: date-time
+        reference:
+          type:
+          - string
+          - 'null'
+        text:
+          type:
+          - string
+          - 'null'
+        snippet:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+        suggestedActions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
+        feedbackId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        context:
+          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
+        action:
+          type:
+          - string
+          - 'null'
+        otherPrompt:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        emailId:
+          type:
+          - string
+          - 'null'
+    Spotio.AI.Client.Dto.GenerateContextAction:
+      type: string
+      enum:
+      - Compose
+      - Reply
+      - Forward
+    Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        subject:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        suggestedActions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
+        feedbackId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction:
+      type: object
+      additionalProperties: false
+      properties:
+        action:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        minContentLength:
+          type:
+          - integer
+          - 'null'
+          format: int32
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

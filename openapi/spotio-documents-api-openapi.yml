@@ -1,0 +1,1013 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Documents API
+  description: "    The controller is responsible for handling the upload and retrieval of documents.\n    Documents can be attached to data object, activity or be available company wide."
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Documents
+  description: "    The controller is responsible for handling the upload and retrieval of documents.\n    Documents can be attached to data object, activity or be available company wide."
+paths:
+  /api/Documents:
+    post:
+      tags:
+      - Documents
+      summary: Add a new document for existing dataObject
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - Documents
+      summary: Get documents for existing dataObject
+      parameters:
+      - name: leadId
+        in: query
+        schema:
+          type: string
+      - name: dataObjectId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Documents/paged:
+    get:
+      tags:
+      - Documents
+      summary: Get documents with pagination
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: documentContext
+        in: query
+        schema:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel'
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - Documents
+      summary: Get documents with pagination
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Documents/company:
+    get:
+      tags:
+      - Documents
+      summary: Get all company documents
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Documents/{documentId}:
+    get:
+      tags:
+      - Documents
+      summary: Get document by id
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - Documents
+      summary: Delete existing document by id
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Documents/{documentId}/url:
+    get:
+      tags:
+      - Documents
+      summary: Get document url by id
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Documents/company/{documentId}:
+    put:
+      tags:
+      - Documents
+      summary: Update company document
+      parameters:
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest:
+      type: object
+      description: The request object for retrieving documents with pagination.
+      additionalProperties: false
+      properties:
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: Filter documents created/updated after this date.
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: Filter documents created/updated before this date.
+          format: date-time
+        documentContext:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel'
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: Filter documents associated with specific data object IDs.
+          items:
+            type: string
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Pagination cursor for retrieving the next page. Null for the first page.
+    Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel:
+      type: string
+      enum:
+      - Company
+      - Lead
+      - CommunicationTemplate
+      - Activity
+    Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        includeInCompanyDocs:
+          type: boolean
+        includeInAiChat:
+          type: boolean
+    Spotio.Documents.Client.DTO.AiIndexingStatusDto:
+      type: string
+      enum:
+      - NotSynced
+      - Processing
+      - Active
+      - Failed
+    Spotio.Documents.Client.DTO.DocumentState:
+      type: string
+      enum:
+      - Uploading
+      - Ready
+    Spotio.Frontend.ViewModel.Documents.Document:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the document.
+        updatedAt:
+          type: string
+          description: The date and time when the document was last updated.
+          format: date-time
+        createdAt:
+          type: string
+          description: The date and time when the document was created.
+          format: date-time
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the document.
+        state:
+          $ref: '#/components/schemas/Spotio.Documents.Client.DTO.DocumentState'
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the document.
+        isImage:
+          type: boolean
+          description: Indicates whether the document is an image.
+        mimeType:
+          type:
+          - string
+          - 'null'
+          description: The MIME type of the document.
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the data object to which the document is attached.
+        activityId:
+          type:
+          - integer
+          - 'null'
+          description: The unique identifier of the activity to which the document is attached, if any.
+          format: int32
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the user who owns the document.
+        documentContext:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel'
+        includeInCompanyDocs:
+          type: boolean
+          description: Should the document be visible for users
+        includeInAiChat:
+          type: boolean
+          description: Should the document be indexed by ai chat
+        aiIndexingStatus:
+          $ref: '#/components/schemas/Spotio.Documents.Client.DTO.AiIndexingStatusDto'
+        canBeAiIndexed:
+          type: boolean
+          description: Can be indexed by ai
+        deletable:
+          type: boolean
+          description: Indicates whether the document can be deleted
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse:
+      type: object
+      description: The response object for paginated documents.
+      additionalProperties: false
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          description: The list of documents for the current page.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Pagination cursor for retrieving the next page. Null if this is the last page.
+    Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest:
+      type: object
+      description: The request object for uploading a document.
+      additionalProperties: false
+      properties:
+        tempTitle:
+          type:
+          - string
+          - 'null'
+          description: The temporary title of the document.
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the document file.
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object the document is associated with.
+        activityId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the activity the document is associated with.
+          format: int32
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

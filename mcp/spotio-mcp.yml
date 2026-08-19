@@ -1,0 +1,89 @@
+generated: '2026-08-13'
+method: probed
+source: https://app.spotio2.com/mcp
+status: published
+name: SPOTIO MCP Server
+description: >-
+  SPOTIO operates a first-party remote MCP server. Its existence is proved two
+  ways: the published SPOTIO 2.0 OpenAPI carries a dedicated `Mcp` tag with four
+  operations that mint, read, rotate and revoke an MCP key
+  (POST /api/Mcp/keys/generate, GET /api/Mcp/keys/current,
+  PUT /api/Mcp/keys/regenerate, DELETE /api/Mcp/keys/current), and the endpoint
+  itself answers a JSON-RPC `tools/list` POST with an explicit
+  `401 Unauthorized: Missing SPOTIO-MCP-KEY header or mcpkey query parameter`.
+  That error names the exact credential the `Mcp` OpenAPI operations issue, which
+  is what ties the two surfaces together.
+
+deployment:
+  mode: remote
+  endpoint: https://app.spotio2.com/mcp
+  auth: api-key
+  verified: probed
+
+server:
+  name: spotio
+  transport: http
+  url: https://app.spotio2.com/mcp
+
+authentication:
+  scheme: api-key
+  header: SPOTIO-MCP-KEY
+  query_parameter: mcpkey
+  issued_by:
+  - POST /api/Mcp/keys/generate
+  - PUT /api/Mcp/keys/regenerate
+  read_by: GET /api/Mcp/keys/current
+  revoked_by: DELETE /api/Mcp/keys/current
+  key_source_spec: openapi/spotio-mcp-api-openapi.yml
+  note: >-
+    The MCP key is minted from the authenticated REST API, so a SPOTIO customer
+    with a Bearer token can provision an agent credential programmatically. It is
+    a tenant-scoped API key, not OAuth - there is no
+    /.well-known/oauth-authorization-server or /.well-known/oauth-protected-resource
+    on any SPOTIO host (both probed 404 on 2026-08-13).
+
+tools:
+  status: gated
+  count: null
+  note: >-
+    `tools/list` is auth-gated. SPOTIO publishes no llms.txt and no MCP tool
+    reference page, so no tool names could be observed without a customer MCP
+    key. NOTHING is asserted about the tool set here - names, descriptions and
+    inputSchemas all require authenticated introspection. See
+    mcp/spotio-tool-crosswalk.yml for the REST surface an authenticated
+    introspection should be reconciled against.
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://app.spotio2.com/mcp
+  method: POST
+  body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  http_status: 401
+  response_body: 'Unauthorized: Missing SPOTIO-MCP-KEY header or mcpkey query parameter'
+- fetched: '2026-08-13'
+  url: https://app.spotio2.com/mcp
+  method: GET
+  http_status: 401
+  response_body: 'Unauthorized: Missing SPOTIO-MCP-KEY header or mcpkey query parameter'
+- fetched: '2026-08-13'
+  url: https://api.spotio2.com/mcp
+  http_status: 405
+  note: production API host rejects the method; the MCP server is on the app host
+- source: openapi/_original/spotio-swagger.json
+  kind: openapi-tag
+  detail: tag `Mcp`, 4 operations under /api/Mcp/keys/*
+
+not_found:
+- https://mcp.spotio.com (DNS NXDOMAIN)
+- https://mcp.spotio2.com (DNS NXDOMAIN)
+- https://api.spotio2.com/api/mcp (404)
+- npm / PyPI: no first-party @spotio MCP package published
+
+third_party:
+- name: Zapier MCP - Spotio
+  url: https://zapier.com/mcp/spotio2
+  official: false
+  note: >-
+    Zapier exposes SPOTIO actions through Zapier's own MCP endpoint. It is
+    Zapier's server wrapping SPOTIO, not a SPOTIO-published one, and is recorded
+    here only so it is not mistaken for the first-party server above.

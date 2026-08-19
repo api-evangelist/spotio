@@ -1,0 +1,695 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Teams API
+  description: "\nThe controller is responsible for handling operations on teams creating, updating, deleting, and retrieving team data. \nThe controller also handles adding users to teams, getting a list of all teams in a company and deleting teams at once.\n"
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Teams
+  description: "\nThe controller is responsible for handling operations on teams creating, updating, deleting, and retrieving team data. \nThe controller also handles adding users to teams, getting a list of all teams in a company and deleting teams at once.\n"
+paths:
+  /api/Teams:
+    post:
+      tags:
+      - Teams
+      summary: Create a new team
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Teams/{teamId}:
+    put:
+      tags:
+      - Teams
+      summary: Update existing team
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - Teams
+      summary: Delete existing team
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - Teams
+      summary: Get team details
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.Team'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Teams/list:
+    get:
+      tags:
+      - Teams
+      summary: Get team list
+      parameters:
+      - name: name
+        in: query
+        description: Name of the team
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        description: The property to sort teams by. Order by descending required add '-' before parameter
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamList'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamList'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamList'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Teams/{teamId}/addUsers:
+    put:
+      tags:
+      - Teams
+      summary: Add users to team
+      parameters:
+      - name: teamId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.AddUsersToTeamRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.AddUsersToTeamRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.AddUsersToTeamRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.AddUsersToTeamRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.AddUsersToTeamRequest'
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Teams/all:
+    get:
+      tags:
+      - Teams
+      summary: Get all company teams
+      description: Get teams list with base information
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAllList'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAllList'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAllList'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Teams/many:
+    delete:
+      tags:
+      - Teams
+      summary: Delete many teams at once
+      description: Delete multiple teams by ids
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.DeleteManyTeamsRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.DeleteManyTeamsRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.DeleteManyTeamsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.DeleteManyTeamsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.DeleteManyTeamsRequest'
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Teams/users:
+    get:
+      tags:
+      - Teams
+      summary: Get users by teams
+      description: Get teams members with nested teams
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+            text/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Teams/logs:
+    get:
+      tags:
+      - Teams
+      summary: Get log of changes
+      description: Get changes log of teams
+      parameters:
+      - name: teamId
+        in: query
+        description: Filter by teamId
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: query
+        description: Filter by userId
+        schema:
+          type: integer
+          format: int32
+      - name: scrollId
+        in: query
+        description: Next page id
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAssignmentLogsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAssignmentLogsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAssignmentLogsResponse'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Teams.TeamAssignmentLog:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+        teamId:
+          type:
+          - string
+          - 'null'
+        when:
+          type: string
+          format: date-time
+        who:
+          type:
+          - string
+          - 'null'
+        action:
+          $ref: '#/components/schemas/Spotio.Authorization.Client.Teams.TeamAssignmentTypeDto'
+        source:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Teams.AddUsersToTeamRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        usersIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Authorization.Client.Teams.TeamAssignmentTypeDto:
+      type: string
+      enum:
+      - Added
+      - Removed
+    Spotio.Frontend.ViewModel.Teams.Team:
+      type: object
+      description: Represents a team in the system.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the team.
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the company that the team belongs to.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the team.
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent team, if exits.
+        createdById:
+          type:
+          - string
+          - 'null'
+          description: The ID of the user who created the team.
+        updatedById:
+          type:
+          - string
+          - 'null'
+          description: The ID of the user who last updated the team.
+        updatedAt:
+          type: string
+          description: The date and time when the team was last updated.
+          format: date-time
+        createdAt:
+          type: string
+          description: The date and time when the team was created.
+          format: date-time
+        usersIds:
+          type:
+          - array
+          - 'null'
+          description: A list of user IDs that belong to the team.
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Teams.TeamList:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        parentId:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type: string
+          format: date-time
+        userCount:
+          type: integer
+          format: int32
+        withinAssigned:
+          type: boolean
+        editable:
+          type: boolean
+        assignable:
+          type: boolean
+        deletable:
+          type: boolean
+        accessible:
+          type: boolean
+        visible:
+          type: boolean
+    Spotio.Frontend.ViewModel.Teams.TeamAssignmentLogsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAssignmentLog'
+        scrollId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Teams.TeamAllList:
+      type: object
+      description: Represents a team in the list of all teams.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the team.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the team.
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent team, if any.
+        visible:
+          type: boolean
+          description: Indicates whether the team is visible.
+        assignable:
+          type: boolean
+          description: Indicates whether the team is assignable.
+    Spotio.Frontend.ViewModel.Teams.DeleteManyTeamsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        teamsIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Teams.TeamRequest:
+      type: object
+      description: A request for creating a team.
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the team.
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent team, if this team is a sub-team.
+        usersIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the users that belong to the team.
+          items:
+            type: string
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

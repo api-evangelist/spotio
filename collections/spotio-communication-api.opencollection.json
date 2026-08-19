@@ -1,0 +1,453 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Communication API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Communication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get user call activities list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Communication/v3/calls",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id for pagination."
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the saved filter."
+              },
+              {
+                "name": "includeCallRecordings",
+                "value": "",
+                "type": "query",
+                "description": "Include call recordings"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user call activities list."
+        },
+        {
+          "info": {
+            "name": "Mark selected calls as seen.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Communication/v2/calls/seen",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id for pagination."
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the saved filter."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Mark selected calls as seen."
+        },
+        {
+          "info": {
+            "name": "Get user text activities list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Communication/v3/texts",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id for pagination."
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the saved filter."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user text activities list."
+        },
+        {
+          "info": {
+            "name": "Send email.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Communication/v2/mails",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send email."
+        },
+        {
+          "info": {
+            "name": "Get user mail activities list.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Communication/v3/mails",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id for pagination."
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the saved filter."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user mail activities list."
+        },
+        {
+          "info": {
+            "name": "Mark thread as read.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Communication/texts/:id/read",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Activity reference."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Mark thread as read."
+        },
+        {
+          "info": {
+            "name": "Mark mail as read.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Communication/mails/:id/read",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Activity reference."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Mark mail as read."
+        },
+        {
+          "info": {
+            "name": "Get user text thread by phone.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Communication/v2/texts/:phone",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id for pagination."
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the saved filter."
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "path",
+                "description": "Phone number."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user text thread by phone."
+        },
+        {
+          "info": {
+            "name": "Get communication log.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Communication/v2/log",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the saved filter."
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort by field."
+              },
+              {
+                "name": "directions",
+                "value": "",
+                "type": "query",
+                "description": "List of directions."
+              },
+              {
+                "name": "singleType",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the single dataObjectType."
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id for pagination."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get communication log."
+        },
+        {
+          "info": {
+            "name": "Get email by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Communication/v3/mails/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Email id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get email by id."
+        },
+        {
+          "info": {
+            "name": "Get attachment by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Communication/attachments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Attachment id."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get attachment by id."
+        },
+        {
+          "info": {
+            "name": "Search records for communication.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Communication/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text query"
+              },
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "query",
+                "description": "Phone number"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id for pagination"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the saved filter"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeRecentCall",
+                "value": "",
+                "type": "query",
+                "description": "If true recent call is included in the results"
+              },
+              {
+                "name": "dataObjectTypeId",
+                "value": "",
+                "type": "query",
+                "description": "Id of data object type"
+              },
+              {
+                "name": "hasPhoneOrEmail",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with phone or email"
+              },
+              {
+                "name": "hasPhone",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with phone"
+              },
+              {
+                "name": "hasEmail",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with email"
+              },
+              {
+                "name": "hasPhoneField",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return object type with phone in definition"
+              },
+              {
+                "name": "hasEmailField",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return object type with email in definition"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search records for communication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

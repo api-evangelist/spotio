@@ -1,0 +1,1000 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Workflow Fields API
+  description: Api is responsible for the comprehensive management of fields associated with data objects within a workflow. This includes functionality for retrieving available and existing fields, creating new fields, updating field properties, deleting fields, and reordering fields within a data object. Additionally, the controller enables the removal of a field from multiple data objects.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: WorkflowFields
+  description: Api is responsible for the comprehensive management of fields associated with data objects within a workflow. This includes functionality for retrieving available and existing fields, creating new fields, updating field properties, deleting fields, and reordering fields within a data object. Additionally, the controller enables the removal of a field from multiple data objects.
+paths:
+  /api/workflow/dataobjects/{dataObjectId}/fields/available:
+    get:
+      tags:
+      - WorkflowFields
+      summary: Get the list of available fields for a data object
+      description: This endpoint retrieves the list of available (not used yet) fields for a specific data object based on its ID.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.AvailableField'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.AvailableField'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.AvailableField'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataobjects/{dataObjectId}/fields:
+    get:
+      tags:
+      - WorkflowFields
+      summary: Get the list of fields for a data object
+      description: This endpoint retrieves the list of fields associated with a specific data object based on its ID.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - WorkflowFields
+      summary: Create a new field for a data object
+      description: This endpoint creates a new field and add it to a specific data object based on the provided request data.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldCreateRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldCreateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldCreateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldCreateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldCreateRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataobjects/{dataObjectId}/fields/{id}:
+    put:
+      tags:
+      - WorkflowFields
+      summary: Update an existing field for a data object
+      description: This endpoint updates an existing field for a specific data object based on its ID and the provided request data.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldUpdateRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldUpdateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldUpdateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldUpdateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldUpdateRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - WorkflowFields
+      summary: Delete a field for a data object
+      description: This endpoint deletes a specific field for a data object based on its ID.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/fields/{id}:
+    delete:
+      tags:
+      - WorkflowFields
+      summary: Delete a field definition
+      description: This endpoint deletes a field definition based on its ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataobjects/{dataObjectId}/fields/{id}/move:
+    post:
+      tags:
+      - WorkflowFields
+      summary: Move field to the data object
+      description: Add or change a field for a specific data object and update its index and role, if applicable.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldMoveRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldMoveRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldMoveRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldMoveRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldMoveRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.MoveFieldResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.MoveFieldResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.MoveFieldResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataobjects/fields/{id}/deleteReference:
+    post:
+      tags:
+      - WorkflowFields
+      summary: Delete a field from multiple objects
+      description: Delete a field from multiple data objects based on their IDs.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.DeleteFieldReferenceFromMultipleObjectsRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.DeleteFieldReferenceFromMultipleObjectsRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.DeleteFieldReferenceFromMultipleObjectsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.DeleteFieldReferenceFromMultipleObjectsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.DeleteFieldReferenceFromMultipleObjectsRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataobjects/fields/{id}/integrations:
+    get:
+      tags:
+      - WorkflowFields
+      summary: Get information if a field is used by any integration.
+      description: List of integrations that uses the this field.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldUsedByIntegrationsDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldUsedByIntegrationsDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldUsedByIntegrationsDto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto:
+      type: string
+      enum:
+      - Name
+      - Location
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldCreateRequest:
+      type: object
+      description: A request to create a new field for a data object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the field
+        index:
+          type: integer
+          description: The index position of the field
+          format: int32
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType'
+        stageConstraints:
+          type:
+          - array
+          - 'null'
+          description: The list of stage constraints
+          items:
+            type: string
+        readonly:
+          type: boolean
+          description: Indicates if the field is read-only
+        useAsFilter:
+          type: boolean
+          description: Indicates if the field should be used as a filter
+        activeOptions:
+          type:
+          - array
+          - 'null'
+          description: The list of active options for the field
+          items:
+            type: string
+        showInActivityFeed:
+          type: boolean
+          description: Indicates if the field should be shown in the activity feed
+        role:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto'
+        requiredWithoutStage:
+          type: boolean
+          description: Indicates if the field is required without a stage
+    Spotio.Frontend.ViewModel.Workflow.Fields.Field:
+      type: object
+      description: Represents a field for a data object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the field
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the field
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType'
+        stageConstraints:
+          type:
+          - array
+          - 'null'
+          description: The list of stage constraints
+          items:
+            type: string
+        createdAt:
+          type: string
+          description: The date and time the field was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time the field was last updated
+          format: date-time
+        readonly:
+          type: boolean
+          description: Indicates if the field is read-only
+        useAsFilter:
+          type: boolean
+          description: Indicates if the field should be used as a filter
+        activeOptions:
+          type:
+          - array
+          - 'null'
+          description: The list of active options for the field
+          items:
+            type: string
+        removedOptions:
+          type:
+          - array
+          - 'null'
+          description: The list of removed options for the field
+          items:
+            type: string
+        showInActivityFeed:
+          type: boolean
+          description: Indicates if the field should be shown in the activity feed
+        role:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto'
+        stageVisibility:
+          type:
+          - array
+          - 'null'
+          description: The list of stage visibility settings
+          items:
+            type: string
+        systemRole:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto'
+        requiredWithoutStage:
+          type: boolean
+          description: Indicates if the field is required without a stage
+        inherited:
+          type: boolean
+          description: Indicates if the field's value is inherited from parent object
+        inheritable:
+          type: boolean
+          description: Indicates if the field's value can be inherited from parent object
+    Spotio.Frontend.ViewModel.Workflow.Fields.DeleteFieldReferenceFromMultipleObjectsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: List of data object IDs from which to delete the field reference
+          items:
+            type: integer
+            format: int32
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto:
+      type: string
+      enum:
+      - Company
+      - FirstName
+      - LastName
+      - Phone
+      - Email
+      - Value
+      - Unit
+      - Address
+      - LossReasons
+      - LeadMachine
+    Spotio.Frontend.ViewModel.Workflow.Fields.MoveFieldResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldMoveRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        index:
+          type: integer
+          description: The new index for the field
+          format: int32
+        role:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto'
+        active:
+          type: boolean
+          description: Indicates if the field is active
+    Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType:
+      type: string
+      enum:
+      - Email
+      - Text
+      - Phone
+      - SingleChoice
+      - MultiChoice
+      - Date
+      - Number
+      - Address
+      - Currency
+      - DateTime
+      - MultiLine
+      - Attachment
+    Spotio.Frontend.ViewModel.Workflow.Fields.AvailableField:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the field
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the field
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType'
+        systemRole:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto'
+        group:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldGroup'
+        inheritable:
+          type: boolean
+          description: Indicates if the field is inherited
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldGroup:
+      type: string
+      enum:
+      - General
+      - LeadMachineB2B
+      - LeadMachineB2C
+      - InheritedFields
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.CompanySettings.Client.DTO.Workflow.IntegrationTypeDto:
+      type: string
+      enum:
+      - Salesforce
+      - SalesforceV2
+      - Solo
+      - SoloV3
+      - Acculynx
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldUpdateRequest:
+      type: object
+      description: A request to update an existing field for a data object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the field
+        stageConstraints:
+          type:
+          - array
+          - 'null'
+          description: The list of stage constraints
+          items:
+            type: string
+        readonly:
+          type: boolean
+          description: Indicates if the field is read-only
+        useAsFilter:
+          type: boolean
+          description: Indicates if the field should be used as a filter
+        activeOptions:
+          type:
+          - array
+          - 'null'
+          description: The list of active options for the field
+          items:
+            type: string
+        showInActivityFeed:
+          type: boolean
+          description: Indicates if the field should be shown in the activity feed
+        requiredWithoutStage:
+          type: boolean
+          description: Indicates if the field is required without a stage
+        inherited:
+          type: boolean
+          description: Indicates if the field is inherited from parent
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldUsedByIntegrationsDto:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+        integrations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.IntegrationTypeDto'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

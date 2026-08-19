@@ -1,0 +1,437 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Data Objects Search API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DataObjectsSearch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search objects (simple)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjectsSearch/simple",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text that can be used in a search of objects"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Returns objects filtered by filter with given Id"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "By what property objects should be sorted by"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude"
+              },
+              {
+                "name": "hasAddress",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with address"
+              },
+              {
+                "name": "hasPhoneOrEmail",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with phone or email"
+              },
+              {
+                "name": "hasPhone",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with phone"
+              },
+              {
+                "name": "hasEmail",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with email"
+              },
+              {
+                "name": "typeId",
+                "value": "",
+                "type": "query",
+                "description": "Returns objects filtered by given type id"
+              },
+              {
+                "name": "phoneNumber",
+                "value": "",
+                "type": "query",
+                "description": "Phone number"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Page size"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Global search for objects, search should use address or other characteristic fields"
+        },
+        {
+          "info": {
+            "name": "Search objects (simple)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjectsSearch/simple",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Global search for objects, search should use address or other characteristic fields"
+        },
+        {
+          "info": {
+            "name": "Search objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjectsSearch",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "By what property objects should be sorted by"
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "query",
+                "description": "Will return only objects with this stage Id"
+              },
+              {
+                "name": "stageGroups",
+                "value": "",
+                "type": "query",
+                "description": "Will return objects in specific stage group, can be 'active', 'won', or 'lost'"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Returns objects filtered by filter with given Id"
+              },
+              {
+                "name": "includeCustomFieldIds",
+                "value": "",
+                "type": "query",
+                "description": "Included custom fields - should be separated by \",\""
+              },
+              {
+                "name": "includeFilterOptionIds",
+                "value": "",
+                "type": "query",
+                "description": "Included filter option values - should be separated by \",\""
+              },
+              {
+                "name": "area",
+                "value": "",
+                "type": "query",
+                "description": "Coordinates of the screen corners when looking at a map"
+              },
+              {
+                "name": "polygon",
+                "value": "",
+                "type": "query",
+                "description": "Polygon data"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text that can be used in a search of objects"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude"
+              },
+              {
+                "name": "includeActivities",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return details about upcoming activity"
+              },
+              {
+                "name": "hasAddress",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with address"
+              },
+              {
+                "name": "hasPhoneOrEmail",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with phone or email"
+              },
+              {
+                "name": "hasPhone",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with phone"
+              },
+              {
+                "name": "hasEmail",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with email"
+              },
+              {
+                "name": "singleType",
+                "value": "",
+                "type": "query",
+                "description": "Returns data objects with selected type id"
+              },
+              {
+                "name": "includeOwnerExternalUserId",
+                "value": "",
+                "type": "query",
+                "description": "If true, will add information about owner external system user Id to the response"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of objects per page"
+              },
+              {
+                "name": "includeParentData",
+                "value": "",
+                "type": "query",
+                "description": "If true, will add information about parent to the response"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Global search for objects, search should use address or other characteristic fields"
+        },
+        {
+          "info": {
+            "name": "Search objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjectsSearch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Global search for objects, search should use address or other characteristic fields"
+        },
+        {
+          "info": {
+            "name": "Search objects on list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjectsSearch/list",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "By what property objects should be sorted by"
+              },
+              {
+                "name": "stageId",
+                "value": "",
+                "type": "query",
+                "description": "Will return only objects with this stage Id"
+              },
+              {
+                "name": "stageGroups",
+                "value": "",
+                "type": "query",
+                "description": "Will return objects in specific stage group, can be 'active', 'won', or 'lost'"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Returns objects filtered by filter with given Id"
+              },
+              {
+                "name": "includeCustomFieldIds",
+                "value": "",
+                "type": "query",
+                "description": "Included custom fields - should be separated by \",\""
+              },
+              {
+                "name": "includeFilterOptionIds",
+                "value": "",
+                "type": "query",
+                "description": "Included filter option values - should be separated by \",\""
+              },
+              {
+                "name": "area",
+                "value": "",
+                "type": "query",
+                "description": "Coordinates of the screen corners when looking at a map"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text that can be used in a search of objects"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude"
+              },
+              {
+                "name": "hasAddress",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with address"
+              },
+              {
+                "name": "hasPhoneOrEmail",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with phone or email"
+              },
+              {
+                "name": "hasPhone",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with phone"
+              },
+              {
+                "name": "hasEmail",
+                "value": "",
+                "type": "query",
+                "description": "If true, will return objects with email"
+              },
+              {
+                "name": "singleType",
+                "value": "",
+                "type": "query",
+                "description": "Returns data objects with selected type id"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of objects per page"
+              },
+              {
+                "name": "includeParentData",
+                "value": "",
+                "type": "query",
+                "description": "If true, will add information about parent to the response"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search objects on list"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

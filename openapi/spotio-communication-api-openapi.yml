@@ -1,0 +1,996 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Communication API
+  description: API for communication activities. You can retrieve data about communication activities. You can also marks calls, emails, texts as seen/read.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Communication
+  description: API for communication activities. You can retrieve data about communication activities. You can also marks calls, emails, texts as seen/read.
+paths:
+  /api/Communication/v3/calls:
+    get:
+      tags:
+      - Communication
+      summary: Get user call activities list.
+      parameters:
+      - name: scrollId
+        in: query
+        description: Scroll id for pagination.
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Reference to the saved filter.
+        schema:
+          type: string
+      - name: includeCallRecordings
+        in: query
+        description: Include call recordings
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.CallActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.CallActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.CallActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/v2/calls/seen:
+    post:
+      tags:
+      - Communication
+      summary: Mark selected calls as seen.
+      parameters:
+      - name: scrollId
+        in: query
+        description: Scroll id for pagination.
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Reference to the saved filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/v3/texts:
+    get:
+      tags:
+      - Communication
+      summary: Get user text activities list.
+      parameters:
+      - name: scrollId
+        in: query
+        description: Scroll id for pagination.
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Reference to the saved filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.TextActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.TextActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.TextActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/v2/mails:
+    post:
+      tags:
+      - Communication
+      summary: Send email.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.SendRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.SendRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.SendRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.SendRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.SendRequestDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.EmailAccepted'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.EmailAccepted'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.EmailAccepted'
+        '400':
+          description: Bad Request
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/v3/mails:
+    get:
+      tags:
+      - Communication
+      summary: Get user mail activities list.
+      parameters:
+      - name: scrollId
+        in: query
+        description: Scroll id for pagination.
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Reference to the saved filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectsDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectsDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectsDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/texts/{id}/read:
+    post:
+      tags:
+      - Communication
+      summary: Mark thread as read.
+      parameters:
+      - name: id
+        in: path
+        description: Activity reference.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/mails/{id}/read:
+    post:
+      tags:
+      - Communication
+      summary: Mark mail as read.
+      parameters:
+      - name: id
+        in: path
+        description: Activity reference.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/v2/texts/{phone}:
+    get:
+      tags:
+      - Communication
+      summary: Get user text thread by phone.
+      parameters:
+      - name: scrollId
+        in: query
+        description: Scroll id for pagination.
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Reference to the saved filter.
+        schema:
+          type: string
+      - name: phone
+        in: path
+        description: Phone number.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V2.UserTextThreadCommunicationFeed'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V2.UserTextThreadCommunicationFeed'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V2.UserTextThreadCommunicationFeed'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/v2/log:
+    get:
+      tags:
+      - Communication
+      summary: Get communication log.
+      parameters:
+      - name: filterId
+        in: query
+        description: Reference to the saved filter.
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        description: Sort by field.
+        schema:
+          type: string
+      - name: directions
+        in: query
+        description: List of directions.
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+      - name: singleType
+        in: query
+        description: The ID of the single dataObjectType.
+        schema:
+          type: integer
+          format: int32
+      - name: scrollId
+        in: query
+        description: Scroll id for pagination.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V2.CommunicationLogV2Dto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V2.CommunicationLogV2Dto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.CommunicationFeed%601%5B%5BSpotio.Frontend.ViewModel.Communication.V2.CommunicationLogV2Dto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/v3/mails/{id}:
+    get:
+      tags:
+      - Communication
+      summary: Get email by id.
+      parameters:
+      - name: id
+        in: path
+        description: Email id.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.EmailFullWithDataObjectsDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.EmailFullWithDataObjectsDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.EmailFullWithDataObjectsDto'
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/attachments/{id}:
+    get:
+      tags:
+      - Communication
+      summary: Get attachment by id.
+      parameters:
+      - name: id
+        in: path
+        description: Attachment id.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Communication/search:
+    get:
+      tags:
+      - Communication
+      summary: Search records for communication.
+      parameters:
+      - name: q
+        in: query
+        description: Text query
+        schema:
+          type: string
+      - name: phoneNumber
+        in: query
+        description: Phone number
+        schema:
+          type: string
+      - name: scrollId
+        in: query
+        description: Scroll id for pagination
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Reference to the saved filter
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+      - name: includeRecentCall
+        in: query
+        description: If true recent call is included in the results
+        schema:
+          type: boolean
+      - name: dataObjectTypeId
+        in: query
+        description: Id of data object type
+        schema:
+          type: integer
+          format: int32
+      - name: hasPhoneOrEmail
+        in: query
+        description: If true, will return objects with phone or email
+        schema:
+          type: boolean
+      - name: hasPhone
+        in: query
+        description: If true, will return objects with phone
+        schema:
+          type: boolean
+      - name: hasEmail
+        in: query
+        description: If true, will return objects with email
+        schema:
+          type: boolean
+      - name: hasPhoneField
+        in: query
+        description: If true, will return object type with phone in definition
+        schema:
+          type: boolean
+      - name: hasEmailField
+        in: query
+        description: If true, will return object type with email in definition
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.SimpleSearchModel%601%5B%5BSpotio.Frontend.ViewModel.Communication.CommunicationDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.SimpleSearchModel%601%5B%5BSpotio.Frontend.ViewModel.Communication.CommunicationDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.SimpleSearchModel%601%5B%5BSpotio.Frontend.ViewModel.Communication.CommunicationDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        leadId:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        existingActivityId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityDone:
+          type:
+          - boolean
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.V2.UserTextThreadCommunicationFeed:
+      type: object
+      additionalProperties: false
+      properties:
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll id for pagination.
+        items:
+          type:
+          - array
+          - 'null'
+          description: The list of items in the communication feed.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.TextThreadActivityV2'
+        textOptedIn:
+          type: boolean
+          description: Indicates whether record opted in for text messages.
+    Spotio.Frontend.ViewModel.Communication.FileDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+        size:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        contentId:
+          type:
+          - string
+          - 'null'
+        contentDisposition:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.MailSuite.AttachmentDto:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        typeId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.TextThreadActivityV2:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the text activity.
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+        message:
+          type:
+          - string
+          - 'null'
+          description: The text message content.
+        date:
+          type: string
+          description: The date and time when the text activity occurred.
+          format: date-time
+        media:
+          type:
+          - array
+          - 'null'
+          description: The list of media associated with the text activity.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.TextMedia'
+    Spotio.Frontend.ViewModel.Communication.V3.EmailFullWithDataObjectsDto:
+      type: object
+      additionalProperties: false
+      properties:
+        body:
+          type:
+          - string
+          - 'null'
+          description: The content of the email message body.
+        attachments:
+          type:
+          - array
+          - 'null'
+          description: The collection of file attachments associated with this email message.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.FileDto'
+        userId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the user who sent or received the email message.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the email activity.
+        dataObjects:
+          type:
+          - array
+          - 'null'
+          description: The list of data objects associated with the email.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectAndActivityDto'
+        hasAttachments:
+          type: boolean
+          description: Indicates whether the email has any attachments.
+        date:
+          type: string
+          description: The date and time when the email was sent or received.
+          format: date-time
+        snippet:
+          type:
+          - string
+          - 'null'
+          description: A brief snippet of the email content.
+        subject:
+          type:
+          - string
+          - 'null'
+          description: The subject of the email.
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+        isRead:
+          type: boolean
+          description: Indicates whether the email has been read or not.
+    Spotio.Frontend.ViewModel.MailSuite.SendRequestDto:
+      type: object
+      additionalProperties: false
+      properties:
+        subject:
+          type:
+          - string
+          - 'null'
+          description: The subject of the email.
+        body:
+          type:
+          - string
+          - 'null'
+          description: The body of the email.
+        to:
+          type:
+          - array
+          - 'null'
+          description: The list of email addresses to which the email will be sent.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto'
+        attachments:
+          type:
+          - array
+          - 'null'
+          description: The list of attachments to include with the email.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.AttachmentDto'
+        templateId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the email template to use for the email.
+        force:
+          type: boolean
+          description: Indicates whether to force sending the email even if not all template variables can be rendered.
+    ResultType.Results.IError:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        memberName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        filePath:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        line:
+          type: integer
+          format: int32
+          readOnly: true
+    Spotio.Frontend.ViewModel.Communication.EmailAccepted:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto:
+      type: object
+      additionalProperties: false
+      properties:
+        navigationId:
+          type:
+          - string
+          - 'null'
+        textOptedInPhoneNumbers:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        parent:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto'
+        id:
+          type:
+          - string
+          - 'null'
+        typeId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - string
+          - 'null'
+    ResultType.Results.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        memberName:
+          type:
+          - string
+          - 'null'
+        filePath:
+          type:
+          - string
+          - 'null'
+        line:
+          type: integer
+          format: int32
+        aggregateError:
+          $ref: '#/components/schemas/ResultType.Results.IError'
+    Spotio.Frontend.ViewModel.Communication.TextMedia:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        isImage:
+          type: boolean
+        mimeType:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectAndActivityDto:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto'
+        email:
+          type:
+          - string
+          - 'null'
+        resultId:
+          type:
+          - string
+          - 'null'
+        activityId:
+          type:
+          - string
+          - 'null'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

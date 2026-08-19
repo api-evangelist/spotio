@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Upload Care API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UploadCare",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get upload signature",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/UploadCare/signature",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "\"Generates a time-limited signature for secure file uploads to SPOTIO storage .\n                After getting the response upload file like this (provide your file, and use response data):\n                curl -F \"UPLOADCARE_PUB_KEY=response.publicKey\" \\\n                     -F \"signature=response.signature\" \\\n                     -F \"expire=response.expire\" \\\n                     -F \"file=@yourfile.jpg\" \\\n                     \"response.uploadUrl\"\n                Curl request is going to return:"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

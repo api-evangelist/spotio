@@ -1,0 +1,88 @@
+generated: '2026-08-13'
+method: searched
+source: https://developer.spotio2.com/docs/spotio2/3f682d2s8ezln-authenticating-to-the-rest-api + openapi/_original/spotio-swagger.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: Bearer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+  sources:
+  - openapi/spotio-activitiesv2-api-openapi.yml
+  - openapi/spotio-appointmentsv2-api-openapi.yml
+  - openapi/spotio-autoplays-api-openapi.yml
+  - openapi/spotio-businesscards-api-openapi.yml
+  - openapi/spotio-calendarsettings-api-openapi.yml
+  - openapi/spotio-communication-api-openapi.yml
+  - openapi/spotio-communicationtemplates-api-openapi.yml
+  - openapi/spotio-connectors-api-openapi.yml
+  - openapi/spotio-contracts-api-openapi.yml
+  - openapi/spotio-dataobjects-api-openapi.yml
+  - openapi/spotio-dataobjectsbulkjobs-api-openapi.yml
+  - openapi/spotio-dataobjectssearch-api-openapi.yml
+  - openapi/spotio-documents-api-openapi.yml
+  - openapi/spotio-exports-api-openapi.yml
+  - openapi/spotio-filters-api-openapi.yml
+  - openapi/spotio-filtersv2-api-openapi.yml
+  - openapi/spotio-generatecontent-api-openapi.yml
+  - openapi/spotio-layouts-api-openapi.yml
+  - openapi/spotio-leaderboards-api-openapi.yml
+  - openapi/spotio-mcp-api-openapi.yml
+  - openapi/spotio-multichannelcommunication-api-openapi.yml
+  - openapi/spotio-myreports-api-openapi.yml
+  - openapi/spotio-notificationsv2-api-openapi.yml
+  - openapi/spotio-pinsv2-api-openapi.yml
+  - openapi/spotio-reports-api-openapi.yml
+  - openapi/spotio-routesv2-api-openapi.yml
+  - openapi/spotio-teams-api-openapi.yml
+  - openapi/spotio-territories-api-openapi.yml
+  - openapi/spotio-trips-api-openapi.yml
+  - openapi/spotio-tripsv2-api-openapi.yml
+  - openapi/spotio-uploadcare-api-openapi.yml
+  - openapi/spotio-users-api-openapi.yml
+  - openapi/spotio-usertracking-api-openapi.yml
+  - openapi/spotio-webhooks-api-openapi.yml
+  - openapi/spotio-workflowactivitytemplates-api-openapi.yml
+  - openapi/spotio-workflowdataobjects-api-openapi.yml
+  - openapi/spotio-workflowfields-api-openapi.yml
+  - openapi/spotio-workflowsettings-api-openapi.yml
+  - openapi/spotio-workflowstages-api-openapi.yml
+docs: https://developer.spotio2.com/docs/spotio2/3f682d2s8ezln-authenticating-to-the-rest-api
+token_exchange:
+  operation: POST /api/users/apitoken
+  spec: openapi/spotio-users-api-openapi.yml
+  content_type: application/merge-patch+json
+  request:
+    clientId: <client id>
+    secret: <secret key>
+  response_field: accessToken
+  lifetime_days: 30
+  expiry_behaviour: the token is revoked at expiry and cannot be reused; requests with an expired token
+    return 401
+  credential_provisioning: SPOTIO web app -> Settings -> Integrations -> API Access; requires Admin. The
+    secret is displayed once and cannot be retrieved again.
+  privilege_model: the API key inherits the role and privileges of the SPOTIO user account that created
+    it; suspending that user disables the integration
+applied_to:
+  operations_total: 295
+  operations_with_security: 295
+  default_security: Bearer (document-level security requirement)
+oauth2:
+  supported: false
+  evidence: /.well-known/oauth-authorization-server and /.well-known/openid-configuration return 404 on
+    every SPOTIO host (probed 2026-08-13); no oauth2 securityScheme is declared
+mcp_credential:
+  header: SPOTIO-MCP-KEY
+  query_parameter: mcpkey
+  endpoint: https://app.spotio2.com/mcp
+  minted_by: POST /api/Mcp/keys/generate
+  note: a second, separate credential type used only by the MCP server; see mcp/spotio-mcp.yml
+webhook_credential:
+  header: X-Signature
+  algorithm: hex-encoded HMAC-SHA256 of the request body keyed with the customer secret
+  direction: inbound to the customer (SPOTIO signs its own deliveries)

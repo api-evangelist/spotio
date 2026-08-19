@@ -1,0 +1,572 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Users API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new Spotio User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new user for my company. Email has to be unique"
+        },
+        {
+          "info": {
+            "name": "POST /api/auth/token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/auth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Update exising user by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update user details. Required user permission for update user."
+        },
+        {
+          "info": {
+            "name": "Block existing user by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/users/:id/block",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Block existing user for my company"
+        },
+        {
+          "info": {
+            "name": "Get users list with search parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/users/details",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "territoryId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get company users details."
+        },
+        {
+          "info": {
+            "name": "Get user list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/users",
+            "params": [
+              {
+                "name": "territoryIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user list"
+        },
+        {
+          "info": {
+            "name": "Get paginated user list (deprecated, use /api/v2/users/list)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/users/list",
+            "headers": [
+              {
+                "name": "x-app-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "territoryIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "chatUserIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "showOnlyVisible",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get paginated user list (deprecated, use /api/v2/users/list)"
+        },
+        {
+          "info": {
+            "name": "Get paginated and filtered user list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/v2/users/list",
+            "params": [
+              {
+                "name": "territoryIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "chatUserIds",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "roles",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "visible",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get paginated and filtered user list"
+        },
+        {
+          "info": {
+            "name": "Get user by external system user id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/users/externalSystemUserId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user by external system user id"
+        },
+        {
+          "info": {
+            "name": "Search users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/users/search",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groups",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "territoryGlobalAccess",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "hasSpotioPhone",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "visible",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "visibleInReports",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search users"
+        },
+        {
+          "info": {
+            "name": "Search users",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/users/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search users"
+        },
+        {
+          "info": {
+            "name": "Search users total count",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/users/search/totalCount",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "groups",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "territoryGlobalAccess",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "hasSpotioPhone",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "visible",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "visibleInReports",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search users total count"
+        },
+        {
+          "info": {
+            "name": "Search users total count",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/users/search/totalCount",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search users total count"
+        },
+        {
+          "info": {
+            "name": "Resend invitation for user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/users/:id/invite",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send once again an invitation email for the user who should join to our company."
+        },
+        {
+          "info": {
+            "name": "Change user profile picture",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/users/:userId/profile-picture",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change the profile picture for a user by providing an image URL."
+        },
+        {
+          "info": {
+            "name": "POST /api/users/apitoken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/users/apitoken",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

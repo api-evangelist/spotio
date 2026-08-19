@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Notifications V2 API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NotificationsV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/NotificationsV2",
+            "headers": [
+              {
+                "name": "x-app-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "refer to FiltersController"
+              },
+              {
+                "name": "types",
+                "value": "",
+                "type": "query",
+                "description": "comma separated list of types, refer to the NotificationType"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "send to fetch next page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get notifications"
+        },
+        {
+          "info": {
+            "name": "Get filtered notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/NotificationsV2/filtered",
+            "headers": [
+              {
+                "name": "x-app-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "refer to FiltersController"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "send to fetch next page"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get filtered notifications"
+        },
+        {
+          "info": {
+            "name": "Get notification by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/NotificationsV2/:id",
+            "headers": [
+              {
+                "name": "x-app-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get notification by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

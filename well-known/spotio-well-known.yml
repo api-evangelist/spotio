@@ -1,0 +1,88 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of the /.well-known/ discovery surface on every SPOTIO host
+provider: SPOTIO
+providerId: spotio
+
+result: none
+documents_found: 0
+
+detail: >-
+  Nothing is served. Five SPOTIO hosts were probed against eight well-known paths -
+  40 requests, zero documents. The API host and the app host return a bare 404 with
+  an empty body; the marketing site returns 403 from its edge for every
+  /.well-known/* path; the Stoplight-hosted developer portal and the Zendesk-hosted
+  knowledge base return their own 404 HTML shell, which is not a document. No
+  WellKnown and no SecurityTxt pointer is emitted in apis.yml, because a recorded
+  absence must not be scored as a presence.
+
+hosts:
+- host: https://api.spotio2.com
+  role: production API base (openapi servers[0])
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+- host: https://app.spotio2.com
+  role: web application and MCP server host
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+- host: https://spotio.com
+  role: marketing site
+  documents:
+  - {path: /.well-known/security.txt, status: 403, note: edge returns a 146-byte HTML block page for every well-known path}
+  - {path: /.well-known/openid-configuration, status: 403}
+  - {path: /.well-known/oauth-authorization-server, status: 403}
+  - {path: /.well-known/oauth-protected-resource, status: 403}
+  - {path: /.well-known/api-catalog, status: 403}
+  - {path: /.well-known/ai-plugin.json, status: 403}
+  - {path: /.well-known/agent.json, status: 403}
+  - {path: /.well-known/agent-card.json, status: 403}
+- host: https://developer.spotio2.com
+  role: developer portal (Stoplight)
+  documents:
+  - {path: /.well-known/security.txt, status: 404, note: Stoplight SPA 404 shell, HTML}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+- host: https://support.spotio.com
+  role: knowledge base (Zendesk)
+  documents:
+  - {path: /.well-known/security.txt, status: 404, note: Zendesk 404 HTML shell}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+
+also_probed:
+- {url: 'https://spotio.com/llms.txt', status: 404}
+- {url: 'https://developer.spotio2.com/llms.txt', status: 404}
+- {url: 'https://spotio.com/openapi.json', status: 404}
+- {url: 'https://developer.spotio2.com/openapi.json', status: 404, note: Stoplight HTML shell}
+- {url: 'https://api.spotio2.com/openapi.json', status: 200, note: 'SOFT 200 - returns a 7KB HTML sign-in page, not a spec. Not a hit.'}
+
+implications:
+- No OAuth discovery, which is consistent with the API being bearer/JWT over a minted clientId+secret rather than OAuth 2.0.
+- No security.txt, which is consistent with the absence of any published vulnerability-disclosure programme (see security/spotio-vulnerability-disclosure.yml).
+- No agent card at either the canonical or the legacy path on any host, so no a2a/ artifact is written.
+
+checked: '2026-08-13'

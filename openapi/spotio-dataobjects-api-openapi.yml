@@ -1,0 +1,4025 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Data Objects API
+  description: The controller is responsible for manages the data objects and their related operations like creating, retrieving, updating, and deleting data objects, as well as some bulk actions.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: DataObjects
+  description: The controller is responsible for manages the data objects and their related operations like creating, retrieving, updating, and deleting data objects, as well as some bulk actions.
+paths:
+  /api/DataObjects:
+    post:
+      tags:
+      - DataObjects
+      summary: Create a new data object.
+      description: Create a new dataObject with an associated activity (activity is optional).
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithActivityRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithActivityRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithActivityRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithActivityRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}:
+    get:
+      tags:
+      - DataObjects
+      summary: Get existing data object.
+      description: Get information about the dataObject and related objects
+      parameters:
+      - name: dataObjectId
+        in: path
+        description: The ID of the data object.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - DataObjects
+      summary: Delete existing dataObject
+      parameters:
+      - name: dataObjectId
+        in: path
+        description: The ID of the data object.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeleteDataObjectRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeleteDataObjectRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeleteDataObjectRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeleteDataObjectRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeleteDataObjectRequest'
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}/jsonp:
+    patch:
+      tags:
+      - DataObjects
+      summary: JSON Patch for data object
+      description: Update the dataObject. Information about JSON patch can be found on the website https://jsonpatch.com .
+      parameters:
+      - name: validateRequiredFields
+        in: query
+        description: 'If true, validates all required fields. Default: true.'
+        schema:
+          type: boolean
+          default: true
+      - name: dataObjectId
+        in: path
+        description: The ID of the data object.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/merge-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}/jsonp/withActivity:
+    patch:
+      tags:
+      - DataObjects
+      summary: JSON Patch for data object with activity
+      description: Update the dataObject and create activity. Information about JSON patch can be found on the website https://jsonpatch.com .
+      parameters:
+      - name: validateRequiredFields
+        in: query
+        description: 'If true, validates all required fields. Default: true.'
+        schema:
+          type: boolean
+          default: true
+      - name: dataObjectId
+        in: path
+        description: The ID of the data object.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchWithActivityRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchWithActivityRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchWithActivityRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchWithActivityRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchWithActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/bulk:
+    post:
+      tags:
+      - DataObjects
+      summary: Bulk actions for deleting dataObjects
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectBulkActionRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectBulkActionRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectBulkActionRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectBulkActionRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectBulkActionRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/bulk/validate:
+    post:
+      tags:
+      - DataObjects
+      summary: Validate communication bulk action
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ValidateBulkAction'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ValidateBulkAction'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ValidateBulkAction'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ValidateBulkAction'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ValidateBulkAction'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ValidateBulkActionResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ValidateBulkActionResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ValidateBulkActionResponse'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/bulk/import/{importId}:
+    delete:
+      tags:
+      - DataObjects
+      summary: Delete import import by id
+      parameters:
+      - name: importId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/deleted:
+    get:
+      tags:
+      - DataObjects
+      summary: Get deleted data objects
+      description: A list of deleted data objects.
+      parameters:
+      - name: scrollId
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: Start date filter
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        description: End date filter
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectsResponse'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/withChildren:
+    post:
+      tags:
+      - DataObjects
+      summary: Create new data object with children
+      description: Create a new dataObject with related objectDataObject (children, parent) and an associated activity (activity is optional).
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenAndActivityRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenAndActivityRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenAndActivityRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenAndActivityRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenAndActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/move:
+    post:
+      tags:
+      - DataObjects
+      summary: Move data objects
+      description: Move data objects to a different pin
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectsRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectsRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectsRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/withChildren/{dataObjectId}:
+    get:
+      tags:
+      - DataObjects
+      summary: Get data object with children
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/withChildren/many:
+    get:
+      tags:
+      - DataObjects
+      summary: Get many data objects by ids
+      parameters:
+      - name: dataObjectsIds
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/many:
+    get:
+      tags:
+      - DataObjects
+      summary: Get many data objects by ids
+      parameters:
+      - name: dataObjectsIds
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/withChildren/{dataObjectId}/jsonp:
+    patch:
+      tags:
+      - DataObjects
+      summary: JSON Patch for data object in classic mode.
+      parameters:
+      - name: validateRequiredFields
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/merge-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.Operations.Operation'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/withChildren/{dataObjectId}/jsonp/withActivity:
+    patch:
+      tags:
+      - DataObjects
+      summary: JSON Patch for data object in classic mode with activity.
+      parameters:
+      - name: validateRequiredFields
+        in: query
+        schema:
+          type: boolean
+          default: true
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchAndActivityRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchAndActivityRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchAndActivityRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchAndActivityRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchAndActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}/activities/historical:
+    post:
+      tags:
+      - DataObjects
+      summary: 'Historical activities '
+      description: Array of historical (already set as Done) activities for the object
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.GetHistoricalActivitiesRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.GetHistoricalActivitiesRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.GetHistoricalActivitiesRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.GetHistoricalActivitiesRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.GetHistoricalActivitiesRequestDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1579145+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '3'
+                    ownerChanged:
+                      previousLeadOwnerId: '1'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '1'
+                      newDataObjectOwnerId: '2'
+                    resultId: '0'
+                    direction: in
+                    email: mail@mail.com
+                    phoneNumber: 202-555-0157
+                    reference: dsfoso123sadp
+                    autoExecution: false
+                    appointmentId: '25'
+                    dataObjectId: dataObjectId1
+                    documents:
+                    - id: '123'
+                      name: name
+                      url: example.com
+                      isImage: false
+                      mimeType: application/json
+                    plannedDate: '2026-08-03T07:14:40.1580433+00:00'
+                    access: full
+                  - id: '2163763'
+                    activityTemplateId: '5'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1582139+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '2'
+                    ownerChanged:
+                      previousLeadOwnerId: '3'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '3'
+                      newDataObjectOwnerId: '2'
+                    resultId: '1'
+                    direction: in
+                    email: testMail@mail.com
+                    phoneNumber: 202-333-0157
+                    reference: 2j32123k31
+                    autoExecution: false
+                    appointmentId: '26'
+                    dataObjectId: dataObjectId2
+                    documents: []
+                    plannedDate: '2026-08-03T07:14:40.1582294+00:00'
+                    access: visible
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1579145+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '3'
+                    ownerChanged:
+                      previousLeadOwnerId: '1'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '1'
+                      newDataObjectOwnerId: '2'
+                    resultId: '0'
+                    direction: in
+                    email: mail@mail.com
+                    phoneNumber: 202-555-0157
+                    reference: dsfoso123sadp
+                    autoExecution: false
+                    appointmentId: '25'
+                    dataObjectId: dataObjectId1
+                    documents:
+                    - id: '123'
+                      name: name
+                      url: example.com
+                      isImage: false
+                      mimeType: application/json
+                    plannedDate: '2026-08-03T07:14:40.1580433+00:00'
+                    access: full
+                  - id: '2163763'
+                    activityTemplateId: '5'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1582139+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '2'
+                    ownerChanged:
+                      previousLeadOwnerId: '3'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '3'
+                      newDataObjectOwnerId: '2'
+                    resultId: '1'
+                    direction: in
+                    email: testMail@mail.com
+                    phoneNumber: 202-333-0157
+                    reference: 2j32123k31
+                    autoExecution: false
+                    appointmentId: '26'
+                    dataObjectId: dataObjectId2
+                    documents: []
+                    plannedDate: '2026-08-03T07:14:40.1582294+00:00'
+                    access: visible
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1579145+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '3'
+                    ownerChanged:
+                      previousLeadOwnerId: '1'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '1'
+                      newDataObjectOwnerId: '2'
+                    resultId: '0'
+                    direction: in
+                    email: mail@mail.com
+                    phoneNumber: 202-555-0157
+                    reference: dsfoso123sadp
+                    autoExecution: false
+                    appointmentId: '25'
+                    dataObjectId: dataObjectId1
+                    documents:
+                    - id: '123'
+                      name: name
+                      url: example.com
+                      isImage: false
+                      mimeType: application/json
+                    plannedDate: '2026-08-03T07:14:40.1580433+00:00'
+                    access: full
+                  - id: '2163763'
+                    activityTemplateId: '5'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1582139+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '2'
+                    ownerChanged:
+                      previousLeadOwnerId: '3'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '3'
+                      newDataObjectOwnerId: '2'
+                    resultId: '1'
+                    direction: in
+                    email: testMail@mail.com
+                    phoneNumber: 202-333-0157
+                    reference: 2j32123k31
+                    autoExecution: false
+                    appointmentId: '26'
+                    dataObjectId: dataObjectId2
+                    documents: []
+                    plannedDate: '2026-08-03T07:14:40.1582294+00:00'
+                    access: visible
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - DataObjects
+      summary: 'Historical activities '
+      description: Array of historical (already set as Done) activities for the object
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: activityTemplateIds
+        in: query
+        description: Activity template ids separated by comma
+        schema:
+          type: string
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      - name: includeGhosts
+        in: query
+        schema:
+          type: boolean
+      - name: includeCallRecordings
+        in: query
+        schema:
+          type: boolean
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1705655+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '3'
+                    ownerChanged:
+                      previousLeadOwnerId: '1'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '1'
+                      newDataObjectOwnerId: '2'
+                    resultId: '0'
+                    direction: in
+                    email: mail@mail.com
+                    phoneNumber: 202-555-0157
+                    reference: dsfoso123sadp
+                    autoExecution: false
+                    appointmentId: '25'
+                    dataObjectId: dataObjectId1
+                    documents:
+                    - id: '123'
+                      name: name
+                      url: example.com
+                      isImage: false
+                      mimeType: application/json
+                    plannedDate: '2026-08-03T07:14:40.1705691+00:00'
+                    access: full
+                  - id: '2163763'
+                    activityTemplateId: '5'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1705706+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '2'
+                    ownerChanged:
+                      previousLeadOwnerId: '3'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '3'
+                      newDataObjectOwnerId: '2'
+                    resultId: '1'
+                    direction: in
+                    email: testMail@mail.com
+                    phoneNumber: 202-333-0157
+                    reference: 2j32123k31
+                    autoExecution: false
+                    appointmentId: '26'
+                    dataObjectId: dataObjectId2
+                    documents: []
+                    plannedDate: '2026-08-03T07:14:40.1705711+00:00'
+                    access: visible
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1705655+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '3'
+                    ownerChanged:
+                      previousLeadOwnerId: '1'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '1'
+                      newDataObjectOwnerId: '2'
+                    resultId: '0'
+                    direction: in
+                    email: mail@mail.com
+                    phoneNumber: 202-555-0157
+                    reference: dsfoso123sadp
+                    autoExecution: false
+                    appointmentId: '25'
+                    dataObjectId: dataObjectId1
+                    documents:
+                    - id: '123'
+                      name: name
+                      url: example.com
+                      isImage: false
+                      mimeType: application/json
+                    plannedDate: '2026-08-03T07:14:40.1705691+00:00'
+                    access: full
+                  - id: '2163763'
+                    activityTemplateId: '5'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1705706+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '2'
+                    ownerChanged:
+                      previousLeadOwnerId: '3'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '3'
+                      newDataObjectOwnerId: '2'
+                    resultId: '1'
+                    direction: in
+                    email: testMail@mail.com
+                    phoneNumber: 202-333-0157
+                    reference: 2j32123k31
+                    autoExecution: false
+                    appointmentId: '26'
+                    dataObjectId: dataObjectId2
+                    documents: []
+                    plannedDate: '2026-08-03T07:14:40.1705711+00:00'
+                    access: visible
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1705655+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '3'
+                    ownerChanged:
+                      previousLeadOwnerId: '1'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '1'
+                      newDataObjectOwnerId: '2'
+                    resultId: '0'
+                    direction: in
+                    email: mail@mail.com
+                    phoneNumber: 202-555-0157
+                    reference: dsfoso123sadp
+                    autoExecution: false
+                    appointmentId: '25'
+                    dataObjectId: dataObjectId1
+                    documents:
+                    - id: '123'
+                      name: name
+                      url: example.com
+                      isImage: false
+                      mimeType: application/json
+                    plannedDate: '2026-08-03T07:14:40.1705691+00:00'
+                    access: full
+                  - id: '2163763'
+                    activityTemplateId: '5'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: They want to buy
+                    text: Insurance meeting
+                    date: '2026-08-03T07:14:40.1705706+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    verified: true
+                    distance: 0.03
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '2'
+                    ownerChanged:
+                      previousLeadOwnerId: '3'
+                      newLeadOwnerId: '2'
+                      previousDataObjectOwnerId: '3'
+                      newDataObjectOwnerId: '2'
+                    resultId: '1'
+                    direction: in
+                    email: testMail@mail.com
+                    phoneNumber: 202-333-0157
+                    reference: 2j32123k31
+                    autoExecution: false
+                    appointmentId: '26'
+                    dataObjectId: dataObjectId2
+                    documents: []
+                    plannedDate: '2026-08-03T07:14:40.1705711+00:00'
+                    access: visible
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}/activities/{activityId}:
+    get:
+      tags:
+      - DataObjects
+      summary: Get historical activity by id
+      description: Fetch a single historical activity by its unique identifier for a given data object.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: activityId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}/appointments/upcoming:
+    get:
+      tags:
+      - DataObjects
+      summary: 'Upcoming Appointments '
+      description: Array with upcoming appointments for the data object
+      parameters:
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.UpcomingDataObjectAppointmentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    date: '2026-08-03T07:14:40.1871117+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: dsfoso123sadp
+                    activityId: '2163003'
+                    autoExecution: false
+                    contactId: '25'
+                    leadId: 6141d5853bf5da0001e891ee
+                    duration: 60
+                    activityDone: false
+                    recurringDefinition:
+                      id: '304'
+                      periodicity: hours
+                      interval: 5
+                      repeatOn:
+                      - monday
+                      - friday
+                      count: 5
+                    remindBeforeInSeconds: 3600
+                    originalStartDate: '2026-08-03T07:14:40.1871149+00:00'
+                  - id: '2155003'
+                    activityTemplateId: '3'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: Talk about their experience
+                    date: '2026-08-03T07:14:40.1872719+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: ds23sadp
+                    activityId: '2163703'
+                    autoExecution: false
+                    contactId: '26'
+                    leadId: 6141d5853bf5da0001e891xx
+                    duration: 60
+                    activityDone: false
+                    remindBeforeInSeconds: 7200
+                    originalStartDate: '2026-08-03T07:14:40.1872728+00:00'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.UpcomingDataObjectAppointmentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    date: '2026-08-03T07:14:40.1871117+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: dsfoso123sadp
+                    activityId: '2163003'
+                    autoExecution: false
+                    contactId: '25'
+                    leadId: 6141d5853bf5da0001e891ee
+                    duration: 60
+                    activityDone: false
+                    recurringDefinition:
+                      id: '304'
+                      periodicity: hours
+                      interval: 5
+                      repeatOn:
+                      - monday
+                      - friday
+                      count: 5
+                    remindBeforeInSeconds: 3600
+                    originalStartDate: '2026-08-03T07:14:40.1871149+00:00'
+                  - id: '2155003'
+                    activityTemplateId: '3'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: Talk about their experience
+                    date: '2026-08-03T07:14:40.1872719+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: ds23sadp
+                    activityId: '2163703'
+                    autoExecution: false
+                    contactId: '26'
+                    leadId: 6141d5853bf5da0001e891xx
+                    duration: 60
+                    activityDone: false
+                    remindBeforeInSeconds: 7200
+                    originalStartDate: '2026-08-03T07:14:40.1872728+00:00'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.UpcomingDataObjectAppointmentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    date: '2026-08-03T07:14:40.1871117+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: dsfoso123sadp
+                    activityId: '2163003'
+                    autoExecution: false
+                    contactId: '25'
+                    leadId: 6141d5853bf5da0001e891ee
+                    duration: 60
+                    activityDone: false
+                    recurringDefinition:
+                      id: '304'
+                      periodicity: hours
+                      interval: 5
+                      repeatOn:
+                      - monday
+                      - friday
+                      count: 5
+                    remindBeforeInSeconds: 3600
+                    originalStartDate: '2026-08-03T07:14:40.1871149+00:00'
+                  - id: '2155003'
+                    activityTemplateId: '3'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: Talk about their experience
+                    date: '2026-08-03T07:14:40.1872719+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: ds23sadp
+                    activityId: '2163703'
+                    autoExecution: false
+                    contactId: '26'
+                    leadId: 6141d5853bf5da0001e891xx
+                    duration: 60
+                    activityDone: false
+                    remindBeforeInSeconds: 7200
+                    originalStartDate: '2026-08-03T07:14:40.1872728+00:00'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - DataObjects
+      summary: 'Filtered Upcoming Appointments '
+      description: Filtered array with upcoming appointments for the data object
+      parameters:
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.UpcomingDataObjectAppointmentRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.UpcomingDataObjectAppointmentRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.UpcomingDataObjectAppointmentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.UpcomingDataObjectAppointmentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.UpcomingDataObjectAppointmentRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.UpcomingDataObjectAppointmentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    date: '2026-08-03T07:14:40.19941+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: dsfoso123sadp
+                    activityId: '2163003'
+                    autoExecution: false
+                    contactId: '25'
+                    leadId: 6141d5853bf5da0001e891ee
+                    duration: 60
+                    activityDone: false
+                    recurringDefinition:
+                      id: '304'
+                      periodicity: hours
+                      interval: 5
+                      repeatOn:
+                      - monday
+                      - friday
+                      count: 5
+                    remindBeforeInSeconds: 3600
+                    originalStartDate: '2026-08-03T07:14:40.1994125+00:00'
+                  - id: '2155003'
+                    activityTemplateId: '3'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: Talk about their experience
+                    date: '2026-08-03T07:14:40.1994142+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: ds23sadp
+                    activityId: '2163703'
+                    autoExecution: false
+                    contactId: '26'
+                    leadId: 6141d5853bf5da0001e891xx
+                    duration: 60
+                    activityDone: false
+                    remindBeforeInSeconds: 7200
+                    originalStartDate: '2026-08-03T07:14:40.1994144+00:00'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.UpcomingDataObjectAppointmentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    date: '2026-08-03T07:14:40.19941+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: dsfoso123sadp
+                    activityId: '2163003'
+                    autoExecution: false
+                    contactId: '25'
+                    leadId: 6141d5853bf5da0001e891ee
+                    duration: 60
+                    activityDone: false
+                    recurringDefinition:
+                      id: '304'
+                      periodicity: hours
+                      interval: 5
+                      repeatOn:
+                      - monday
+                      - friday
+                      count: 5
+                    remindBeforeInSeconds: 3600
+                    originalStartDate: '2026-08-03T07:14:40.1994125+00:00'
+                  - id: '2155003'
+                    activityTemplateId: '3'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: Talk about their experience
+                    date: '2026-08-03T07:14:40.1994142+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: ds23sadp
+                    activityId: '2163703'
+                    autoExecution: false
+                    contactId: '26'
+                    leadId: 6141d5853bf5da0001e891xx
+                    duration: 60
+                    activityDone: false
+                    remindBeforeInSeconds: 7200
+                    originalStartDate: '2026-08-03T07:14:40.1994144+00:00'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Activities.UpcomingDataObjectAppointmentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+              examples:
+                default:
+                  value:
+                  - id: '2163003'
+                    activityTemplateId: '4'
+                    type: event
+                    ownerId: '2'
+                    title: Talk about insurance
+                    notes: They want to buy
+                    date: '2026-08-03T07:14:40.19941+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: dsfoso123sadp
+                    activityId: '2163003'
+                    autoExecution: false
+                    contactId: '25'
+                    leadId: 6141d5853bf5da0001e891ee
+                    duration: 60
+                    activityDone: false
+                    recurringDefinition:
+                      id: '304'
+                      periodicity: hours
+                      interval: 5
+                      repeatOn:
+                      - monday
+                      - friday
+                      count: 5
+                    remindBeforeInSeconds: 3600
+                    originalStartDate: '2026-08-03T07:14:40.1994125+00:00'
+                  - id: '2155003'
+                    activityTemplateId: '3'
+                    type: event
+                    ownerId: '2'
+                    title: Follow Up
+                    notes: Talk about their experience
+                    date: '2026-08-03T07:14:40.1994142+00:00'
+                    durationSeconds: 3600
+                    allDay: false
+                    reference: ds23sadp
+                    activityId: '2163703'
+                    autoExecution: false
+                    contactId: '26'
+                    leadId: 6141d5853bf5da0001e891xx
+                    duration: 60
+                    activityDone: false
+                    remindBeforeInSeconds: 7200
+                    originalStartDate: '2026-08-03T07:14:40.1994144+00:00'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}/related:
+    get:
+      tags:
+      - DataObjects
+      summary: Get related data objects
+      description: Returns paginated list of related data objects based on text search.
+      parameters:
+      - name: q
+        in: query
+        description: Text that can be used in a search of objects
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        description: By what property objects should be sorted by
+        schema:
+          type: string
+      - name: scrollId
+        in: query
+        description: Cursor for pagination (next page)
+        schema:
+          type: string
+      - name: nba
+        in: query
+        description: 'Optional Next Best Action type used to return only related objects that support the action. Supported values: visit, call, email, appointment. When omitted, no NBA compatibility filter is applied.'
+        schema:
+          type: string
+      - name: perPage
+        in: query
+        description: Number of objects per page
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}/related/{relatedDataObjectsTypeId}:
+    get:
+      tags:
+      - DataObjects
+      summary: Get related objects
+      description: Returns paginated list of related objects based on the type and text search.
+      parameters:
+      - name: q
+        in: query
+        description: Text that can be used in a search of objects
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        description: By what property objects should be sorted by
+        schema:
+          type: string
+      - name: scrollId
+        in: query
+        description: Cursor for pagination (next page)
+        schema:
+          type: string
+      - name: perPage
+        in: query
+        description: Number of objects per page
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: relatedDataObjectsTypeId
+        in: path
+        description: Related object type
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/bulkActions/status:
+    get:
+      tags:
+      - DataObjects
+      summary: Get user bulk actions status
+      description: Returns bulk actions status for user
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.RelatedObjects.RelatedDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjects/{dataObjectId}/duplicatesByAddress:
+    get:
+      tags:
+      - DataObjects
+      summary: Get duplicates by address
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectDto'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.DataObjects.ValidateBulkActionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectTypeIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        count:
+          type: integer
+          format: int64
+        childrenCount:
+          type: integer
+          format: int32
+        invalidDataObjectsNames:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        allWithoutRequiredField:
+          type: boolean
+        anyWithoutRequiredField:
+          type: boolean
+        allOptedIn:
+          type: boolean
+        anyOptedIn:
+          type: boolean
+        validCount:
+          type: integer
+          format: int64
+        showHistoryResetWarning:
+          type: boolean
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent:
+      type: object
+      additionalProperties: false
+      properties:
+        parentsInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ParentObjectInfo'
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object.
+        name:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - string
+          - 'null'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the owner of the data object.
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Pin'
+        source:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        lastVisitResultId:
+          type:
+          - string
+          - 'null'
+        lastVisitDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastVisitNote:
+          type:
+          - string
+          - 'null'
+        externalDataObjectId:
+          type:
+          - string
+          - 'null'
+        territoryId:
+          type:
+          - string
+          - 'null'
+        territories:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto'
+        stageUpdatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        stageUpdatedById:
+          type:
+          - string
+          - 'null'
+        createdById:
+          type:
+          - string
+          - 'null'
+        updatedById:
+          type:
+          - string
+          - 'null'
+        lastLocationStatus:
+          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Activity.LocationStatus'
+        visitsCount:
+          type: integer
+          format: int32
+        lastActivityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nextActivityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateOfAssignment:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        callsCount:
+          type: integer
+          format: int32
+        lastCallDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastCallResultId:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        typeId:
+          type:
+          - string
+          - 'null'
+        access:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType'
+        phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        addressUnit:
+          type:
+          - string
+          - 'null'
+        textOptedIn:
+          type: boolean
+        phonesFullInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
+        collaboratorIds:
+          type:
+          - array
+          - 'null'
+          description: The list of collaborators.
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        scrollId:
+          type:
+          - string
+          - 'null'
+        deletedDataObjects:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectMetadata'
+    Spotio.Frontend.ViewModel.DataObjects.ChildObjectRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        typeId:
+          type: integer
+          format: int32
+    Spotio.Frontend.ViewModel.DataObjects.DeleteDataObjectRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        mode:
+          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.V2.DeleteDataObjectMode'
+        reassignTypesIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        newParentId:
+          type:
+          - string
+          - 'null'
+        permanently:
+          type: boolean
+    Spotio.Frontend.ViewModel.DataObjects.BulkEmail:
+      type: object
+      additionalProperties: false
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        templateId:
+          type:
+          - string
+          - 'null'
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkEmailAttachment'
+    Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PolygonPoint'
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest'
+        activity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+    Spotio.Frontend.ViewModel.DataObjects.UpcomingDataObjectAppointmentRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectTypeIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        activityTemplateIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest:
+      type: object
+      description: A request for creating a data object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object in bson format.
+        stageId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the stage (form workflow settings) in which the data object belongs.
+          format: int32
+        ownerId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the user who owns the data object.
+          format: int32
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PinRequest'
+        source:
+          type:
+          - string
+          - 'null'
+          description: The source of the data object.
+        externalDataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object in an external system.
+        fields:
+          type:
+          - array
+          - 'null'
+          description: The fields of the data object.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        typeId:
+          type: integer
+          description: The ID of the data object type from workflow settings.
+          format: int32
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent data object.
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: The creation time of the data object.
+          format: date-time
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The update time of the data object.
+          format: date-time
+        collaboratorIds:
+          type:
+          - array
+          - 'null'
+          description: The collaborators of the data object.
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectBulkActionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        polygon:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: Filter data objects by owner ID
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: Filter data objects by stage ID from workflow settings
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: Filter data objects by filter ID
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: IDs of the data objects to perform bulk actions on
+          items:
+            type: string
+        delete:
+          type: boolean
+          description: Set to true to delete the selected data objects
+        q:
+          type:
+          - string
+          - 'null'
+          description: Search query
+        singleType:
+          type:
+          - integer
+          - 'null'
+          description: Type ID of the data objects to perform bulk actions on, if only a single type is selected from workflow settings
+          format: int32
+        email:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkEmail'
+        text:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkText'
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          description: Loss reasons
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType:
+      type: string
+      enum:
+      - Full
+      - Editable
+      - Visible
+    Spotio.Frontend.ViewModel.DataObjects.Search.SearchPinInfoDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the pin
+        lat:
+          type: number
+          description: The latitude coordinate of the pin
+          format: double
+        lng:
+          type: number
+          description: The longitude coordinate of the pin
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: The optional place identifier for the pin
+        address:
+          type:
+          - string
+          - 'null'
+          description: The address associated with the pin
+        zip:
+          type:
+          - string
+          - 'null'
+          description: The zip code associated with the pin
+    Spotio.Frontend.ViewModel.DataObjects.Activities.GetHistoricalActivitiesRequestDto:
+      type: object
+      additionalProperties: false
+      properties:
+        activityTemplateIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        scrollId:
+          type:
+          - string
+          - 'null'
+        includeGhosts:
+          type:
+          - boolean
+          - 'null'
+        includeCallRecordings:
+          type:
+          - boolean
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.Activities.CallRecordingDto:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the call recording.
+        durationInSeconds:
+          type: integer
+          description: The duration of the call recording in seconds.
+          format: int32
+        startTime:
+          type: string
+          description: The date and time when the call recording started.
+          format: date-time
+    Spotio.Activities.Client.Model.Type:
+      type: string
+      enum:
+      - Note
+      - Event
+      - Transition
+      - Create
+      - OwnerChanged
+      - Update
+    Spotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Short non-sequential url-friendly unique id.
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: Reference to activity template
+        type:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Type'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: Id of appointment owner
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the appointment
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Notes about the appointment
+        text:
+          type:
+          - string
+          - 'null'
+          description: Text
+        date:
+          type: string
+          description: Date of the appointment
+          format: date-time
+        durationSeconds:
+          type:
+          - integer
+          - 'null'
+          description: Appointment duration in seconds
+          format: int32
+        allDay:
+          type: boolean
+          description: All Day - if true, the appointment will have an all day duration. False by default
+        verified:
+          type:
+          - boolean
+          - 'null'
+          description: True if activity if verifies
+        distance:
+          type:
+          - number
+          - 'null'
+          description: Distance from the lead in the moment of setting activity as done
+          format: double
+        transition:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.Transition'
+        ownerChanged:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.OwnerChanged'
+        resultId:
+          type:
+          - string
+          - 'null'
+          description: Reference to the result of the activity
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: Phone Number
+        reference:
+          type:
+          - string
+          - 'null'
+          description: Reference
+        autoplay:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityAutoplayDto'
+        autoExecution:
+          type:
+          - boolean
+          - 'null'
+          description: Auto execution - if true, the appointment will have an auto execution. False by default
+        appointmentId:
+          type:
+          - string
+          - 'null'
+          description: Id of the appointment
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: Id of the object that owns this activity
+        documents:
+          type:
+          - array
+          - 'null'
+          description: Documents related to activity
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityDocument'
+        plannedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        access:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.ActivityAccessType'
+        snippet:
+          type:
+          - string
+          - 'null'
+          description: Activity snippet
+        callRecording:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.CallRecordingDto'
+        nbaId:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the NBA recommendation
+    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectMetadata:
+      type: object
+      additionalProperties: false
+      properties:
+        deletedById:
+          type:
+          - string
+          - 'null'
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type:
+          - string
+          - 'null'
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObject'
+    Spotio.Frontend.ViewModel.DataObjects.ChildObject:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        typeId:
+          type:
+          - string
+          - 'null'
+        phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        textOptedIn:
+          type: boolean
+        phonesFullInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
+        externalDataObjectId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.BulkEmailAttachment:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+    Spotio.DataObjects.Client.Contract.Activity.LocationStatus:
+      type: string
+      enum:
+      - Verified
+      - Unverified
+      - Unknown
+    Spotio.Frontend.ViewModel.DataObjects.ValidateBulkAction:
+      type: object
+      additionalProperties: false
+      properties:
+        polygon:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter'
+        filterId:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkActionType'
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        q:
+          type:
+          - string
+          - 'null'
+        singleType:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenAndActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenRequest'
+        activity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+    Spotio.Frontend.ViewModel.Activity.ActivityAccessType:
+      type: string
+      enum:
+      - Full
+      - External
+      - NoAccess
+      - Editable
+      - Visible
+      - Ghost
+    Spotio.Frontend.ViewModel.DataObjects.ParentObjectInfo:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.FieldValue:
+      type: object
+      description: A field and its value
+      additionalProperties: false
+      properties:
+        fieldId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the field from workflow settings
+        label:
+          type:
+          - string
+          - 'null'
+          description: The label of the field from workflow settings
+        value:
+          type:
+          - string
+          - 'null'
+          description: The value of the field
+        formattedValue:
+          type:
+          - string
+          - 'null'
+          description: The formatted value of the field
+        values:
+          type:
+          - array
+          - 'null'
+          description: A list of possible values for the field (MultiChoice)
+          items:
+            type: string
+        attachmentValue:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.AttachmentValue'
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchWithActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.DataObjectPatchRequest%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        activity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        parent:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest'
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ChildObjectRequest'
+    Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo:
+      type: object
+      additionalProperties: false
+      properties:
+        phone:
+          type:
+          - string
+          - 'null'
+        textOptedIn:
+          type: boolean
+    Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityAutoplayDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        autoplayName:
+          type:
+          - string
+          - 'null'
+          description: Name of the autoplay the appointment is assigned to
+        autoplayStepDescription:
+          type:
+          - string
+          - 'null'
+          description: Description of the autoplay step the appointment is assigned to
+        autoplayDataObjectId:
+          type:
+          - string
+          - 'null'
+          description: Id of the autoplay data object the appointment is assigned to
+        autoplayDataObjectStepId:
+          type:
+          - string
+          - 'null'
+          description: Id of the autoplay data object step the appointment is assigned to
+        numberOfStep:
+          type:
+          - string
+          - 'null'
+          description: Number of step
+        totalSteps:
+          type:
+          - string
+          - 'null'
+          description: Total steps
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren:
+      type: object
+      additionalProperties: false
+      properties:
+        parent:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ChildObject'
+    Spotio.Frontend.ViewModel.DataObjects.DataObject:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object.
+        name:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - string
+          - 'null'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the owner of the data object.
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Pin'
+        source:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        lastVisitResultId:
+          type:
+          - string
+          - 'null'
+        lastVisitDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastVisitNote:
+          type:
+          - string
+          - 'null'
+        externalDataObjectId:
+          type:
+          - string
+          - 'null'
+        territoryId:
+          type:
+          - string
+          - 'null'
+        territories:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto'
+        stageUpdatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        stageUpdatedById:
+          type:
+          - string
+          - 'null'
+        createdById:
+          type:
+          - string
+          - 'null'
+        updatedById:
+          type:
+          - string
+          - 'null'
+        lastLocationStatus:
+          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Activity.LocationStatus'
+        visitsCount:
+          type: integer
+          format: int32
+        lastActivityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nextActivityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateOfAssignment:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        callsCount:
+          type: integer
+          format: int32
+        lastCallDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastCallResultId:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        typeId:
+          type:
+          - string
+          - 'null'
+        access:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType'
+        phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        addressUnit:
+          type:
+          - string
+          - 'null'
+        textOptedIn:
+          type: boolean
+        phonesFullInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
+        collaboratorIds:
+          type:
+          - array
+          - 'null'
+          description: The list of collaborators.
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectPin:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+        parentId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global:
+          type: boolean
+    Spotio.Frontend.ViewModel.DataObjects.BulkText:
+      type: object
+      additionalProperties: false
+      properties:
+        templateId:
+          type:
+          - string
+          - 'null'
+        body:
+          type:
+          - string
+          - 'null'
+        mediaUrls:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchAndActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchRequest%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        activity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+    Spotio.Frontend.ViewModel.DataObjects.AttachmentValue:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        ownerId:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type: string
+          format: date-time
+        isImage:
+          type: boolean
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      additionalProperties: false
+      properties:
+        value: {}
+        path:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        from:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Activity.Transition:
+      type: object
+      additionalProperties: false
+      properties:
+        fromStageId:
+          type:
+          - string
+          - 'null'
+        toStageId:
+          type:
+          - string
+          - 'null'
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.DataObjects.PinRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        shortAddress:
+          type:
+          - string
+          - 'null'
+        skipGeocoding:
+          type: boolean
+    Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        mobileId:
+          type:
+          - string
+          - 'null'
+          description: The mobile identifier of the activity.
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the associated data object.
+        type:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Type'
+        done:
+          type: boolean
+          description: Indicates whether the activity has been completed.
+        activityLat:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the activity.
+          format: double
+          minimum: -90
+          maximum: 90
+        activityLng:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the activity.
+          format: double
+          minimum: -180
+          maximum: 180
+        dataObjectLat:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the associated data object.
+          format: double
+          minimum: -90
+          maximum: 90
+        dataObjectLng:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the associated data object.
+          format: double
+          minimum: -180
+          maximum: 180
+        transition:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.Transition'
+        isNote:
+          type: boolean
+          description: Indicates whether the activity is a note.
+        ownerChanged:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.OwnerChanged'
+        resultId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity result.
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address associated with the activity.
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: The phone number associated with the activity.
+        reference:
+          type:
+          - string
+          - 'null'
+          description: The reference of the activity.
+        isRead:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the activity has been read.
+        communicationTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the communication template.
+        autoplayDataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the autoplay data object.
+        autoplayDataObjectStepId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the autoplay data object step.
+        autoExecution:
+          type: boolean
+          description: Indicates whether the activity has an auto execution. False by default.
+        reminder:
+          type:
+          - string
+          - 'null'
+          description: The reminder time for the activity.
+          format: date-span
+        appointmentId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the appointment.
+        nbaId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the NBA recommendation.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The short non-sequential URL-friendly unique identifier of the activity.
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity template from workflow settings.
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity owner.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the activity.
+          maxLength: 128
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Additional notes for the activity.
+          maxLength: 512
+        date:
+          type:
+          - string
+          - 'null'
+          description: The date and time of the activity.
+          format: date-time
+        duration:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the activity in minutes.
+          format: int32
+        durationSeconds:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the activity in seconds.
+          format: int32
+        allDay:
+          type: boolean
+          description: Indicates whether the activity is an all-day event.
+        allDayDate:
+          type:
+          - string
+          - 'null'
+          description: The date of the all-day event, if applicable.
+    Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityDocument:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        isImage:
+          type: boolean
+        mimeType:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.PolygonPoint:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+    Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectsRequest:
+      type: object
+      description: Request to move data objects to a different pin
+      additionalProperties: false
+      properties:
+        dataObjects:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectItem'
+        pinId:
+          type: integer
+          format: int32
+    Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectItem:
+      type: object
+      description: Item representing a data object to move
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        unit:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.Pin:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        shortAddress:
+          type:
+          - string
+          - 'null'
+    Spotio.DataObjects.Client.Contract.V2.DeleteDataObjectMode:
+      type: string
+      enum:
+      - Delete
+      - DeleteAndReassign
+    Spotio.Frontend.ViewModel.Activity.OwnerChanged:
+      type: object
+      additionalProperties: false
+      properties:
+        previousLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        newLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        previousDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        newDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObject:
+      type: object
+      additionalProperties: false
+      properties:
+        stageId:
+          type:
+          - string
+          - 'null'
+        ownerId:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        source:
+          type:
+          - string
+          - 'null'
+        territoryId:
+          type:
+          - string
+          - 'null'
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectPin'
+        typeId:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        externalDataObjectId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        typeId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - string
+          - 'null'
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchPinInfoDto'
+        phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        visitsCount:
+          type: integer
+          format: int32
+        textOptedIn:
+          type: boolean
+        phonesFullInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
+    Spotio.Frontend.ViewModel.DataObjects.BulkActionType:
+      type: string
+      enum:
+      - Email
+      - Text
+      - Reassign
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

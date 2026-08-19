@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Data Objects Bulk Jobs API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DataObjectsBulkJobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a bulk job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new bulk job for the specified data object type. After creation, upload NDJSON data files, then start processing. Allowed operations: 'create', 'update', 'patch'."
+        },
+        {
+          "info": {
+            "name": "Get in-progress bulk jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk/inprogress",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get in-progress bulk jobs"
+        },
+        {
+          "info": {
+            "name": "Get a bulk job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a bulk job"
+        },
+        {
+          "info": {
+            "name": "Upload bulk job data",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk/:id/data",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Upload an NDJSON file (one JSON object per line) as the raw request body. Each line must be a valid JSON object matching the BulkDataObjectRequest schema (see Schemas section for field definitions). Multiple files can be uploaded to the same job. Content-Type should be application/octet-stream."
+        },
+        {
+          "info": {
+            "name": "Start processing a bulk job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk/:id/start",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Marks the job as ready for processing. At least one data file must be uploaded before starting. The job must be in 'Open' state."
+        },
+        {
+          "info": {
+            "name": "Get bulk job progress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk/:id/progress",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns current processing progress including per-file breakdown of processed and failed records."
+        },
+        {
+          "info": {
+            "name": "Download succeeded results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk/:id/results/succeeded",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads an NDJSON file with successfully processed records. Each line contains FileId, DataObjectId, and the original Data."
+        },
+        {
+          "info": {
+            "name": "Download failed results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk/:id/results/failed",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Downloads an NDJSON file with failed records. Each line contains FileId, Error message, and the original Data."
+        },
+        {
+          "info": {
+            "name": "Cleanup a bulk job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotio2.com/api/jobs/dataObjects/bulk/:id/cleanup",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cleans up bulk job resources: drops the staging data table, deletes result files, and/or deletes uploaded files. The job state is set to 'Aborted'. All flags default to true."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

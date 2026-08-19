@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: generated
+source: openapi/_original/spotio-swagger.json + developer.spotio2.com documentation + probe of https://app.spotio2.com/mcp
+provider: SPOTIO
+providerId: spotio
+
+grounding_note: >-
+  SPOTIO's published OpenAPI declares NO operationId on any of its 295 operations, so
+  every step in every skill is bound to a verified METHOD + path taken from the document
+  rather than to an operationId. Each path below was checked to exist in
+  openapi/_original/spotio-swagger.json before it was written. Nothing is invented.
+
+skills:
+- file: spotio-authenticate-and-read-workflow.md
+  name: Authenticate to SPOTIO and read the tenant workflow
+  api: openapi/spotio-workflowsettings-api-openapi.yml
+  operations:
+  - POST /api/users/apitoken
+  - GET /api/workflow/dataObjects/full
+  - GET /api/BusinessCards
+  prerequisite_for: all other SPOTIO skills
+
+- file: spotio-create-and-search-dataobjects.md
+  name: Create, search and page SPOTIO DataObjects
+  api: openapi/spotio-dataobjects-api-openapi.yml
+  operations:
+  - POST /api/DataObjects
+  - GET /api/DataObjects/{dataObjectId}
+  - DELETE /api/DataObjects/{dataObjectId}
+  - PATCH /api/DataObjects/{dataObjectId}/jsonp
+  - GET /api/DataObjects/many
+  - GET /api/DataObjects/{dataObjectId}/duplicatesByAddress
+  - GET /api/DataObjectsSearch/simple
+  - GET /api/DataObjectsSearch
+  - GET /api/workflow/dataObjects/full
+
+- file: spotio-bulk-import-and-export.md
+  name: Bulk import DataObjects and export to CSV
+  api: openapi/spotio-dataobjectsbulkjobs-api-openapi.yml
+  operations:
+  - POST /api/jobs/dataObjects/bulk
+  - PUT /api/jobs/dataObjects/bulk/{id}/data
+  - POST /api/jobs/dataObjects/bulk/{id}/start
+  - GET /api/jobs/dataObjects/bulk/{id}/progress
+  - GET /api/jobs/dataObjects/bulk/{id}/results/succeeded
+  - GET /api/jobs/dataObjects/bulk/{id}/results/failed
+  - DELETE /api/jobs/dataObjects/bulk/{id}/cleanup
+  - POST /api/Exports/dataObjects
+  - POST /api/Exports/activities
+
+- file: spotio-subscribe-to-webhooks.md
+  name: Subscribe to SPOTIO webhooks and verify deliveries
+  api: openapi/spotio-webhooks-api-openapi.yml
+  operations:
+  - GET /api/Webhooks/scopes
+  - GET /api/Webhooks
+  - POST /api/Webhooks
+  - PUT /api/Webhooks/{id}
+  - DELETE /api/Webhooks/{id}
+
+- file: spotio-provision-mcp-access.md
+  name: Provision agent access to SPOTIO's MCP server
+  api: openapi/spotio-mcp-api-openapi.yml
+  operations:
+  - POST /api/Mcp/keys/generate
+  - GET /api/Mcp/keys/current
+  - PUT /api/Mcp/keys/regenerate
+  - DELETE /api/Mcp/keys/current
+
+- file: spotio-manage-territories-and-reps.md
+  name: Manage SPOTIO territories, reps and teams
+  api: openapi/spotio-territories-api-openapi.yml
+  operations:
+  - GET /api/Territories/all
+  - POST /api/Territories
+  - GET /api/Territories/{id}
+  - PUT /api/Territories/{id}
+  - GET /api/Territories/{id}/geojson
+  - GET /api/users
+  - POST /api/Users
+  - POST /api/v2/activities
+  - POST /api/v2/appointments
+
+skill_count: 6
+
+provider_published_skills:
+  found: false
+  probed:
+  - {url: 'https://spotio.com/llms.txt', status: 404}
+  - {url: 'https://developer.spotio2.com/llms.txt', status: 404}
+  note: SPOTIO publishes no AGENTS.md, skills file or agent guidance of its own.

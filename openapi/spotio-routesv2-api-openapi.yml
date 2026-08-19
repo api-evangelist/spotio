@@ -1,0 +1,1575 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Routes V2 API
+  description: API for routes. You can manage routes and calculate route based on stops list. You can also start a new trip based on the route.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: RoutesV2
+  description: API for routes. You can manage routes and calculate route based on stops list. You can also start a new trip based on the route.
+paths:
+  /api/routes/v2:
+    post:
+      tags:
+      - RoutesV2
+      summary: Create new route.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Create.CreateRouteRequestV2'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Create.CreateRouteRequestV2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Create.CreateRouteRequestV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Create.CreateRouteRequestV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Create.CreateRouteRequestV2'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/routes/v2/{id}:
+    patch:
+      tags:
+      - RoutesV2
+      summary: Update the route.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Patch.PatchRouteRequestV2'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - RoutesV2
+      summary: Get the route by id.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Id of the route.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/routes/v2/preview:
+    get:
+      tags:
+      - RoutesV2
+      summary: Get a preview of the first route scheduled for today for the calling user, intended for the home screen widget.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RoutePreview'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RoutePreview'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RoutePreview'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/routes/v2/calculate:
+    post:
+      tags:
+      - RoutesV2
+      summary: Calculate the route.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Calculate.CalculateRouteRequestV2'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Calculate.CalculateRouteRequestV2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Calculate.CalculateRouteRequestV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Calculate.CalculateRouteRequestV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Calculate.CalculateRouteRequestV2'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.CalculatedRouteV2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.CalculatedRouteV2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.CalculatedRouteV2'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/routes/v2/enhance:
+    post:
+      tags:
+      - RoutesV2
+      summary: Enhance the route.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Enhance.EnhanceRouteRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Enhance.EnhanceRouteRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Enhance.EnhanceRouteRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Enhance.EnhanceRouteRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Enhance.EnhanceRouteRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.EnhancedRoute'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.EnhancedRoute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.EnhancedRoute'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/routes/v2/{id}/start:
+    post:
+      tags:
+      - RoutesV2
+      summary: Start the trip based on the route.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        schema:
+          type: string
+      - name: id
+        in: path
+        description: Id of the route.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.TripV2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.TripV2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.TripV2'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/routes/v2/recommended-stops:
+    post:
+      tags:
+      - RoutesV2
+      summary: Get recommended stops for the route.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResultType.Results.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the route stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingStopV2'
+        scheduledDate:
+          type:
+          - string
+          - 'null'
+          description: The scheduled date of the route.
+          format: date-time
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The id of the route owner.
+    Spotio.UserTracking.Client.DTO.Routing.TripStopStatusDto:
+      type: string
+      enum:
+      - NotReachedYet
+      - Visited
+      - Skipped
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The id of the route.
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The id of the route owner.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Additional notes about the route.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the route.
+        status:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.RouteStatusDto'
+        options:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Options'
+        totalDistance:
+          type: integer
+          description: The total distance of the route in meters.
+          format: int64
+        totalTimeInSeconds:
+          type: integer
+          description: The total time of the route in seconds.
+          format: int64
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the route stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteStopDetailsV2'
+        overviewPolyline:
+          type:
+          - string
+          - 'null'
+          description: The overview polyline of the route.
+        permissionsStatus:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.RouteStatusDto'
+        scheduledDate:
+          type:
+          - string
+          - 'null'
+          description: The scheduled date of the route.
+          format: date-time
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Patch.PatchRouteRequestV2:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the route.
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The id of the route owner.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Additional notes about the route.
+        status:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.RouteStatusDto'
+        options:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.OptionsPatch'
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the route stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteStopWithOptionalIdV2'
+        scheduledDate:
+          type:
+          - string
+          - 'null'
+          description: The scheduled date of the route.
+          format: date-time
+    Spotio.UserTracking.Client.DTO.Routing.TripStatusDto:
+      type: string
+      enum:
+      - Active
+      - Finished
+    Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.ActivityLoggedAtTripStop:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+        resultId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RoutePreview:
+      type: object
+      additionalProperties: false
+      properties:
+        route:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteDetailsV2'
+        recommendedStops:
+          type:
+          - array
+          - 'null'
+          description: Recommended stops to overlay on the route.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStop'
+        mapCenter:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LastUserPosition'
+    Spotio.Frontend.ViewModel.UserTracking.LastUserPosition:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type:
+          - number
+          - 'null'
+          description: Latitude of the user's last known position; null when unknown.
+          format: double
+        lng:
+          type:
+          - number
+          - 'null'
+          description: Longitude of the user's last known position; null when unknown.
+          format: double
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: When the position was recorded; null when unknown.
+          format: date-time
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteStopDetailsV2:
+      type: object
+      additionalProperties: false
+      properties:
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: The stage id of the record associated with the stop.
+        distanceToNextStop:
+          type: integer
+          description: The distance to the next stop in meters.
+          format: int64
+        timeToNextStopInSeconds:
+          type: integer
+          description: The time to the next stop in seconds.
+          format: int64
+        activities:
+          type:
+          - array
+          - 'null'
+          description: The list of activities associated with the stop.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingActivity'
+        status:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.StopStatusDto'
+        addressUnit:
+          type:
+          - string
+          - 'null'
+          description: The address unit of the record associated with the stop.
+        phones:
+          type:
+          - array
+          - 'null'
+          description: The list of phone numbers of the record associated with the stop.
+          items:
+            type: string
+        color:
+          type:
+          - string
+          - 'null'
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+          description: Score label assigned to the object.
+        nba:
+          type:
+          - string
+          - 'null'
+          description: Next best action assigned to the object.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the stop.
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type associated with the stop.
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object associated with the stop.
+        lat:
+          type: number
+          description: The latitude of the stop.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the stop.
+          format: double
+        address:
+          type:
+          - string
+          - 'null'
+          description: The address of the stop.
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: The google place id of the stop.
+        type:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.StopTypeDto'
+        name:
+          type:
+          - string
+          - 'null'
+          description: The stop name.
+        enhanced:
+          type: boolean
+          description: Whether the stop was added by route enhancement.
+    Spotio.Frontend.ViewModel.RoutesAndTrips.OptionsPatch:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.TravelTypeDto'
+        avoidTolls:
+          type:
+          - boolean
+          - 'null'
+          description: Whether to avoid tolls when calculating the route.
+        avoidHighways:
+          type:
+          - boolean
+          - 'null'
+          description: Whether to avoid highways when calculating the route.
+        optimization:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.OptimizationDto'
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingStopV2:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object associated with the stop.
+        lat:
+          type: number
+          description: The latitude of the stop.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the stop.
+          format: double
+        address:
+          type:
+          - string
+          - 'null'
+          description: The address of the stop.
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: The google place id of the stop.
+        type:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.StopTypeDto'
+        name:
+          type:
+          - string
+          - 'null'
+          description: The stop name.
+        enhanced:
+          type: boolean
+          description: Whether the stop was added by route enhancement.
+    Spotio.UserTracking.Client.DTO.Routing.OptimizationDto:
+      type: string
+      enum:
+      - Distance
+      - Schedule
+      - Manually
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteStopWithOptionalIdV2:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the route stop
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object associated with the stop.
+        lat:
+          type: number
+          description: The latitude of the stop.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the stop.
+          format: double
+        address:
+          type:
+          - string
+          - 'null'
+          description: The address of the stop.
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: The google place id of the stop.
+        type:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.StopTypeDto'
+        name:
+          type:
+          - string
+          - 'null'
+          description: The stop name.
+        enhanced:
+          type: boolean
+          description: Whether the stop was added by route enhancement.
+    Spotio.UserTracking.Client.DTO.Routing.TravelTypeDto:
+      type: string
+      enum:
+      - Driving
+      - Walking
+    Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.TripStopDetailsV2:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The id of the stop.
+        status:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.TripStopStatusDto'
+        visitDurationInSeconds:
+          type:
+          - integer
+          - 'null'
+          description: The visit duration in seconds associated with the stop.
+          format: int32
+        loggedActivity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.ActivityLoggedAtTripStop'
+        addressUnit:
+          type:
+          - string
+          - 'null'
+          description: The address unit of the record associated with the stop.
+        phones:
+          type:
+          - array
+          - 'null'
+          description: The list of phone numbers of the record associated with the stop.
+          items:
+            type: string
+        dataObjectAccess:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.TripStopDataObjectAccessDto'
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object associated with the stop.
+        address:
+          type:
+          - string
+          - 'null'
+          description: The address of the stop.
+        pinId:
+          type:
+          - string
+          - 'null'
+          description: The pin id of the stop.
+        lat:
+          type: number
+          description: The latitude of the stop.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the stop.
+          format: double
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: The stage id of the record associated with the stop.
+        timeToNextStopInSeconds:
+          type: integer
+          description: The time to the next stop in seconds.
+          format: int64
+        distanceToNextStop:
+          type: integer
+          description: The distance to the next stop in meters.
+          format: int64
+        activities:
+          type:
+          - array
+          - 'null'
+          description: The list of activities associated with the stop.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingActivity'
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: The google place id of the stop.
+        type:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.StopTypeDto'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type associated with the stop.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The stop name.
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the stop.
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+          description: Score label assigned to the object.
+        nba:
+          type:
+          - string
+          - 'null'
+          description: Next best action assigned to the object.
+        enhanced:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the stop was added by route enhancement.
+    ResultType.Results.IError:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        memberName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        filePath:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        line:
+          type: integer
+          format: int32
+          readOnly: true
+    Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.TripV2:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The id of the trip.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the trip.
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The id of the route owner.
+        routeId:
+          type:
+          - string
+          - 'null'
+          description: The id of the route associated with the trip.
+        status:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.TripStatusDto'
+        totalDistance:
+          type: integer
+          description: The total distance of the trip in meters.
+          format: int64
+        totalTimeInSeconds:
+          type: integer
+          description: The total time of the trip in seconds.
+          format: int64
+        options:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Options'
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the trip stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.TripStopDetailsV2'
+        numberOfStops:
+          type: integer
+          description: Number of stops in the trip
+          format: int32
+        overviewPolyline:
+          type:
+          - string
+          - 'null'
+          description: The overview polyline of the trip.
+        activityTimeInSeconds:
+          type: integer
+          description: Sum of activities time of the trip
+          format: int64
+        totalTimeAndActivityTimeInSeconds:
+          type: integer
+          description: Sum of activities time plus route time of the trip
+          format: int64
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity.
+        allDay:
+          type: boolean
+          description: Whether the activity is an all-day event.
+        date:
+          type: string
+          description: The date and time of the activity.
+          format: date-time
+        durationInSeconds:
+          type: integer
+          description: The duration of the activity in seconds.
+          format: int32
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the activity template.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the activity.
+        appointmentId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the appointment associated with the activity.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: The notes of the activity.
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.EnhancedRouteStop:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object associated with the stop.
+        address:
+          type:
+          - string
+          - 'null'
+          description: The address of the stop.
+        pinId:
+          type:
+          - string
+          - 'null'
+          description: The pin id of the stop.
+        lat:
+          type: number
+          description: The latitude of the stop.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the stop.
+          format: double
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: The stage id of the record associated with the stop.
+        timeToNextStopInSeconds:
+          type: integer
+          description: The time to the next stop in seconds.
+          format: int64
+        distanceToNextStop:
+          type: integer
+          description: The distance to the next stop in meters.
+          format: int64
+        activities:
+          type:
+          - array
+          - 'null'
+          description: The list of activities associated with the stop.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingActivity'
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: The google place id of the stop.
+        type:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.StopTypeDto'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type associated with the stop.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The stop name.
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the stop.
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+          description: Score label assigned to the object.
+        nba:
+          type:
+          - string
+          - 'null'
+          description: Next best action assigned to the object.
+        enhanced:
+          type: boolean
+          description: Indicates whether the stop was added by the enhancement.
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.CalculatedRouteV2:
+      type: object
+      additionalProperties: false
+      properties:
+        totalDistance:
+          type: integer
+          description: The total distance of the route in meters.
+          format: int64
+        totalTimeInSeconds:
+          type: integer
+          description: The total time of the route in seconds.
+          format: int64
+        activityTimeInSeconds:
+          type: integer
+          description: The activity time of the route in seconds.
+          format: int64
+        totalTimeAndActivityTimeInSeconds:
+          type: integer
+          description: The total time and the activity time of the route in seconds.
+          format: int64
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the route stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.TripStopV2'
+        overviewPolyline:
+          type:
+          - string
+          - 'null'
+          description: The overview polyline of the route.
+        options:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Options'
+    Spotio.Frontend.ViewModel.RoutesAndTrips.TripsV2.TripStopV2:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object associated with the stop.
+        address:
+          type:
+          - string
+          - 'null'
+          description: The address of the stop.
+        pinId:
+          type:
+          - string
+          - 'null'
+          description: The pin id of the stop.
+        lat:
+          type: number
+          description: The latitude of the stop.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the stop.
+          format: double
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: The stage id of the record associated with the stop.
+        timeToNextStopInSeconds:
+          type: integer
+          description: The time to the next stop in seconds.
+          format: int64
+        distanceToNextStop:
+          type: integer
+          description: The distance to the next stop in meters.
+          format: int64
+        activities:
+          type:
+          - array
+          - 'null'
+          description: The list of activities associated with the stop.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingActivity'
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: The google place id of the stop.
+        type:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.StopTypeDto'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type associated with the stop.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The stop name.
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the stop.
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+          description: Score label assigned to the object.
+        nba:
+          type:
+          - string
+          - 'null'
+          description: Next best action assigned to the object.
+        enhanced:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the stop was added by route enhancement.
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Enhance.EnhanceRouteRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        options:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Options'
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the route stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingStopV2'
+        scheduledDate:
+          type:
+          - string
+          - 'null'
+          description: The scheduled date of the route.
+          format: date-time
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The id of the route owner.
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStop:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of the data object associated with the recommended stop.
+        lat:
+          type: number
+          description: Latitude of the recommended stop.
+          format: double
+        lng:
+          type: number
+          description: Longitude of the recommended stop.
+          format: double
+        address:
+          type:
+          - string
+          - 'null'
+          description: Address of the data object.
+        name:
+          type:
+          - string
+          - 'null'
+          description: Display name of the data object.
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: Google Places id, when available.
+        pinId:
+          type:
+          - string
+          - 'null'
+          description: Pin id associated with the data object.
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: Stage id of the data object.
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: Data object type id.
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color associated with the object.
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+          description: Score label assigned to the object.
+        nba:
+          type:
+          - string
+          - 'null'
+          description: Next best action assigned to the object.
+    ResultType.Results.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        memberName:
+          type:
+          - string
+          - 'null'
+        filePath:
+          type:
+          - string
+          - 'null'
+        line:
+          type: integer
+          format: int32
+        aggregateError:
+          $ref: '#/components/schemas/ResultType.Results.IError'
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStops.GetRecommendedStopsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the recommended stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RecommendedStop'
+    Spotio.UserTracking.Client.DTO.Routing.StopStatusDto:
+      type: string
+      enum:
+      - Visible
+      - NotVisible
+    Spotio.UserTracking.Client.DTO.Routing.StopTypeDto:
+      type: string
+      enum:
+      - Stop
+      - Start
+      - End
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Create.CreateRouteRequestV2:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the route.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Additional notes about the route.
+        status:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.RouteStatusDto'
+        options:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Options'
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the route stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.RouteStopWithOptionalIdV2'
+        scheduledDate:
+          type:
+          - string
+          - 'null'
+          description: The scheduled date of the route.
+          format: date-time
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The id of the route owner.
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.EnhancedRoute:
+      type: object
+      additionalProperties: false
+      properties:
+        totalDistance:
+          type: integer
+          description: The total distance of the route in meters.
+          format: int64
+        totalTimeInSeconds:
+          type: integer
+          description: The total time of the route in seconds.
+          format: int64
+        activityTimeInSeconds:
+          type: integer
+          description: The activity time of the route in seconds.
+          format: int64
+        totalTimeAndActivityTimeInSeconds:
+          type: integer
+          description: The total time and the activity time of the route in seconds.
+          format: int64
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the route stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.EnhancedRouteStop'
+        overviewPolyline:
+          type:
+          - string
+          - 'null'
+          description: The overview polyline of the route.
+        options:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Options'
+    Spotio.Frontend.ViewModel.RoutesAndTrips.RoutesV2.Calculate.CalculateRouteRequestV2:
+      type: object
+      additionalProperties: false
+      properties:
+        options:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Options'
+        stops:
+          type:
+          - array
+          - 'null'
+          description: List of the route stops.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.RoutingStopV2'
+        scheduledDate:
+          type:
+          - string
+          - 'null'
+          description: The scheduled date of the route.
+          format: date-time
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The id of the route owner.
+    Spotio.UserTracking.Client.DTO.Routing.RouteStatusDto:
+      type: string
+      enum:
+      - Active
+      - Inactive
+      - Invalid
+      - NoAccessToEdit
+      - InvalidButEverythingIsVisible
+    Spotio.UserTracking.Client.DTO.Routing.TripStopDataObjectAccessDto:
+      type: string
+      enum:
+      - Visible
+      - NotVisible
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Options:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.TravelTypeDto'
+        avoidTolls:
+          type: boolean
+          description: Whether to avoid tolls when calculating the route.
+        avoidHighways:
+          type: boolean
+          description: Whether to avoid highways when calculating the route.
+        optimization:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.Routing.OptimizationDto'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

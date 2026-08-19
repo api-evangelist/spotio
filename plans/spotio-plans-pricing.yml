@@ -4,112 +4,125 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: SPOTIO
 providerId: spotio
 created: '2026-07-04'
-modified: '2026-07-04'
-reconciled: false
+modified: '2026-08-13'
+generated: '2026-08-13'
+method: searched
+source: https://spotio.com/plans/
+reconciled: true
 tags:
 - Field Sales
 - Sales Engagement
 - Territory Management
 - Plans
+
+plan_count: 3
+prices_published: false
+
 description: >-
-  SPOTIO is sold as a per-user SaaS subscription for field sales teams, with a
-  published five-user minimum and annual or quarterly billing (SPOTIO typically
-  requires a custom quote and a demo). Publicly reported tiers are Team, Business,
-  and Pro, plus a custom Enterprise tier. API and webhook access is part of the
-  platform - most commonly associated with the higher (Pro / Enterprise) tiers for
-  custom integrations - rather than a separately metered API product. The
-  per-user rates below are drawn from third-party pricing aggregators and should
-  be reconciled against a current SPOTIO quote; they may vary by configuration.
+  SPOTIO publishes plan NAMES but no prices. The plans page at spotio.com/plans lists
+  three tiers - B2B, B2C and Custom - with a feature grid per tier and the single line
+  "Pricing is user-based. View add-ons below for additional benefits", behind a
+  "Download PDF" link. No dollar amount, no billing period and no user minimum appears
+  anywhere on the page. Every tier routes to a demo request. Notably, API access, the
+  Open API and webhooks are named on NONE of the three tiers, even though SPOTIO ships a
+  295-operation REST API, a signed webhook system and a remote MCP server - so which
+  subscription entitles a customer to the API cannot be established from SPOTIO's own
+  published pricing.
+
 notes: >-
-  SPOTIO does not publish a fully transparent pricing page; figures below come
-  from public pricing directories (G2, Capterra, and others) captured in 2026 and
-  are approximate. The Open API and webhooks are entitlements of the subscription,
-  not a usage-metered API plan. Confirm current tiers, the five-user minimum, and
-  which tier unlocks API access directly with SPOTIO.
+  This artifact was rewritten on 2026-08-13. The previous version carried three tiers
+  named Team / Business / Pro at $39 / $69 / $129 per user per month, sourced from
+  third-party pricing aggregators (G2, Capterra). Those tier names do not appear on
+  SPOTIO's own pricing page, and unverified aggregator figures were being presented as
+  SPOTIO's published plans. They are retained under unverified_third_party below so
+  nothing is lost, but they are no longer asserted as SPOTIO's pricing.
+
 sources:
-- https://spotio.com/
+- https://spotio.com/plans/
+- https://spotio.com/request-a-demo/
 - https://spotio.com/integrations/
-- https://www.g2.com/products/spotio/pricing
-- https://www.capterra.com/p/157701/SPOTIO/pricing/
+
 plans:
-- id: spotio-team
-  name: Team
+- id: spotio-b2b
+  name: B2B
   type: paid
+  price_published: false
   description: >-
-    Entry field sales plan with territory management, activity tracking, and
-    appointment setting for smaller outside sales teams. Subject to SPOTIO's
-    five-user minimum.
+    Field sales plan for business-to-business teams. SPOTIO's published feature list for
+    this tier: DASH AI field sales co-pilot, territory creation and management, Google
+    Places B2B integration, route planning and optimization, activity tracking and custom
+    activities, pre-built and custom reports, location verification, team leaderboards,
+    calendar integration, territory hierarchies and permissions, performance analytics.
   entries:
   - label: Per User Subscription
-    name: team_per_user
+    name: b2b_per_user
     type: subscription
     metric: user
     limit: -1
     timeFrame: month
     geo: global
     unit: 1
-    price: '39'
-    currency: USD
+    price: contact sales
     userMultiplied: true
   elements:
-  - name: Territory Management
-  - name: Activity Tracking
-  - name: Appointment Setting
-- id: spotio-business
-  name: Business
+  - name: DASH AI Field Sales Co-Pilot
+  - name: Territory Creation and Management
+  - name: Google Places B2B Integration
+  - name: Route Planning and Optimization
+  - name: Activity Tracking and Custom Activities
+  - name: Pre-Built and Custom Reports
+  - name: Location Verification
+  - name: Team Leaderboards
+  - name: Calendar Integration
+  - name: Territory Hierarchies and Permissions
+  - name: Performance Analytics
+
+- id: spotio-b2c
+  name: B2C
   type: paid
+  price_published: false
   description: >-
-    Mid-tier plan adding deeper sales engagement, reporting, and CRM sync
-    capabilities for growing field teams.
+    Field sales plan for business-to-consumer / door-to-door teams. SPOTIO's published
+    feature list for this tier: DASH AI field sales co-pilot, territory creation and
+    management, Find My Team location tracking, Download My Day offline access, activity
+    tracking and custom activities, pre-built and custom reports, location verification,
+    team leaderboards, calendar integration.
   entries:
   - label: Per User Subscription
-    name: business_per_user
+    name: b2c_per_user
     type: subscription
     metric: user
     limit: -1
     timeFrame: month
     geo: global
     unit: 1
-    price: '69'
-    currency: USD
+    price: contact sales
     userMultiplied: true
   elements:
-  - name: Sales Engagement
-  - name: Reporting and Analytics
-  - name: CRM Sync
-- id: spotio-pro
-  name: Pro
-  type: paid
-  description: >-
-    Advanced plan for larger sales organizations with complex needs, typically
-    where custom integrations via the Open API and webhooks come into play.
-  entries:
-  - label: Per User Subscription
-    name: pro_per_user
-    type: subscription
-    metric: user
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: '129'
-    currency: USD
-    userMultiplied: true
-  elements:
-  - name: Advanced Reporting
-  - name: Open API Access
-  - name: Webhooks
-  - name: Priority Support
-- id: spotio-enterprise
-  name: Enterprise
+  - name: DASH AI Field Sales Co-Pilot
+  - name: Territory Creation and Management
+  - name: Find My Team Location Tracking
+  - name: Download My Day Offline Access
+  - name: Activity Tracking and Custom Activities
+  - name: Pre-Built and Custom Reports
+  - name: Location Verification
+  - name: Team Leaderboards
+  - name: Calendar Integration
+
+- id: spotio-custom
+  name: Custom
   type: enterprise
+  price_published: false
   description: >-
-    Custom-quoted plan for large field organizations - deepest CRM/ERP
-    integrations (Salesforce two-way sync, Dynamics 365, NetSuite, SAP),
-    dedicated support, security review, and negotiated terms. Contact SPOTIO.
+    Custom-quoted tier. SPOTIO describes it as "All essentials from B2B or B2C plan - plus
+    more", naming customized mapping, extended activity tracking, tailored integrations
+    and gamification. Teams with 25+ licenses are additionally offered a dedicated
+    Implementation Manager and a dedicated Customer Success Manager. Custom integrations
+    built on the Open API and webhooks belong to this conversation, though SPOTIO does not
+    say so on the pricing page.
   entries:
-  - label: Enterprise Agreement
-    name: enterprise
+  - label: Custom Agreement
+    name: custom
     type: flat
     metric: contract
     limit: -1
@@ -119,10 +132,45 @@ plans:
     price: contact sales
     userMultiplied: false
   elements:
-  - name: Enterprise CRM/ERP Integrations
-  - name: Open API and Webhooks
-  - name: Dedicated Support
-  - name: Custom Onboarding
+  - name: Customized Mapping
+  - name: Extended Activity Tracking
+  - name: Tailored Integrations
+  - name: Gamification
+  - name: Dedicated Implementation Manager (25+ licenses)
+  - name: Dedicated Customer Success Manager (25+ licenses)
+
+api_entitlement:
+  named_on_any_tier: false
+  finding: >-
+    None of the three published tiers names API access, the Open API, webhooks or MCP.
+    The developer portal is public and the API is real, but the commercial gate on it is
+    not published - a prospective integrator cannot learn from spotio.com what to buy.
+
+unverified_third_party:
+  note: >-
+    Retained from the 2026-07-04 version for provenance only. These tier names and prices
+    are NOT published by SPOTIO and were not reconfirmed. Do not present them as SPOTIO
+    pricing.
+  captured: '2026-07-04'
+  sources:
+  - https://www.g2.com/products/spotio/pricing
+  - https://www.capterra.com/p/157701/SPOTIO/pricing/
+  tiers:
+  - {name: Team, price: '39', currency: USD, period: month, metric: user}
+  - {name: Business, price: '69', currency: USD, period: month, metric: user}
+  - {name: Pro, price: '129', currency: USD, period: month, metric: user}
+  - {name: Enterprise, price: contact sales}
+  also_reported: a five-user minimum with annual or quarterly billing
+
+x-evidence:
+- url: https://spotio.com/plans/
+  http_status: 200
+  fetched: '2026-08-13'
+  finding: three tiers named, zero prices published
+- url: https://spotio.com/pricing/
+  http_status: 200
+  note: 302s to https://spotio.com/plans/
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

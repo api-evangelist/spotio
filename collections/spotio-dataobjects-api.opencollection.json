@@ -1,0 +1,779 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Data Objects API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DataObjects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new data object.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new dataObject with an associated activity (activity is optional)."
+        },
+        {
+          "info": {
+            "name": "Get existing data object.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data object."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get information about the dataObject and related objects"
+        },
+        {
+          "info": {
+            "name": "Delete existing dataObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete existing dataObject"
+        },
+        {
+          "info": {
+            "name": "JSON Patch for data object",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/jsonp",
+            "params": [
+              {
+                "name": "validateRequiredFields",
+                "value": "",
+                "type": "query",
+                "description": "If true, validates all required fields. Default: true."
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update the dataObject. Information about JSON patch can be found on the website https://jsonpatch.com ."
+        },
+        {
+          "info": {
+            "name": "JSON Patch for data object with activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/jsonp/withActivity",
+            "params": [
+              {
+                "name": "validateRequiredFields",
+                "value": "",
+                "type": "query",
+                "description": "If true, validates all required fields. Default: true."
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the data object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update the dataObject and create activity. Information about JSON patch can be found on the website https://jsonpatch.com ."
+        },
+        {
+          "info": {
+            "name": "Bulk actions for deleting dataObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjects/bulk",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Bulk actions for deleting dataObjects"
+        },
+        {
+          "info": {
+            "name": "Validate communication bulk action",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjects/bulk/validate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Validate communication bulk action"
+        },
+        {
+          "info": {
+            "name": "Delete import import by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotio2.com/api/DataObjects/bulk/import/:importId",
+            "params": [
+              {
+                "name": "importId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete import import by id"
+        },
+        {
+          "info": {
+            "name": "Get deleted data objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/deleted",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date filter"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date filter"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "A list of deleted data objects."
+        },
+        {
+          "info": {
+            "name": "Create new data object with children",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjects/withChildren",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new dataObject with related objectDataObject (children, parent) and an associated activity (activity is optional)."
+        },
+        {
+          "info": {
+            "name": "Move data objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjects/move",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Move data objects to a different pin"
+        },
+        {
+          "info": {
+            "name": "Get data object with children",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/withChildren/:dataObjectId",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get data object with children"
+        },
+        {
+          "info": {
+            "name": "Get many data objects by ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/withChildren/many",
+            "params": [
+              {
+                "name": "dataObjectsIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get many data objects by ids"
+        },
+        {
+          "info": {
+            "name": "Get many data objects by ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/many",
+            "params": [
+              {
+                "name": "dataObjectsIds",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get many data objects by ids"
+        },
+        {
+          "info": {
+            "name": "JSON Patch for data object in classic mode.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/DataObjects/withChildren/:dataObjectId/jsonp",
+            "params": [
+              {
+                "name": "validateRequiredFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "JSON Patch for data object in classic mode."
+        },
+        {
+          "info": {
+            "name": "JSON Patch for data object in classic mode with activity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/DataObjects/withChildren/:dataObjectId/jsonp/withActivity",
+            "params": [
+              {
+                "name": "validateRequiredFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "JSON Patch for data object in classic mode with activity."
+        },
+        {
+          "info": {
+            "name": "Historical activities ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/activities/historical",
+            "headers": [
+              {
+                "name": "x-app-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "activityTemplateIds",
+                "value": "",
+                "type": "query",
+                "description": "Activity template ids separated by comma"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeGhosts",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeCallRecordings",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Array of historical (already set as Done) activities for the object"
+        },
+        {
+          "info": {
+            "name": "Historical activities ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/activities/historical",
+            "headers": [
+              {
+                "name": "x-app-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Array of historical (already set as Done) activities for the object"
+        },
+        {
+          "info": {
+            "name": "Get historical activity by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/activities/:activityId",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch a single historical activity by its unique identifier for a given data object."
+        },
+        {
+          "info": {
+            "name": "Upcoming Appointments ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/appointments/upcoming",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Array with upcoming appointments for the data object"
+        },
+        {
+          "info": {
+            "name": "Filtered Upcoming Appointments ",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/appointments/upcoming",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Filtered array with upcoming appointments for the data object"
+        },
+        {
+          "info": {
+            "name": "Get related data objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/related",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text that can be used in a search of objects"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "By what property objects should be sorted by"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "nba",
+                "value": "",
+                "type": "query",
+                "description": "Optional Next Best Action type used to return only related objects that support the action. Supported values: visit, call, email, appointment. When omitted, no NBA compatibility filter is applied."
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of objects per page"
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns paginated list of related data objects based on text search."
+        },
+        {
+          "info": {
+            "name": "Get related objects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/related/:relatedDataObjectsTypeId",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text that can be used in a search of objects"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "By what property objects should be sorted by"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query",
+                "description": "Number of objects per page"
+              },
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "relatedDataObjectsTypeId",
+                "value": "",
+                "type": "path",
+                "description": "Related object type"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns paginated list of related objects based on the type and text search."
+        },
+        {
+          "info": {
+            "name": "Get user bulk actions status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/bulkActions/status",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns bulk actions status for user"
+        },
+        {
+          "info": {
+            "name": "Get duplicates by address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/DataObjects/:dataObjectId/duplicatesByAddress",
+            "params": [
+              {
+                "name": "dataObjectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get duplicates by address"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

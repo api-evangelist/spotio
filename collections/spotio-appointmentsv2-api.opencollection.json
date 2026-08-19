@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Appointments V2 API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AppointmentsV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an appointment by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/v2/appointments/:appointmentId",
+            "params": [
+              {
+                "name": "appointmentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n"
+        },
+        {
+          "info": {
+            "name": "Update an existing appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/v2/appointments/:appointmentId",
+            "params": [
+              {
+                "name": "appointmentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n"
+        },
+        {
+          "info": {
+            "name": "Partially update an existing appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/v2/appointments/:appointmentId",
+            "params": [
+              {
+                "name": "appointmentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n"
+        },
+        {
+          "info": {
+            "name": "Get an appointment by activity ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/v2/appointments/byActivity/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get an appointment by activity ID"
+        },
+        {
+          "info": {
+            "name": "Create a new appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/v2/appointments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If AllDay = true (lasts for the entirety of the date), an appointment is created without a start and end\n### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n"
+        },
+        {
+          "info": {
+            "name": "Bulk actions to create appointment for many records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/v2/appointments/bulk/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Bulk actions to create appointment for many records"
+        },
+        {
+          "info": {
+            "name": "Create multiple appointments (max 20)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/v2/appointments/multiple",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates multiple appointments in a single request (max 20 per request). Each appointment is processed individually and the response \nincludes the result for each appointment (success with created appointment or failure with error details).\nPartial success is possible - some appointments may succeed while others fail."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

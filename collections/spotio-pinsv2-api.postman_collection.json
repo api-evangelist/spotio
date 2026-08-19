@@ -1,0 +1,2178 @@
+{
+  "item": [
+    {
+      "id": "6ccde7b8-96ae-415c-b1e2-c2b9bb48f5b0",
+      "name": "PinsV2",
+      "description": {
+        "content": "Pins API handles searching and retrieving pins with details. It provides operations including fetching pins by viewport, getting pin details with data objects, searching for pins with specific criteria, and finding the nearest pins to a given location.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81d968d0-dac3-4d32-9bf6-d1efa4b41910",
+          "name": "Get pins by viewport",
+          "request": {
+            "name": "Get pins by viewport",
+            "description": {
+              "content": "Retrieves a list of pins within a specified viewport.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "PinsV2"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "area",
+                  "value": "<string>",
+                  "description": "Area defined as left top and bottom right corners coordinates separated by ','"
+                },
+                {
+                  "disabled": false,
+                  "key": "zoomLevel",
+                  "value": "<integer>",
+                  "description": "Zoom level"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageGroups",
+                  "value": "<string>",
+                  "description": "Stage groups separated by ','"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Filter ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCustomFieldId",
+                  "value": "<string>",
+                  "description": "Include custom field ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "mix",
+                  "value": "false",
+                  "description": "Mix"
+                },
+                {
+                  "disabled": false,
+                  "key": "geoHashPrecision",
+                  "value": "<integer>",
+                  "description": "Geohash precision"
+                },
+                {
+                  "disabled": false,
+                  "key": "multiPin",
+                  "value": "false",
+                  "description": "Enables multi-pin"
+                },
+                {
+                  "disabled": false,
+                  "key": "areaFilterMode",
+                  "value": "<string>",
+                  "description": "Determines how pins are filtered based on geographical area. (default: GeoTileGrid)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "010d87e9-2db9-49fd-af6a-0da3a0e5138a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zoomLevel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mix",
+                      "value": "false"
+                    },
+                    {
+                      "key": "geoHashPrecision",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "multiPin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "areaFilterMode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": null,\n    \"lat\": 7844.860532052292,\n    \"lng\": 4595.293207059035,\n    \"placeId\": \"string\",\n    \"count\": 155,\n    \"isCluster\": false,\n    \"customFieldValue\": null,\n    \"customFieldValues\": [\n      \"string\",\n      \"string\"\n    ],\n    \"viewport\": null,\n    \"maxMinViewport\": null,\n    \"ghost\": true,\n    \"visitsCount\": null,\n    \"color\": \"string\",\n    \"dataObjectId\": null,\n    \"isMultiPin\": null,\n    \"clusterId\": null\n  },\n  {\n    \"id\": \"string\",\n    \"lat\": 4586.533063694639,\n    \"lng\": 7305.923333223387,\n    \"placeId\": \"string\",\n    \"count\": 7129,\n    \"isCluster\": false,\n    \"customFieldValue\": null,\n    \"customFieldValues\": null,\n    \"viewport\": null,\n    \"maxMinViewport\": [\n      \"\",\n      \"\"\n    ],\n    \"ghost\": true,\n    \"visitsCount\": null,\n    \"color\": null,\n    \"dataObjectId\": \"string\",\n    \"isMultiPin\": false,\n    \"clusterId\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa7afbee-fdd8-43dd-b638-be2a60620c4d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zoomLevel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mix",
+                      "value": "false"
+                    },
+                    {
+                      "key": "geoHashPrecision",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "multiPin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "areaFilterMode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "672a6085-fd0c-4e15-b9b3-fe2595ff5bbd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zoomLevel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mix",
+                      "value": "false"
+                    },
+                    {
+                      "key": "geoHashPrecision",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "multiPin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "areaFilterMode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4385e3b8-c3fc-43ec-af01-a65be4274272",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zoomLevel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mix",
+                      "value": "false"
+                    },
+                    {
+                      "key": "geoHashPrecision",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "multiPin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "areaFilterMode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbc0572a-b434-4e19-96ab-bd761a4012c6",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zoomLevel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mix",
+                      "value": "false"
+                    },
+                    {
+                      "key": "geoHashPrecision",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "multiPin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "areaFilterMode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb0cf863-8b8a-494f-b266-4dfb4ed33d72",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "zoomLevel",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mix",
+                      "value": "false"
+                    },
+                    {
+                      "key": "geoHashPrecision",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "multiPin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "areaFilterMode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aca18111-f63e-4ea5-95c2-2fab909962f7",
+          "name": "Get pin details",
+          "request": {
+            "name": "Get pin details",
+            "description": {
+              "content": "Retrieves details of a pin by its ID with a list of data objects correlated with this pin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "PinsV2",
+                ":pinId"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Text that is used in a search of correlated data objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeDataObjects",
+                  "value": "<boolean>",
+                  "description": "Include data objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCustomFields",
+                  "value": "<boolean>",
+                  "description": "Include custom fields"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Filter ID used for filtering correlated data objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>",
+                  "description": "Scroll ID for a list of data objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "parentId",
+                  "value": "<string>",
+                  "description": "Parent ID for filtering correlated data objects"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "pinId",
+                  "description": "(Required) ID of the pin"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1f07074-b886-4283-a167-a7ebf89039f9",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    ":pinId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeDataObjects",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeCustomFields",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pinId",
+                      "description": "(Required) ID of the pin"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dataObjects\": null,\n  \"totalCount\": 9767,\n  \"scrollId\": \"string\",\n  \"id\": \"string\",\n  \"lat\": 650.5428649823752,\n  \"lng\": 4949.2406327757135,\n  \"placeId\": null,\n  \"address\": null,\n  \"zip\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "647dda3a-0fdb-4457-aae5-ec2e8ad14089",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    ":pinId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeDataObjects",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeCustomFields",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pinId",
+                      "description": "(Required) ID of the pin"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80cee085-707c-4107-9cb3-e55792f76b9b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    ":pinId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeDataObjects",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeCustomFields",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "parentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "pinId",
+                      "description": "(Required) ID of the pin"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0290a012-68ec-48cf-94c1-f2ed5891a5fe",
+          "name": "/api/PinsV2/search",
+          "request": {
+            "name": "/api/PinsV2/search",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "PinsV2",
+                "search"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "placeId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCustomFields",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1b006f75-ea69-4cc1-a526-87cde696a6fe",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "search"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "placeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFields",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dataObjects\": [\n    \"\",\n    \"\"\n  ],\n  \"scrollId\": \"string\",\n  \"id\": \"string\",\n  \"lat\": 5230.500793564489,\n  \"lng\": 6663.282315484146,\n  \"placeId\": null,\n  \"address\": null,\n  \"zip\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6dad096-0c56-4aaf-87d4-50552c30a970",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "search"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "placeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFields",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b3232f26-4c08-4af1-9cdf-587868065807",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "search"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "placeId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFields",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7941dc6-a261-4325-97c1-7a806d7fe527",
+          "name": "Get nearest pins",
+          "request": {
+            "name": "Get nearest pins",
+            "description": {
+              "content": "Retrieves a list of nearest pins to the specified coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "PinsV2",
+                "nearest"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "Latitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "Longitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit of pins to retrieve"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5d821749-3709-4e4f-83d0-342abf41b308",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "nearest"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"lat\": 4886.346988884468,\n    \"lng\": 4251.726345741325,\n    \"dataObjectIds\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"id\": null,\n    \"lat\": 5545.780547080587,\n    \"lng\": 7953.374589951033,\n    \"dataObjectIds\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5c440b1-1510-4775-b3e6-cee59128f4ca",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "nearest"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ec08329-536c-4b93-8dbb-6d5f5f6ab6c5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "nearest"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2bfb61e7-61c0-4c79-a440-c2a2432a3c2d",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "nearest"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8be77dfc-2703-4ce1-8a5f-9338e511342e",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "nearest"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07b606c9-bcf1-442b-b8fc-3b0718f12c72",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "nearest"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c907dbc3-d833-4922-9bf6-75139e505686",
+          "name": "Format address",
+          "request": {
+            "name": "Format address",
+            "description": {
+              "content": "Formats the address of a pin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "PinsV2",
+                "format-address"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string,null>\",\n  \"lat\": \"<number,null-double>\",\n  \"lng\": \"<number,null-double>\",\n  \"street\": \"<string,null>\",\n  \"houseNumber\": \"<string,null>\",\n  \"zip\": \"<string,null>\",\n  \"city\": \"<string,null>\",\n  \"state\": \"<string,null>\",\n  \"country\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8aa1c6a1-4fdc-4235-82b2-6bd8c0177333",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "format-address"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"lat\": \"<number,null-double>\",\n  \"lng\": \"<number,null-double>\",\n  \"street\": \"<string,null>\",\n  \"houseNumber\": \"<string,null>\",\n  \"zip\": \"<string,null>\",\n  \"city\": \"<string,null>\",\n  \"state\": \"<string,null>\",\n  \"country\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"lat\": 249.33100431593692,\n  \"lng\": 4154.175461852219,\n  \"placeId\": \"string\",\n  \"address\": null,\n  \"street\": null,\n  \"houseNumber\": null,\n  \"zip\": \"string\",\n  \"city\": \"string\",\n  \"state\": null,\n  \"country\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90e8a545-18aa-4644-b934-585f7d97ce3a",
+          "name": "Get data objects for relocation",
+          "request": {
+            "name": "Get data objects for relocation",
+            "description": {
+              "content": "Retrieves data objects from source pin and resolves destination address for relocation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "PinsV2",
+                "move",
+                "summary"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourcePinId\": \"<string,null>\",\n  \"destinationPin\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\"\n  },\n  \"filterId\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "541cf20e-4720-48ab-84f2-7d142a55bc32",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "move",
+                    "summary"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourcePinId\": \"<string,null>\",\n  \"destinationPin\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\"\n  },\n  \"filterId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dataObjects\": null,\n  \"sourcePin\": {\n    \"value\": \"reference #/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse%2BSourcePinSummary not found in the OpenAPI spec\"\n  },\n  \"destinationPin\": {\n    \"value\": \"reference #/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse%2BDestinationPinSummary not found in the OpenAPI spec\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9815a96-8969-48da-b357-1fe4f41798aa",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "move",
+                    "summary"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourcePinId\": \"<string,null>\",\n  \"destinationPin\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\"\n  },\n  \"filterId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "caca7473-eb6e-4c4e-b829-da363af13ebd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "move",
+                    "summary"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourcePinId\": \"<string,null>\",\n  \"destinationPin\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\"\n  },\n  \"filterId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b1a0f30a-b423-4154-84e4-09b6381d2e71",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "move",
+                    "summary"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourcePinId\": \"<string,null>\",\n  \"destinationPin\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\"\n  },\n  \"filterId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4988bc6f-2d90-4220-b29e-fd7521868044",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "PinsV2",
+                    "move",
+                    "summary"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourcePinId\": \"<string,null>\",\n  \"destinationPin\": {\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\"\n  },\n  \"filterId\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b2c72e32-a0de-4a41-a4b0-b5cdfd493f6a",
+    "name": "Spotio 2.0 Pins V2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Pins API handles searching and retrieving pins with details. It provides operations including fetching pins by viewport, getting pin details with data objects, searching for pins with specific criteria, and finding the nearest pins to a given location.\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

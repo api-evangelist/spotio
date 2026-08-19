@@ -1,0 +1,3449 @@
+{
+  "item": [
+    {
+      "id": "4bc4f8da-a87d-45b5-a470-69cc1aea9751",
+      "name": "MyReports",
+      "description": {
+        "content": "The controller is responsible for managing MyReports in a web application, creation, updating and rendering MyReports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c9ead96-49ef-4c24-bfdb-35d1623f78e2",
+          "name": "Get a list of My Reports",
+          "request": {
+            "name": "Get a list of My Reports",
+            "description": {
+              "content": "Retrieves a list of My Reports based on the specified filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "showMine",
+                  "value": "<boolean>",
+                  "description": "Indicates whether to return only the reports created by the current user."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataObjectTypeId",
+                  "value": "<integer>",
+                  "description": "The ID of the Data Object type that the reports should be filtered by. If not specified, all report types will be returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2ae872a1-e8ee-4cc8-ad09-aa5609547833",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "showMine",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "dataObjectTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": null,\n    \"title\": null,\n    \"type\": \"MyReport\",\n    \"isDefault\": false,\n    \"description\": \"string\"\n  },\n  {\n    \"id\": null,\n    \"title\": \"string\",\n    \"type\": \"MyReport\",\n    \"isDefault\": true,\n    \"description\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00ae6871-dcf2-4fbd-8155-ab646ead4118",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "showMine",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "dataObjectTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1331b27c-2f28-419f-b196-86d779846f6a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "showMine",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "dataObjectTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1231bb32-91f5-4c94-aca6-5a8f1e4c5847",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "showMine",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "dataObjectTypeId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d5fd5f8-f6bb-475f-a7ad-1c6c549e454d",
+          "name": "Create a new report",
+          "request": {
+            "name": "Create a new report",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "23e0c681-4eb3-4d9f-9ef0-19bd4fba6331",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"editable\": true,\n  \"deletable\": true,\n  \"title\": \"string\",\n  \"description\": null,\n  \"categoriesWithMetrics\": [\n    \"\",\n    \"\"\n  ],\n  \"includeInDailyWeeklyUpdates\": true,\n  \"dataObjectTypeId\": \"string\",\n  \"dataObjectTypeIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"string\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"string\",\n  \"isDefault\": false,\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c705d3d-57a4-4165-9bf7-c85292eda46c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c65717dc-f739-4d92-a30c-c0207d6d5614",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa7dc8a7-d286-4682-b82d-56118474472f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e83d87ef-3df1-4832-9c82-efd5bc1ca469",
+          "name": "Get a specific report.",
+          "request": {
+            "name": "Get a specific report.",
+            "description": {
+              "content": "Returns the report with the specified ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports",
+                ":id"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Report Id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "13613e53-f7a9-45ce-b626-d3706ab65ff2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"editable\": true,\n  \"deletable\": true,\n  \"title\": \"string\",\n  \"description\": null,\n  \"categoriesWithMetrics\": [\n    \"\",\n    \"\"\n  ],\n  \"includeInDailyWeeklyUpdates\": true,\n  \"dataObjectTypeId\": \"string\",\n  \"dataObjectTypeIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"string\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"string\",\n  \"isDefault\": false,\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b10e3752-7c75-4e1b-b684-39d7238c787c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "69fe8e40-dc5d-4679-a4f7-4de6c278a81a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d59530a-6c7d-4828-b953-0d50f8df5ff0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report Id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5518e084-872c-4983-8e40-667acf285222",
+          "name": "Update existing report",
+          "request": {
+            "name": "Update existing report",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports",
+                ":id"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Report id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6baad3ff-91bc-46b0-b4d4-9f7d8492a051",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"editable\": true,\n  \"deletable\": true,\n  \"title\": \"string\",\n  \"description\": null,\n  \"categoriesWithMetrics\": [\n    \"\",\n    \"\"\n  ],\n  \"includeInDailyWeeklyUpdates\": true,\n  \"dataObjectTypeId\": \"string\",\n  \"dataObjectTypeIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"string\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"string\",\n  \"isDefault\": false,\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df5743a7-18c0-4500-a16a-4a8679017fdd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7d891397-c29d-4c64-be91-7e005b84160d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff1c14fc-50dd-45f1-b389-db8ee3d52b95",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"description\": \"<string,null>\",\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"includeInDailyWeeklyUpdates\": \"<boolean>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"visibility\": \"<string>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"ownerId\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"defaultMetric\": \"<string,null>\",\n  \"isDefault\": \"<boolean,null>\",\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a255803b-db27-41f0-88ca-29b9d6d09546",
+          "name": "Delete existing report",
+          "request": {
+            "name": "Delete existing report",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports",
+                ":id"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Report id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c95a91a-9633-47cb-967f-2d8ee13185b7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c592f2a4-6138-4944-beed-5c65b1f5fdf4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8b5ceac2-a89c-41db-a9f9-4542d0253330",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b281bade-a753-435d-b423-8d533d7f52b4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7937a781-a2a9-4650-8691-d2e03bd1179e",
+          "name": "Render report by id",
+          "request": {
+            "name": "Render report by id",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports",
+                ":id",
+                "render"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeValueRef",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>",
+                  "description": "Cursor for pagination (next page)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFormat",
+                  "value": "<string>",
+                  "description": "Optional date format override"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Report id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a301719-1d94-4548-b285-c58758688821",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "render"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": null,\n  \"title\": \"string\",\n  \"description\": null,\n  \"filterId\": \"string\",\n  \"categories\": null,\n  \"dataObjectTypeId\": \"string\",\n  \"dataObjectTypeIds\": null,\n  \"visibility\": \"<string>\",\n  \"scrollId\": null,\n  \"isSortable\": false,\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52870453-a10b-48ac-b541-56198db6e008",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "render"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e94a121-8e3e-4d3d-b2bc-3c57f536b6d5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "render"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a52757eb-f848-48da-990a-a3bce9740250",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "render"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f11acb7-9f56-48d0-8247-ddc1dd29333d",
+          "name": "Render report by id",
+          "request": {
+            "name": "Render report by id",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports",
+                ":id",
+                "render"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeValueRef",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>",
+                  "description": "Cursor for pagination (next page)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFormat",
+                  "value": "<string>",
+                  "description": "Optional date format override"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Report id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "695d8c23-51ec-4460-a456-9c879f351f89",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "render"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": null,\n  \"title\": \"string\",\n  \"description\": null,\n  \"filterId\": \"string\",\n  \"categories\": null,\n  \"dataObjectTypeId\": \"string\",\n  \"dataObjectTypeIds\": null,\n  \"visibility\": \"<string>\",\n  \"scrollId\": null,\n  \"isSortable\": false,\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2312e68-2664-42c3-8999-738a62c3e713",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "render"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "077e696e-a61b-4996-a0b7-eb0b5fc429c9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "render"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71068713-cf0a-46bb-adc7-277f1da091c3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "render"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7070750-8b48-4ef6-8b09-d829c594cc98",
+          "name": "Render report preview",
+          "request": {
+            "name": "Render report preview",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports",
+                "preview"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "includeValueRef",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>",
+                  "description": "Cursor for pagination (next page)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFormat",
+                  "value": "<string>",
+                  "description": "Optional date format override"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f86e75b-6d87-4dc4-8e3f-75ac9ca5534a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    "preview"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": null,\n  \"title\": \"string\",\n  \"description\": null,\n  \"filterId\": \"string\",\n  \"categories\": null,\n  \"dataObjectTypeId\": \"string\",\n  \"dataObjectTypeIds\": null,\n  \"visibility\": \"<string>\",\n  \"scrollId\": null,\n  \"isSortable\": false,\n  \"visibilitySettings\": {\n    \"teamsIds\": \"<array,null>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31c07d6c-c3f8-4443-bfb6-2fe1b7ae4784",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    "preview"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bc6b8eb1-20a6-4077-acc0-e0eba1d49cef",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    "preview"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de97ef4c-33b6-44b3-951e-70deb5f6c2f1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    "preview"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeValueRef",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"categoriesWithMetrics\": \"<array,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"defaultDate\": {\n    \"dateRange\": \"<string>\",\n    \"startDate\": \"<string,null-date-time>\",\n    \"endDate\": \"<string,null-date-time>\"\n  },\n  \"sortByColumn\": {\n    \"columnRef\": {\n      \"metricId\": \"<string,null>\",\n      \"dataObjectTypeId\": \"<integer,null-int32>\",\n      \"stageId\": \"<integer,null-int32>\",\n      \"activityTemplateId\": \"<integer,null-int32>\",\n      \"direction\": \"<string>\",\n      \"state\": \"<string>\",\n      \"resultId\": \"<integer,null-int32>\",\n      \"noResult\": \"<boolean,null>\",\n      \"dateFrom\": \"<string,null-date-time>\",\n      \"dateTo\": \"<string,null-date-time>\",\n      \"category\": \"<string>\"\n    },\n    \"asc\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7c49ae6-3e73-4f4b-9829-12ecb7b43482",
+          "name": "Get cell details",
+          "request": {
+            "name": "Get cell details",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports",
+                ":id",
+                "details"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>",
+                  "description": "Cursor for pagination (next page)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Filter id"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "Sort by column: (title, dueDate, completedOn)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateFormat",
+                  "value": "<string>",
+                  "description": "Optional date format override"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Report id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8f85451-ab58-45fd-b020-0144b679bc46",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5b23d7b-ff82-42a7-86f9-f44a9fe36e91",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bba03944-bdd8-461e-b4e3-a09d90b4dc01",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24f4c577-b780-4a4f-b365-b8dd95eb5571",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "details"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateFormat",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "119d4f52-fe1a-40da-a34b-91a420c3b84d",
+          "name": "Export cell details",
+          "request": {
+            "name": "Export cell details",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "MyReports",
+                ":id",
+                "details",
+                "export"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Filter id"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Report id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "527a87f9-ac1d-4e8f-8b57-de1ec42f7fc4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "details",
+                    "export"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bec1aad-5c1e-41b0-9f30-88cc5d17b51d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "details",
+                    "export"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2cea0d40-1a8a-4368-ae7c-efcf016b6652",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "details",
+                    "export"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38e47b3a-afc4-40c9-a555-2812ea516bac",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "MyReports",
+                    ":id",
+                    "details",
+                    "export"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Report id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string,null>\",\n  \"idType\": \"<string>\",\n  \"groupId\": \"<string,null>\",\n  \"groupIdType\": \"<string>\",\n  \"metricId\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"direction\": \"<string>\",\n  \"state\": \"<string>\",\n  \"resultId\": \"<string,null>\",\n  \"noResult\": \"<boolean,null>\",\n  \"dateFrom\": \"<string,null-date-time>\",\n  \"dateTo\": \"<string,null-date-time>\",\n  \"category\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6ae85bb8-cc8e-456b-a260-28b765f6255f",
+    "name": "Spotio 2.0 My Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The controller is responsible for managing MyReports in a web application, creation, updating and rendering MyReports.\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

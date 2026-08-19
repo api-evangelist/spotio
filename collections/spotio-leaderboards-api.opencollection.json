@@ -1,0 +1,276 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Leaderboards API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leaderboards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of leaderboards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Leaderboards",
+            "params": [
+              {
+                "name": "showMine",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to return only the leaderboards created by the current user."
+              },
+              {
+                "name": "dataObjectTypeId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the Data Object type that the leaderboards should be filtered by. If not specified, all leaderboards types will be returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of leaderboards based on the specified filters."
+        },
+        {
+          "info": {
+            "name": "Render leaderboard by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Leaderboards/:id",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter id"
+              },
+              {
+                "name": "metricId",
+                "value": "",
+                "type": "query",
+                "description": "Metric id"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "Parent id"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Period start date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Period end date"
+              },
+              {
+                "name": "periodShortcut",
+                "value": "",
+                "type": "query",
+                "description": "Period shortcut"
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether leaderboard should be refreshed"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format override"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Leaderboard id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Render leaderboard by id"
+        },
+        {
+          "info": {
+            "name": "Render leaderboard by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Leaderboards/:id",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter id"
+              },
+              {
+                "name": "metricId",
+                "value": "",
+                "type": "query",
+                "description": "Metric id"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll id"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "Parent id"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Period start date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Period end date"
+              },
+              {
+                "name": "periodShortcut",
+                "value": "",
+                "type": "query",
+                "description": "Period shortcut"
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether leaderboard should be refreshed"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format override"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Leaderboard id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Render leaderboard by id"
+        },
+        {
+          "info": {
+            "name": "Export leaderboard by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Leaderboards/:id/export",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter id"
+              },
+              {
+                "name": "metricId",
+                "value": "",
+                "type": "query",
+                "description": "Metric id"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "Parent id"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Period start date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Period end date"
+              },
+              {
+                "name": "periodShortcut",
+                "value": "",
+                "type": "query",
+                "description": "Period shortcut"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Leaderboard id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export leaderboard by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

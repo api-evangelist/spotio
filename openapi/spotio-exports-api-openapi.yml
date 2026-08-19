@@ -1,0 +1,713 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Exports API
+  description: '
+
+    The controller is responsible for exporting data from the application, such as exporting  dataObjects (leads) and activities.
+
+    The result of the export is a CSV file.
+
+    '
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Exports
+  description: '
+
+    The controller is responsible for exporting data from the application, such as exporting  dataObjects (leads) and activities.
+
+    The result of the export is a CSV file.
+
+    '
+paths:
+  /api/Exports/dataObjects:
+    post:
+      tags:
+      - Exports
+      summary: Create dataObject CSV export.
+      description: The file with dataObject will be sent to the user's email.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.Export'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Exports/activities:
+    post:
+      tags:
+      - Exports
+      summary: Export activities
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.RequestExport'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.Export'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Exports/activities/data:
+    post:
+      tags:
+      - Exports
+      summary: Export activity feed data
+      parameters:
+      - name: scrollId
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Exports/activities/data/flexible:
+    post:
+      tags:
+      - Exports
+      summary: Export activity feed data
+      parameters:
+      - name: scrollId
+        in: query
+        description: Cursor for pagination
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ExportPage%601%5B%5BSpotio.Frontend.ViewModel.Exports.ActivityExportItem%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Exports/dataObjects/data:
+    get:
+      tags:
+      - Exports
+      summary: Export data objects data
+      parameters:
+      - name: scrollId
+        in: query
+        description: ScrollId which is used for pagination.
+        schema:
+          type: string
+      - name: updatedAfter
+        in: query
+        description: Return records updated after given date
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ExportPage%601%5B%5BSpotio.Frontend.ViewModel.Exports.DataObjectExportItem%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Exports.ActivitiesExportRequest:
+      type: object
+      description: Request object for activities export
+      additionalProperties: false
+      properties:
+        territoryIds:
+          type:
+          - array
+          - 'null'
+          description: List of territory IDs to filter activities
+          items:
+            type: string
+        userIds:
+          type:
+          - array
+          - 'null'
+          description: List of user IDs to filter activities
+          items:
+            type: string
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: Start date to filter activities
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: End date to filter activities
+          format: date-time
+        dataObjectTypeId:
+          type:
+          - integer
+          - 'null'
+          description: Data object type ID to filter activities
+          format: int32
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the filter to use for exporting data.
+    Spotio.Frontend.ViewModel.Exports.Export:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the export.
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The last update date and time of the export.
+          format: date-time
+        createdAt:
+          type: string
+          description: The creation date and time of the export.
+          format: date-time
+        state:
+          type:
+          - string
+          - 'null'
+          description: The state of the export.
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the export file.
+        typeName:
+          type:
+          - string
+          - 'null'
+          description: The name of the data type being exported.
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: The identifier of the filter used for the export.
+        territoryId:
+          type:
+          - integer
+          - 'null'
+          description: The identifier of the territory used for the export.
+          format: int32
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: The start date and time of the export.
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: The end date and time of the export.
+          format: date-time
+    Spotio.Frontend.ViewModel.Exports.Field:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+        previousValue:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Exports.ActivitiesExportResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        activityList:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.ActivityDto'
+        scrollId:
+          type:
+          - string
+          - 'null'
+        totalCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    Spotio.Frontend.ViewModel.Exports.RequestExport:
+      type: object
+      additionalProperties: false
+      properties:
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the filter to use for exporting data.
+        reportType:
+          type:
+          - string
+          - 'null'
+          description: The type of report to generate.
+        q:
+          type:
+          - string
+          - 'null'
+          description: The query string to use for filtering the exported data.
+        singleType:
+          type:
+          - integer
+          - 'null'
+          description: The ID of a single data object type to export from workflow settings.
+          format: int32
+        columns:
+          type:
+          - array
+          - 'null'
+          description: Columns to export
+          items:
+            type: string
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Exports.Contact:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        contactName:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Exports.ActivityDto:
+      type: object
+      description: Represents an activity.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Activity Id.
+        activityDate:
+          type: string
+          description: The date and time when the activity occurred.
+          format: date-time
+        owner:
+          type:
+          - string
+          - 'null'
+          description: The name of the user who performed the activity.
+        address:
+          type:
+          - string
+          - 'null'
+          description: The street address where the activity occurred.
+        latitude:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the activity's location.
+          format: double
+        longitude:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the activity's location.
+          format: double
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the activity.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: The notes for the activity.
+        reportType:
+          type:
+          - string
+          - 'null'
+          description: The type of report associated with the activity.
+        activityType:
+          type:
+          - string
+          - 'null'
+          description: The type of activity.
+        fromStage:
+          type:
+          - string
+          - 'null'
+          description: The stage that the lead was in before the activity was performed.
+        toStage:
+          type:
+          - string
+          - 'null'
+          description: The stage that the lead is in after the activity was performed.
+        previousLeadOwner:
+          type:
+          - string
+          - 'null'
+          description: The name of the lead owner before the activity was performed.
+        newLeadOwner:
+          type:
+          - string
+          - 'null'
+          description: The name of the lead owner after the activity was performed.
+        result:
+          type:
+          - string
+          - 'null'
+          description: The result of the activity.
+        territory:
+          type:
+          - string
+          - 'null'
+          description: The name of the territory associated with the activity.
+        visitVerificationInMeter:
+          type:
+          - number
+          - 'null'
+          description: The distance in meters from the lead's location to the location where the activity was performed.
+          format: double
+        visitVerificationInFeet:
+          type:
+          - number
+          - 'null'
+          description: The distance in feet from the lead's location to the location where the activity was performed.
+          format: double
+        company:
+          type:
+          - string
+          - 'null'
+          description: The name of the company associated with the activity.
+        duration:
+          type: integer
+          description: The duration of the activity.
+          format: int32
+        value:
+          type:
+          - number
+          - 'null'
+          description: The value associated with the activity.
+          format: double
+        visitCount:
+          type: integer
+          description: The number of times the lead has been visited.
+          format: int32
+        leadOwnerEmail:
+          type:
+          - string
+          - 'null'
+          description: The email address of the lead owner.
+        activityOwnerEmail:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user who performed the activity.
+        direction:
+          type:
+          - string
+          - 'null'
+          description: The direction of the activity (text / email)
+        content:
+          type:
+          - string
+          - 'null'
+          description: The direction of the activity (text / email)
+        leadId:
+          type:
+          - string
+          - 'null'
+        leadOwnerExternalUserId:
+          type:
+          - string
+          - 'null'
+          description: The direction of the activity (text / email)
+        activityOwnerExternalUserId:
+          type:
+          - string
+          - 'null'
+          description: The direction of the activity (text / email)
+        field:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.Field'
+        contacts:
+          type:
+          - array
+          - 'null'
+          description: Contact lists
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Exports.Contact'
+        createdAt:
+          type: string
+          description: The date and time when the activity was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time when the activity was updated
+          format: date-time
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

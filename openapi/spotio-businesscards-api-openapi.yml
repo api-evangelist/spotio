@@ -1,0 +1,1462 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Business Cards API
+  description: The Business Cards API allows managing business card and their related operations, such as fetching details, listing, creating, updating, cloning, sharing, previewing, downloading, and rendering business cards, as well as managing business card settings.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: BusinessCards
+  description: The Business Cards API allows managing business card and their related operations, such as fetching details, listing, creating, updating, cloning, sharing, previewing, downloading, and rendering business cards, as well as managing business card settings.
+paths:
+  /api/BusinessCards/{id}:
+    get:
+      tags:
+      - BusinessCards
+      summary: Get business cards details
+      description: Fetch the details of a business card by its ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardFull'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardFull'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardFull'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    put:
+      tags:
+      - BusinessCards
+      summary: Update business card
+      description: Update an existing business card by its ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Updated business card data
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    patch:
+      tags:
+      - BusinessCards
+      summary: Patch business card
+      description: Partially update a business card by its ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: JSON merge patch document containing updates to the business card data
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Morcatko.AspNetCore.JsonMergePatch.JsonMergePatchDocument`1[[Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - BusinessCards
+      summary: Delete business card
+      description: Delete a business card by its ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/BusinessCards:
+    get:
+      tags:
+      - BusinessCards
+      summary: Get business cards list
+      description: Fetch a list of business cards with optional name filter.
+      parameters:
+      - name: name
+        in: query
+        description: Optional name filter for the list
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardForList'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardForList'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardForList'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - BusinessCards
+      summary: Create business card
+      description: Create a new business card.
+      requestBody:
+        description: Business card data to create
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/BusinessCards/{id}/clone:
+    post:
+      tags:
+      - BusinessCards
+      summary: Clone business card
+      description: Create a copy of a business card by its ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/BusinessCards/{id}/shareWithTeammate:
+    post:
+      tags:
+      - BusinessCards
+      summary: Share business card with users
+      description: Share a business card with a list of user IDs.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: List of user IDs to share the card with
+        content:
+          application/merge-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/json:
+            schema:
+              type: array
+              items:
+                type: string
+          text/json:
+            schema:
+              type: array
+              items:
+                type: string
+          application/*+json:
+            schema:
+              type: array
+              items:
+                type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCard'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/BusinessCards/{id}/preview:
+    post:
+      tags:
+      - BusinessCards
+      summary: Preview business card
+      description: Generate a preview URL of the business card by its ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardShareLink'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardShareLink'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardShareLink'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/BusinessCards/{id}/share:
+    post:
+      tags:
+      - BusinessCards
+      summary: Share business card
+      description: Share a business card by its ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Request object for sharing the business card
+        required: true
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/BusinessCards/{id}/render:
+    get:
+      tags:
+      - BusinessCards
+      summary: Render business card data
+      description: Retrieve business card data for rendering.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRender'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRender'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRender'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/BusinessCards/{id}/download:
+    get:
+      tags:
+      - BusinessCards
+      summary: Download business card data
+      description: Returns an UTF-8 formatted .vcf file containing business card data for given ID.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the business card
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: string
+                format: binary
+            application/json:
+              schema:
+                type: string
+                format: binary
+            text/json:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/BusinessCards/settings:
+    get:
+      tags:
+      - BusinessCards
+      summary: Get business cards settings
+      description: Fetch the business cards settings.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    put:
+      tags:
+      - BusinessCards
+      summary: Update business cards settings
+      description: Update the business cards settings.
+      requestBody:
+        description: Business card settings to update
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardForList:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the business card
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the owner
+        cardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the business card
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the image
+        first:
+          type:
+          - string
+          - 'null'
+          description: First name of the contact
+        last:
+          type:
+          - string
+          - 'null'
+          description: Last name of the contact
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the contact
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the contact
+        active:
+          type: boolean
+          description: Indicates if the business card is active
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardShareLink:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          description: URL of the shared business card
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRender:
+      type: object
+      additionalProperties: false
+      properties:
+        cardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the business card
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the image
+        first:
+          type:
+          - string
+          - 'null'
+          description: First name of the contact
+        last:
+          type:
+          - string
+          - 'null'
+          description: Last name of the contact
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the contact
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the contact
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the contact
+        headline:
+          type:
+          - string
+          - 'null'
+          description: Headline of the contact
+        companyLogoUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the company logo
+        companyName:
+          type:
+          - string
+          - 'null'
+          description: Name of the company
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the business card
+        optInVisible:
+          type: boolean
+          description: Indicates whether opt-in section should be visible
+        optInKeyword:
+          type:
+          - string
+          - 'null'
+          description: Opt in keyword for initial sms
+        optInLandingPageUrl:
+          type:
+          - string
+          - 'null'
+          description: Link to opt in lading page
+        spotioPhoneNumber:
+          type:
+          - string
+          - 'null'
+          description: Spotio Phone number of the card owner
+    Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings:
+      type: object
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+          description: Indicates if business cards are enabled
+        defaultBusinessCardId:
+          type:
+          - string
+          - 'null'
+          description: ID of the default business card
+        defaultBusinessCardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the default business card
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCard:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the business card
+        cardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the business card
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the image
+        first:
+          type:
+          - string
+          - 'null'
+          description: First name of the contact
+        last:
+          type:
+          - string
+          - 'null'
+          description: Last name of the contact
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the contact
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the contact
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the contact
+        headline:
+          type:
+          - string
+          - 'null'
+          description: Headline of the contact
+        active:
+          type: boolean
+          description: Indicates if the business card is active
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the owner
+        sharedWithUsers:
+          type:
+          - array
+          - 'null'
+          description: List of user IDs that the card is shared with
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardFull:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the business card
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: ID of the company
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the owner
+        cardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the business card
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the image
+        first:
+          type:
+          - string
+          - 'null'
+          description: First name of the contact
+        last:
+          type:
+          - string
+          - 'null'
+          description: Last name of the contact
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the contact
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the contact
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the contact
+        headline:
+          type:
+          - string
+          - 'null'
+          description: Headline of the contact
+        active:
+          type: boolean
+          description: Indicates if the business card is active
+        sharedWithUsers:
+          type:
+          - array
+          - 'null'
+          description: List of user IDs that the card is shared with
+          items:
+            type: integer
+            format: int32
+        companyName:
+          type:
+          - string
+          - 'null'
+          description: Name of the company
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the business card
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        cardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the business card
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the image
+        first:
+          type:
+          - string
+          - 'null'
+          description: First name of the contact
+        last:
+          type:
+          - string
+          - 'null'
+          description: Last name of the contact
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the contact
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the contact
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the contact
+        headline:
+          type:
+          - string
+          - 'null'
+          description: Headline of the contact
+        active:
+          type: boolean
+          description: Indicates if the business card is active
+        sharedWithUsers:
+          type:
+          - array
+          - 'null'
+          description: List of user IDs that the card is shared with
+          items:
+            type: integer
+            format: int32
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest:
+      type: object
+      description: Request object for sharing a business card.
+      additionalProperties: false
+      properties:
+        leadId:
+          type:
+          - string
+          - 'null'
+          description: Lead ID
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: Data object ID
+        contactId:
+          type:
+          - string
+          - 'null'
+          description: Contact ID
+        text:
+          type: boolean
+          description: Indicates if the card should be shared via text message
+        email:
+          type: boolean
+          description: Indicates if the card should be shared via email
+        message:
+          type:
+          - string
+          - 'null'
+          description: Message to include when sharing the card
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

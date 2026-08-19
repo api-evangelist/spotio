@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 User Tracking API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserTracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch users for the area.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/UserTracking/map/users",
+            "params": [
+              {
+                "name": "area",
+                "value": "",
+                "type": "query",
+                "description": "Points describing area separated by comma."
+              },
+              {
+                "name": "userIds",
+                "value": "",
+                "type": "query",
+                "description": "User ids separated by comma."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch users for the area."
+        },
+        {
+          "info": {
+            "name": "Get GPS trails for the users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/UserTracking/map/gpstrails",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Reference to the saved filter."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get GPS trails for the users."
+        },
+        {
+          "info": {
+            "name": "Get the calling user's last known position (tracking or last logged activity).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/UserTracking/last-position",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the calling user's last known position (tracking or last logged activity)."
+        },
+        {
+          "info": {
+            "name": "Get user location sharing settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/UserTracking/settings",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get user location sharing settings."
+        },
+        {
+          "info": {
+            "name": "Update user location sharing settings.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/UserTracking/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update user location sharing settings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

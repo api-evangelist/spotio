@@ -1,0 +1,1589 @@
+{
+  "item": [
+    {
+      "id": "eafe2859-5c84-4eaf-9140-433243ab3a4c",
+      "name": "DataObjectsSearch",
+      "description": {
+        "content": "    This controller is responsible for searching data objects.\n    There are available endpoints for:\n    * simple global searches - return only basic information about data objects\n    * searching on lists - return more information about data objects\n\n    Sorting (ascending by default, use `-` prefix to sort descending):\n    * updatedat\n    * value\n    * visitscount\n    * lastvisitdate\n    * distance\n    * nextactivitytime\n    * lastvisitresult",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8ff5ada9-f79d-4208-ac23-8b18b3727666",
+          "name": "Search objects (simple)",
+          "request": {
+            "name": "Search objects (simple)",
+            "description": {
+              "content": "Global search for objects, search should use address or other characteristic fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "DataObjectsSearch",
+                "simple"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Text that can be used in a search of objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>",
+                  "description": "Cursor for pagination (next page)"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Returns objects filtered by filter with given Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "By what property objects should be sorted by"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "Latitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "Longitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasAddress",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with address"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasPhoneOrEmail",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with phone or email"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasPhone",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with phone"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasEmail",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with email"
+                },
+                {
+                  "disabled": false,
+                  "key": "typeId",
+                  "value": "<integer>",
+                  "description": "Returns objects filtered by given type id"
+                },
+                {
+                  "disabled": false,
+                  "key": "phoneNumber",
+                  "value": "<string>",
+                  "description": "Phone number"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Page size"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a159cf2a-a269-4ba6-b364-7bc19cbbabee",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch",
+                    "simple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "hasAddress",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhoneOrEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhone",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "typeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb6ba10f-cec6-46a3-81fd-5786b1eab10c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch",
+                    "simple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "hasAddress",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhoneOrEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhone",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "typeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "phoneNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6aebfe15-d0a3-4888-96bc-641feb0e8aab",
+          "name": "Search objects (simple)",
+          "request": {
+            "name": "Search objects (simple)",
+            "description": {
+              "content": "Global search for objects, search should use address or other characteristic fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "DataObjectsSearch",
+                "simple"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"queryText\": \"<string,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"filterId\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"hasAddress\": \"<boolean,null>\",\n  \"hasPhoneOrEmail\": \"<boolean,null>\",\n  \"hasPhone\": \"<boolean,null>\",\n  \"hasEmail\": \"<boolean,null>\",\n  \"typeId\": \"<integer,null-int32>\",\n  \"phoneNumber\": \"<string,null>\",\n  \"placeIds\": \"<array,null>\",\n  \"dataObjectIds\": \"<array,null>\",\n  \"pageSize\": \"<integer,null-int32>\",\n  \"lat\": \"<number,null-double>\",\n  \"lng\": \"<number,null-double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6361bbcb-52ad-47ab-b7ba-475bc98de099",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch",
+                    "simple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"queryText\": \"<string,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"filterId\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"hasAddress\": \"<boolean,null>\",\n  \"hasPhoneOrEmail\": \"<boolean,null>\",\n  \"hasPhone\": \"<boolean,null>\",\n  \"hasEmail\": \"<boolean,null>\",\n  \"typeId\": \"<integer,null-int32>\",\n  \"phoneNumber\": \"<string,null>\",\n  \"placeIds\": \"<array,null>\",\n  \"dataObjectIds\": \"<array,null>\",\n  \"pageSize\": \"<integer,null-int32>\",\n  \"lat\": \"<number,null-double>\",\n  \"lng\": \"<number,null-double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "251d3709-dd21-492b-8035-6ac351329268",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch",
+                    "simple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"queryText\": \"<string,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"filterId\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"hasAddress\": \"<boolean,null>\",\n  \"hasPhoneOrEmail\": \"<boolean,null>\",\n  \"hasPhone\": \"<boolean,null>\",\n  \"hasEmail\": \"<boolean,null>\",\n  \"typeId\": \"<integer,null-int32>\",\n  \"phoneNumber\": \"<string,null>\",\n  \"placeIds\": \"<array,null>\",\n  \"dataObjectIds\": \"<array,null>\",\n  \"pageSize\": \"<integer,null-int32>\",\n  \"lat\": \"<number,null-double>\",\n  \"lng\": \"<number,null-double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4f83d93-6af9-4601-9c66-268e4adbf904",
+          "name": "Search objects",
+          "request": {
+            "name": "Search objects",
+            "description": {
+              "content": "Global search for objects, search should use address or other characteristic fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "DataObjectsSearch"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>",
+                  "description": "Cursor for pagination (next page)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "By what property objects should be sorted by"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageId",
+                  "value": "<string>",
+                  "description": "Will return only objects with this stage Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageGroups",
+                  "value": "<string>",
+                  "description": "Will return objects in specific stage group, can be 'active', 'won', or 'lost'"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Returns objects filtered by filter with given Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCustomFieldIds",
+                  "value": "<string>",
+                  "description": "Included custom fields - should be separated by \",\""
+                },
+                {
+                  "disabled": false,
+                  "key": "includeFilterOptionIds",
+                  "value": "<string>",
+                  "description": "Included filter option values - should be separated by \",\""
+                },
+                {
+                  "disabled": false,
+                  "key": "area",
+                  "value": "<string>",
+                  "description": "Coordinates of the screen corners when looking at a map"
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon",
+                  "value": "{\"lat\":\"<double>\",\"lng\":\"<double>\"}",
+                  "description": "Polygon data"
+                },
+                {
+                  "disabled": false,
+                  "key": "polygon",
+                  "value": "{\"lat\":\"<double>\",\"lng\":\"<double>\"}",
+                  "description": "Polygon data"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Text that can be used in a search of objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "Latitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "Longitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeActivities",
+                  "value": "false",
+                  "description": "If true, will return details about upcoming activity"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasAddress",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with address"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasPhoneOrEmail",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with phone or email"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasPhone",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with phone"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasEmail",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with email"
+                },
+                {
+                  "disabled": false,
+                  "key": "singleType",
+                  "value": "<integer>",
+                  "description": "Returns data objects with selected type id"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeOwnerExternalUserId",
+                  "value": "false",
+                  "description": "If true, will add information about owner external system user Id to the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "50",
+                  "description": "Number of objects per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeParentData",
+                  "value": "false",
+                  "description": "If true, will add information about parent to the response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c4024a38-2e02-4885-b8a7-a4d668bf313a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeFilterOptionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "polygon",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "polygon",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "includeActivities",
+                      "value": "false"
+                    },
+                    {
+                      "key": "hasAddress",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhoneOrEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhone",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "singleType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeOwnerExternalUserId",
+                      "value": "false"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "includeParentData",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43d88652-886e-4637-b919-5bbb9623ea2e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeFilterOptionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "polygon",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "polygon",
+                      "value": "[object Object]"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "includeActivities",
+                      "value": "false"
+                    },
+                    {
+                      "key": "hasAddress",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhoneOrEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhone",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "singleType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeOwnerExternalUserId",
+                      "value": "false"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "includeParentData",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "744af454-b019-4c38-a38f-a320fa6cb771",
+          "name": "Search objects",
+          "request": {
+            "name": "Search objects",
+            "description": {
+              "content": "Global search for objects, search should use address or other characteristic fields",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "DataObjectsSearch"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scrollId\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"stageGroups\": \"<string,null>\",\n  \"filterId\": \"<string,null>\",\n  \"includeCustomFieldIds\": \"<string,null>\",\n  \"includeFilterOptionIds\": \"<string,null>\",\n  \"area\": \"<string,null>\",\n  \"polygon\": \"<array,null>\",\n  \"queryText\": \"<string,null>\",\n  \"lat\": \"<number,null-double>\",\n  \"lng\": \"<number,null-double>\",\n  \"includeActivities\": \"<boolean,null>\",\n  \"hasAddress\": \"<boolean,null>\",\n  \"hasPhoneOrEmail\": \"<boolean,null>\",\n  \"hasPhone\": \"<boolean,null>\",\n  \"hasEmail\": \"<boolean,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"perPage\": \"<integer,null-int32>\",\n  \"placeIds\": \"<array,null>\",\n  \"includeOwnerExternalUserId\": \"<boolean,null>\",\n  \"includeParentData\": \"<boolean,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2fec171-39c6-4d5c-b60f-0c7f95075aad",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scrollId\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"stageGroups\": \"<string,null>\",\n  \"filterId\": \"<string,null>\",\n  \"includeCustomFieldIds\": \"<string,null>\",\n  \"includeFilterOptionIds\": \"<string,null>\",\n  \"area\": \"<string,null>\",\n  \"polygon\": \"<array,null>\",\n  \"queryText\": \"<string,null>\",\n  \"lat\": \"<number,null-double>\",\n  \"lng\": \"<number,null-double>\",\n  \"includeActivities\": \"<boolean,null>\",\n  \"hasAddress\": \"<boolean,null>\",\n  \"hasPhoneOrEmail\": \"<boolean,null>\",\n  \"hasPhone\": \"<boolean,null>\",\n  \"hasEmail\": \"<boolean,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"perPage\": \"<integer,null-int32>\",\n  \"placeIds\": \"<array,null>\",\n  \"includeOwnerExternalUserId\": \"<boolean,null>\",\n  \"includeParentData\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fd89bb2-1461-4b57-a9dc-df8e9e7b6f0d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scrollId\": \"<string,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"stageId\": \"<string,null>\",\n  \"stageGroups\": \"<string,null>\",\n  \"filterId\": \"<string,null>\",\n  \"includeCustomFieldIds\": \"<string,null>\",\n  \"includeFilterOptionIds\": \"<string,null>\",\n  \"area\": \"<string,null>\",\n  \"polygon\": \"<array,null>\",\n  \"queryText\": \"<string,null>\",\n  \"lat\": \"<number,null-double>\",\n  \"lng\": \"<number,null-double>\",\n  \"includeActivities\": \"<boolean,null>\",\n  \"hasAddress\": \"<boolean,null>\",\n  \"hasPhoneOrEmail\": \"<boolean,null>\",\n  \"hasPhone\": \"<boolean,null>\",\n  \"hasEmail\": \"<boolean,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"perPage\": \"<integer,null-int32>\",\n  \"placeIds\": \"<array,null>\",\n  \"includeOwnerExternalUserId\": \"<boolean,null>\",\n  \"includeParentData\": \"<boolean,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8bef8a88-4eb1-4fc9-9fe6-c4c2ed9cf51b",
+          "name": "Search objects on list",
+          "request": {
+            "name": "Search objects on list",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "DataObjectsSearch",
+                "list"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "scrollId",
+                  "value": "<string>",
+                  "description": "Cursor for pagination (next page)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>",
+                  "description": "By what property objects should be sorted by"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageId",
+                  "value": "<string>",
+                  "description": "Will return only objects with this stage Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "stageGroups",
+                  "value": "<string>",
+                  "description": "Will return objects in specific stage group, can be 'active', 'won', or 'lost'"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "Returns objects filtered by filter with given Id"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCustomFieldIds",
+                  "value": "<string>",
+                  "description": "Included custom fields - should be separated by \",\""
+                },
+                {
+                  "disabled": false,
+                  "key": "includeFilterOptionIds",
+                  "value": "<string>",
+                  "description": "Included filter option values - should be separated by \",\""
+                },
+                {
+                  "disabled": false,
+                  "key": "area",
+                  "value": "<string>",
+                  "description": "Coordinates of the screen corners when looking at a map"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Text that can be used in a search of objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<double>",
+                  "description": "Latitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "lng",
+                  "value": "<double>",
+                  "description": "Longitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasAddress",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with address"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasPhoneOrEmail",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with phone or email"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasPhone",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with phone"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasEmail",
+                  "value": "<boolean>",
+                  "description": "If true, will return objects with email"
+                },
+                {
+                  "disabled": false,
+                  "key": "singleType",
+                  "value": "<integer>",
+                  "description": "Returns data objects with selected type id"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "50",
+                  "description": "Number of objects per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeParentData",
+                  "value": "false",
+                  "description": "If true, will add information about parent to the response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4a75c266-a9ad-4392-b65b-e45b953d29b1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch",
+                    "list"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeFilterOptionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "hasAddress",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhoneOrEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhone",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "singleType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "includeParentData",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97bfbab2-7da5-4edc-acea-2dd42d87ec00",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "DataObjectsSearch",
+                    "list"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "scrollId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stageGroups",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomFieldIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeFilterOptionIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "lng",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "hasAddress",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhoneOrEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasPhone",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasEmail",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "singleType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "50"
+                    },
+                    {
+                      "key": "includeParentData",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3d92dfc7-4703-44b8-afab-64a8341f9649",
+    "name": "Spotio 2.0 Data Objects Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "    This controller is responsible for searching data objects.\n    There are available endpoints for:\n    * simple global searches - return only basic information about data objects\n    * searching on lists - return more information about data objects\n\n    Sorting (ascending by default, use `-` prefix to sort descending):\n    * updatedat\n    * value\n    * visitscount\n    * lastvisitdate\n    * distance\n    * nextactivitytime\n    * lastvisitresult\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

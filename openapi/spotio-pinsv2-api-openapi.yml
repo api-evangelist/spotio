@@ -1,0 +1,1150 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Pins V2 API
+  description: Pins API handles searching and retrieving pins with details. It provides operations including fetching pins by viewport, getting pin details with data objects, searching for pins with specific criteria, and finding the nearest pins to a given location.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: PinsV2
+  description: Pins API handles searching and retrieving pins with details. It provides operations including fetching pins by viewport, getting pin details with data objects, searching for pins with specific criteria, and finding the nearest pins to a given location.
+paths:
+  /api/PinsV2:
+    get:
+      tags:
+      - PinsV2
+      summary: Get pins by viewport
+      description: Retrieves a list of pins within a specified viewport.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: area
+        in: query
+        description: Area defined as left top and bottom right corners coordinates separated by ','
+        schema:
+          type: string
+      - name: zoomLevel
+        in: query
+        description: Zoom level
+        schema:
+          type: integer
+          format: int32
+      - name: stageGroups
+        in: query
+        description: Stage groups separated by ','
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Filter ID
+        schema:
+          type: string
+      - name: includeCustomFieldId
+        in: query
+        description: Include custom field ID
+        schema:
+          type: string
+      - name: mix
+        in: query
+        description: Mix
+        schema:
+          type: boolean
+          default: false
+      - name: geoHashPrecision
+        in: query
+        description: Geohash precision
+        schema:
+          type: integer
+          format: int32
+      - name: multiPin
+        in: query
+        description: Enables multi-pin
+        schema:
+          type: boolean
+          default: false
+      - name: areaFilterMode
+        in: query
+        description: 'Determines how pins are filtered based on geographical area. (default: GeoTileGrid)'
+        schema:
+          $ref: '#/components/schemas/Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.AreaFilterMode'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinOnMapV2Dto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinOnMapV2Dto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinOnMapV2Dto'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/PinsV2/{pinId}:
+    get:
+      tags:
+      - PinsV2
+      summary: Get pin details
+      description: Retrieves details of a pin by its ID with a list of data objects correlated with this pin.
+      parameters:
+      - name: q
+        in: query
+        description: Text that is used in a search of correlated data objects
+        schema:
+          type: string
+      - name: includeDataObjects
+        in: query
+        description: Include data objects
+        schema:
+          type: boolean
+      - name: includeCustomFields
+        in: query
+        description: Include custom fields
+        schema:
+          type: boolean
+      - name: filterId
+        in: query
+        description: Filter ID used for filtering correlated data objects
+        schema:
+          type: string
+      - name: scrollId
+        in: query
+        description: Scroll ID for a list of data objects
+        schema:
+          type: string
+      - name: parentId
+        in: query
+        description: Parent ID for filtering correlated data objects
+        schema:
+          type: string
+      - name: pinId
+        in: path
+        description: ID of the pin
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsAndChildrenDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsAndChildrenDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsAndChildrenDto'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/PinsV2/search:
+    get:
+      tags:
+      - PinsV2
+      parameters:
+      - name: placeId
+        in: query
+        schema:
+          type: string
+      - name: includeCustomFields
+        in: query
+        schema:
+          type: boolean
+      - name: scrollId
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsDto'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/PinsV2/nearest:
+    get:
+      tags:
+      - PinsV2
+      summary: Get nearest pins
+      description: Retrieves a list of nearest pins to the specified coordinates.
+      parameters:
+      - name: lat
+        in: query
+        description: Latitude
+        schema:
+          type: number
+          format: double
+      - name: lng
+        in: query
+        description: Longitude
+        schema:
+          type: number
+          format: double
+      - name: limit
+        in: query
+        description: Limit of pins to retrieve
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.SimplePinDto'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.SimplePinDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.SimplePinDto'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+        '422':
+          description: Client Error
+        '500':
+          description: Server Error
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/PinsV2/format-address:
+    post:
+      tags:
+      - PinsV2
+      summary: Format address
+      description: Formats the address of a pin.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FormatAddressRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FormatAddressRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FormatAddressRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FormatAddressRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FormatAddressRequestDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FormattedAddressDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FormattedAddressDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FormattedAddressDto'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/PinsV2/move/summary:
+    post:
+      tags:
+      - PinsV2
+      summary: Get data objects for relocation
+      description: Retrieves data objects from source pin and resolves destination address for relocation.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Pin.V2.DataObjectDto:
+      type: object
+      description: Data transfer object for a data object.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the data object
+        typeId:
+          type:
+          - string
+          - 'null'
+          description: Type ID of the data object
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        phones:
+          type:
+          - array
+          - 'null'
+          description: List of phone numbers
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          description: List of email addresses
+          items:
+            type: string
+        addressUnit:
+          type:
+          - string
+          - 'null'
+          description: Address unit
+        value:
+          type: number
+          description: Value of the data object
+          format: double
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: Stage ID
+        fields:
+          type:
+          - array
+          - 'null'
+          description: List of field values
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FieldValueDto'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: Owner ID
+        updatedAt:
+          type: string
+          description: Updated at timestamp
+          format: date-time
+        createdAt:
+          type: string
+          description: Created at timestamp
+          format: date-time
+        stageUpdatedById:
+          type:
+          - string
+          - 'null'
+          description: Stage updated by ID
+        stageUpdatedAt:
+          type:
+          - string
+          - 'null'
+          description: Stage updated at timestamp
+          format: date-time
+        createdById:
+          type:
+          - string
+          - 'null'
+          description: Created by ID
+        updatedById:
+          type:
+          - string
+          - 'null'
+          description: Updated by ID
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source of the data object
+        territoryId:
+          type:
+          - string
+          - 'null'
+          description: Territory ID
+        ghost:
+          type: boolean
+          description: Whether the data object is a ghost
+        visitsCount:
+          type: integer
+          description: Number of visits
+          format: int32
+        lastVisitDate:
+          type:
+          - string
+          - 'null'
+          description: Last visit date
+          format: date-time
+        lastVisitResultId:
+          type:
+          - string
+          - 'null'
+          description: Last visit result ID
+        callCount:
+          type: integer
+          description: Number of calls
+          format: int32
+        lastCallDate:
+          type:
+          - string
+          - 'null'
+          description: Last call date
+          format: date-time
+        lastCallResultId:
+          type:
+          - string
+          - 'null'
+          description: Last call result ID
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+          description: Score label of the data object
+        nba:
+          type:
+          - string
+          - 'null'
+          description: Next best action for the data object
+    Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsDto:
+      type: object
+      description: Data transfer object for a pin with its associated data objects.
+      additionalProperties: false
+      properties:
+        dataObjects:
+          type:
+          - array
+          - 'null'
+          description: List of associated data objects
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.DataObjectDto'
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll ID
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the pin
+        lat:
+          type: number
+          description: Latitude of the pin
+          format: double
+        lng:
+          type: number
+          description: Longitude of the pin
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: Google Place ID
+        address:
+          type:
+          - string
+          - 'null'
+          description: Address of the pin
+        zip:
+          type:
+          - string
+          - 'null'
+          description: Zip code of the pin
+    Spotio.Frontend.ViewModel.Pin.V2.SimplePinDto:
+      type: object
+      description: Data transfer object for a simple pin.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the pin
+        lat:
+          type: number
+          description: Latitude of the pin
+          format: double
+        lng:
+          type: number
+          description: Longitude of the pin
+          format: double
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: List of associated data object IDs
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse:
+      type: object
+      description: Response containing data objects and pin information for relocation.
+      additionalProperties: false
+      properties:
+        dataObjects:
+          type:
+          - array
+          - 'null'
+          description: List of data objects at the source pin
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse%2BDataObject'
+        sourcePin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse%2BSourcePinSummary'
+        destinationPin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse%2BDestinationPinSummary'
+    Spotio.Frontend.ViewModel.Pin.V2.FieldValueDto:
+      type: object
+      description: Data for a field value.
+      additionalProperties: false
+      properties:
+        fieldId:
+          type:
+          - string
+          - 'null'
+          description: ID of the field
+        value:
+          type:
+          - string
+          - 'null'
+          description: Value of the field
+        values:
+          type:
+          - array
+          - 'null'
+          description: List of values for the field
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Pin.V2.DataObjectWithChildrenDto:
+      type: object
+      description: Data transfer object for a data object with its children.
+      additionalProperties: false
+      properties:
+        address:
+          type:
+          - string
+          - 'null'
+        children:
+          type:
+          - array
+          - 'null'
+          description: List of child data objects
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.DataObjectDto'
+        totalChildren:
+          type: integer
+          description: Total number of children
+          format: int32
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll ID
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the data object
+        typeId:
+          type:
+          - string
+          - 'null'
+          description: Type ID of the data object
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        phones:
+          type:
+          - array
+          - 'null'
+          description: List of phone numbers
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          description: List of email addresses
+          items:
+            type: string
+        addressUnit:
+          type:
+          - string
+          - 'null'
+          description: Address unit
+        value:
+          type: number
+          description: Value of the data object
+          format: double
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: Stage ID
+        fields:
+          type:
+          - array
+          - 'null'
+          description: List of field values
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FieldValueDto'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: Owner ID
+        updatedAt:
+          type: string
+          description: Updated at timestamp
+          format: date-time
+        createdAt:
+          type: string
+          description: Created at timestamp
+          format: date-time
+        stageUpdatedById:
+          type:
+          - string
+          - 'null'
+          description: Stage updated by ID
+        stageUpdatedAt:
+          type:
+          - string
+          - 'null'
+          description: Stage updated at timestamp
+          format: date-time
+        createdById:
+          type:
+          - string
+          - 'null'
+          description: Created by ID
+        updatedById:
+          type:
+          - string
+          - 'null'
+          description: Updated by ID
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source of the data object
+        territoryId:
+          type:
+          - string
+          - 'null'
+          description: Territory ID
+        ghost:
+          type: boolean
+          description: Whether the data object is a ghost
+        visitsCount:
+          type: integer
+          description: Number of visits
+          format: int32
+        lastVisitDate:
+          type:
+          - string
+          - 'null'
+          description: Last visit date
+          format: date-time
+        lastVisitResultId:
+          type:
+          - string
+          - 'null'
+          description: Last visit result ID
+        callCount:
+          type: integer
+          description: Number of calls
+          format: int32
+        lastCallDate:
+          type:
+          - string
+          - 'null'
+          description: Last call date
+          format: date-time
+        lastCallResultId:
+          type:
+          - string
+          - 'null'
+          description: Last call result ID
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+          description: Score label of the data object
+        nba:
+          type:
+          - string
+          - 'null'
+          description: Next best action for the data object
+    Spotio.Frontend.ViewModel.Pin.V2.DestinationPin:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          description: Latitude
+          format: double
+        lng:
+          type: number
+          description: Longitude
+          format: double
+    Spotio.Frontend.ViewModel.Pin.V2.PinOnMapV2Dto:
+      type: object
+      description: Data transfer object for a pin on a map.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the pin
+        lat:
+          type: number
+          description: Latitude of the pin
+          format: double
+        lng:
+          type: number
+          description: Longitude of the pin
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: Google Place ID
+        count:
+          type: integer
+          description: Number of pins in the cluster or group
+          format: int32
+        isCluster:
+          type: boolean
+          description: Indicates if the pin is clustered
+        customFieldValue:
+          type:
+          - string
+          - 'null'
+          description: Custom field value
+        customFieldValues:
+          type:
+          - array
+          - 'null'
+          description: List of custom field values
+          items:
+            type: string
+        viewport:
+          type:
+          - array
+          - 'null'
+          description: Viewport coordinates
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.CoordinateDto'
+        maxMinViewport:
+          type:
+          - array
+          - 'null'
+          description: Max/min viewport coordinates
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.CoordinateDto'
+        ghost:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if the pin is a ghost pin
+        visitsCount:
+          type:
+          - integer
+          - 'null'
+          description: Number of visits to the pin
+          format: int32
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the pin
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: ID of the data object if pin is not cluster
+        isMultiPin:
+          type:
+          - boolean
+          - 'null'
+          description: Determine if cluster is multi-pin
+        clusterId:
+          type:
+          - string
+          - 'null'
+          description: Cluster ID for multi-pin clustering
+    Spotio.Frontend.ViewModel.Pin.V2.CoordinateDto:
+      type: object
+      description: Represents a geographical coordinate.
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          description: Latitude
+          format: double
+        lng:
+          type: number
+          description: Longitude
+          format: double
+    Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.AreaFilterMode:
+      type: string
+      enum:
+      - ExactArea
+      - GeoTileGrid
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Pin.V2.FormatAddressRequestDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        lat:
+          type:
+          - number
+          - 'null'
+          format: double
+        lng:
+          type:
+          - number
+          - 'null'
+          format: double
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Pin.V2.FormattedAddressDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        lat:
+          type:
+          - number
+          - 'null'
+          format: double
+        lng:
+          type:
+          - number
+          - 'null'
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsAndChildrenDto:
+      type: object
+      description: Data transfer object for a pin with its associated data objects.
+      additionalProperties: false
+      properties:
+        dataObjects:
+          type:
+          - array
+          - 'null'
+          description: List of associated data objects with children
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.DataObjectWithChildrenDto'
+        totalCount:
+          type: integer
+          description: Total count of data objects
+          format: int64
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll ID
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the pin
+        lat:
+          type: number
+          description: Latitude of the pin
+          format: double
+        lng:
+          type: number
+          description: Longitude of the pin
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: Google Place ID
+        address:
+          type:
+          - string
+          - 'null'
+          description: Address of the pin
+        zip:
+          type:
+          - string
+          - 'null'
+          description: Zip code of the pin
+    Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryRequest:
+      type: object
+      description: Request to relocate data objects from source pin to destination coordinates.
+      additionalProperties: false
+      properties:
+        sourcePinId:
+          type:
+          - string
+          - 'null'
+          description: ID of the source pin
+        destinationPin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.DestinationPin'
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: Optional filter ID for filtering data objects
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

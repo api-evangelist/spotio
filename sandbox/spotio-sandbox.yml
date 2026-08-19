@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: probed
+source: https://stoplight.io/mocks/spotio/spotio2/264959918
+provider: SPOTIO
+providerId: spotio
+
+summary: >-
+  SPOTIO has no self-serve sandbox account and publishes no test credentials, test
+  cards or magic values - the API is an entitlement of a paid subscription and every
+  key is minted inside a real tenant. Two testable surfaces do exist and both are
+  SPOTIO's own: a Test server declared in the published OpenAPI, and a live Prism
+  mock server generated from SPOTIO's Stoplight project. The mock is reachable
+  anonymously and is the only way to exercise SPOTIO request/response shapes without
+  a customer contract.
+
+environments:
+- name: Production
+  base_url: https://api.spotio2.com
+  source: openapi servers[0]
+  credentials: customer clientId + secret, minted at Settings -> Integrations -> API Access
+- name: Test
+  base_url: https://app-test.spotio2.com
+  source: openapi servers[1] (declared as "Test")
+  credentials: unknown
+  probed:
+    url: https://app-test.spotio2.com/api/BusinessCards
+    http_status: 401
+    date: '2026-08-13'
+  note: >-
+    The Test host is declared in SPOTIO's own spec and is live, but no documentation
+    page explains how to get a test tenant or a test key, and it rejects anonymous
+    requests. Treat it as a real environment gated behind the same account process,
+    not a public sandbox.
+
+mock_server:
+  url: https://stoplight.io/mocks/spotio/spotio2/264959918
+  engine: Prism (Stoplight)
+  generated_from: SPOTIO's own Stoplight project (prj:231581), the same project that publishes developer.spotio2.com
+  anonymous: true
+  auth_required: >-
+    Prism enforces the spec's security requirement, so a request must carry an
+    Authorization header. Any bearer value satisfies the mock - it validates presence,
+    not the token.
+  returns: schema-shaped example responses for the published operations
+  probed:
+  - url: https://stoplight.io/mocks/spotio/spotio2/264959918/api/Webhooks/scopes
+    http_status: 401
+    note: without an Authorization header
+  - url: https://stoplight.io/mocks/spotio/spotio2/264959918/api/Webhooks/scopes
+    http_status: 200
+    body: '["string"]'
+    note: with any Authorization bearer header present
+  caveat: >-
+    A mock answers from the spec, not from SPOTIO's system. It proves shape and
+    status, never behaviour - stage validation, workflow field ids and territory
+    geometry are all real-tenant concerns the mock cannot exercise.
+
+test_data:
+  test_keys: null
+  key_prefixes: null
+  magic_values: null
+  test_clocks: false
+  fixtures: false
+  note: >-
+    SPOTIO publishes no test key prefix separating test from live traffic. One
+    credential type exists (a clientId/secret pair minted in the web app) and it
+    addresses whichever tenant created it, so there is no test/live mode split to
+    record. Nothing has been invented here.
+
+x-evidence:
+- fetched: '2026-08-13'
+  url: https://stoplight.io/api/v1/projects/cHJqOjIzMTU4MQ/nodes/c977e70019695-spotio-2-0
+  http_status: 200
+  finding: links.mock_url published by SPOTIO's Stoplight project
+- fetched: '2026-08-13'
+  url: https://app-test.spotio2.com/api/BusinessCards
+  http_status: 401

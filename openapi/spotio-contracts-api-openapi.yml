@@ -1,0 +1,1118 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Contracts API
+  description: The controller is responsible for gets information about contracts templates and signed documents / files.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Contracts
+  description: The controller is responsible for gets information about contracts templates and signed documents / files.
+paths:
+  /api/econtracts/v2/templates:
+    get:
+      tags:
+      - Contracts
+      summary: Get available templates to sign
+      description: Templates can be signed by the customer.
+      parameters:
+      - name: x-app-version
+        in: header
+        schema:
+          type: string
+      - name: dataObjectId
+        in: query
+        description: Optional filter - get templates for dataObject
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Template'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Template'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Template'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/econtracts/templates/all:
+    get:
+      tags:
+      - Contracts
+      summary: Get all available sign templates.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Template'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Template'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Template'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/econtracts/templates/{id}/sign:
+    post:
+      tags:
+      - Contracts
+      summary: Sign document based on template
+      description: Send information to a customer that the document template is ready to sign.
+      parameters:
+      - name: id
+        in: path
+        description: The unique identifier for the template
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplate'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplate'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplate'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplate'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplate'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplateResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplateResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplateResult'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/econtracts/signature/{signatureId}/signurl:
+    get:
+      tags:
+      - Contracts
+      summary: Get Signature url by signatureId
+      description: Get url for current sign
+      parameters:
+      - name: signatureId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureEmbeddedUrl'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureEmbeddedUrl'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureEmbeddedUrl'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/econtracts/signature/{id}:
+    get:
+      tags:
+      - Contracts
+      summary: Get Signature by signatureId
+      description: Get information about signature and status
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/econtracts/signature/dataObject/{dataObjectId}:
+    get:
+      tags:
+      - Contracts
+      summary: Get signatures for dataObject
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/econtracts/{id}/cancel:
+    post:
+      tags:
+      - Contracts
+      summary: Cancel signatures
+      description: The endpoint allows cancel signatures which status is pending (not signed).
+      parameters:
+      - name: id
+        in: path
+        description: The unique identifier for the signature
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContractCanceled'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContractCanceled'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContractCanceled'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/econtracts/{id}/download:
+    get:
+      tags:
+      - Contracts
+      summary: Download signed templated
+      description: Get signed document url for download. Signed file are packed into a zip file
+      parameters:
+      - name: asPdf
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: id
+        in: path
+        description: The unique identifier for the signature
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.DownloadResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.DownloadResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.DownloadResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Contracts.SignContractCustomField:
+      type: object
+      description: The value of the custom field.
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: TThe field name from workflow settings
+        value:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Contracts.SignatureEmbeddedUrl:
+      type: object
+      description: Represents a signature embedded URL.
+      additionalProperties: false
+      properties:
+        signatureId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the signature.
+        signUrl:
+          type:
+          - string
+          - 'null'
+          description: The signature URL.
+        expiresAt:
+          type: string
+          description: The expiration date and time of the signature URL.
+          format: date-time
+    Spotio.Frontend.ViewModel.Contracts.TemplateFile:
+      type: object
+      additionalProperties: false
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        resource:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Contracts.SignerFields:
+      type: object
+      additionalProperties: false
+      properties:
+        firstNameId:
+          type:
+          - string
+          - 'null'
+        lastNameId:
+          type:
+          - string
+          - 'null'
+        emailId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Contracts.Signature:
+      type: object
+      additionalProperties: false
+      properties:
+        signatureId:
+          type:
+          - string
+          - 'null'
+        signerEmail:
+          type:
+          - string
+          - 'null'
+        signerName:
+          type:
+          - string
+          - 'null'
+        state:
+          $ref: '#/components/schemas/Spotio.EContracts.Client.Model.EsignatureState'
+        signedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+    Spotio.Frontend.ViewModel.Contracts.DownloadResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        fileUri:
+          type:
+          - string
+          - 'null'
+    Spotio.EContracts.Client.Model.EsignatureState:
+      type: string
+      enum:
+      - Waiting
+      - Signed
+      - Canceled
+      - InvalidEmail
+      - Unknown
+    Spotio.Frontend.ViewModel.Contracts.TemplateSignerRole:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        order:
+          type: integer
+          format: int32
+        fields:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignerFields'
+    Spotio.Frontend.ViewModel.Contracts.Template:
+      type: object
+      description: Represents a template object.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the template.
+        createdAt:
+          type: string
+          description: The date and time the template was created.
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time the template was last updated.
+          format: date-time
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the template.
+        subject:
+          type:
+          - string
+          - 'null'
+          description: The subject of the template.
+        message:
+          type:
+          - string
+          - 'null'
+          description: The message of the template.
+        helloFinished:
+          type: boolean
+          description: Indicates whether the hello fields have been filled out.
+        fileName:
+          type:
+          - string
+          - 'null'
+          description: The name of the file associated with the template.
+        files:
+          type:
+          - array
+          - 'null'
+          description: The list of files associated with the template.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.TemplateFile'
+        templateFileUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL of the file associated with the template.
+        signerRoles:
+          type:
+          - array
+          - 'null'
+          description: The list of roles for the signers.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.TemplateSignerRole'
+        multiSignatures:
+          type: boolean
+          description: Indicates whether multiple signatures are allowed for the template.
+        mergeFields:
+          type:
+          - array
+          - 'null'
+          description: The list of merge fields for the template.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.TemplateField'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type associated with the template.
+        numberOfSigners:
+          type: integer
+          description: Number of signers
+          format: int32
+          readOnly: true
+        v1Template:
+          type: boolean
+          description: Indicates whether template is created using multi signer api or not
+          readOnly: true
+        usersIds:
+          type:
+          - array
+          - 'null'
+          description: Indicates which users have access to the template.
+          items:
+            type: string
+        teamsIds:
+          type:
+          - array
+          - 'null'
+          description: Indicates users of which teams have access to the template.
+          items:
+            type: string
+        territoriesIds:
+          type:
+          - array
+          - 'null'
+          description: Indicates users of which territories have access to the template.
+          items:
+            type: string
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Contracts.SignContractMode:
+      type: string
+      enum:
+      - Undefined
+      - Embedded
+      - Email
+    Spotio.Frontend.ViewModel.Contracts.SignatureContractCanceled:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        success:
+          type: boolean
+    Spotio.Frontend.ViewModel.Contracts.SignatureContract:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the signature contract.
+        requestId:
+          type:
+          - string
+          - 'null'
+          description: The request ID of the signature contract.
+        leadId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object for the signature contract.
+          readOnly: true
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object for the signature contract.
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The company ID of the signature contract.
+        mode:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractMode'
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the signature contract.
+        createdAt:
+          type: string
+          description: The date and time the signature contract was created.
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time the signature contract was last updated.
+          format: date-time
+        state:
+          $ref: '#/components/schemas/Spotio.EContracts.Client.Model.EsignatureState'
+        signedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time the signature contract was signed.
+          format: date-time
+        sentAt:
+          type: string
+          description: The date and time the signature contract was sent.
+          format: date-time
+        signedBy:
+          type:
+          - string
+          - 'null'
+          description: The name of the person who signed the signature contract.
+        signatures:
+          type:
+          - array
+          - 'null'
+          description: The signatures of the signature contract.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Signature'
+    Spotio.Frontend.ViewModel.Contracts.SignContractTemplateResult:
+      type: object
+      description: Represents the result of a sign contract template.
+      additionalProperties: false
+      properties:
+        contract:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
+        signUrls:
+          type:
+          - array
+          - 'null'
+          description: A list of sign URLs for the signers of the contract.
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Contracts.TemplateField:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Contracts.SignContractTemplate:
+      type: object
+      description: Object that represents a sign contract template request.
+      additionalProperties: false
+      properties:
+        leadId:
+          type:
+          - string
+          - 'null'
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        mode:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractMode'
+        byEmail:
+          type: boolean
+        title:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        signers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplateSigner'
+        customFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractCustomField'
+    Spotio.Frontend.ViewModel.Contracts.SignContractTemplateSigner:
+      type: object
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the signer.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The full name of the signer.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the signer.
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

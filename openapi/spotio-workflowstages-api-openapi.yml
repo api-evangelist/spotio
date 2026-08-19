@@ -1,0 +1,722 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Workflow Stages API
+  description: "    This controller is responsible for managing stages definitions.\n    You can split stages in 3 groups, each group can have different set of stages.\n    The available groups are: active, won and lost.\n    Stages can be assigned to data objects to represent state of the record.\n    To create records from the definition refer to DataObjectsController."
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: WorkflowStages
+  description: "    This controller is responsible for managing stages definitions.\n    You can split stages in 3 groups, each group can have different set of stages.\n    The available groups are: active, won and lost.\n    Stages can be assigned to data objects to represent state of the record.\n    To create records from the definition refer to DataObjectsController."
+paths:
+  /api/workflow/dataObjects/{dataObjectId}/stages:
+    get:
+      tags:
+      - WorkflowStages
+      summary: Get stages groups
+      description: Retrieves a list of all stage groups for the specified data object ID.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataObjects/{dataObjectId}/stages/{group}:
+    put:
+      tags:
+      - WorkflowStages
+      summary: Update stages group
+      description: Updates the specified stages group for the given data object type ID and group name. This endpoint requires the user to have the `WorkflowSettingsAccess` permission. The `StagesGroupRequest` body should contain the updated stages group data. Returns a `StagesGroupResponse` object representing the updated stages group.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: group
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup'
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - WorkflowStages
+      summary: Create stage in group
+      description: Create a new stage in the specified stages group for the given data object type ID. The request body should include the necessary data to create the stage.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: group
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup'
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageCreateRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageCreateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageCreateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageCreateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageCreateRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataObjects/{dataObjectId}/stages/{group}/{stageId}:
+    put:
+      tags:
+      - WorkflowStages
+      summary: Update stage in group
+      description: Updates a stage within a specified group for a given data object type. Returns the updated stage if successful.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: group
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup'
+      - name: stageId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageUpdateRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageUpdateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageUpdateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageUpdateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageUpdateRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - WorkflowStages
+      summary: Delete stage in group
+      description: Deletes a specific stage from a group within a workflow.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: group
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup'
+      - name: stageId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageDeleteRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageDeleteRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageDeleteRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageDeleteRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageDeleteRequest'
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataObjects/{dataObjectId}/stages/{group}/{stageId}/move:
+    post:
+      tags:
+      - WorkflowStages
+      summary: Move stage to another group
+      description: Moves a workflow stage to another group within a specified data object type.
+      parameters:
+      - name: dataObjectId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: group
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup'
+      - name: stageId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageMoveRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageMoveRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageMoveRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageMoveRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageMoveRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto:
+      type: string
+      enum:
+      - Lead
+      - Churn
+    Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup:
+      type: string
+      enum:
+      - Active
+      - Won
+      - Lost
+    Spotio.Frontend.ViewModel.Workflow.Stages.StageCreateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        index:
+          type: integer
+          description: The index of the stage.
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the stage.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color associated with the stage.
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          description: A list of loss reasons, required when Stage is created in the lost group
+          items:
+            type: string
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+    Spotio.Frontend.ViewModel.Workflow.Stages.StageMoveRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        index:
+          type: integer
+          description: New stage position
+          format: int32
+        stagesGroup:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup'
+    Spotio.Frontend.ViewModel.Workflow.Stages.StageUpdateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the stage.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color associated with the stage.
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          description: A list of loss reasons, required when Stage is created in the lost group
+          items:
+            type: string
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        won:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        lost:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+    Spotio.Frontend.ViewModel.Workflow.Stages.Stage:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the stage
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the stage
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the stage
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          description: List of loss reasons for the stage
+          items:
+            type: string
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+    Spotio.Frontend.ViewModel.Workflow.Stages.StageDeleteRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        moveToStage:
+          type:
+          - string
+          - 'null'
+          description: Id of a stage that data objects should be moved to
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Workflow.Stages.StageDataMigrateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        fromStage:
+          type:
+          - string
+          - 'null'
+        toStage:
+          type:
+          - string
+          - 'null'
+          description: Determines to which stage data will be migrated
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          type: boolean
+        migrations:
+          type:
+          - array
+          - 'null'
+          description: When group is deactivated target stages have to be specified
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageDataMigrateRequest'
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          type: boolean
+          description: Indicates if the stage group is active
+        stages:
+          type:
+          - array
+          - 'null'
+          description: List of stages in the group
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

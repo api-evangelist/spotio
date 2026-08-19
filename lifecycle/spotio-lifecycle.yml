@@ -1,0 +1,82 @@
+generated: '2026-08-13'
+method: searched
+source: https://status.spotio2.com/
+derived_from: openapi/_original/spotio-swagger.json
+
+versioning:
+  scheme: uri-path
+  current: v2 (partial)
+  info_version: v1
+  docs: https://developer.spotio2.com/docs/spotio2/qu2ht3gipl905-introduction
+  policy_published: false
+  detail: >-
+    SPOTIO has no published versioning policy. Two generations run side by side in
+    one document: newer surfaces under /api/v2/... (activities, appointments) and
+    the bulk of the API at unversioned /api/<Resource>. Several resources are dual
+    published under both a v1 and a V2 controller - Trips/TripsV2, Filters/FiltersV2,
+    Activities/ActivitiesV2 - and SPOTIO's own tag descriptions say the pairs "can be
+    used interchangeably". Nothing states which generation is preferred for new
+    integrations, when the older path stops being maintained, or how a v3 would be
+    introduced.
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No deprecation policy, no Sunset or Deprecation header support (RFC 8594), and
+    no advance-notice commitment is published anywhere on the developer portal or
+    the knowledge base.
+
+deprecated_operations:
+- spec: openapi/spotio-users-api-openapi.yml
+  operation: GET /api/users/list
+  note: >-
+    The only operation in the whole 295-operation document carrying
+    `deprecated: true`. No replacement is named in the spec and no sunset date is
+    given; GET /api/users and GET /api/Users/short are the plausible successors but
+    SPOTIO does not say so.
+
+sla:
+  url: https://spotio.com/features/security-compliance/
+  uptime_target: 99.9%
+  quoted: '99.9% uptime'
+  contractual: unknown
+  note: >-
+    The 99.9% figure is published on the security and compliance page as a platform
+    availability claim. No separate SLA document, credit schedule or API-specific
+    availability commitment was found.
+
+status_page:
+  url: https://status.spotio2.com/
+  http_status: 200
+  platform: self-hosted (Vue single-page app identifying itself as "spotio-status")
+  machine_readable: false
+  feeds: []
+  detail: >-
+    The status page is a client-rendered SPA. There is no Statuspage/Instatus JSON
+    API and no RSS or Atom feed - /api/v2/summary.json, /api/v2/status.json,
+    /summary.json and /history.rss all return 404, so an agent cannot read SPOTIO's
+    incident state programmatically.
+
+change_log:
+  url: https://support.spotio.com/release-notes
+  artifact: changelog/spotio-changelog.yml
+
+support:
+  email: support@spotio.com
+  knowledge_base: https://support.spotio.com/
+  contact: https://spotio.com/request-a-demo/
+
+x-evidence:
+- url: https://status.spotio2.com/
+  http_status: 200
+- url: https://status.spotio2.com/api/v2/summary.json
+  http_status: 404
+- url: https://status.spotio2.com/history.rss
+  http_status: 404
+- url: https://support.spotio.com/release-notes
+  http_status: 200
+- url: https://spotio.com/features/security-compliance/
+  http_status: 200

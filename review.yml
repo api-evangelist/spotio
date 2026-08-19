@@ -6,90 +6,151 @@ review:
   date: '2026-07-04'
   reviewer: API Evangelist
   asyncapiSpecCreated: false
-  asyncapiScopeNote: |
-    No AsyncAPI document was authored. SPOTIO's documented developer surface is a
+  asyncapiScopeNote: 'No AsyncAPI document was authored. SPOTIO''s documented developer surface is a
+
     request/response REST Open API plus outbound webhooks (SPOTIO POSTs event
+
     payloads to a customer-configured HTTPS endpoint, signed with an HMAC-SHA256
+
     X-Signature header). There is no server-push, bidirectional, or streaming
-    WebSocket (ws:// or wss://) transport documented on SPOTIO's own API, so there
+
+    WebSocket (ws:// or wss://) transport documented on SPOTIO''s own API, so there
+
     is no realtime channel surface to model in AsyncAPI.
+
+    '
 findings:
-  summary: |
-    SPOTIO does expose a real, documented public/Open API - not a fully gated
+  summary: 'SPOTIO does expose a real, documented public/Open API - not a fully gated
+
     black box - but it is not a WebSocket API. SPOTIO is a field sales engagement
+
     and territory management platform (spotio.com). Its developer portal lives at
+
     developer.spotio2.com (hosted on Stoplight) and documents a REST Open API with
+
     a curl-based quickstart and token authentication, alongside a documented
+
     outbound webhook system. Full endpoint reference access is oriented toward
+
     enterprise customers holding an API key, so the exact REST path surface could
+
     not be extracted from public, unauthenticated pages. The webhook event catalog
+
     publicly confirms the core domain objects: leads, activities, and appointments.
-    No WebSocket endpoint is documented anywhere on SPOTIO's developer or support
+
+    No WebSocket endpoint is documented anywhere on SPOTIO''s developer or support
+
     sites as of the review date.
-  accessModel: |
-    Open REST API + outbound webhooks, delivered as an entitlement of the SPOTIO
+
+    '
+  accessModel: 'Open REST API + outbound webhooks, delivered as an entitlement of the SPOTIO
+
     SaaS subscription (most associated with the higher Pro / Enterprise tiers for
+
     custom integrations) rather than as a self-serve, publicly metered API product.
+
     Native connectors exist for Salesforce, HubSpot, Microsoft Dynamics 365,
+
     Pipedrive, NetSuite, SAP, and 5,000+ apps via Zapier.
+
+    '
   endpointsModeled: true
-  endpointsModeledNote: |
-    The logical APIs in apis.yml (Leads, Activities, Appointments, Territories,
-    Users & Reps, Pipelines & Data Objects) are modeled from SPOTIO's documented
+  endpointsModeledNote: 'The logical APIs in apis.yml (Leads, Activities, Appointments, Territories,
+
+    Users & Reps, Pipelines & Data Objects) are modeled from SPOTIO''s documented
+
     product surface and the public webhook event catalog. Leads, Activities, and
+
     Appointments are directly evidenced by webhook events; Territories, Users/Reps,
+
     and Pipelines/Data Objects are core documented product features inferred to
+
     have API coverage. No published OpenAPI definition was captured, so no
+
     openapi/ artifact was created and no exact REST paths were fabricated.
+
+    '
   transports:
-    - protocol: REST
-      scheme: https
-      documented: true
-      note: Open REST API documented at developer.spotio2.com with a curl quickstart and token auth. Full reference oriented toward enterprise API-key holders.
-    - protocol: Webhook
-      scheme: https
-      documented: true
-      note: Outbound webhooks POST event payloads to a customer HTTPS endpoint, signed with an HMAC-SHA256 X-Signature header; retried up to 3 times, 10s timeout, expects HTTP 200.
-    - protocol: WebSocket
-      scheme: wss
-      documented: false
-      note: No WebSocket endpoint is documented on SPOTIO's developer portal or support site as of the review date.
+  - protocol: REST
+    scheme: https
+    documented: true
+    note: Open REST API documented at developer.spotio2.com with a curl quickstart and token auth. Full
+      reference oriented toward enterprise API-key holders.
+  - protocol: Webhook
+    scheme: https
+    documented: true
+    note: Outbound webhooks POST event payloads to a customer HTTPS endpoint, signed with an HMAC-SHA256
+      X-Signature header; retried up to 3 times, 10s timeout, expects HTTP 200.
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+    note: No WebSocket endpoint is documented on SPOTIO's developer portal or support site as of the review
+      date.
   webhookEvents:
-    - lead.added
-    - lead.updated
-    - lead.deleted
-    - activity.created
-    - activity.updated
-    - activity.deleted
-    - activity.done
-    - appointment.created
-    - appointment.updated
-    - appointment.deleted
+  - lead.added
+  - lead.updated
+  - lead.deleted
+  - activity.created
+  - activity.updated
+  - activity.deleted
+  - activity.done
+  - appointment.created
+  - appointment.updated
+  - appointment.deleted
 sources:
-  - url: https://developer.spotio2.com/
-    type: Documentation
-    note: SPOTIO developer portal (Stoplight). REST Open API reference; full endpoint access gated behind API key / enterprise.
-  - url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
-    type: Documentation
-    note: Quickstart for the SPOTIO API - curl-based, token authentication. Confirms a real REST API exists.
-  - url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
-    type: Webhooks
-    note: Documented webhook events (lead/activity/appointment), payload shape, HMAC-SHA256 X-Signature, retry/timeout behavior.
-  - url: https://support.spotio.com/hc/en-us/articles/11712242070807-Configuring-Data-Objects
-    type: Documentation
-    note: Configurable data objects, fields, stages, and parent/child relationships - basis for the Pipelines & Data Objects modeling.
-  - url: https://spotio.com/integrations/
-    type: Documentation
-    note: Integration hub - Salesforce, HubSpot, Dynamics 365, Pipedrive, NetSuite, SAP, Zapier; describes the Open API and webhooks for custom connections.
-  - url: https://www.g2.com/products/spotio/pricing
-    type: Pricing
-    note: Third-party per-user pricing (Team/Business/Pro/Enterprise), five-user minimum; used for plans/ modeling.
+- url: https://developer.spotio2.com/
+  type: Documentation
+  note: SPOTIO developer portal (Stoplight). REST Open API reference; full endpoint access gated behind
+    API key / enterprise.
+- url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  type: Documentation
+  note: Quickstart for the SPOTIO API - curl-based, token authentication. Confirms a real REST API exists.
+- url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
+  type: Webhooks
+  note: Documented webhook events (lead/activity/appointment), payload shape, HMAC-SHA256 X-Signature,
+    retry/timeout behavior.
+- url: https://support.spotio.com/hc/en-us/articles/11712242070807-Configuring-Data-Objects
+  type: Documentation
+  note: Configurable data objects, fields, stages, and parent/child relationships - basis for the Pipelines
+    & Data Objects modeling.
+- url: https://spotio.com/integrations/
+  type: Documentation
+  note: Integration hub - Salesforce, HubSpot, Dynamics 365, Pipedrive, NetSuite, SAP, Zapier; describes
+    the Open API and webhooks for custom connections.
+- url: https://www.g2.com/products/spotio/pricing
+  type: Pricing
+  note: Third-party per-user pricing (Team/Business/Pro/Enterprise), five-user minimum; used for plans/
+    modeling.
 actions:
   asyncapiPath: null
   apisYmlUpdated: true
-  reason: |
-    SPOTIO's own public API is request/response REST plus outbound (server-to-
+  reason: 'SPOTIO''s own public API is request/response REST plus outbound (server-to-
+
     endpoint) webhooks. No WebSocket protocol surface exists to model, so no
+
     AsyncAPI document was created. Logical REST APIs were modeled (endpointsModeled:
+
     true) because a real documented Open API exists but its exact path surface is
+
     not publicly extractable without an API key; no OpenAPI artifact was fabricated.
+
+    '
+superseded:
+  date: '2026-08-13'
+  by: enrichment pipeline STEP 0b contract discovery
+  note: 'The 2026-07-04 finding that SPOTIO''s REST path surface ''could not be extracted from public,
+    unauthenticated pages'' is superseded. SPOTIO''s developer portal is Stoplight-hosted and renders
+    client-side, which hid the contract from a plain fetch. Capturing the SPA''s own XHR revealed project
+    prj:231581 (base64 cHJqOjIzMTU4MQ), whose public table-of-contents names an http_service node whose
+    links.export_bundled_file_url serves the complete OpenAPI 3.0.1 anonymously: 238 paths, 295 operations,
+    510 schemas. It is now harvested to openapi/_original/spotio-swagger.json and split into 39 per-capability
+    documents. The six logical APIs previously MODELLED in apis.yml (Leads, Activities, Appointments,
+    Territories, Users & Reps, Pipelines & Data Objects) have been REMOVED and replaced by the 39 spec-backed
+    entries, so nothing modelled remains in the profile.'
+  also_found:
+  - A first-party remote MCP server at https://app.spotio2.com/mcp (401 naming the SPOTIO-MCP-KEY header),
+    provisioned by four /api/Mcp/keys/* REST operations.
+  - A live Prism mock server published by SPOTIO’s own Stoplight project at https://stoplight.io/mocks/spotio/spotio2/264959918.
+  unchanged: 'The WebSocket finding stands: SPOTIO documents no ws:// or wss:// transport. The event surface
+    is outbound HTTP webhooks (10 events, X-Signature HMAC-SHA256) plus one undocumented mention of Ably
+    realtime events.'

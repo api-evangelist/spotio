@@ -1,0 +1,314 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/spotio-swagger.json + probe of https://app.spotio2.com/mcp
+status: partial
+note: SPOTIO runs a first-party remote MCP server AND publishes a 295-operation OpenAPI, so a crosswalk
+  is warranted - but the MCP side is auth-gated. tools/list returns 401 'Missing SPOTIO-MCP-KEY header
+  or mcpkey query parameter', SPOTIO publishes no llms.txt and no MCP tool reference page, so not one
+  tool NAME is observable without a customer key. Rather than guess tool names from REST operations -
+  which would invent the very thing this artifact exists to verify - crosswalk[] is left empty and the
+  complete REST surface is enumerated in rest_only[] as the reconciliation target. When a SPOTIO MCP key
+  is available, POST tools/list and bind each returned tool to the rows below.
+surfaces:
+  openapi:
+    files: 39
+    original: openapi/_original/spotio-swagger.json
+    operations: 295
+    paths: 238
+    base_url: https://api.spotio2.com
+    gated: false
+    defect: no operationIds - 0 of 295 operations declare one, so bindings must be expressed as METHOD
+      + path
+  graphql:
+    present: false
+  mcp:
+    url: https://app.spotio2.com/mcp
+    gated: true
+    auth: SPOTIO-MCP-KEY header or ?mcpkey
+    probe_status: 401
+    probed: '2026-08-13'
+    tools_observed: 0
+    key_minting_operations:
+    - POST /api/Mcp/keys/generate
+    - GET /api/Mcp/keys/current
+    - PUT /api/Mcp/keys/regenerate
+    - DELETE /api/Mcp/keys/current
+crosswalk: []
+mcp_only: []
+rest_only:
+- capability: ActivitiesV2
+  spec: openapi/spotio-activitiesv2-api-openapi.yml
+  operations: 12
+  sample:
+  - POST /api/v2/activities
+  - POST /api/ActivitiesV2
+  - PUT /api/v2/activities/{activityId}
+- capability: AppointmentsV2
+  spec: openapi/spotio-appointmentsv2-api-openapi.yml
+  operations: 7
+  sample:
+  - GET /api/v2/appointments/{appointmentId}
+  - PUT /api/v2/appointments/{appointmentId}
+  - PATCH /api/v2/appointments/{appointmentId}
+- capability: Autoplays
+  spec: openapi/spotio-autoplays-api-openapi.yml
+  operations: 5
+  sample:
+  - POST /api/Autoplays/{autoplayId}/bulk/enroll
+  - POST /api/Autoplays/{autoplayId}/dataObjects
+  - GET /api/Autoplays/{autoplayId}/dataobjects
+- capability: BusinessCards
+  spec: openapi/spotio-businesscards-api-openapi.yml
+  operations: 14
+  sample:
+  - GET /api/BusinessCards/{id}
+  - PUT /api/BusinessCards/{id}
+  - PATCH /api/BusinessCards/{id}
+- capability: CalendarSettings
+  spec: openapi/spotio-calendarsettings-api-openapi.yml
+  operations: 2
+  sample:
+  - GET /api/CalendarSettings
+  - PUT /api/CalendarSettings
+- capability: Communication
+  spec: openapi/spotio-communication-api-openapi.yml
+  operations: 12
+  sample:
+  - GET /api/Communication/v3/calls
+  - POST /api/Communication/v2/calls/seen
+  - GET /api/Communication/v3/texts
+- capability: CommunicationTemplates
+  spec: openapi/spotio-communicationtemplates-api-openapi.yml
+  operations: 11
+  sample:
+  - GET /api/communication/templates
+  - POST /api/communication/templates
+  - GET /api/communication/templates/{id}
+- capability: Connectors
+  spec: openapi/spotio-connectors-api-openapi.yml
+  operations: 8
+  sample:
+  - POST /api/Connectors
+  - GET /api/Connectors
+  - PATCH /api/Connectors/{id}
+- capability: Contracts
+  spec: openapi/spotio-contracts-api-openapi.yml
+  operations: 8
+  sample:
+  - GET /api/econtracts/v2/templates
+  - GET /api/econtracts/templates/all
+  - POST /api/econtracts/templates/{id}/sign
+- capability: DataObjects
+  spec: openapi/spotio-dataobjects-api-openapi.yml
+  operations: 25
+  sample:
+  - POST /api/DataObjects
+  - GET /api/DataObjects/{dataObjectId}
+  - DELETE /api/DataObjects/{dataObjectId}
+- capability: DataObjectsBulkJobs
+  spec: openapi/spotio-dataobjectsbulkjobs-api-openapi.yml
+  operations: 9
+  sample:
+  - POST /api/jobs/dataObjects/bulk
+  - GET /api/jobs/dataObjects/bulk/inprogress
+  - GET /api/jobs/dataObjects/bulk/{id}
+- capability: DataObjectsSearch
+  spec: openapi/spotio-dataobjectssearch-api-openapi.yml
+  operations: 5
+  sample:
+  - GET /api/DataObjectsSearch/simple
+  - POST /api/DataObjectsSearch/simple
+  - GET /api/DataObjectsSearch
+- capability: Documents
+  spec: openapi/spotio-documents-api-openapi.yml
+  operations: 9
+  sample:
+  - POST /api/Documents
+  - GET /api/Documents
+  - GET /api/Documents/paged
+- capability: Exports
+  spec: openapi/spotio-exports-api-openapi.yml
+  operations: 5
+  sample:
+  - POST /api/Exports/dataObjects
+  - POST /api/Exports/activities
+  - POST /api/Exports/activities/data
+- capability: Filters
+  spec: openapi/spotio-filters-api-openapi.yml
+  operations: 7
+  sample:
+  - GET /api/Filters
+  - DELETE /api/Filters/{filterId}
+  - DELETE /api/dashboard/filters/{filterId}
+- capability: FiltersV2
+  spec: openapi/spotio-filtersv2-api-openapi.yml
+  operations: 4
+  sample:
+  - POST /api/v2/filters
+  - GET /api/v2/filters/{filterId}
+  - GET /api/v2/filters/options
+- capability: GenerateContent
+  spec: openapi/spotio-generatecontent-api-openapi.yml
+  operations: 6
+  sample:
+  - GET /api/generatecontent/{type}/suggestions
+  - POST /api/generatecontent/email
+  - POST /api/generatecontent/emailTemplate
+- capability: Layouts
+  spec: openapi/spotio-layouts-api-openapi.yml
+  operations: 9
+  sample:
+  - GET /api/layouts/all
+  - GET /api/layouts/dataObject/{typeId}
+  - PATCH /api/layouts/{id}/properties
+- capability: Leaderboards
+  spec: openapi/spotio-leaderboards-api-openapi.yml
+  operations: 4
+  sample:
+  - GET /api/Leaderboards
+  - GET /api/Leaderboards/{id}
+  - POST /api/Leaderboards/{id}
+- capability: Mcp
+  spec: openapi/spotio-mcp-api-openapi.yml
+  operations: 4
+  sample:
+  - POST /api/Mcp/keys/generate
+  - GET /api/Mcp/keys/current
+  - DELETE /api/Mcp/keys/current
+- capability: MultiChannelCommunication
+  spec: openapi/spotio-multichannelcommunication-api-openapi.yml
+  operations: 1
+  sample:
+  - POST /api/c3/v2/messages
+- capability: MyReports
+  spec: openapi/spotio-myreports-api-openapi.yml
+  operations: 10
+  sample:
+  - GET /api/MyReports
+  - POST /api/MyReports
+  - GET /api/MyReports/{id}
+- capability: NotificationsV2
+  spec: openapi/spotio-notificationsv2-api-openapi.yml
+  operations: 3
+  sample:
+  - GET /api/NotificationsV2
+  - GET /api/NotificationsV2/filtered
+  - GET /api/NotificationsV2/{id}
+- capability: PinsV2
+  spec: openapi/spotio-pinsv2-api-openapi.yml
+  operations: 6
+  sample:
+  - GET /api/PinsV2
+  - GET /api/PinsV2/{pinId}
+  - GET /api/PinsV2/search
+- capability: Reports
+  spec: openapi/spotio-reports-api-openapi.yml
+  operations: 6
+  sample:
+  - POST /api/Reports/export/{type}
+  - POST /api/Reports/{type}
+  - GET /api/Reports/{type}
+- capability: RoutesV2
+  spec: openapi/spotio-routesv2-api-openapi.yml
+  operations: 8
+  sample:
+  - POST /api/routes/v2
+  - PATCH /api/routes/v2/{id}
+  - GET /api/routes/v2/{id}
+- capability: Teams
+  spec: openapi/spotio-teams-api-openapi.yml
+  operations: 10
+  sample:
+  - POST /api/Teams
+  - PUT /api/Teams/{teamId}
+  - DELETE /api/Teams/{teamId}
+- capability: Territories
+  spec: openapi/spotio-territories-api-openapi.yml
+  operations: 5
+  sample:
+  - GET /api/Territories/all
+  - POST /api/Territories
+  - GET /api/Territories/{id}
+- capability: Trips
+  spec: openapi/spotio-trips-api-openapi.yml
+  operations: 7
+  sample:
+  - GET /api/Trips
+  - GET /api/Trips/summary
+  - GET /api/Trips/active
+- capability: TripsV2
+  spec: openapi/spotio-tripsv2-api-openapi.yml
+  operations: 11
+  sample:
+  - POST /api/trips/v2/start
+  - DELETE /api/trips/v2/active
+  - POST /api/trips/v2/{id}/stops/polygon
+- capability: UploadCare
+  spec: openapi/spotio-uploadcare-api-openapi.yml
+  operations: 1
+  sample:
+  - GET /api/UploadCare/signature
+- capability: UserTracking
+  spec: openapi/spotio-usertracking-api-openapi.yml
+  operations: 5
+  sample:
+  - GET /api/UserTracking/map/users
+  - GET /api/UserTracking/map/gpstrails
+  - GET /api/UserTracking/last-position
+- capability: Users
+  spec: openapi/spotio-users-api-openapi.yml
+  operations: 16
+  sample:
+  - POST /api/Users
+  - POST /api/auth/token
+  - PUT /api/users/{id}
+- capability: Webhooks
+  spec: openapi/spotio-webhooks-api-openapi.yml
+  operations: 5
+  sample:
+  - GET /api/Webhooks/scopes
+  - GET /api/Webhooks
+  - POST /api/Webhooks
+- capability: WorkflowActivityTemplates
+  spec: openapi/spotio-workflowactivitytemplates-api-openapi.yml
+  operations: 4
+  sample:
+  - GET /api/workflow/activityTemplates
+  - POST /api/workflow/activityTemplates
+  - PUT /api/workflow/activityTemplates/{id}
+- capability: WorkflowDataObjects
+  spec: openapi/spotio-workflowdataobjects-api-openapi.yml
+  operations: 7
+  sample:
+  - GET /api/workflow/dataObjects/full
+  - GET /api/workflow/dataObjects
+  - POST /api/workflow/dataObjects
+- capability: WorkflowFields
+  spec: openapi/spotio-workflowfields-api-openapi.yml
+  operations: 9
+  sample:
+  - GET /api/workflow/dataobjects/{dataObjectId}/fields/available
+  - GET /api/workflow/dataobjects/{dataObjectId}/fields
+  - POST /api/workflow/dataobjects/{dataObjectId}/fields
+- capability: WorkflowSettings
+  spec: openapi/spotio-workflowsettings-api-openapi.yml
+  operations: 9
+  sample:
+  - GET /api/workflow
+  - GET /api/workflow/properties
+  - PUT /api/workflow/properties
+- capability: WorkflowStages
+  spec: openapi/spotio-workflowstages-api-openapi.yml
+  operations: 6
+  sample:
+  - GET /api/workflow/dataObjects/{dataObjectId}/stages
+  - PUT /api/workflow/dataObjects/{dataObjectId}/stages/{group}
+  - POST /api/workflow/dataObjects/{dataObjectId}/stages/{group}
+coverage:
+  tools_named: 0
+  tools_bound: 0
+  mcp_only: 0
+  rest_operations_total: 295
+  rest_operations_with_a_tool: 0
+  rest_capabilities: 39
+  confidence: unknown - MCP schema is gated

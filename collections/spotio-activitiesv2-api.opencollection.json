@@ -1,0 +1,416 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Activities V2 API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ActivitiesV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/v2/activities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If activity isNote then duration and title and activityTemplateId are blank."
+        },
+        {
+          "info": {
+            "name": "Create a new activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/ActivitiesV2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "If activity isNote then duration and title and activityTemplateId are blank."
+        },
+        {
+          "info": {
+            "name": "Get activity by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/v2/activities/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch a single activity by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update an existing activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/v2/activities/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Only planned activity could be changed."
+        },
+        {
+          "info": {
+            "name": "Activity patch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/v2/activities/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Partially update an existing activity"
+        },
+        {
+          "info": {
+            "name": "Get activity by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/ActivitiesV2/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch a single activity by its unique identifier."
+        },
+        {
+          "info": {
+            "name": "Update an existing activity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/ActivitiesV2/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Only planned activity could be changed."
+        },
+        {
+          "info": {
+            "name": "Activity patch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/ActivitiesV2/:activityId",
+            "params": [
+              {
+                "name": "activityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Partially update an existing activity"
+        },
+        {
+          "info": {
+            "name": "Create multiple activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/v2/activities/many",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Method allow create many activities at once."
+        },
+        {
+          "info": {
+            "name": "Create multiple activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/ActivitiesV2/many",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Method allow create many activities at once."
+        },
+        {
+          "info": {
+            "name": "Get activity feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/v2/activities/feed",
+            "params": [
+              {
+                "name": "TerritoryId",
+                "value": "",
+                "type": "query",
+                "description": "The territory ID to filter activities"
+              },
+              {
+                "name": "StartDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date for filtering activities"
+              },
+              {
+                "name": "EndDate",
+                "value": "",
+                "type": "query",
+                "description": "The end date for filtering activities"
+              },
+              {
+                "name": "ScrollId",
+                "value": "",
+                "type": "query",
+                "description": "The scroll ID for pagination"
+              },
+              {
+                "name": "SortBy",
+                "value": "",
+                "type": "query",
+                "description": "The property to sort activities by. Order by descending required add '-' before parameter"
+              },
+              {
+                "name": "FilterId",
+                "value": "",
+                "type": "query",
+                "description": "The filter ID to apply to activities"
+              },
+              {
+                "name": "SingleType",
+                "value": "",
+                "type": "query",
+                "description": "The single dataObjectTypeId to filter by. Id from workflow settings."
+              },
+              {
+                "name": "IncludeGhosts",
+                "value": "",
+                "type": "query",
+                "description": "Determine whether to include ghosts activities in the feed"
+              },
+              {
+                "name": "IncludeCustomFieldIds",
+                "value": "",
+                "type": "query",
+                "description": "Custom field ids must be comma-separated \",\". Use an asterisk \"*\" to return all fields."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch all activities which are done / completed for selected period, territory, time range."
+        },
+        {
+          "info": {
+            "name": "Get activity feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/ActivitiesV2/feed",
+            "params": [
+              {
+                "name": "TerritoryId",
+                "value": "",
+                "type": "query",
+                "description": "The territory ID to filter activities"
+              },
+              {
+                "name": "StartDate",
+                "value": "",
+                "type": "query",
+                "description": "The start date for filtering activities"
+              },
+              {
+                "name": "EndDate",
+                "value": "",
+                "type": "query",
+                "description": "The end date for filtering activities"
+              },
+              {
+                "name": "ScrollId",
+                "value": "",
+                "type": "query",
+                "description": "The scroll ID for pagination"
+              },
+              {
+                "name": "SortBy",
+                "value": "",
+                "type": "query",
+                "description": "The property to sort activities by. Order by descending required add '-' before parameter"
+              },
+              {
+                "name": "FilterId",
+                "value": "",
+                "type": "query",
+                "description": "The filter ID to apply to activities"
+              },
+              {
+                "name": "SingleType",
+                "value": "",
+                "type": "query",
+                "description": "The single dataObjectTypeId to filter by. Id from workflow settings."
+              },
+              {
+                "name": "IncludeGhosts",
+                "value": "",
+                "type": "query",
+                "description": "Determine whether to include ghosts activities in the feed"
+              },
+              {
+                "name": "IncludeCustomFieldIds",
+                "value": "",
+                "type": "query",
+                "description": "Custom field ids must be comma-separated \",\". Use an asterisk \"*\" to return all fields."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch all activities which are done / completed for selected period, territory, time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

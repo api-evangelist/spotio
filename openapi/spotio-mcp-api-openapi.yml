@@ -1,0 +1,163 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 MCP API
+  description: "    The controller is responsible for handling operations related to MCP.\n    It provides endpoints for generating, retrieving, deactivating, and regenerating MCP keys.\n    These keys are used for authenticating and authorizing access to MCP Server."
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Mcp
+  description: "    The controller is responsible for handling operations related to MCP.\n    It provides endpoints for generating, retrieving, deactivating, and regenerating MCP keys.\n    These keys are used for authenticating and authorizing access to MCP Server."
+paths:
+  /api/Mcp/keys/generate:
+    post:
+      tags:
+      - Mcp
+      summary: Generate a new MCP key
+      description: Generates a new MCP key for the current user and company.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse'
+        '500':
+          description: Server Error
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Mcp/keys/current:
+    get:
+      tags:
+      - Mcp
+      summary: Get the current MCP key
+      description: Retrieves the current active MCP key for the current user and company.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.McpKeyInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.McpKeyInfo'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.McpKeyInfo'
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - Mcp
+      summary: Deactivate the current MCP key
+      description: Deactivates the current active MCP key for the current user and company.
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Mcp/keys/regenerate:
+    put:
+      tags:
+      - Mcp
+      summary: Regenerate the MCP key
+      description: Deactivates the current MCP key (if any) and generates a new one for the current user and company.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse'
+        '500':
+          description: Server Error
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+        expiresAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+    Spotio.Frontend.ViewModel.Mcp.McpKeyInfo:
+      type: object
+      additionalProperties: false
+      properties:
+        hasActiveKey:
+          type: boolean
+        url:
+          type:
+          - string
+          - 'null'
+        expiresAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

@@ -1,0 +1,2147 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Activities V2 API
+  description: '
+
+    The controller is responsible for handling the creation, updating, and retrieval of activities.
+
+    Mainly the controller allow to manage activities (current and done)
+
+    '
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: ActivitiesV2
+  description: '
+
+    The controller is responsible for handling the creation, updating, and retrieval of activities.
+
+    Mainly the controller allow to manage activities (current and done)
+
+    '
+paths:
+  /api/v2/activities:
+    post:
+      tags:
+      - ActivitiesV2
+      summary: Create a new activity
+      description: If activity isNote then duration and title and activityTemplateId are blank.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6801689+00:00'
+                  allDay: false
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6801689+00:00'
+                  allDay: false
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6801689+00:00'
+                  allDay: false
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6801689+00:00'
+                  allDay: false
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6801689+00:00'
+                  allDay: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.6804261+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/ActivitiesV2:
+    post:
+      tags:
+      - ActivitiesV2
+      summary: Create a new activity
+      description: If activity isNote then duration and title and activityTemplateId are blank.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6852669+00:00'
+                  allDay: false
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6852669+00:00'
+                  allDay: false
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6852669+00:00'
+                  allDay: false
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6852669+00:00'
+                  allDay: false
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+            examples:
+              default:
+                value:
+                  leadId: 61143db398995a00010d553b
+                  dataObjectId: 61143db398995a00010d553b
+                  type: note
+                  done: false
+                  isNote: true
+                  notes: Notes from meetings
+                  date: '2026-08-04T07:14:38.6852669+00:00'
+                  allDay: false
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.6854614+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/v2/activities/{activityId}:
+    put:
+      tags:
+      - ActivitiesV2
+      summary: Update an existing activity
+      description: Only planned activity could be changed.
+      parameters:
+      - name: activityId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.6911825+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.6911825+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.6911825+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    patch:
+      tags:
+      - ActivitiesV2
+      summary: Activity patch
+      description: Partially update an existing activity
+      parameters:
+      - name: activityId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.6988552+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.6988552+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.6988552+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - ActivitiesV2
+      summary: Get activity by id
+      description: Fetch a single activity by its unique identifier.
+      parameters:
+      - name: activityId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/ActivitiesV2/{activityId}:
+    put:
+      tags:
+      - ActivitiesV2
+      summary: Update an existing activity
+      description: Only planned activity could be changed.
+      parameters:
+      - name: activityId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.7081476+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.7081476+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.7081476+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    patch:
+      tags:
+      - ActivitiesV2
+      summary: Activity patch
+      description: Partially update an existing activity
+      parameters:
+      - name: activityId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.7134724+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.7134724+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+              examples:
+                default:
+                  value:
+                    id: '1'
+                    verified: true
+                    mobileId: 8asf111f
+                    leadId: 61143732f5bd3ab20f9c67d1
+                    dataObjectId: 61143732f5bd3ab20f9c67d1
+                    type: note
+                    done: false
+                    activityLat: 38.19502
+                    activityLng: -113.90625
+                    leadLat: 38.19502
+                    leadLng: -113.90625
+                    transition:
+                      fromStageId: '1'
+                      toStageId: '1'
+                    isNote: true
+                    ownerChanged:
+                      previousLeadOwnerId: '4082'
+                      newLeadOwnerId: '5000'
+                      previousDataObjectOwnerId: '4082'
+                      newDataObjectOwnerId: '5000'
+                    resultId: '2'
+                    direction: in
+                    email: spotio@spotio.com
+                    reference: dsfoso123sadp
+                    isRead: false
+                    activityTemplateId: a6vhAo3FG7t1
+                    ownerId: '1'
+                    title: Knock the door
+                    notes: My notes
+                    date: '2026-08-03T07:14:38.7134724+00:00'
+                    duration: 15
+                    durationSeconds: 900
+                    allDay: false
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - ActivitiesV2
+      summary: Get activity by id
+      description: Fetch a single activity by its unique identifier.
+      parameters:
+      - name: activityId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/v2/activities/many:
+    post:
+      tags:
+      - ActivitiesV2
+      summary: Create multiple activities
+      description: Method allow create many activities at once.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+              examples:
+                default:
+                  value:
+                  - 1241
+                  - 1242
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+              examples:
+                default:
+                  value:
+                  - 1241
+                  - 1242
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+              examples:
+                default:
+                  value:
+                  - 1241
+                  - 1242
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/ActivitiesV2/many:
+    post:
+      tags:
+      - ActivitiesV2
+      summary: Create multiple activities
+      description: Method allow create many activities at once.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          text/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+          application/*+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+              examples:
+                default:
+                  value:
+                  - 1241
+                  - 1242
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+              examples:
+                default:
+                  value:
+                  - 1241
+                  - 1242
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: integer
+                  format: int32
+              examples:
+                default:
+                  value:
+                  - 1241
+                  - 1242
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/v2/activities/feed:
+    get:
+      tags:
+      - ActivitiesV2
+      summary: Get activity feed
+      description: Fetch all activities which are done / completed for selected period, territory, time range.
+      parameters:
+      - name: TerritoryId
+        in: query
+        description: The territory ID to filter activities
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        description: The start date for filtering activities
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        description: The end date for filtering activities
+        schema:
+          type: string
+          format: date-time
+      - name: ScrollId
+        in: query
+        description: The scroll ID for pagination
+        schema:
+          type: string
+      - name: SortBy
+        in: query
+        description: The property to sort activities by. Order by descending required add '-' before parameter
+        schema:
+          type: string
+          enum:
+          - schedule
+          - -schedule
+          - time
+          - -time
+          - activity
+          - -activity
+          - status
+          - -status
+          - territory
+          - -territory
+          - address
+          - -address
+          - visitcount
+          - -visitcount
+          - callcount
+          - -callcount
+      - name: FilterId
+        in: query
+        description: The filter ID to apply to activities
+        schema:
+          type: string
+      - name: SingleType
+        in: query
+        description: The single dataObjectTypeId to filter by. Id from workflow settings.
+        schema:
+          type: integer
+          format: int32
+      - name: IncludeGhosts
+        in: query
+        description: Determine whether to include ghosts activities in the feed
+        schema:
+          type: boolean
+      - name: IncludeCustomFieldIds
+        in: query
+        description: Custom field ids must be comma-separated ",". Use an asterisk "*" to return all fields.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.Activity.V2.ActivityFeedDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.Activity.V2.ActivityFeedDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.Activity.V2.ActivityFeedDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/ActivitiesV2/feed:
+    get:
+      tags:
+      - ActivitiesV2
+      summary: Get activity feed
+      description: Fetch all activities which are done / completed for selected period, territory, time range.
+      parameters:
+      - name: TerritoryId
+        in: query
+        description: The territory ID to filter activities
+        schema:
+          type: string
+      - name: StartDate
+        in: query
+        description: The start date for filtering activities
+        schema:
+          type: string
+          format: date-time
+      - name: EndDate
+        in: query
+        description: The end date for filtering activities
+        schema:
+          type: string
+          format: date-time
+      - name: ScrollId
+        in: query
+        description: The scroll ID for pagination
+        schema:
+          type: string
+      - name: SortBy
+        in: query
+        description: The property to sort activities by. Order by descending required add '-' before parameter
+        schema:
+          type: string
+          enum:
+          - schedule
+          - -schedule
+          - time
+          - -time
+          - activity
+          - -activity
+          - status
+          - -status
+          - territory
+          - -territory
+          - address
+          - -address
+          - visitcount
+          - -visitcount
+          - callcount
+          - -callcount
+      - name: FilterId
+        in: query
+        description: The filter ID to apply to activities
+        schema:
+          type: string
+      - name: SingleType
+        in: query
+        description: The single dataObjectTypeId to filter by. Id from workflow settings.
+        schema:
+          type: integer
+          format: int32
+      - name: IncludeGhosts
+        in: query
+        description: Determine whether to include ghosts activities in the feed
+        schema:
+          type: boolean
+      - name: IncludeCustomFieldIds
+        in: query
+        description: Custom field ids must be comma-separated ",". Use an asterisk "*" to return all fields.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.Activity.V2.ActivityFeedDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.Activity.V2.ActivityFeedDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.Web.Helpers.ScrollResult%601%5B%5BSpotio.Frontend.ViewModel.Activity.V2.ActivityFeedDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Activities.Client.Model.Type:
+      type: string
+      enum:
+      - Note
+      - Event
+      - Transition
+      - Create
+      - OwnerChanged
+      - Update
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Frontend.ViewModel.Activity.Transition:
+      type: object
+      additionalProperties: false
+      properties:
+        fromStageId:
+          type:
+          - string
+          - 'null'
+        toStageId:
+          type:
+          - string
+          - 'null'
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        mobileId:
+          type:
+          - string
+          - 'null'
+          description: The mobile identifier of the activity.
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the associated data object.
+        type:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Type'
+        done:
+          type: boolean
+          description: Indicates whether the activity has been completed.
+        activityLat:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the activity.
+          format: double
+          minimum: -90
+          maximum: 90
+        activityLng:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the activity.
+          format: double
+          minimum: -180
+          maximum: 180
+        dataObjectLat:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the associated data object.
+          format: double
+          minimum: -90
+          maximum: 90
+        dataObjectLng:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the associated data object.
+          format: double
+          minimum: -180
+          maximum: 180
+        transition:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.Transition'
+        isNote:
+          type: boolean
+          description: Indicates whether the activity is a note.
+        ownerChanged:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.OwnerChanged'
+        resultId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity result.
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address associated with the activity.
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: The phone number associated with the activity.
+        reference:
+          type:
+          - string
+          - 'null'
+          description: The reference of the activity.
+        isRead:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the activity has been read.
+        communicationTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the communication template.
+        autoplayDataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the autoplay data object.
+        autoplayDataObjectStepId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the autoplay data object step.
+        autoExecution:
+          type: boolean
+          description: Indicates whether the activity has an auto execution. False by default.
+        reminder:
+          type:
+          - string
+          - 'null'
+          description: The reminder time for the activity.
+          format: date-span
+        appointmentId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the appointment.
+        nbaId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the NBA recommendation.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The short non-sequential URL-friendly unique identifier of the activity.
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity template from workflow settings.
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity owner.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the activity.
+          maxLength: 128
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Additional notes for the activity.
+          maxLength: 512
+        date:
+          type:
+          - string
+          - 'null'
+          description: The date and time of the activity.
+          format: date-time
+        duration:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the activity in minutes.
+          format: int32
+        durationSeconds:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the activity in seconds.
+          format: int32
+        allDay:
+          type: boolean
+          description: Indicates whether the activity is an all-day event.
+        allDayDate:
+          type:
+          - string
+          - 'null'
+          description: The date of the all-day event, if applicable.
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        verified:
+          type:
+          - boolean
+          - 'null'
+          description: True by default for all activities except from mobile client where server must track distance data object<->activity location.
+        mobileId:
+          type:
+          - string
+          - 'null'
+          description: The mobile identifier of the activity.
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the associated data object.
+        type:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Type'
+        done:
+          type: boolean
+          description: Indicates whether the activity has been completed.
+        activityLat:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the activity.
+          format: double
+          minimum: -90
+          maximum: 90
+        activityLng:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the activity.
+          format: double
+          minimum: -180
+          maximum: 180
+        dataObjectLat:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the associated data object.
+          format: double
+          minimum: -90
+          maximum: 90
+        dataObjectLng:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the associated data object.
+          format: double
+          minimum: -180
+          maximum: 180
+        transition:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.Transition'
+        isNote:
+          type: boolean
+          description: Indicates whether the activity is a note.
+        ownerChanged:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.OwnerChanged'
+        resultId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity result.
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address associated with the activity.
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: The phone number associated with the activity.
+        reference:
+          type:
+          - string
+          - 'null'
+          description: The reference of the activity.
+        isRead:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the activity has been read.
+        communicationTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the communication template.
+        autoplayDataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the autoplay data object.
+        autoplayDataObjectStepId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the autoplay data object step.
+        autoExecution:
+          type: boolean
+          description: Indicates whether the activity has an auto execution. False by default.
+        reminder:
+          type:
+          - string
+          - 'null'
+          description: The reminder time for the activity.
+          format: date-span
+        appointmentId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the appointment.
+        nbaId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the NBA recommendation.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The short non-sequential URL-friendly unique identifier of the activity.
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity template from workflow settings.
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity owner.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the activity.
+          maxLength: 128
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Additional notes for the activity.
+          maxLength: 512
+        date:
+          type:
+          - string
+          - 'null'
+          description: The date and time of the activity.
+          format: date-time
+        duration:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the activity in minutes.
+          format: int32
+        durationSeconds:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the activity in seconds.
+          format: int32
+        allDay:
+          type: boolean
+          description: Indicates whether the activity is an all-day event.
+        allDayDate:
+          type:
+          - string
+          - 'null'
+          description: The date of the all-day event, if applicable.
+    Spotio.Frontend.ViewModel.Activity.OwnerChanged:
+      type: object
+      additionalProperties: false
+      properties:
+        previousLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        newLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        previousDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        newDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

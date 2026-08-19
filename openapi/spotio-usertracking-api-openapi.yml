@@ -1,0 +1,440 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 User Tracking API
+  description: User tracking API. You can configure Spotio to track users which using the app. Using the following methods you can retrieve tracking data.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: UserTracking
+  description: User tracking API. You can configure Spotio to track users which using the app. Using the following methods you can retrieve tracking data.
+paths:
+  /api/UserTracking/map/users:
+    get:
+      tags:
+      - UserTracking
+      summary: Fetch users for the area.
+      parameters:
+      - name: area
+        in: query
+        description: Points describing area separated by comma.
+        schema:
+          type: string
+      - name: userIds
+        in: query
+        description: User ids separated by comma.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.TrackingActivity'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.TrackingActivity'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.TrackingActivity'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/UserTracking/map/gpstrails:
+    get:
+      tags:
+      - UserTracking
+      summary: Get GPS trails for the users.
+      parameters:
+      - name: filterId
+        in: query
+        description: Reference to the saved filter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.GpsTrail'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.GpsTrail'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.GpsTrail'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/UserTracking/last-position:
+    get:
+      tags:
+      - UserTracking
+      summary: Get the calling user's last known position (tracking or last logged activity).
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LastUserPosition'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LastUserPosition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LastUserPosition'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/UserTracking/settings:
+    get:
+      tags:
+      - UserTracking
+      summary: Get user location sharing settings.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    put:
+      tags:
+      - UserTracking
+      summary: Update user location sharing settings.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.UserTracking.LastUserPosition:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type:
+          - number
+          - 'null'
+          description: Latitude of the user's last known position; null when unknown.
+          format: double
+        lng:
+          type:
+          - number
+          - 'null'
+          description: Longitude of the user's last known position; null when unknown.
+          format: double
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: When the position was recorded; null when unknown.
+          format: date-time
+    Spotio.Frontend.ViewModel.UserTracking.GpsTrail:
+      type: object
+      additionalProperties: false
+      properties:
+        userId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the user.
+        userLocations:
+          type:
+          - array
+          - 'null'
+          description: The collection of GPS locations recorded by the user.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.Location'
+    Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto:
+      type: string
+      enum:
+      - Always
+      - WorkingHours
+      - Never
+    Spotio.Frontend.ViewModel.UserTracking.TrackingActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        userId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the user.
+        lat:
+          type: number
+          description: The latitude of the user's location.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the user's location.
+          format: double
+        online:
+          type: boolean
+          description: Whether the user is currently online.
+    Spotio.Frontend.ViewModel.UserTracking.Location:
+      type: object
+      additionalProperties: false
+      properties:
+        at:
+          type: string
+          description: The date and time when the location was recorded.
+          format: date-time
+        lat:
+          type: number
+          description: The latitude of the location.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the location.
+          format: double
+    Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        timeFrame:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto'
+        workingHours:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.WorkingHours'
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        timeFrame:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto'
+        workingHours:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.WorkingHours'
+    System.DayOfWeek:
+      type: string
+      enum:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    Spotio.Frontend.ViewModel.UserTracking.WorkingHours:
+      type: object
+      additionalProperties: false
+      properties:
+        days:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/System.DayOfWeek'
+        from:
+          type: string
+          format: time
+        to:
+          type: string
+          format: time
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

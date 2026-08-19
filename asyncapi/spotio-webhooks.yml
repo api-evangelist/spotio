@@ -1,0 +1,104 @@
+generated: '2026-08-13'
+method: searched
+source: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
+provider: SPOTIO
+providerId: spotio
+
+spec_type: none
+asyncapi_published: false
+asyncapi_note: >-
+  SPOTIO publishes no AsyncAPI document. Its event surface is described in prose in
+  the knowledge base and managed through five REST operations in the OpenAPI. This
+  file captures that webhook catalog verbatim; it is NOT an AsyncAPI document and
+  nothing has been synthesised into one.
+
+transport: http-webhook
+direction: outbound (SPOTIO POSTs to a customer-configured HTTPS endpoint)
+
+management:
+  spec: openapi/spotio-webhooks-api-openapi.yml
+  operations:
+  - GET /api/Webhooks/scopes
+  - GET /api/Webhooks
+  - POST /api/Webhooks
+  - PUT /api/Webhooks/{id}
+  - DELETE /api/Webhooks/{id}
+  endpoint_object:
+    schema: Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto
+    fields: [id, callback, scopes, active, customHeaders]
+  note: >-
+    A subscription is created by POSTing a callback URL plus the scopes to
+    subscribe. GET /api/Webhooks/scopes returns the available scope strings as an
+    array of strings; the spec declares no enum, so the authoritative scope list is
+    only readable from a live authenticated call.
+
+delivery:
+  method: POST
+  timeout_seconds: 10
+  retries: up to 3, with increasing intervals
+  success_condition: the receiving endpoint must respond 200
+  guidance: SPOTIO advises asynchronous processing on the receiver because of the 10-second timeout
+
+security:
+  signature_header: X-Signature
+  algorithm: HMAC-SHA256
+  encoding: hex
+  signed_over: the request body
+  key: your secret
+  custom_headers: supported per endpoint (customHeaders on the webhook object)
+
+payload:
+  envelope: '{"payload": [ {"data": {...}, "type": "<event.name>", "date": "<ISO 8601>"} ]}'
+  batched: true
+  fields:
+    date: datetime offset
+    type: string, the event name
+    data: object, shape depends on the event
+
+events:
+- name: lead.added
+  entity: lead
+- name: lead.updated
+  entity: lead
+- name: lead.deleted
+  entity: lead
+- name: activity.created
+  entity: activity
+- name: activity.updated
+  entity: activity
+- name: activity.deleted
+  entity: activity
+- name: activity.done
+  entity: activity
+- name: appointment.created
+  entity: appointment
+- name: appointment.updated
+  entity: appointment
+- name: appointment.deleted
+  entity: appointment
+
+event_count: 10
+
+realtime:
+  ably_mentioned: true
+  quote: 'You can use HTTP webhooks or Ably realtime events to achieve this functionality.'
+  source: https://developer.spotio2.com/docs/spotio2/qu2ht3gipl905-introduction
+  documented: false
+  note: >-
+    SPOTIO names Ably as a second event transport in one sentence of the developer
+    Introduction and then never returns to it. No channel names, no token-request
+    endpoint, no connection guide and no schema were found anywhere on the developer
+    portal or knowledge base, so nothing about the Ably surface is modelled here.
+
+gaps:
+- No AsyncAPI document, so the event surface is not machine-readable.
+- The webhook scope vocabulary is only obtainable from an authenticated live call.
+- Event payload schemas are described as "depends on the event" and are not published per event.
+- No published event versioning or replay/redelivery mechanism.
+
+x-evidence:
+- url: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
+  http_status: 200
+  fetched: '2026-08-13'
+- source: openapi/_original/spotio-swagger.json
+  finding: tag `Webhooks`, 5 management operations

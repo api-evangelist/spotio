@@ -1,0 +1,216 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Reports API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export specific chart to csv file",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Reports/export/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Select chart type."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "The file will send to user email. Each user can have only one active export"
+        },
+        {
+          "info": {
+            "name": "Get specific chart data based on filterId and dataObjectType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Reports/:type",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the filter to apply."
+              },
+              {
+                "name": "singleType",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the single dataObjectType (from workflow settings) to display."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Select chart type."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Response data is depend on chart type"
+        },
+        {
+          "info": {
+            "name": "Get specific chart data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Reports/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Select chart type."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Response data is depend on chart type"
+        },
+        {
+          "info": {
+            "name": "Get records related to a specific chart",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Reports/:type/records",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Select chart type."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Response data is depend on chart type"
+        },
+        {
+          "info": {
+            "name": "Get specific dataObject chart data based on filterId and dataObjectType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Reports/dataObject/:type",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the filter to apply."
+              },
+              {
+                "name": "singleType",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the single dataObjectType (from workflow settings) to display."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Select chart type."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Response data is depend on chart type"
+        },
+        {
+          "info": {
+            "name": "Get specific dataObject chart data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Reports/dataObject/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "Select chart type."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Response data is depend on chart type"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

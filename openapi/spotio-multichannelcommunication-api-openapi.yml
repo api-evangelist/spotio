@@ -1,0 +1,115 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Multi Channel Communication API
+  description: The controller is responsible for text messages management. Sending messages to customers
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: MultiChannelCommunication
+  description: The controller is responsible for text messages management. Sending messages to customers
+paths:
+  /api/c3/v2/messages:
+    post:
+      tags:
+      - MultiChannelCommunication
+      summary: Send text message to recipients
+      description: Use template for send messages for your contacts. Field phone number is required.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.C3.SendMessagesRequestV2'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.C3.SendMessagesRequestV2'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.C3.SendMessagesRequestV2'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.C3.SendMessagesRequestV2'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.C3.SendMessagesRequestV2'
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.C3.SendMessagesRequestV2:
+      type: object
+      additionalProperties: false
+      properties:
+        templateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the message template.
+        body:
+          type:
+          - string
+          - 'null'
+          description: The message body.
+        force:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether to force the message to send.
+        to:
+          type:
+          - array
+          - 'null'
+          description: A list of phone numbers to which the message should be sent.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.C3.DataObjectPhone'
+        mediaUrls:
+          type:
+          - array
+          - 'null'
+          description: A list of URLs for media attachments.
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.C3.DataObjectPhone:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        existingActivityId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityDone:
+          type:
+          - boolean
+          - 'null'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

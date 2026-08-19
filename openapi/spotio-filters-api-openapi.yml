@@ -1,0 +1,1120 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Filters API
+  description: "    The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data.\n    It can be passed wherever filterId query parameter or property is available.\n    Some apis are exposed through FiltersV1 and some through FiltersV2 both can be used interchangeably."
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Filters
+  description: "    The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data.\n    It can be passed wherever filterId query parameter or property is available.\n    Some apis are exposed through FiltersV1 and some through FiltersV2 both can be used interchangeably."
+paths:
+  /api/Filters:
+    get:
+      tags:
+      - Filters
+      summary: Retrieve all my filters
+      description: Retrieves all saved filters for the current user.
+      parameters:
+      - name: dashboardFilters
+        in: query
+        description: Set to true to include filters for the dashboard only. Otherwise, all filters will be returned.
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.AllMyFiltersModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.AllMyFiltersModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.AllMyFiltersModel'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Filters/{filterId}:
+    delete:
+      tags:
+      - Filters
+      summary: Deletes a filter by ID
+      description: Deletes a filter by the specified ID.
+      parameters:
+      - name: filterId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/dashboard/filters/{filterId}:
+    delete:
+      tags:
+      - Filters
+      summary: Deletes a filter by ID
+      description: Deletes a filter by the specified ID.
+      parameters:
+      - name: filterId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: boolean
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Filters/reorder/{filterType}:
+    put:
+      tags:
+      - Filters
+      summary: Reorders a filter list
+      parameters:
+      - name: filterType
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.FilterType'
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterActivePosition'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterActivePosition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterActivePosition'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Filters/reorder:
+    put:
+      tags:
+      - Filters
+      summary: Reorders a filter list
+      parameters:
+      - name: filterType
+        in: query
+        schema:
+          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.FilterType'
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterReorderList'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterActivePosition'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterActivePosition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterActivePosition'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Filters/changeFilterTitle/{filterId}:
+    put:
+      tags:
+      - Filters
+      summary: Change the title of a filter
+      description: Updates the title of the specified filter.
+      parameters:
+      - name: filterId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterTitleModel'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterTitleModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterTitleModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterTitleModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterTitleModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Filter'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Filter'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Filter'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Filters/changeFilter/{filterId}:
+    put:
+      tags:
+      - Filters
+      summary: Change the title and sharing options of a filter
+      description: Updates the title and sharing options of the specified filter.
+      parameters:
+      - name: filterId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterModel'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterModel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ChangeFilterModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Filter'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Filter'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Filter'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+        '415':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '422':
+          description: Client Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '500':
+          description: Server Error
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Filters.SharingOptions:
+      type: object
+      additionalProperties: false
+      properties:
+        visibility:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Visibility'
+        territoriesIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        usersIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        teamsIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Utils.Client.DTO.Filters.PeriodShortcut:
+      type: string
+      enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YTD
+      - CUSTOM
+      - ALL
+      - LASTWEEK
+      - LASTMONTH
+      - LASTYEAR
+      - YESTERDAY
+      - TODAY
+      - LAST30DAYS
+      - DEFAULT
+      - QUARTER
+      - LASTQUARTER
+      - THISWORKWEEK
+      - LASTWORKWEEK
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Filters.Visibility:
+      type: string
+      enum:
+      - Private
+      - Public
+      - ByTerritory
+      - ByTeam
+      - ByUser
+    Spotio.Utils.Client.DTO.Filters.FilterType:
+      type: string
+      enum:
+      - Dashboard
+      - Other
+      - Home
+      - Autoplay
+      - Calendar
+      - HomeRepOverview
+      - MyReports
+    Spotio.Frontend.ViewModel.Filters.TextFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        conditionType:
+          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.TextFilterConditionType'
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Filters.Colorization:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.AggregateTypeViewModel'
+        customFieldId:
+          type:
+          - string
+          - 'null'
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Filters.AggregateTypeViewModel:
+      type: string
+      enum:
+      - VisitsCount
+      - User
+      - Territory
+      - Stage
+      - ActivityTemplate
+      - CustomField
+      - LeadSource
+      - DaysSinceLastVisit
+      - LastActivityLocation
+      - LastVisitResult
+      - DaysSinceCreated
+      - VisitsCountSum
+      - DataObjectSource
+      - LossReason
+      - DaysSinceLastActivity
+      - NumberOfActivities
+      - CustomFieldRanges
+      - ScoreLabel
+      - Nba
+    Spotio.Frontend.ViewModel.Filters.DateField:
+      type: string
+      enum:
+      - LeadCreatedAt
+      - LeadUpdatedAt
+      - ActivityDate
+      - ActivityCreatedAt
+      - ActivityUpdatedAt
+      - StageUpdatedAt
+      - LastActivityDate
+      - NextActivityTime
+      - LastVisitDate
+      - LastCallDate
+      - ContractSignedDate
+      - DataObjectCreatedAt
+      - DataObjectUpdatedAt
+    Spotio.Utils.Client.DTO.Filters.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Frontend.ViewModel.Filters.CustomFieldFilters:
+      type: object
+      additionalProperties: false
+      properties:
+        customFieldId:
+          type:
+          - string
+          - 'null'
+          description: Id of a field to filter by
+        selectedValues:
+          type:
+          - array
+          - 'null'
+          description: Values of a field in case of a single or multi choice filter
+          items:
+            type: string
+        noValue:
+          type: boolean
+          description: Whether should include records without selected field value
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: Start point of date filter for custom field
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: End point of date filter for custom field
+          format: date-time
+        periodShortcut:
+          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.PeriodShortcut'
+        textFilter:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.TextFilter'
+    Spotio.Utils.Client.DTO.Filters.LocationStatus:
+      type: string
+      enum:
+      - Verified
+      - Unverified
+      - Unknown
+    Spotio.Utils.Client.DTO.Filters.TextFilterConditionType:
+      type: string
+      enum:
+      - Contain
+      - DoNotContain
+      - ExactlyMatch
+      - DoNotExactlyMatch
+      - AreBlank
+      - AreNotBlank
+    Spotio.Utils.Client.DTO.Filters.OptInStatus:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Frontend.ViewModel.Filters.AllMyFiltersModel:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the filter.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the filter.
+        position:
+          type: integer
+          description: The position of the filter.
+          format: int32
+    Spotio.Frontend.ViewModel.Filters.UserField:
+      type: string
+      enum:
+      - LeadOwner
+      - LeadLastActivityOwner
+      - LeadUpdatedById
+      - DataObjectOwner
+      - DataObjectLastActivityOwner
+      - DataObjectUpdatedById
+    Spotio.Frontend.ViewModel.Filters.ActivityTemplateStatFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Filters.ChangeFilterModel:
+      type: object
+      additionalProperties: false
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+        sharingOptions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.SharingOptions'
+    Spotio.Frontend.ViewModel.Filters.ChangeFilterTitleModel:
+      type: object
+      additionalProperties: false
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Filters.Filter:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the filter.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the filter.
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: The start date of the filter.
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: The end date of the filter.
+          format: date-time
+        territoriesIds:
+          type:
+          - array
+          - 'null'
+          description: The list of territory IDs to filter by.
+          items:
+            type: string
+        currentUser:
+          type: boolean
+          description: Defines if the filter should filter by the current user.
+        allUsers:
+          type: boolean
+          description: Show for all available users.
+        usersIds:
+          type:
+          - array
+          - 'null'
+          description: The list of user IDs to filter by.
+          items:
+            type: string
+        teamIds:
+          type:
+          - array
+          - 'null'
+          description: The list of team IDs to filter by.
+          items:
+            type: string
+        stageIds:
+          type:
+          - array
+          - 'null'
+          description: The list of stage IDs to filter by.
+          items:
+            type: string
+        activityTemplateIds:
+          type:
+          - array
+          - 'null'
+          description: The list of activity template IDs to filter by. For more details refer to WorkflowActivityTemplatesController
+          items:
+            type: string
+        lastLocationStatusIds:
+          type:
+          - array
+          - 'null'
+          description: The list of last location status IDs to filter by. For more details check LastLocationStatus
+          items:
+            type: string
+        activityResultIds:
+          type:
+          - array
+          - 'null'
+          description: The list of activity result IDs to filter by. For more details refer to WorkflowActivityTemplatesController
+          items:
+            type: string
+        customFields:
+          type:
+          - array
+          - 'null'
+          description: The list of custom field filters. For more details refer to WorkflowFieldsController
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.CustomFieldFilters'
+        periodShortcut:
+          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.PeriodShortcut'
+        lastLocationStatus:
+          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.LocationStatus'
+        dashboardFilter:
+          type: boolean
+          description: Indicates whether the filter is used for a dashboard.
+        position:
+          type: integer
+          description: The position of the filter.
+          format: int32
+        isFromAutoplay:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the filter is from autoplay.
+        dateField:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.DateField'
+        userField:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.UserField'
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: The timezone that dates are expressed in.
+        filterType:
+          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.FilterType'
+        colorization:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Colorization'
+        directions:
+          type:
+          - array
+          - 'null'
+          description: The list of activity directions to filter by. Related to communication activities
+          items:
+            $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.Direction'
+        sortBy:
+          type:
+          - string
+          - 'null'
+          description: The property to sort by.
+        dataObjectTypeIds:
+          type:
+          - array
+          - 'null'
+          description: The list of data object type IDs to filter by.
+          items:
+            type: string
+        activityTemplateStats:
+          type:
+          - array
+          - 'null'
+          description: The list of activity template stat filters.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.ActivityTemplateStatFilter'
+        sharingOptions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.SharingOptions'
+        textOptIns:
+          type:
+          - array
+          - 'null'
+          description: Filter by text opted in status
+          items:
+            $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.OptInStatus'
+        scoreLabels:
+          type:
+          - array
+          - 'null'
+          description: The list of score labels to filter by.
+          items:
+            type: string
+        nbas:
+          type:
+          - array
+          - 'null'
+          description: The list of NBA values to filter by.
+          items:
+            type: string
+        seeOnlyOwnDataObjectTypeIds:
+          type:
+          - array
+          - 'null'
+          description: List of people who can see a object
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.Filters.FilterReorderList:
+      type: object
+      additionalProperties: false
+      properties:
+        filterIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Filters.FilterActivePosition:
+      type: object
+      additionalProperties: false
+      properties:
+        filterId:
+          type:
+          - string
+          - 'null'
+        position:
+          type: integer
+          format: int32
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

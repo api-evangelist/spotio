@@ -1,0 +1,2591 @@
+{
+  "item": [
+    {
+      "id": "73daa1cc-72ae-4b78-b456-f564bc31c933",
+      "name": "WorkflowSettings",
+      "description": {
+        "content": "Workflow Settings API provides operations including fetching full workflow settings for company as well as retrieving and updating workflow company properties.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d50e75a2-cf27-420a-a653-0e7938ab2824",
+          "name": "Get workflow settings",
+          "request": {
+            "name": "Get workflow settings",
+            "description": {
+              "content": "Fetches the workflow settings including internal settings, user settings, activities, permissions, and data objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f7292df-b5c3-47fb-abea-d23a91117af5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalSettings\": {\n    \"exampleCsvVersion\": null,\n    \"minimumNumberOfDataObjectsInCluster\": null,\n    \"geocoding\": {\n      \"preferedGeocoder\": null,\n      \"skipCachedLocations\": true,\n      \"useOnlyGoogleProvider\": false\n    },\n    \"applicationMode\": \"Classic\",\n    \"isNew\": false\n  },\n  \"userSettings\": {\n    \"name\": null,\n    \"alwaysSendEmailWithMobileCode\": false,\n    \"enforceStrongPassword\": false,\n    \"webSessionDuration\": 5075,\n    \"mobileSessionDuration\": 9942,\n    \"dailyReportEnabled\": true,\n    \"weeklyReportEnabled\": true,\n    \"countryCode\": null,\n    \"extendedPhoneValidation\": true,\n    \"autoVisitsEnabled\": false,\n    \"doorToDoorFlowEnabled\": false,\n    \"showNumberOfVisitsOnMap\": false,\n    \"permissionsMode\": \"Teams\",\n    \"contractsCcMailAddress\": null,\n    \"sendEmbeddedContractsCcToDataObjectOwner\": true,\n    \"sendEmbeddedContractsCcToCustomer\": true,\n    \"logoUrl\": \"string\",\n    \"color\": \"string\",\n    \"timezone\": \"string\",\n    \"visitsFrequencyEnabled\": true,\n    \"visitsFrequencyDays\": 9635,\n    \"currency\": \"string\",\n    \"defaultDataObjectId\": \"string\",\n    \"trackManualVisitsDuration\": true,\n    \"verifiedDistance\": 3908.2236499536825,\n    \"prioritizeLoggingVisits\": false,\n    \"allowCollaborators\": true,\n    \"recordHandlerId\": \"string\",\n    \"allowMultipleRecordsAtTheSameAddress\": false,\n    \"minDistanceBetweenRecords\": 4265.414461262085,\n    \"isCustomWorkingDaysEnabled\": false,\n    \"startOfCustomWorkingDay\": \"Tuesday\",\n    \"endOfCustomWorkingDay\": \"Tuesday\"\n  },\n  \"activities\": [\n    \"\",\n    \"\"\n  ],\n  \"permissions\": {\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": false,\n      \"leadMachineAccess\": false,\n      \"leadMachineB2BAccess\": false,\n      \"eContractsAccess\": true,\n      \"c3Access\": false,\n      \"routingAccess\": true,\n      \"autoplayAccess\": false,\n      \"spotioNumberProvisionAccess\": true,\n      \"multipleSalesforceIntegrationsAccess\": true,\n      \"basicAiAssistantAccess\": true,\n      \"advancedAiAssistantAccess\": false,\n      \"emailIntegrationAccess\": true,\n      \"emailTemplatesAccess\": true,\n      \"bulkEmailsAccess\": true,\n      \"textTemplatesAccess\": true,\n      \"bulkTextsAccess\": false,\n      \"aiSummariesAccess\": true,\n      \"workatoAccess\": false,\n      \"emailAiGeneration\": true,\n      \"textAiGeneration\": false,\n      \"callRecording\": true,\n      \"aiVoiceMode\": false,\n      \"mcpAccess\": false,\n      \"aiPerformingActionsAccess\": false,\n      \"winsHubAccess\": false\n    },\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": true,\n      \"showAllTerritories\": true,\n      \"canUpdatePersonalInfo\": true,\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": true,\n      \"showGhostDataObjects\": false,\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": false,\n      \"allowToCreateCommunicationTemplates\": true,\n      \"canCreateAndUpdateAutoplays\": true,\n      \"canDeleteContacts\": false,\n      \"seeNotOwnedActivities\": false,\n      \"seeNotOwnedCompletedActivities\": true,\n      \"editNotOwnedActivities\": true,\n      \"showGhostActivities\": false,\n      \"deleteOwnActivities\": true,\n      \"canCreateDataObjects\": false,\n      \"bulkMcc\": false,\n      \"bulkAddToRoute\": true,\n      \"bulkSchedule\": false,\n      \"bulkReassign\": true,\n      \"bulkStageChange\": true,\n      \"bulkDelete\": true,\n      \"resetActivityHistoryOnReassignment\": true,\n      \"aiAccessAllowed\": true,\n      \"aiNextBestActionAccess\": false,\n      \"objectRelatedPermissions\": {\n        \"permissions\": null\n      },\n      \"objectLevelVisibility\": true\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": false,\n      \"canAddTerritoriesOutsideAssigned\": false,\n      \"canDeleteTerritoriesOutsideAssigned\": true,\n      \"canAssignUsersToTerritoryOutsideAssigned\": true,\n      \"canManageTerritoryWithinAssigned\": true,\n      \"canAssignUsersToTerritoryWithinAssigned\": true,\n      \"seeAllTeams\": false,\n      \"canAddTeamsOutsideAssigned\": false,\n      \"canDeleteTeamsOutsideAssigned\": true,\n      \"canManageTeamsWithinAssigned\": true,\n      \"canAssignUsersToTeamsWithinAssigned\": false,\n      \"canAddUsers\": true,\n      \"canExport\": true,\n      \"showAllDataObjects\": true,\n      \"canCreateAndUpdateAutoplays\": false,\n      \"canCreateAndUpdateRepsAutoplays\": true,\n      \"canAssignUsersToTeamsOutsideAssigned\": true,\n      \"canMergeRecords\": false,\n      \"aiAccessAllowed\": false,\n      \"aiNextBestActionAccess\": false\n    }\n  },\n  \"dataObjects\": [\n    \"\",\n    \"\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb8e2c7b-0d3b-4d91-86c1-20ae022285f2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a161733-accf-4ce4-b85e-31d4124f845a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08986d20-b419-4cb9-bbdf-635a0483b7d6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9ba6d98-8e51-4e3c-8ef5-1144e934ee87",
+          "name": "Get workflow company properties",
+          "request": {
+            "name": "Get workflow company properties",
+            "description": {
+              "content": "Fetches the workflow properties containing internal settings, user settings, and permissions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow",
+                "properties"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0050c724-7df6-41c3-a98c-021cf5ba7a64",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalSettings\": {\n    \"exampleCsvVersion\": \"string\",\n    \"minimumNumberOfDataObjectsInCluster\": null,\n    \"geocoding\": {\n      \"preferedGeocoder\": \"string\",\n      \"skipCachedLocations\": true,\n      \"useOnlyGoogleProvider\": true\n    },\n    \"applicationMode\": \"Flexible\",\n    \"isNew\": true\n  },\n  \"userSettings\": {\n    \"name\": \"string\",\n    \"alwaysSendEmailWithMobileCode\": true,\n    \"enforceStrongPassword\": false,\n    \"webSessionDuration\": 2186,\n    \"mobileSessionDuration\": 9927,\n    \"dailyReportEnabled\": false,\n    \"weeklyReportEnabled\": false,\n    \"countryCode\": null,\n    \"extendedPhoneValidation\": false,\n    \"autoVisitsEnabled\": false,\n    \"doorToDoorFlowEnabled\": true,\n    \"showNumberOfVisitsOnMap\": false,\n    \"permissionsMode\": \"Territories\",\n    \"contractsCcMailAddress\": \"string\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": true,\n    \"sendEmbeddedContractsCcToCustomer\": false,\n    \"logoUrl\": \"string\",\n    \"color\": null,\n    \"timezone\": \"string\",\n    \"visitsFrequencyEnabled\": false,\n    \"visitsFrequencyDays\": 109,\n    \"currency\": \"string\",\n    \"defaultDataObjectId\": null,\n    \"trackManualVisitsDuration\": true,\n    \"verifiedDistance\": 4629.453467852191,\n    \"prioritizeLoggingVisits\": true,\n    \"allowCollaborators\": false,\n    \"recordHandlerId\": null,\n    \"allowMultipleRecordsAtTheSameAddress\": true,\n    \"minDistanceBetweenRecords\": 6709.537138790484,\n    \"isCustomWorkingDaysEnabled\": true,\n    \"startOfCustomWorkingDay\": \"Friday\",\n    \"endOfCustomWorkingDay\": \"Monday\"\n  },\n  \"permissions\": {\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": false,\n      \"leadMachineAccess\": false,\n      \"leadMachineB2BAccess\": false,\n      \"eContractsAccess\": true,\n      \"c3Access\": true,\n      \"routingAccess\": false,\n      \"autoplayAccess\": false,\n      \"spotioNumberProvisionAccess\": true,\n      \"multipleSalesforceIntegrationsAccess\": true,\n      \"basicAiAssistantAccess\": true,\n      \"advancedAiAssistantAccess\": false,\n      \"emailIntegrationAccess\": true,\n      \"emailTemplatesAccess\": true,\n      \"bulkEmailsAccess\": true,\n      \"textTemplatesAccess\": true,\n      \"bulkTextsAccess\": false,\n      \"aiSummariesAccess\": false,\n      \"workatoAccess\": false,\n      \"emailAiGeneration\": true,\n      \"textAiGeneration\": true,\n      \"callRecording\": true,\n      \"aiVoiceMode\": false,\n      \"mcpAccess\": true,\n      \"aiPerformingActionsAccess\": true,\n      \"winsHubAccess\": true\n    },\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": true,\n      \"showAllTerritories\": false,\n      \"canUpdatePersonalInfo\": false,\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": true,\n      \"showGhostDataObjects\": false,\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": true,\n      \"allowToCreateCommunicationTemplates\": true,\n      \"canCreateAndUpdateAutoplays\": false,\n      \"canDeleteContacts\": false,\n      \"seeNotOwnedActivities\": false,\n      \"seeNotOwnedCompletedActivities\": true,\n      \"editNotOwnedActivities\": true,\n      \"showGhostActivities\": true,\n      \"deleteOwnActivities\": true,\n      \"canCreateDataObjects\": false,\n      \"bulkMcc\": true,\n      \"bulkAddToRoute\": true,\n      \"bulkSchedule\": false,\n      \"bulkReassign\": false,\n      \"bulkStageChange\": false,\n      \"bulkDelete\": true,\n      \"resetActivityHistoryOnReassignment\": false,\n      \"aiAccessAllowed\": true,\n      \"aiNextBestActionAccess\": true,\n      \"objectRelatedPermissions\": {\n        \"permissions\": null\n      },\n      \"objectLevelVisibility\": false\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": true,\n      \"canAddTerritoriesOutsideAssigned\": false,\n      \"canDeleteTerritoriesOutsideAssigned\": true,\n      \"canAssignUsersToTerritoryOutsideAssigned\": false,\n      \"canManageTerritoryWithinAssigned\": true,\n      \"canAssignUsersToTerritoryWithinAssigned\": false,\n      \"seeAllTeams\": true,\n      \"canAddTeamsOutsideAssigned\": true,\n      \"canDeleteTeamsOutsideAssigned\": false,\n      \"canManageTeamsWithinAssigned\": false,\n      \"canAssignUsersToTeamsWithinAssigned\": true,\n      \"canAddUsers\": false,\n      \"canExport\": false,\n      \"showAllDataObjects\": false,\n      \"canCreateAndUpdateAutoplays\": true,\n      \"canCreateAndUpdateRepsAutoplays\": false,\n      \"canAssignUsersToTeamsOutsideAssigned\": true,\n      \"canMergeRecords\": true,\n      \"aiAccessAllowed\": false,\n      \"aiNextBestActionAccess\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23429ed9-cccd-4b24-9ac3-6a39396813fe",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "218a5c61-df4f-4e80-84c6-e84903dddb9d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01f78078-ed0b-45ae-a203-346346012409",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "324bba3d-1d41-47ff-94a8-bb4055ac9d7e",
+          "name": "Update workflow company properties",
+          "request": {
+            "name": "Update workflow company properties",
+            "description": {
+              "content": "Updates the workflow properties containing user settings and permissions at the user level.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow",
+                "properties"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userSettings\": {\n    \"name\": \"<string,null>\",\n    \"alwaysSendEmailWithMobileCode\": \"<boolean>\",\n    \"enforceStrongPassword\": \"<boolean>\",\n    \"webSessionDuration\": \"<integer>\",\n    \"mobileSessionDuration\": \"<integer>\",\n    \"dailyReportEnabled\": \"<boolean>\",\n    \"weeklyReportEnabled\": \"<boolean>\",\n    \"countryCode\": \"<string,null>\",\n    \"extendedPhoneValidation\": \"<boolean>\",\n    \"autoVisitsEnabled\": \"<boolean>\",\n    \"showNumberOfVisitsOnMap\": \"<boolean>\",\n    \"contractsCcMailAddress\": \"<string,null>\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": \"<boolean>\",\n    \"sendEmbeddedContractsCcToCustomer\": \"<boolean>\",\n    \"logoUrl\": \"<string,null>\",\n    \"color\": \"<string,null>\",\n    \"timezone\": \"<string,null>\",\n    \"visitsFrequencyEnabled\": \"<boolean>\",\n    \"visitsFrequencyDays\": \"<integer>\",\n    \"currency\": \"<string,null>\",\n    \"trackManualVisitsDuration\": \"<boolean>\",\n    \"prioritizeLoggingVisits\": \"<boolean>\",\n    \"allowCollaborators\": \"<boolean>\",\n    \"recordHandlerId\": \"<string,null>\",\n    \"allowMultipleRecordsAtTheSameAddress\": \"<boolean,null>\",\n    \"minDistanceBetweenRecords\": \"<number,null-double>\",\n    \"isCustomWorkingDaysEnabled\": \"<boolean>\",\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      }\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    },\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": \"<boolean>\",\n      \"eContractsAccess\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c350b49-769c-4dff-9592-7cacf89234fe",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userSettings\": {\n    \"name\": \"<string,null>\",\n    \"alwaysSendEmailWithMobileCode\": \"<boolean>\",\n    \"enforceStrongPassword\": \"<boolean>\",\n    \"webSessionDuration\": \"<integer>\",\n    \"mobileSessionDuration\": \"<integer>\",\n    \"dailyReportEnabled\": \"<boolean>\",\n    \"weeklyReportEnabled\": \"<boolean>\",\n    \"countryCode\": \"<string,null>\",\n    \"extendedPhoneValidation\": \"<boolean>\",\n    \"autoVisitsEnabled\": \"<boolean>\",\n    \"showNumberOfVisitsOnMap\": \"<boolean>\",\n    \"contractsCcMailAddress\": \"<string,null>\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": \"<boolean>\",\n    \"sendEmbeddedContractsCcToCustomer\": \"<boolean>\",\n    \"logoUrl\": \"<string,null>\",\n    \"color\": \"<string,null>\",\n    \"timezone\": \"<string,null>\",\n    \"visitsFrequencyEnabled\": \"<boolean>\",\n    \"visitsFrequencyDays\": \"<integer>\",\n    \"currency\": \"<string,null>\",\n    \"trackManualVisitsDuration\": \"<boolean>\",\n    \"prioritizeLoggingVisits\": \"<boolean>\",\n    \"allowCollaborators\": \"<boolean>\",\n    \"recordHandlerId\": \"<string,null>\",\n    \"allowMultipleRecordsAtTheSameAddress\": \"<boolean,null>\",\n    \"minDistanceBetweenRecords\": \"<number,null-double>\",\n    \"isCustomWorkingDaysEnabled\": \"<boolean>\",\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      }\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    },\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": \"<boolean>\",\n      \"eContractsAccess\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalSettings\": {\n    \"exampleCsvVersion\": null,\n    \"minimumNumberOfDataObjectsInCluster\": null,\n    \"geocoding\": {\n      \"preferedGeocoder\": \"string\",\n      \"skipCachedLocations\": false,\n      \"useOnlyGoogleProvider\": true\n    },\n    \"applicationMode\": \"Flexible\",\n    \"isNew\": false\n  },\n  \"userSettings\": {\n    \"name\": \"string\",\n    \"alwaysSendEmailWithMobileCode\": true,\n    \"enforceStrongPassword\": true,\n    \"webSessionDuration\": 9041,\n    \"mobileSessionDuration\": 3048,\n    \"dailyReportEnabled\": true,\n    \"weeklyReportEnabled\": false,\n    \"countryCode\": null,\n    \"extendedPhoneValidation\": true,\n    \"autoVisitsEnabled\": false,\n    \"doorToDoorFlowEnabled\": false,\n    \"showNumberOfVisitsOnMap\": false,\n    \"permissionsMode\": \"Teams\",\n    \"contractsCcMailAddress\": \"string\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": true,\n    \"sendEmbeddedContractsCcToCustomer\": true,\n    \"logoUrl\": \"string\",\n    \"color\": null,\n    \"timezone\": null,\n    \"visitsFrequencyEnabled\": true,\n    \"visitsFrequencyDays\": 5808,\n    \"currency\": null,\n    \"defaultDataObjectId\": \"string\",\n    \"trackManualVisitsDuration\": false,\n    \"verifiedDistance\": 7029.948291694183,\n    \"prioritizeLoggingVisits\": false,\n    \"allowCollaborators\": true,\n    \"recordHandlerId\": \"string\",\n    \"allowMultipleRecordsAtTheSameAddress\": false,\n    \"minDistanceBetweenRecords\": 3647.6257501741184,\n    \"isCustomWorkingDaysEnabled\": true,\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": true,\n      \"leadMachineAccess\": true,\n      \"leadMachineB2BAccess\": true,\n      \"eContractsAccess\": false,\n      \"c3Access\": true,\n      \"routingAccess\": true,\n      \"autoplayAccess\": true,\n      \"spotioNumberProvisionAccess\": false,\n      \"multipleSalesforceIntegrationsAccess\": false,\n      \"basicAiAssistantAccess\": false,\n      \"advancedAiAssistantAccess\": true,\n      \"emailIntegrationAccess\": false,\n      \"emailTemplatesAccess\": false,\n      \"bulkEmailsAccess\": true,\n      \"textTemplatesAccess\": false,\n      \"bulkTextsAccess\": false,\n      \"aiSummariesAccess\": true,\n      \"workatoAccess\": true,\n      \"emailAiGeneration\": false,\n      \"textAiGeneration\": false,\n      \"callRecording\": true,\n      \"aiVoiceMode\": false,\n      \"mcpAccess\": true,\n      \"aiPerformingActionsAccess\": true,\n      \"winsHubAccess\": false\n    },\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      },\n      \"objectLevelVisibility\": true\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfef8ad4-da1e-4b88-a7f3-f8ca2620d6c0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userSettings\": {\n    \"name\": \"<string,null>\",\n    \"alwaysSendEmailWithMobileCode\": \"<boolean>\",\n    \"enforceStrongPassword\": \"<boolean>\",\n    \"webSessionDuration\": \"<integer>\",\n    \"mobileSessionDuration\": \"<integer>\",\n    \"dailyReportEnabled\": \"<boolean>\",\n    \"weeklyReportEnabled\": \"<boolean>\",\n    \"countryCode\": \"<string,null>\",\n    \"extendedPhoneValidation\": \"<boolean>\",\n    \"autoVisitsEnabled\": \"<boolean>\",\n    \"showNumberOfVisitsOnMap\": \"<boolean>\",\n    \"contractsCcMailAddress\": \"<string,null>\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": \"<boolean>\",\n    \"sendEmbeddedContractsCcToCustomer\": \"<boolean>\",\n    \"logoUrl\": \"<string,null>\",\n    \"color\": \"<string,null>\",\n    \"timezone\": \"<string,null>\",\n    \"visitsFrequencyEnabled\": \"<boolean>\",\n    \"visitsFrequencyDays\": \"<integer>\",\n    \"currency\": \"<string,null>\",\n    \"trackManualVisitsDuration\": \"<boolean>\",\n    \"prioritizeLoggingVisits\": \"<boolean>\",\n    \"allowCollaborators\": \"<boolean>\",\n    \"recordHandlerId\": \"<string,null>\",\n    \"allowMultipleRecordsAtTheSameAddress\": \"<boolean,null>\",\n    \"minDistanceBetweenRecords\": \"<number,null-double>\",\n    \"isCustomWorkingDaysEnabled\": \"<boolean>\",\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      }\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    },\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": \"<boolean>\",\n      \"eContractsAccess\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a766046b-e368-4f3f-b41c-649f9f97a342",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userSettings\": {\n    \"name\": \"<string,null>\",\n    \"alwaysSendEmailWithMobileCode\": \"<boolean>\",\n    \"enforceStrongPassword\": \"<boolean>\",\n    \"webSessionDuration\": \"<integer>\",\n    \"mobileSessionDuration\": \"<integer>\",\n    \"dailyReportEnabled\": \"<boolean>\",\n    \"weeklyReportEnabled\": \"<boolean>\",\n    \"countryCode\": \"<string,null>\",\n    \"extendedPhoneValidation\": \"<boolean>\",\n    \"autoVisitsEnabled\": \"<boolean>\",\n    \"showNumberOfVisitsOnMap\": \"<boolean>\",\n    \"contractsCcMailAddress\": \"<string,null>\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": \"<boolean>\",\n    \"sendEmbeddedContractsCcToCustomer\": \"<boolean>\",\n    \"logoUrl\": \"<string,null>\",\n    \"color\": \"<string,null>\",\n    \"timezone\": \"<string,null>\",\n    \"visitsFrequencyEnabled\": \"<boolean>\",\n    \"visitsFrequencyDays\": \"<integer>\",\n    \"currency\": \"<string,null>\",\n    \"trackManualVisitsDuration\": \"<boolean>\",\n    \"prioritizeLoggingVisits\": \"<boolean>\",\n    \"allowCollaborators\": \"<boolean>\",\n    \"recordHandlerId\": \"<string,null>\",\n    \"allowMultipleRecordsAtTheSameAddress\": \"<boolean,null>\",\n    \"minDistanceBetweenRecords\": \"<number,null-double>\",\n    \"isCustomWorkingDaysEnabled\": \"<boolean>\",\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      }\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    },\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": \"<boolean>\",\n      \"eContractsAccess\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d2b8154-e025-4fb6-a6bd-541d3758c90c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"userSettings\": {\n    \"name\": \"<string,null>\",\n    \"alwaysSendEmailWithMobileCode\": \"<boolean>\",\n    \"enforceStrongPassword\": \"<boolean>\",\n    \"webSessionDuration\": \"<integer>\",\n    \"mobileSessionDuration\": \"<integer>\",\n    \"dailyReportEnabled\": \"<boolean>\",\n    \"weeklyReportEnabled\": \"<boolean>\",\n    \"countryCode\": \"<string,null>\",\n    \"extendedPhoneValidation\": \"<boolean>\",\n    \"autoVisitsEnabled\": \"<boolean>\",\n    \"showNumberOfVisitsOnMap\": \"<boolean>\",\n    \"contractsCcMailAddress\": \"<string,null>\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": \"<boolean>\",\n    \"sendEmbeddedContractsCcToCustomer\": \"<boolean>\",\n    \"logoUrl\": \"<string,null>\",\n    \"color\": \"<string,null>\",\n    \"timezone\": \"<string,null>\",\n    \"visitsFrequencyEnabled\": \"<boolean>\",\n    \"visitsFrequencyDays\": \"<integer>\",\n    \"currency\": \"<string,null>\",\n    \"trackManualVisitsDuration\": \"<boolean>\",\n    \"prioritizeLoggingVisits\": \"<boolean>\",\n    \"allowCollaborators\": \"<boolean>\",\n    \"recordHandlerId\": \"<string,null>\",\n    \"allowMultipleRecordsAtTheSameAddress\": \"<boolean,null>\",\n    \"minDistanceBetweenRecords\": \"<number,null-double>\",\n    \"isCustomWorkingDaysEnabled\": \"<boolean>\",\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      }\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    },\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": \"<boolean>\",\n      \"eContractsAccess\": \"<boolean>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d337fa5d-f4ea-47a7-a579-00f18dcd18a9",
+          "name": "JSON Patch workflow company properties",
+          "request": {
+            "name": "JSON Patch workflow company properties",
+            "description": {
+              "content": "Updates the workflow properties containing user settings and permissions at the user level.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow",
+                "properties"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  },\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3617f5c8-4c14-4d10-950a-481c0fb358fe",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  },\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalSettings\": {\n    \"exampleCsvVersion\": null,\n    \"minimumNumberOfDataObjectsInCluster\": null,\n    \"geocoding\": {\n      \"preferedGeocoder\": \"string\",\n      \"skipCachedLocations\": false,\n      \"useOnlyGoogleProvider\": true\n    },\n    \"applicationMode\": \"Flexible\",\n    \"isNew\": false\n  },\n  \"userSettings\": {\n    \"name\": \"string\",\n    \"alwaysSendEmailWithMobileCode\": true,\n    \"enforceStrongPassword\": true,\n    \"webSessionDuration\": 9041,\n    \"mobileSessionDuration\": 3048,\n    \"dailyReportEnabled\": true,\n    \"weeklyReportEnabled\": false,\n    \"countryCode\": null,\n    \"extendedPhoneValidation\": true,\n    \"autoVisitsEnabled\": false,\n    \"doorToDoorFlowEnabled\": false,\n    \"showNumberOfVisitsOnMap\": false,\n    \"permissionsMode\": \"Teams\",\n    \"contractsCcMailAddress\": \"string\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": true,\n    \"sendEmbeddedContractsCcToCustomer\": true,\n    \"logoUrl\": \"string\",\n    \"color\": null,\n    \"timezone\": null,\n    \"visitsFrequencyEnabled\": true,\n    \"visitsFrequencyDays\": 5808,\n    \"currency\": null,\n    \"defaultDataObjectId\": \"string\",\n    \"trackManualVisitsDuration\": false,\n    \"verifiedDistance\": 7029.948291694183,\n    \"prioritizeLoggingVisits\": false,\n    \"allowCollaborators\": true,\n    \"recordHandlerId\": \"string\",\n    \"allowMultipleRecordsAtTheSameAddress\": false,\n    \"minDistanceBetweenRecords\": 3647.6257501741184,\n    \"isCustomWorkingDaysEnabled\": true,\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": true,\n      \"leadMachineAccess\": true,\n      \"leadMachineB2BAccess\": true,\n      \"eContractsAccess\": false,\n      \"c3Access\": true,\n      \"routingAccess\": true,\n      \"autoplayAccess\": true,\n      \"spotioNumberProvisionAccess\": false,\n      \"multipleSalesforceIntegrationsAccess\": false,\n      \"basicAiAssistantAccess\": false,\n      \"advancedAiAssistantAccess\": true,\n      \"emailIntegrationAccess\": false,\n      \"emailTemplatesAccess\": false,\n      \"bulkEmailsAccess\": true,\n      \"textTemplatesAccess\": false,\n      \"bulkTextsAccess\": false,\n      \"aiSummariesAccess\": true,\n      \"workatoAccess\": true,\n      \"emailAiGeneration\": false,\n      \"textAiGeneration\": false,\n      \"callRecording\": true,\n      \"aiVoiceMode\": false,\n      \"mcpAccess\": true,\n      \"aiPerformingActionsAccess\": true,\n      \"winsHubAccess\": false\n    },\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      },\n      \"objectLevelVisibility\": true\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fccb0fe-5336-47d4-bb0b-06cf99665cc9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  },\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6fffb26-a4fa-4d14-b867-d0f8dc7d9648",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  },\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57853dec-e092-438c-a677-5139f3fbd581",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "properties"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  },\n  {\n    \"value\": \"\",\n    \"path\": \"<string,null>\",\n    \"op\": \"<string,null>\",\n    \"from\": \"<string,null>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3b5db73-55c9-40d2-8cd3-fb476556d203",
+          "name": "Update company permissions settings for sales",
+          "request": {
+            "name": "Update company permissions settings for sales",
+            "description": {
+              "content": "Updates default and/or object related permissions for sales.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow",
+                "permissions",
+                "sales"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canUpdatePersonalInfo\": \"<boolean>\",\n  \"deleteOwnDataObjects\": \"<boolean,null>\",\n  \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showGhostDataObjects\": \"<boolean,null>\",\n  \"seeNotOwnedActivities\": \"<boolean>\",\n  \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n  \"editNotOwnedActivities\": \"<boolean>\",\n  \"showGhostActivities\": \"<boolean>\",\n  \"deleteOwnActivities\": \"<boolean>\",\n  \"canCreateDataObjects\": \"<boolean,null>\",\n  \"bulkMcc\": \"<boolean,null>\",\n  \"bulkAddToRoute\": \"<boolean,null>\",\n  \"bulkSchedule\": \"<boolean,null>\",\n  \"bulkReassign\": \"<boolean,null>\",\n  \"bulkStageChange\": \"<boolean,null>\",\n  \"bulkDelete\": \"<boolean,null>\",\n  \"resetActivityHistoryOnReassignment\": \"<boolean,null>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\",\n  \"objectRelatedPermissions\": {\n    \"permissions\": \"<array,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "104f8735-4420-433f-bba5-679fff89a88a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "sales"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canUpdatePersonalInfo\": \"<boolean>\",\n  \"deleteOwnDataObjects\": \"<boolean,null>\",\n  \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showGhostDataObjects\": \"<boolean,null>\",\n  \"seeNotOwnedActivities\": \"<boolean>\",\n  \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n  \"editNotOwnedActivities\": \"<boolean>\",\n  \"showGhostActivities\": \"<boolean>\",\n  \"deleteOwnActivities\": \"<boolean>\",\n  \"canCreateDataObjects\": \"<boolean,null>\",\n  \"bulkMcc\": \"<boolean,null>\",\n  \"bulkAddToRoute\": \"<boolean,null>\",\n  \"bulkSchedule\": \"<boolean,null>\",\n  \"bulkReassign\": \"<boolean,null>\",\n  \"bulkStageChange\": \"<boolean,null>\",\n  \"bulkDelete\": \"<boolean,null>\",\n  \"resetActivityHistoryOnReassignment\": \"<boolean,null>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\",\n  \"objectRelatedPermissions\": {\n    \"permissions\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalSettings\": {\n    \"exampleCsvVersion\": null,\n    \"minimumNumberOfDataObjectsInCluster\": null,\n    \"geocoding\": {\n      \"preferedGeocoder\": \"string\",\n      \"skipCachedLocations\": false,\n      \"useOnlyGoogleProvider\": true\n    },\n    \"applicationMode\": \"Flexible\",\n    \"isNew\": false\n  },\n  \"userSettings\": {\n    \"name\": \"string\",\n    \"alwaysSendEmailWithMobileCode\": true,\n    \"enforceStrongPassword\": true,\n    \"webSessionDuration\": 9041,\n    \"mobileSessionDuration\": 3048,\n    \"dailyReportEnabled\": true,\n    \"weeklyReportEnabled\": false,\n    \"countryCode\": null,\n    \"extendedPhoneValidation\": true,\n    \"autoVisitsEnabled\": false,\n    \"doorToDoorFlowEnabled\": false,\n    \"showNumberOfVisitsOnMap\": false,\n    \"permissionsMode\": \"Teams\",\n    \"contractsCcMailAddress\": \"string\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": true,\n    \"sendEmbeddedContractsCcToCustomer\": true,\n    \"logoUrl\": \"string\",\n    \"color\": null,\n    \"timezone\": null,\n    \"visitsFrequencyEnabled\": true,\n    \"visitsFrequencyDays\": 5808,\n    \"currency\": null,\n    \"defaultDataObjectId\": \"string\",\n    \"trackManualVisitsDuration\": false,\n    \"verifiedDistance\": 7029.948291694183,\n    \"prioritizeLoggingVisits\": false,\n    \"allowCollaborators\": true,\n    \"recordHandlerId\": \"string\",\n    \"allowMultipleRecordsAtTheSameAddress\": false,\n    \"minDistanceBetweenRecords\": 3647.6257501741184,\n    \"isCustomWorkingDaysEnabled\": true,\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": true,\n      \"leadMachineAccess\": true,\n      \"leadMachineB2BAccess\": true,\n      \"eContractsAccess\": false,\n      \"c3Access\": true,\n      \"routingAccess\": true,\n      \"autoplayAccess\": true,\n      \"spotioNumberProvisionAccess\": false,\n      \"multipleSalesforceIntegrationsAccess\": false,\n      \"basicAiAssistantAccess\": false,\n      \"advancedAiAssistantAccess\": true,\n      \"emailIntegrationAccess\": false,\n      \"emailTemplatesAccess\": false,\n      \"bulkEmailsAccess\": true,\n      \"textTemplatesAccess\": false,\n      \"bulkTextsAccess\": false,\n      \"aiSummariesAccess\": true,\n      \"workatoAccess\": true,\n      \"emailAiGeneration\": false,\n      \"textAiGeneration\": false,\n      \"callRecording\": true,\n      \"aiVoiceMode\": false,\n      \"mcpAccess\": true,\n      \"aiPerformingActionsAccess\": true,\n      \"winsHubAccess\": false\n    },\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      },\n      \"objectLevelVisibility\": true\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3abe8b1d-2bb8-49b6-945e-296eeef047bb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "sales"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canUpdatePersonalInfo\": \"<boolean>\",\n  \"deleteOwnDataObjects\": \"<boolean,null>\",\n  \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showGhostDataObjects\": \"<boolean,null>\",\n  \"seeNotOwnedActivities\": \"<boolean>\",\n  \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n  \"editNotOwnedActivities\": \"<boolean>\",\n  \"showGhostActivities\": \"<boolean>\",\n  \"deleteOwnActivities\": \"<boolean>\",\n  \"canCreateDataObjects\": \"<boolean,null>\",\n  \"bulkMcc\": \"<boolean,null>\",\n  \"bulkAddToRoute\": \"<boolean,null>\",\n  \"bulkSchedule\": \"<boolean,null>\",\n  \"bulkReassign\": \"<boolean,null>\",\n  \"bulkStageChange\": \"<boolean,null>\",\n  \"bulkDelete\": \"<boolean,null>\",\n  \"resetActivityHistoryOnReassignment\": \"<boolean,null>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\",\n  \"objectRelatedPermissions\": {\n    \"permissions\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c2cf273-7870-4d01-8b66-4fedd8645abf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "sales"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canUpdatePersonalInfo\": \"<boolean>\",\n  \"deleteOwnDataObjects\": \"<boolean,null>\",\n  \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showGhostDataObjects\": \"<boolean,null>\",\n  \"seeNotOwnedActivities\": \"<boolean>\",\n  \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n  \"editNotOwnedActivities\": \"<boolean>\",\n  \"showGhostActivities\": \"<boolean>\",\n  \"deleteOwnActivities\": \"<boolean>\",\n  \"canCreateDataObjects\": \"<boolean,null>\",\n  \"bulkMcc\": \"<boolean,null>\",\n  \"bulkAddToRoute\": \"<boolean,null>\",\n  \"bulkSchedule\": \"<boolean,null>\",\n  \"bulkReassign\": \"<boolean,null>\",\n  \"bulkStageChange\": \"<boolean,null>\",\n  \"bulkDelete\": \"<boolean,null>\",\n  \"resetActivityHistoryOnReassignment\": \"<boolean,null>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\",\n  \"objectRelatedPermissions\": {\n    \"permissions\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e103d10e-a6a7-4f38-bfca-eda4dd1100dd",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "sales"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canUpdatePersonalInfo\": \"<boolean>\",\n  \"deleteOwnDataObjects\": \"<boolean,null>\",\n  \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean,null>\",\n  \"showGhostDataObjects\": \"<boolean,null>\",\n  \"seeNotOwnedActivities\": \"<boolean>\",\n  \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n  \"editNotOwnedActivities\": \"<boolean>\",\n  \"showGhostActivities\": \"<boolean>\",\n  \"deleteOwnActivities\": \"<boolean>\",\n  \"canCreateDataObjects\": \"<boolean,null>\",\n  \"bulkMcc\": \"<boolean,null>\",\n  \"bulkAddToRoute\": \"<boolean,null>\",\n  \"bulkSchedule\": \"<boolean,null>\",\n  \"bulkReassign\": \"<boolean,null>\",\n  \"bulkStageChange\": \"<boolean,null>\",\n  \"bulkDelete\": \"<boolean,null>\",\n  \"resetActivityHistoryOnReassignment\": \"<boolean,null>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\",\n  \"objectRelatedPermissions\": {\n    \"permissions\": \"<array,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "21ed55c3-c26e-407d-b811-a6cb4b21e188",
+          "name": "Update company permissions settings for managers",
+          "request": {
+            "name": "Update company permissions settings for managers",
+            "description": {
+              "content": "Update company permissions settings for managers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow",
+                "permissions",
+                "manager"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"seeAllTerritories\": \"<boolean>\",\n  \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n  \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n  \"seeAllTeams\": \"<boolean>\",\n  \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n  \"canManageTeamsWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n  \"canAddUsers\": \"<boolean>\",\n  \"canExport\": \"<boolean>\",\n  \"showAllDataObjects\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n  \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n  \"canMergeRecords\": \"<boolean>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2836b78a-f785-42a1-81af-aafedd40bc1c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "manager"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"seeAllTerritories\": \"<boolean>\",\n  \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n  \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n  \"seeAllTeams\": \"<boolean>\",\n  \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n  \"canManageTeamsWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n  \"canAddUsers\": \"<boolean>\",\n  \"canExport\": \"<boolean>\",\n  \"showAllDataObjects\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n  \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n  \"canMergeRecords\": \"<boolean>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalSettings\": {\n    \"exampleCsvVersion\": null,\n    \"minimumNumberOfDataObjectsInCluster\": null,\n    \"geocoding\": {\n      \"preferedGeocoder\": \"string\",\n      \"skipCachedLocations\": false,\n      \"useOnlyGoogleProvider\": true\n    },\n    \"applicationMode\": \"Flexible\",\n    \"isNew\": false\n  },\n  \"userSettings\": {\n    \"name\": \"string\",\n    \"alwaysSendEmailWithMobileCode\": true,\n    \"enforceStrongPassword\": true,\n    \"webSessionDuration\": 9041,\n    \"mobileSessionDuration\": 3048,\n    \"dailyReportEnabled\": true,\n    \"weeklyReportEnabled\": false,\n    \"countryCode\": null,\n    \"extendedPhoneValidation\": true,\n    \"autoVisitsEnabled\": false,\n    \"doorToDoorFlowEnabled\": false,\n    \"showNumberOfVisitsOnMap\": false,\n    \"permissionsMode\": \"Teams\",\n    \"contractsCcMailAddress\": \"string\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": true,\n    \"sendEmbeddedContractsCcToCustomer\": true,\n    \"logoUrl\": \"string\",\n    \"color\": null,\n    \"timezone\": null,\n    \"visitsFrequencyEnabled\": true,\n    \"visitsFrequencyDays\": 5808,\n    \"currency\": null,\n    \"defaultDataObjectId\": \"string\",\n    \"trackManualVisitsDuration\": false,\n    \"verifiedDistance\": 7029.948291694183,\n    \"prioritizeLoggingVisits\": false,\n    \"allowCollaborators\": true,\n    \"recordHandlerId\": \"string\",\n    \"allowMultipleRecordsAtTheSameAddress\": false,\n    \"minDistanceBetweenRecords\": 3647.6257501741184,\n    \"isCustomWorkingDaysEnabled\": true,\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": true,\n      \"leadMachineAccess\": true,\n      \"leadMachineB2BAccess\": true,\n      \"eContractsAccess\": false,\n      \"c3Access\": true,\n      \"routingAccess\": true,\n      \"autoplayAccess\": true,\n      \"spotioNumberProvisionAccess\": false,\n      \"multipleSalesforceIntegrationsAccess\": false,\n      \"basicAiAssistantAccess\": false,\n      \"advancedAiAssistantAccess\": true,\n      \"emailIntegrationAccess\": false,\n      \"emailTemplatesAccess\": false,\n      \"bulkEmailsAccess\": true,\n      \"textTemplatesAccess\": false,\n      \"bulkTextsAccess\": false,\n      \"aiSummariesAccess\": true,\n      \"workatoAccess\": true,\n      \"emailAiGeneration\": false,\n      \"textAiGeneration\": false,\n      \"callRecording\": true,\n      \"aiVoiceMode\": false,\n      \"mcpAccess\": true,\n      \"aiPerformingActionsAccess\": true,\n      \"winsHubAccess\": false\n    },\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      },\n      \"objectLevelVisibility\": true\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc418014-6de1-48a8-8898-b723a904a5a8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "manager"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"seeAllTerritories\": \"<boolean>\",\n  \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n  \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n  \"seeAllTeams\": \"<boolean>\",\n  \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n  \"canManageTeamsWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n  \"canAddUsers\": \"<boolean>\",\n  \"canExport\": \"<boolean>\",\n  \"showAllDataObjects\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n  \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n  \"canMergeRecords\": \"<boolean>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "880e5eb9-6284-45dc-8f9e-d411fd65a3d0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "manager"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"seeAllTerritories\": \"<boolean>\",\n  \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n  \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n  \"seeAllTeams\": \"<boolean>\",\n  \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n  \"canManageTeamsWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n  \"canAddUsers\": \"<boolean>\",\n  \"canExport\": \"<boolean>\",\n  \"showAllDataObjects\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n  \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n  \"canMergeRecords\": \"<boolean>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1aa9ab0-3903-44b5-b0fa-cf5b03c23628",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "manager"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"seeAllTerritories\": \"<boolean>\",\n  \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n  \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n  \"seeAllTeams\": \"<boolean>\",\n  \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n  \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n  \"canManageTeamsWithinAssigned\": \"<boolean>\",\n  \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n  \"canAddUsers\": \"<boolean>\",\n  \"canExport\": \"<boolean>\",\n  \"showAllDataObjects\": \"<boolean>\",\n  \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n  \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n  \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n  \"canMergeRecords\": \"<boolean>\",\n  \"aiAccessAllowed\": \"<boolean,null>\",\n  \"aiNextBestActionAccess\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd845f20-a772-4703-a7df-3e91796ef5aa",
+          "name": "Update company security settings",
+          "request": {
+            "name": "Update company security settings",
+            "description": {
+              "content": "Updates company security settings for user session management",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow",
+                "permissions",
+                "security"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"enforceStrongPassword\": \"<boolean>\",\n  \"webSessionDuration\": \"<integer>\",\n  \"mobileSessionDuration\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9cfb74cf-524c-435f-a107-cee5ab2acb9d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "security"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enforceStrongPassword\": \"<boolean>\",\n  \"webSessionDuration\": \"<integer>\",\n  \"mobileSessionDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"internalSettings\": {\n    \"exampleCsvVersion\": null,\n    \"minimumNumberOfDataObjectsInCluster\": null,\n    \"geocoding\": {\n      \"preferedGeocoder\": \"string\",\n      \"skipCachedLocations\": false,\n      \"useOnlyGoogleProvider\": true\n    },\n    \"applicationMode\": \"Flexible\",\n    \"isNew\": false\n  },\n  \"userSettings\": {\n    \"name\": \"string\",\n    \"alwaysSendEmailWithMobileCode\": true,\n    \"enforceStrongPassword\": true,\n    \"webSessionDuration\": 9041,\n    \"mobileSessionDuration\": 3048,\n    \"dailyReportEnabled\": true,\n    \"weeklyReportEnabled\": false,\n    \"countryCode\": null,\n    \"extendedPhoneValidation\": true,\n    \"autoVisitsEnabled\": false,\n    \"doorToDoorFlowEnabled\": false,\n    \"showNumberOfVisitsOnMap\": false,\n    \"permissionsMode\": \"Teams\",\n    \"contractsCcMailAddress\": \"string\",\n    \"sendEmbeddedContractsCcToDataObjectOwner\": true,\n    \"sendEmbeddedContractsCcToCustomer\": true,\n    \"logoUrl\": \"string\",\n    \"color\": null,\n    \"timezone\": null,\n    \"visitsFrequencyEnabled\": true,\n    \"visitsFrequencyDays\": 5808,\n    \"currency\": null,\n    \"defaultDataObjectId\": \"string\",\n    \"trackManualVisitsDuration\": false,\n    \"verifiedDistance\": 7029.948291694183,\n    \"prioritizeLoggingVisits\": false,\n    \"allowCollaborators\": true,\n    \"recordHandlerId\": \"string\",\n    \"allowMultipleRecordsAtTheSameAddress\": false,\n    \"minDistanceBetweenRecords\": 3647.6257501741184,\n    \"isCustomWorkingDaysEnabled\": true,\n    \"startOfCustomWorkingDay\": \"<string>\",\n    \"endOfCustomWorkingDay\": \"<string>\"\n  },\n  \"permissions\": {\n    \"companyPermissions\": {\n      \"canAccessInfoTap\": true,\n      \"leadMachineAccess\": true,\n      \"leadMachineB2BAccess\": true,\n      \"eContractsAccess\": false,\n      \"c3Access\": true,\n      \"routingAccess\": true,\n      \"autoplayAccess\": true,\n      \"spotioNumberProvisionAccess\": false,\n      \"multipleSalesforceIntegrationsAccess\": false,\n      \"basicAiAssistantAccess\": false,\n      \"advancedAiAssistantAccess\": true,\n      \"emailIntegrationAccess\": false,\n      \"emailTemplatesAccess\": false,\n      \"bulkEmailsAccess\": true,\n      \"textTemplatesAccess\": false,\n      \"bulkTextsAccess\": false,\n      \"aiSummariesAccess\": true,\n      \"workatoAccess\": true,\n      \"emailAiGeneration\": false,\n      \"textAiGeneration\": false,\n      \"callRecording\": true,\n      \"aiVoiceMode\": false,\n      \"mcpAccess\": true,\n      \"aiPerformingActionsAccess\": true,\n      \"winsHubAccess\": false\n    },\n    \"salesPermissions\": {\n      \"deleteOwnDataObjects\": \"<boolean>\",\n      \"showAllTerritories\": \"<boolean>\",\n      \"canUpdatePersonalInfo\": \"<boolean>\",\n      \"showNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"showGhostDataObjects\": \"<boolean>\",\n      \"editNotOwnedDataObjectsInAssignedVisibilityUnits\": \"<boolean>\",\n      \"allowToCreateCommunicationTemplates\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canDeleteContacts\": \"<boolean>\",\n      \"seeNotOwnedActivities\": \"<boolean>\",\n      \"seeNotOwnedCompletedActivities\": \"<boolean>\",\n      \"editNotOwnedActivities\": \"<boolean>\",\n      \"showGhostActivities\": \"<boolean>\",\n      \"deleteOwnActivities\": \"<boolean>\",\n      \"canCreateDataObjects\": \"<boolean>\",\n      \"bulkMcc\": \"<boolean>\",\n      \"bulkAddToRoute\": \"<boolean>\",\n      \"bulkSchedule\": \"<boolean>\",\n      \"bulkReassign\": \"<boolean>\",\n      \"bulkStageChange\": \"<boolean>\",\n      \"bulkDelete\": \"<boolean>\",\n      \"resetActivityHistoryOnReassignment\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\",\n      \"objectRelatedPermissions\": {\n        \"permissions\": \"<array,null>\"\n      },\n      \"objectLevelVisibility\": true\n    },\n    \"managerPermissions\": {\n      \"seeAllTerritories\": \"<boolean>\",\n      \"canAddTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTerritoriesOutsideAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryOutsideAssigned\": \"<boolean>\",\n      \"canManageTerritoryWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTerritoryWithinAssigned\": \"<boolean>\",\n      \"seeAllTeams\": \"<boolean>\",\n      \"canAddTeamsOutsideAssigned\": \"<boolean>\",\n      \"canDeleteTeamsOutsideAssigned\": \"<boolean>\",\n      \"canManageTeamsWithinAssigned\": \"<boolean>\",\n      \"canAssignUsersToTeamsWithinAssigned\": \"<boolean>\",\n      \"canAddUsers\": \"<boolean>\",\n      \"canExport\": \"<boolean>\",\n      \"showAllDataObjects\": \"<boolean>\",\n      \"canCreateAndUpdateAutoplays\": \"<boolean>\",\n      \"canCreateAndUpdateRepsAutoplays\": \"<boolean>\",\n      \"canAssignUsersToTeamsOutsideAssigned\": \"<boolean>\",\n      \"canMergeRecords\": \"<boolean>\",\n      \"aiAccessAllowed\": \"<boolean>\",\n      \"aiNextBestActionAccess\": \"<boolean>\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f64cda7b-4b79-4c78-9489-4476957a6ea4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "security"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enforceStrongPassword\": \"<boolean>\",\n  \"webSessionDuration\": \"<integer>\",\n  \"mobileSessionDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26615b14-3b44-4699-a2d8-94557664081f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "security"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enforceStrongPassword\": \"<boolean>\",\n  \"webSessionDuration\": \"<integer>\",\n  \"mobileSessionDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c38139e-24b8-4fb1-b081-d52a844f7a7d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "permissions",
+                    "security"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"enforceStrongPassword\": \"<boolean>\",\n  \"webSessionDuration\": \"<integer>\",\n  \"mobileSessionDuration\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b3b2fb3-a612-492e-90fb-b18e4e402553",
+          "name": "Get company categorization",
+          "request": {
+            "name": "Get company categorization",
+            "description": {
+              "content": "Fetches the categorization containing won and lost results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow",
+                "categorization"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "af65b2e0-9706-4cee-833e-0769666849a2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "categorization"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"wonResult\": {\n    \"type\": \"StageChange\",\n    \"dataObjectTypeId\": null,\n    \"stageId\": \"string\",\n    \"activityTemplateId\": null,\n    \"activityResultId\": \"string\"\n  },\n  \"lostResult\": {\n    \"type\": \"ActivityLogged\",\n    \"dataObjectTypeId\": null,\n    \"stageId\": \"string\",\n    \"activityTemplateId\": null,\n    \"activityResultId\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f1a76c0-10ba-4589-a00d-3789b7f47abc",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "categorization"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a77c4efa-0806-45ea-bc92-4ce21c0fba8f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "categorization"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80c078e6-5a07-4c33-bdff-b7dc6f63c7d4",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "categorization"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbdb6991-318f-41d6-bd2f-d87816d6ad1c",
+          "name": "Update company categorization",
+          "request": {
+            "name": "Update company categorization",
+            "description": {
+              "content": "Updates the categorization won and lost results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "workflow",
+                "categorization"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"wonResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  },\n  \"lostResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0490bede-be1b-480f-ad25-bfac5ecf31de",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "categorization"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"wonResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  },\n  \"lostResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"wonResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  },\n  \"lostResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c20eff84-6c8e-4f0e-b81b-a0ba4acaf2ba",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "categorization"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"wonResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  },\n  \"lostResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17f51d3e-7503-4a19-8d18-79b76243a7a3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "categorization"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"wonResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  },\n  \"lostResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf9559ce-a9dd-4279-8454-a6d6908ed625",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "workflow",
+                    "categorization"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"wonResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  },\n  \"lostResult\": {\n    \"type\": \"<string>\",\n    \"dataObjectTypeId\": \"<string,null>\",\n    \"stageId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"activityResultId\": \"<string,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "73ebe49e-51c7-4b8b-b3f8-3786054b13a8",
+    "name": "Spotio 2.0 Workflow Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Workflow Settings API provides operations including fetching full workflow settings for company as well as retrieving and updating workflow company properties.\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,877 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Reports API
+  description: The controller is responsible exporting data by selected report type.
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Reports
+  description: The controller is responsible exporting data by selected report type.
+paths:
+  /api/Reports/export/{type}:
+    post:
+      tags:
+      - Reports
+      summary: Export specific chart to csv file
+      description: The file will send to user email. Each user can have only one active export
+      parameters:
+      - name: type
+        in: path
+        description: Select chart type.
+        required: true
+        schema:
+          type: string
+          enum:
+          - ActivitiesByDate
+          - ActivitiesByTypes
+          - ActivitiesByTypeForStages
+          - ActivitiesByUsers
+          - ActivitiesByUsersOverTime
+          - ActivitiesByTerritories
+          - ActivitiesByTerritoriesOverTime
+          - ActivityBreakdown
+          - ActivitySummary
+          - BestKnockHours
+          - DataObjectByDate
+          - LossReasonsTotal
+          - LossReasonsOverTime
+          - LossReasonsByStages
+          - LossReasonsByUsers
+          - LossReasonsByTerritories
+          - VisitsByUsers
+          - VisitsByUsersOverTime
+          - VisitsByTerritories
+          - VisitsByTerritoriesOverTime
+          - VisitsByStages
+          - VisitsByResults
+          - VisitsNewVsRevisit
+          - VisitsVerificationTotal
+          - VisitsVerificationByUsers
+          - VisitsVerificationByDistance
+          - LocationVerificationTotal
+          - LocationVerificationByUsers
+          - LocationVerificationByDistance
+          - ConversionFullPipeline
+          - ConversionFullPipelineLite
+          - ConversionFirstStageToWon
+          - ConversionVisitsToReachStageTotal
+          - ConversionVisitsToReachStageAverage
+          - ConversionStageCount
+          - LeaderboardTerritoryByWinRate
+          - LeaderboardTerritoryByDataObjectsWon
+          - LeaderboardTerritoryByValueWon
+          - LeaderboardTerritoryByActivities
+          - LeaderboardUserByWinRate
+          - LeaderboardUserByDataObjectsWon
+          - LeaderboardUserByValueWon
+          - LeaderboardUserByActivities
+          - DataObjectsWonByUsers
+          - DataObjectsWonByUsersOverTime
+          - DataObjectsWonByTerritories
+          - DataObjectsWonByTerritoriesOverTime
+          - DataObjectsCreatedByUsers
+          - DataObjectsCreatedByTerritoriesOverTime
+          - DataObjectsCreatedByUsersOverTime
+          - DataObjectsCreatedByTerritories
+          - ConversionResultCount
+          - CommunicationConversionByVoice
+          - CommunicationConversionByEmail
+          - CommunicationConversionByText
+          - CommunicationLog
+          - CommunicationMetricsOverview
+          - CommunicationMetricsOverTime
+          - CommunicationMetricsByTextTemplates
+          - CommunicationMetricsByMailTemplates
+          - VisitsDuration
+          - VisitsDurationByDataObject
+          - TimeAllocation
+          - UserDetails
+          - TerritoryDetails
+          - TeamDetails
+          - TodayStats
+          - ScheduleStats
+          - ActivitiesOverviewForAutoplays
+          - ActivitiesTimelineForAutoplays
+          - TopAutoplaysByOpenRate
+          - ActivitiesByResultsForAutoplays
+          - AutoplayPerformance
+          - ActivitiesByDoneForAutoplays
+          - ActivitiesTimelineForSpecificAutoplay
+          - ActivityResultsByAutoplaySteps
+          - EmailsByResultsForAutoplays
+          - TextsByResultsForAutoplays
+          - CallsByResultsForAutoplays
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Exports.Client.Model.Export'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Exports.Client.Model.Export'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Exports.Client.Model.Export'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Reports/{type}:
+    post:
+      tags:
+      - Reports
+      summary: Get specific chart data
+      description: Response data is depend on chart type
+      parameters:
+      - name: type
+        in: path
+        description: Select chart type.
+        required: true
+        schema:
+          type: string
+          enum:
+          - ActivitiesByDate
+          - ActivitiesByTypes
+          - ActivitiesByTypeForStages
+          - ActivitiesByUsers
+          - ActivitiesByUsersOverTime
+          - ActivitiesByTerritories
+          - ActivitiesByTerritoriesOverTime
+          - ActivityBreakdown
+          - ActivitySummary
+          - BestKnockHours
+          - DataObjectByDate
+          - LossReasonsTotal
+          - LossReasonsOverTime
+          - LossReasonsByStages
+          - LossReasonsByUsers
+          - LossReasonsByTerritories
+          - VisitsByUsers
+          - VisitsByUsersOverTime
+          - VisitsByTerritories
+          - VisitsByTerritoriesOverTime
+          - VisitsByStages
+          - VisitsByResults
+          - VisitsNewVsRevisit
+          - VisitsVerificationTotal
+          - VisitsVerificationByUsers
+          - VisitsVerificationByDistance
+          - LocationVerificationTotal
+          - LocationVerificationByUsers
+          - LocationVerificationByDistance
+          - ConversionFullPipeline
+          - ConversionFullPipelineLite
+          - ConversionFirstStageToWon
+          - ConversionVisitsToReachStageTotal
+          - ConversionVisitsToReachStageAverage
+          - ConversionStageCount
+          - LeaderboardTerritoryByWinRate
+          - LeaderboardTerritoryByDataObjectsWon
+          - LeaderboardTerritoryByValueWon
+          - LeaderboardTerritoryByActivities
+          - LeaderboardUserByWinRate
+          - LeaderboardUserByDataObjectsWon
+          - LeaderboardUserByValueWon
+          - LeaderboardUserByActivities
+          - DataObjectsWonByUsers
+          - DataObjectsWonByUsersOverTime
+          - DataObjectsWonByTerritories
+          - DataObjectsWonByTerritoriesOverTime
+          - DataObjectsCreatedByUsers
+          - DataObjectsCreatedByTerritoriesOverTime
+          - DataObjectsCreatedByUsersOverTime
+          - DataObjectsCreatedByTerritories
+          - ConversionResultCount
+          - CommunicationConversionByVoice
+          - CommunicationConversionByEmail
+          - CommunicationConversionByText
+          - CommunicationLog
+          - CommunicationMetricsOverview
+          - CommunicationMetricsOverTime
+          - CommunicationMetricsByTextTemplates
+          - CommunicationMetricsByMailTemplates
+          - VisitsDuration
+          - VisitsDurationByDataObject
+          - TimeAllocation
+          - UserDetails
+          - TerritoryDetails
+          - TeamDetails
+          - TodayStats
+          - ScheduleStats
+          - ActivitiesOverviewForAutoplays
+          - ActivitiesTimelineForAutoplays
+          - TopAutoplaysByOpenRate
+          - ActivitiesByResultsForAutoplays
+          - AutoplayPerformance
+          - ActivitiesByDoneForAutoplays
+          - ActivitiesTimelineForSpecificAutoplay
+          - ActivityResultsByAutoplaySteps
+          - EmailsByResultsForAutoplays
+          - TextsByResultsForAutoplays
+          - CallsByResultsForAutoplays
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - Reports
+      summary: Get specific chart data based on filterId and dataObjectType
+      description: Response data is depend on chart type
+      parameters:
+      - name: filterId
+        in: query
+        description: The ID of the filter to apply.
+        schema:
+          type: string
+      - name: singleType
+        in: query
+        description: The ID of the single dataObjectType (from workflow settings) to display.
+        schema:
+          type: integer
+          format: int32
+      - name: type
+        in: path
+        description: Select chart type.
+        required: true
+        schema:
+          type: string
+          enum:
+          - ActivitiesByDate
+          - ActivitiesByTypes
+          - ActivitiesByTypeForStages
+          - ActivitiesByUsers
+          - ActivitiesByUsersOverTime
+          - ActivitiesByTerritories
+          - ActivitiesByTerritoriesOverTime
+          - ActivityBreakdown
+          - ActivitySummary
+          - BestKnockHours
+          - DataObjectByDate
+          - LossReasonsTotal
+          - LossReasonsOverTime
+          - LossReasonsByStages
+          - LossReasonsByUsers
+          - LossReasonsByTerritories
+          - VisitsByUsers
+          - VisitsByUsersOverTime
+          - VisitsByTerritories
+          - VisitsByTerritoriesOverTime
+          - VisitsByStages
+          - VisitsByResults
+          - VisitsNewVsRevisit
+          - VisitsVerificationTotal
+          - VisitsVerificationByUsers
+          - VisitsVerificationByDistance
+          - LocationVerificationTotal
+          - LocationVerificationByUsers
+          - LocationVerificationByDistance
+          - ConversionFullPipeline
+          - ConversionFullPipelineLite
+          - ConversionFirstStageToWon
+          - ConversionVisitsToReachStageTotal
+          - ConversionVisitsToReachStageAverage
+          - ConversionStageCount
+          - LeaderboardTerritoryByWinRate
+          - LeaderboardTerritoryByDataObjectsWon
+          - LeaderboardTerritoryByValueWon
+          - LeaderboardTerritoryByActivities
+          - LeaderboardUserByWinRate
+          - LeaderboardUserByDataObjectsWon
+          - LeaderboardUserByValueWon
+          - LeaderboardUserByActivities
+          - DataObjectsWonByUsers
+          - DataObjectsWonByUsersOverTime
+          - DataObjectsWonByTerritories
+          - DataObjectsWonByTerritoriesOverTime
+          - DataObjectsCreatedByUsers
+          - DataObjectsCreatedByTerritoriesOverTime
+          - DataObjectsCreatedByUsersOverTime
+          - DataObjectsCreatedByTerritories
+          - ConversionResultCount
+          - CommunicationConversionByVoice
+          - CommunicationConversionByEmail
+          - CommunicationConversionByText
+          - CommunicationLog
+          - CommunicationMetricsOverview
+          - CommunicationMetricsOverTime
+          - CommunicationMetricsByTextTemplates
+          - CommunicationMetricsByMailTemplates
+          - VisitsDuration
+          - VisitsDurationByDataObject
+          - TimeAllocation
+          - UserDetails
+          - TerritoryDetails
+          - TeamDetails
+          - TodayStats
+          - ScheduleStats
+          - ActivitiesOverviewForAutoplays
+          - ActivitiesTimelineForAutoplays
+          - TopAutoplaysByOpenRate
+          - ActivitiesByResultsForAutoplays
+          - AutoplayPerformance
+          - ActivitiesByDoneForAutoplays
+          - ActivitiesTimelineForSpecificAutoplay
+          - ActivityResultsByAutoplaySteps
+          - EmailsByResultsForAutoplays
+          - TextsByResultsForAutoplays
+          - CallsByResultsForAutoplays
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Reports/{type}/records:
+    post:
+      tags:
+      - Reports
+      summary: Get records related to a specific chart
+      description: Response data is depend on chart type
+      parameters:
+      - name: type
+        in: path
+        description: Select chart type.
+        required: true
+        schema:
+          type: string
+          enum:
+          - ActivitiesByDate
+          - ActivitiesByTypes
+          - ActivitiesByTypeForStages
+          - ActivitiesByUsers
+          - ActivitiesByUsersOverTime
+          - ActivitiesByTerritories
+          - ActivitiesByTerritoriesOverTime
+          - ActivityBreakdown
+          - ActivitySummary
+          - BestKnockHours
+          - DataObjectByDate
+          - LossReasonsTotal
+          - LossReasonsOverTime
+          - LossReasonsByStages
+          - LossReasonsByUsers
+          - LossReasonsByTerritories
+          - VisitsByUsers
+          - VisitsByUsersOverTime
+          - VisitsByTerritories
+          - VisitsByTerritoriesOverTime
+          - VisitsByStages
+          - VisitsByResults
+          - VisitsNewVsRevisit
+          - VisitsVerificationTotal
+          - VisitsVerificationByUsers
+          - VisitsVerificationByDistance
+          - LocationVerificationTotal
+          - LocationVerificationByUsers
+          - LocationVerificationByDistance
+          - ConversionFullPipeline
+          - ConversionFullPipelineLite
+          - ConversionFirstStageToWon
+          - ConversionVisitsToReachStageTotal
+          - ConversionVisitsToReachStageAverage
+          - ConversionStageCount
+          - LeaderboardTerritoryByWinRate
+          - LeaderboardTerritoryByDataObjectsWon
+          - LeaderboardTerritoryByValueWon
+          - LeaderboardTerritoryByActivities
+          - LeaderboardUserByWinRate
+          - LeaderboardUserByDataObjectsWon
+          - LeaderboardUserByValueWon
+          - LeaderboardUserByActivities
+          - DataObjectsWonByUsers
+          - DataObjectsWonByUsersOverTime
+          - DataObjectsWonByTerritories
+          - DataObjectsWonByTerritoriesOverTime
+          - DataObjectsCreatedByUsers
+          - DataObjectsCreatedByTerritoriesOverTime
+          - DataObjectsCreatedByUsersOverTime
+          - DataObjectsCreatedByTerritories
+          - ConversionResultCount
+          - CommunicationConversionByVoice
+          - CommunicationConversionByEmail
+          - CommunicationConversionByText
+          - CommunicationLog
+          - CommunicationMetricsOverview
+          - CommunicationMetricsOverTime
+          - CommunicationMetricsByTextTemplates
+          - CommunicationMetricsByMailTemplates
+          - VisitsDuration
+          - VisitsDurationByDataObject
+          - TimeAllocation
+          - UserDetails
+          - TerritoryDetails
+          - TeamDetails
+          - TodayStats
+          - ScheduleStats
+          - ActivitiesOverviewForAutoplays
+          - ActivitiesTimelineForAutoplays
+          - TopAutoplaysByOpenRate
+          - ActivitiesByResultsForAutoplays
+          - AutoplayPerformance
+          - ActivitiesByDoneForAutoplays
+          - ActivitiesTimelineForSpecificAutoplay
+          - ActivityResultsByAutoplaySteps
+          - EmailsByResultsForAutoplays
+          - TextsByResultsForAutoplays
+          - CallsByResultsForAutoplays
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Reports/dataObject/{type}:
+    post:
+      tags:
+      - Reports
+      summary: Get specific dataObject chart data
+      description: Response data is depend on chart type
+      parameters:
+      - name: type
+        in: path
+        description: Select chart type.
+        required: true
+        schema:
+          type: string
+          enum:
+          - ActivitiesByDate
+          - ActivitiesByTypes
+          - ActivitiesByTypeForStages
+          - ActivitiesByUsers
+          - ActivitiesByUsersOverTime
+          - ActivitiesByTerritories
+          - ActivitiesByTerritoriesOverTime
+          - ActivityBreakdown
+          - ActivitySummary
+          - BestKnockHours
+          - DataObjectByDate
+          - LossReasonsTotal
+          - LossReasonsOverTime
+          - LossReasonsByStages
+          - LossReasonsByUsers
+          - LossReasonsByTerritories
+          - VisitsByUsers
+          - VisitsByUsersOverTime
+          - VisitsByTerritories
+          - VisitsByTerritoriesOverTime
+          - VisitsByStages
+          - VisitsByResults
+          - VisitsNewVsRevisit
+          - VisitsVerificationTotal
+          - VisitsVerificationByUsers
+          - VisitsVerificationByDistance
+          - LocationVerificationTotal
+          - LocationVerificationByUsers
+          - LocationVerificationByDistance
+          - ConversionFullPipeline
+          - ConversionFullPipelineLite
+          - ConversionFirstStageToWon
+          - ConversionVisitsToReachStageTotal
+          - ConversionVisitsToReachStageAverage
+          - ConversionStageCount
+          - LeaderboardTerritoryByWinRate
+          - LeaderboardTerritoryByDataObjectsWon
+          - LeaderboardTerritoryByValueWon
+          - LeaderboardTerritoryByActivities
+          - LeaderboardUserByWinRate
+          - LeaderboardUserByDataObjectsWon
+          - LeaderboardUserByValueWon
+          - LeaderboardUserByActivities
+          - DataObjectsWonByUsers
+          - DataObjectsWonByUsersOverTime
+          - DataObjectsWonByTerritories
+          - DataObjectsWonByTerritoriesOverTime
+          - DataObjectsCreatedByUsers
+          - DataObjectsCreatedByTerritoriesOverTime
+          - DataObjectsCreatedByUsersOverTime
+          - DataObjectsCreatedByTerritories
+          - ConversionResultCount
+          - CommunicationConversionByVoice
+          - CommunicationConversionByEmail
+          - CommunicationConversionByText
+          - CommunicationLog
+          - CommunicationMetricsOverview
+          - CommunicationMetricsOverTime
+          - CommunicationMetricsByTextTemplates
+          - CommunicationMetricsByMailTemplates
+          - VisitsDuration
+          - VisitsDurationByDataObject
+          - TimeAllocation
+          - UserDetails
+          - TerritoryDetails
+          - TeamDetails
+          - TodayStats
+          - ScheduleStats
+          - ActivitiesOverviewForAutoplays
+          - ActivitiesTimelineForAutoplays
+          - TopAutoplaysByOpenRate
+          - ActivitiesByResultsForAutoplays
+          - AutoplayPerformance
+          - ActivitiesByDoneForAutoplays
+          - ActivitiesTimelineForSpecificAutoplay
+          - ActivityResultsByAutoplaySteps
+          - EmailsByResultsForAutoplays
+          - TextsByResultsForAutoplays
+          - CallsByResultsForAutoplays
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto'
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    get:
+      tags:
+      - Reports
+      summary: Get specific dataObject chart data based on filterId and dataObjectType
+      description: Response data is depend on chart type
+      parameters:
+      - name: filterId
+        in: query
+        description: The ID of the filter to apply.
+        schema:
+          type: string
+      - name: singleType
+        in: query
+        description: The ID of the single dataObjectType (from workflow settings) to display.
+        schema:
+          type: integer
+          format: int32
+      - name: type
+        in: path
+        description: Select chart type.
+        required: true
+        schema:
+          type: string
+          enum:
+          - ActivitiesByDate
+          - ActivitiesByTypes
+          - ActivitiesByTypeForStages
+          - ActivitiesByUsers
+          - ActivitiesByUsersOverTime
+          - ActivitiesByTerritories
+          - ActivitiesByTerritoriesOverTime
+          - ActivityBreakdown
+          - ActivitySummary
+          - BestKnockHours
+          - DataObjectByDate
+          - LossReasonsTotal
+          - LossReasonsOverTime
+          - LossReasonsByStages
+          - LossReasonsByUsers
+          - LossReasonsByTerritories
+          - VisitsByUsers
+          - VisitsByUsersOverTime
+          - VisitsByTerritories
+          - VisitsByTerritoriesOverTime
+          - VisitsByStages
+          - VisitsByResults
+          - VisitsNewVsRevisit
+          - VisitsVerificationTotal
+          - VisitsVerificationByUsers
+          - VisitsVerificationByDistance
+          - LocationVerificationTotal
+          - LocationVerificationByUsers
+          - LocationVerificationByDistance
+          - ConversionFullPipeline
+          - ConversionFullPipelineLite
+          - ConversionFirstStageToWon
+          - ConversionVisitsToReachStageTotal
+          - ConversionVisitsToReachStageAverage
+          - ConversionStageCount
+          - LeaderboardTerritoryByWinRate
+          - LeaderboardTerritoryByDataObjectsWon
+          - LeaderboardTerritoryByValueWon
+          - LeaderboardTerritoryByActivities
+          - LeaderboardUserByWinRate
+          - LeaderboardUserByDataObjectsWon
+          - LeaderboardUserByValueWon
+          - LeaderboardUserByActivities
+          - DataObjectsWonByUsers
+          - DataObjectsWonByUsersOverTime
+          - DataObjectsWonByTerritories
+          - DataObjectsWonByTerritoriesOverTime
+          - DataObjectsCreatedByUsers
+          - DataObjectsCreatedByTerritoriesOverTime
+          - DataObjectsCreatedByUsersOverTime
+          - DataObjectsCreatedByTerritories
+          - ConversionResultCount
+          - CommunicationConversionByVoice
+          - CommunicationConversionByEmail
+          - CommunicationConversionByText
+          - CommunicationLog
+          - CommunicationMetricsOverview
+          - CommunicationMetricsOverTime
+          - CommunicationMetricsByTextTemplates
+          - CommunicationMetricsByMailTemplates
+          - VisitsDuration
+          - VisitsDurationByDataObject
+          - TimeAllocation
+          - UserDetails
+          - TerritoryDetails
+          - TeamDetails
+          - TodayStats
+          - ScheduleStats
+          - ActivitiesOverviewForAutoplays
+          - ActivitiesTimelineForAutoplays
+          - TopAutoplaysByOpenRate
+          - ActivitiesByResultsForAutoplays
+          - AutoplayPerformance
+          - ActivitiesByDoneForAutoplays
+          - ActivitiesTimelineForSpecificAutoplay
+          - ActivityResultsByAutoplaySteps
+          - EmailsByResultsForAutoplays
+          - TextsByResultsForAutoplays
+          - CallsByResultsForAutoplays
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto:
+      type: object
+      description: Represents the request data for legacy dashboard charts.
+      additionalProperties: false
+      properties:
+        leadId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the lead to filter the chart by. [deprecated]
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object to filter the chart by.
+        singleType:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the single type (from workflow settings) to filter the chart by.
+          format: int32
+        lostStageId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the lost stage to filter the chart by.
+          format: int32
+        type:
+          type:
+          - string
+          - 'null'
+        companyId:
+          type:
+          - string
+          - 'null'
+        filters:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Dashboard.Contract.Legacy.ILegacyFilter'
+        scrollId:
+          type:
+          - string
+          - 'null'
+        by:
+          type:
+          - string
+          - 'null'
+        steps:
+          type:
+          - string
+          - 'null'
+        orderBy:
+          type:
+          - string
+          - 'null'
+        projections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Dashboard.Contract.RequestProjection'
+    Spotio.Dashboard.Contract.RequestProjection:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+    Spotio.Exports.Client.Model.Export:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        state:
+          $ref: '#/components/schemas/Spotio.Exports.Client.Model.ExportState'
+        url:
+          type:
+          - string
+          - 'null'
+        typeName:
+          type:
+          - string
+          - 'null'
+        filterId:
+          type:
+          - string
+          - 'null'
+        territoryId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+    Spotio.Exports.Client.Model.ExportState:
+      type: string
+      enum:
+      - Preparing
+      - Ready
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

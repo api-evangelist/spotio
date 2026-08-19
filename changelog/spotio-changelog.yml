@@ -1,0 +1,56 @@
+generated: '2026-08-13'
+method: searched
+source: https://support.spotio.com/release-notes
+provider: SPOTIO
+providerId: spotio
+
+scheme: product-release (not semantic, not dated per entry)
+current_version:
+  web: '2.99'
+  mobile: '2.50'
+  note: >-
+    SPOTIO versions the web and mobile applications, not the API. The OpenAPI
+    document reports info.version "v1" and has carried no version bump marker.
+
+api_changelog_published: false
+dated_entries: false
+
+detail: >-
+  SPOTIO keeps a public release-notes hub at support.spotio.com/release-notes,
+  grouped by year with one card per feature. It is a product changelog, not an API
+  changelog: entries carry no publication date, no version tag, and none of the
+  entries listed on the hub name the REST API, the webhook catalog or the MCP
+  surface. A consumer of the API cannot learn from it that an endpoint was added,
+  changed or removed. Every entry below is recorded as SPOTIO titles it, with the
+  year grouping SPOTIO assigns and no invented dates.
+
+entries:
+- year: '2026'
+  version: null
+  date: null
+  breaking: unknown
+  highlights:
+  - Web Release 2.99
+  - Mobile Release 2.50
+  - SalesScreen Integration
+- year: '2025'
+  version: null
+  date: null
+  breaking: unknown
+  highlights:
+  - Merge Records
+  - DASH Connect
+  - Call Recording
+  - Custom Rep Role
+  - Territory Importing
+
+gaps:
+- No per-entry publication dates, so change velocity cannot be measured.
+- No API-specific changelog; endpoint additions and removals are not announced.
+- No RSS/Atom feed or JSON endpoint on the release-notes hub.
+- No versioning or deprecation policy to read a change against (see lifecycle/spotio-lifecycle.yml).
+
+x-evidence:
+- url: https://support.spotio.com/release-notes
+  http_status: 200
+  fetched: '2026-08-13'

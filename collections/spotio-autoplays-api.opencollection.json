@@ -1,0 +1,177 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Autoplays API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autoplays",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Enroll contacts into autoplay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Autoplays/:autoplayId/bulk/enroll",
+            "params": [
+              {
+                "name": "autoplayId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enroll contacts into autoplay"
+        },
+        {
+          "info": {
+            "name": "Enroll contacts into autoplay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/Autoplays/:autoplayId/dataObjects",
+            "params": [
+              {
+                "name": "autoplayId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Enroll contacts into autoplay"
+        },
+        {
+          "info": {
+            "name": "Get data objects per autoplay's step",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/Autoplays/:autoplayId/dataobjects",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "autoplayId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get data objects per autoplay's step"
+        },
+        {
+          "info": {
+            "name": "Change autoplay contact step status and/or reschedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/Autoplays/dataObjects/:autoplayContactId/steps/:autoplayContactStepId",
+            "params": [
+              {
+                "name": "autoplayContactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "autoplayContactStepId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change autoplay contact step status and/or reschedule"
+        },
+        {
+          "info": {
+            "name": "Change autoplay contact step status and/or reschedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.spotio2.com/api/Autoplays/contacts/:autoplayContactId/steps/:autoplayContactStepId",
+            "params": [
+              {
+                "name": "autoplayContactId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "autoplayContactStepId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Change autoplay contact step status and/or reschedule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

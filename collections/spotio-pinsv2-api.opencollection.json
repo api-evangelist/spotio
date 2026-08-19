@@ -1,0 +1,278 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 Pins V2 API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PinsV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get pins by viewport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/PinsV2",
+            "headers": [
+              {
+                "name": "x-app-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "area",
+                "value": "",
+                "type": "query",
+                "description": "Area defined as left top and bottom right corners coordinates separated by ','"
+              },
+              {
+                "name": "zoomLevel",
+                "value": "",
+                "type": "query",
+                "description": "Zoom level"
+              },
+              {
+                "name": "stageGroups",
+                "value": "",
+                "type": "query",
+                "description": "Stage groups separated by ','"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter ID"
+              },
+              {
+                "name": "includeCustomFieldId",
+                "value": "",
+                "type": "query",
+                "description": "Include custom field ID"
+              },
+              {
+                "name": "mix",
+                "value": "",
+                "type": "query",
+                "description": "Mix"
+              },
+              {
+                "name": "geoHashPrecision",
+                "value": "",
+                "type": "query",
+                "description": "Geohash precision"
+              },
+              {
+                "name": "multiPin",
+                "value": "",
+                "type": "query",
+                "description": "Enables multi-pin"
+              },
+              {
+                "name": "areaFilterMode",
+                "value": "",
+                "type": "query",
+                "description": "Determines how pins are filtered based on geographical area. (default: GeoTileGrid)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of pins within a specified viewport."
+        },
+        {
+          "info": {
+            "name": "Get pin details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/PinsV2/:pinId",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Text that is used in a search of correlated data objects"
+              },
+              {
+                "name": "includeDataObjects",
+                "value": "",
+                "type": "query",
+                "description": "Include data objects"
+              },
+              {
+                "name": "includeCustomFields",
+                "value": "",
+                "type": "query",
+                "description": "Include custom fields"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter ID used for filtering correlated data objects"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Scroll ID for a list of data objects"
+              },
+              {
+                "name": "parentId",
+                "value": "",
+                "type": "query",
+                "description": "Parent ID for filtering correlated data objects"
+              },
+              {
+                "name": "pinId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the pin"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves details of a pin by its ID with a list of data objects correlated with this pin."
+        },
+        {
+          "info": {
+            "name": "GET /api/PinsV2/search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/PinsV2/search",
+            "params": [
+              {
+                "name": "placeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeCustomFields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Get nearest pins",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/PinsV2/nearest",
+            "params": [
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude"
+              },
+              {
+                "name": "lng",
+                "value": "",
+                "type": "query",
+                "description": "Longitude"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit of pins to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of nearest pins to the specified coordinates."
+        },
+        {
+          "info": {
+            "name": "Format address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/PinsV2/format-address",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Formats the address of a pin."
+        },
+        {
+          "info": {
+            "name": "Get data objects for relocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/PinsV2/move/summary",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves data objects from source pin and resolves destination address for relocation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

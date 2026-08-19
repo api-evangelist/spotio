@@ -1,0 +1,218 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Calendar Settings API
+  description: '
+
+    The controller is responsible for managing calendar settings. Setup for company users calendar.
+
+    '
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: CalendarSettings
+  description: '
+
+    The controller is responsible for managing calendar settings. Setup for company users calendar.
+
+    '
+paths:
+  /api/CalendarSettings:
+    get:
+      tags:
+      - CalendarSettings
+      summary: Get calendar settings
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettings'
+              examples:
+                default:
+                  value:
+                    companyId: 5a8ae9070d5d9e3268df53c4
+                    allowForDoubleBooking: true
+                    daysPerWeek: five
+                    defaultReminderInSeconds: 900
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettings'
+              examples:
+                default:
+                  value:
+                    companyId: 5a8ae9070d5d9e3268df53c4
+                    allowForDoubleBooking: true
+                    daysPerWeek: five
+                    defaultReminderInSeconds: 900
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettings'
+              examples:
+                default:
+                  value:
+                    companyId: 5a8ae9070d5d9e3268df53c4
+                    allowForDoubleBooking: true
+                    daysPerWeek: five
+                    defaultReminderInSeconds: 900
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    put:
+      tags:
+      - CalendarSettings
+      summary: Update calendar settings
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest'
+            examples:
+              default:
+                value:
+                  allowForDoubleBooking: true
+                  daysPerWeek: five
+                  defaultReminderInSeconds: 900
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest'
+            examples:
+              default:
+                value:
+                  allowForDoubleBooking: true
+                  daysPerWeek: five
+                  defaultReminderInSeconds: 900
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest'
+            examples:
+              default:
+                value:
+                  allowForDoubleBooking: true
+                  daysPerWeek: five
+                  defaultReminderInSeconds: 900
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest'
+            examples:
+              default:
+                value:
+                  allowForDoubleBooking: true
+                  daysPerWeek: five
+                  defaultReminderInSeconds: 900
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest'
+            examples:
+              default:
+                value:
+                  allowForDoubleBooking: true
+                  daysPerWeek: five
+                  defaultReminderInSeconds: 900
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettings'
+              examples:
+                default:
+                  value:
+                    companyId: 5a8ae9070d5d9e3268df53c4
+                    allowForDoubleBooking: true
+                    daysPerWeek: five
+                    defaultReminderInSeconds: 900
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettings'
+              examples:
+                default:
+                  value:
+                    companyId: 5a8ae9070d5d9e3268df53c4
+                    allowForDoubleBooking: true
+                    daysPerWeek: five
+                    defaultReminderInSeconds: 900
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettings'
+              examples:
+                default:
+                  value:
+                    companyId: 5a8ae9070d5d9e3268df53c4
+                    allowForDoubleBooking: true
+                    daysPerWeek: five
+                    defaultReminderInSeconds: 900
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest:
+      type: object
+      description: Represents a request for updating calendar settings.
+      additionalProperties: false
+      properties:
+        allowForDoubleBooking:
+          type: boolean
+          description: Indicates whether double booking is allowed. Users can create a few appointments for one date.
+        daysPerWeek:
+          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.DaysPerWeekDto'
+        defaultReminderInSeconds:
+          type: integer
+          description: The default reminder time in seconds.
+          format: int32
+    Spotio.Appointments.Client.Model.DaysPerWeekDto:
+      type: string
+      enum:
+      - Seven
+      - Five
+    Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettings:
+      type: object
+      description: Represents calendar settings.
+      additionalProperties: false
+      properties:
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The company identifier.
+        allowForDoubleBooking:
+          type: boolean
+          description: Indicates whether double booking is allowed.  Users can create a few appointments for one date.
+        daysPerWeek:
+          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.DaysPerWeekDto'
+        defaultReminderInSeconds:
+          type: integer
+          description: The default reminder time in seconds.
+          format: int32
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

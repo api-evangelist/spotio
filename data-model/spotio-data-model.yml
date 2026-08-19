@@ -1,0 +1,188 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/spotio-swagger.json
+docs:
+- https://developer.spotio2.com/docs/spotio2/6b9e62ga3clm5-working-with-data-objects
+- https://developer.spotio2.com/docs/spotio2/s12ejhvxsb6hf-creating-data-objects
+- https://support.spotio.com/hc/en-us/articles/11712242070807-Configuring-Data-Objects
+provider: SPOTIO
+providerId: spotio
+
+summary: >-
+  SPOTIO's data model is unusual and it is the single most important thing an
+  integrator has to understand: there is no fixed Lead or Deal entity. There is one
+  polymorphic record - the DataObject - whose type, stages and every field are
+  defined per tenant in a Workflow. A DataObject writes address its fields by numeric
+  fieldId, so nothing can be written until the tenant's workflow has been read. That
+  is why the entity graph below has Workflow at its centre rather than Lead: the
+  workflow is the schema, and it is data, not code.
+
+id_conventions:
+- entity: DataObject
+  form: 24-character hexadecimal string (e.g. "679bb68913684f5c4e2ca6db")
+  note: opaque; not an integer
+- entity: Workflow field
+  form: numeric string; system fields are high-numbered (100004 = Company, 100013 = Last Name), tenant custom fields are low-numbered
+- entity: Stage
+  form: numeric string; stageId defaults to "1" when omitted on create
+- entity: User
+  form: numeric string (ownerId)
+- entity: DataObject type
+  form: numeric string (typeId); required on create
+
+entities:
+- name: DataObject
+  description: The polymorphic core record - a lead, prospect, account or any tenant-defined object type.
+  spec: openapi/spotio-dataobjects-api-openapi.yml
+  operations: 25
+  key_fields: [id, typeId, stageId, ownerId, parentId, pin, fields, source, externalDataObjectId, createdAt, updatedAt]
+- name: Workflow
+  description: The tenant's schema - object types, stages, fields and activity templates. Read this first.
+  spec: openapi/spotio-workflowsettings-api-openapi.yml
+  operations: 35
+  entrypoint: GET /api/workflow/dataObjects/full
+  sub_entities: [WorkflowDataObjects, WorkflowStages, WorkflowFields, WorkflowActivityTemplates]
+- name: Activity
+  description: A logged rep action against a DataObject - visit, call, note, stage change.
+  spec: openapi/spotio-activitiesv2-api-openapi.yml
+  operations: 12
+  key_fields: [id, activityDate, owner, leadId, activityType, fromStage, toStage, result, territory, duration, value, contacts]
+- name: Appointment
+  description: A scheduled field appointment tied to a DataObject and a rep.
+  spec: openapi/spotio-appointmentsv2-api-openapi.yml
+  operations: 7
+- name: Pin
+  description: The geocoded location attached to a DataObject - lat/lng plus a resolved postal address and placeId.
+  spec: openapi/spotio-pinsv2-api-openapi.yml
+  operations: 6
+  key_fields: [id, lat, lng, placeId, address, street, houseNumber, zip, city, state, country]
+- name: Territory
+  description: A geographic sales boundary, assignable to users and teams; retrievable as GeoJSON.
+  spec: openapi/spotio-territories-api-openapi.yml
+  operations: 5
+- name: User
+  description: A SPOTIO user / field rep. Owns DataObjects, activities and appointments.
+  spec: openapi/spotio-users-api-openapi.yml
+  operations: 16
+- name: Team
+  description: A grouping of users, used for hierarchy, leaderboards and territory permissions.
+  spec: openapi/spotio-teams-api-openapi.yml
+  operations: 10
+- name: Route
+  description: A planned sequence of stops for a rep.
+  spec: openapi/spotio-routesv2-api-openapi.yml
+  operations: 8
+- name: Trip
+  description: The executed record of a route - the places a user actually visited.
+  spec: openapi/spotio-tripsv2-api-openapi.yml
+  operations: 11
+- name: Filter
+  description: A persisted, reusable query object. Must be created before it can be applied via filterId.
+  spec: openapi/spotio-filters-api-openapi.yml
+  operations: 11
+- name: Export
+  description: An asynchronous CSV export job over DataObjects or activities.
+  spec: openapi/spotio-exports-api-openapi.yml
+  operations: 5
+- name: BulkJob
+  description: An NDJSON batch create/update/patch job over DataObjects.
+  spec: openapi/spotio-dataobjectsbulkjobs-api-openapi.yml
+  operations: 9
+- name: Webhook
+  description: An outbound event subscription - callback URL, scopes, custom headers.
+  spec: openapi/spotio-webhooks-api-openapi.yml
+  operations: 5
+- name: MCPKey
+  description: The agent credential for SPOTIO's remote MCP server.
+  spec: openapi/spotio-mcp-api-openapi.yml
+  operations: 4
+- name: Document
+  description: Files attached to records.
+  spec: openapi/spotio-documents-api-openapi.yml
+  operations: 9
+- name: Contract
+  description: Sales contracts generated against a DataObject.
+  spec: openapi/spotio-contracts-api-openapi.yml
+  operations: 8
+- name: BusinessCard
+  description: Rep business cards - the surface used by the API quickstart.
+  spec: openapi/spotio-businesscards-api-openapi.yml
+  operations: 14
+- name: Autoplay
+  description: A multi-step outreach sequence a DataObject is enrolled into.
+  spec: openapi/spotio-autoplays-api-openapi.yml
+  operations: 5
+- name: Communication
+  description: Calls, texts and emails sent from SPOTIO, with reusable templates.
+  spec: openapi/spotio-communication-api-openapi.yml
+  operations: 24
+
+relationships:
+- {from: DataObject, to: WorkflowDataObjectType, kind: belongs_to, via: typeId, required: true}
+- {from: DataObject, to: WorkflowStage, kind: belongs_to, via: stageId, default: '1'}
+- {from: DataObject, to: User, kind: belongs_to, via: ownerId, default: the user whose API key made the call}
+- {from: DataObject, to: DataObject, kind: belongs_to, via: parentId, note: parent/child records}
+- {from: DataObject, to: Pin, kind: has_one, via: pin}
+- {from: DataObject, to: WorkflowField, kind: has_many, via: 'fields[].fieldId'}
+- {from: Activity, to: DataObject, kind: belongs_to, via: leadId}
+- {from: Activity, to: User, kind: belongs_to, via: owner}
+- {from: Activity, to: WorkflowStage, kind: references, via: fromStage / toStage}
+- {from: Activity, to: WorkflowActivityTemplate, kind: belongs_to, via: activityTemplateId}
+- {from: Activity, to: Territory, kind: references, via: territory}
+- {from: Appointment, to: DataObject, kind: belongs_to, via: dataObjectId}
+- {from: Appointment, to: Activity, kind: has_one, via: 'byActivity/{activityId}'}
+- {from: Appointment, to: User, kind: belongs_to, via: ownerId}
+- {from: WorkflowField, to: WorkflowStage, kind: has_many, via: stageConstraints}
+- {from: WorkflowDataObjectType, to: WorkflowStage, kind: has_many, via: workflow stages per type}
+- {from: WorkflowDataObjectType, to: WorkflowField, kind: has_many, via: '/api/workflow/dataObjects/{dataObjectId}/fields'}
+- {from: User, to: Team, kind: belongs_to, via: teamId}
+- {from: User, to: Territory, kind: has_many, via: territory assignment}
+- {from: Trip, to: Route, kind: belongs_to, via: 'trips are created from routes'}
+- {from: Trip, to: Pin, kind: has_many, via: visited places}
+- {from: Export, to: Filter, kind: belongs_to, via: filterId}
+- {from: Export, to: WorkflowDataObjectType, kind: belongs_to, via: singleType}
+- {from: BulkJob, to: WorkflowDataObjectType, kind: belongs_to, via: typeId}
+- {from: BulkJob, to: DataObject, kind: has_many, via: NDJSON BulkDataObjectRequest lines}
+- {from: Autoplay, to: DataObject, kind: has_many, via: autoplayDataObjectId}
+- {from: Contract, to: DataObject, kind: belongs_to, via: dataObjectId}
+- {from: Document, to: DataObject, kind: belongs_to, via: dataObjectId}
+- {from: Webhook, to: DataObject, kind: emits, via: 'lead.added / lead.updated / lead.deleted'}
+- {from: Webhook, to: Activity, kind: emits, via: 'activity.created / .updated / .deleted / .done'}
+- {from: Webhook, to: Appointment, kind: emits, via: 'appointment.created / .updated / .deleted'}
+
+foreign_key_frequency:
+  note: count of component schemas declaring each id-reference field, across all 510 schemas
+  ownerId: 38
+  stageId: 33
+  typeId: 30
+  dataObjectTypeId: 30
+  dataObjectId: 29
+  activityTemplateId: 21
+  filterId: 17
+  placeId: 17
+  territoryId: 15
+  createdById: 15
+  parentId: 15
+  externalDataObjectId: 13
+  activityId: 10
+  companyId: 8
+  leadId: 6
+  appointmentId: 5
+  fieldId: 5
+  userId: 5
+  pinId: 5
+
+caveats:
+- >-
+  Component schemas carry .NET namespace names
+  (Spotio.Frontend.ViewModel.DataObjects.*), generated by Swashbuckle. They are
+  implementation identifiers, not a published domain vocabulary, so entity names here
+  are taken from the tag/product surface rather than from schema keys.
+- >-
+  The document has 32 dangling $refs, all of them generic JsonPatchDocument
+  constructions the generator failed to name legally. They are an upstream defect and
+  are carried faithfully rather than repaired.
+- >-
+  "Lead" appears in the webhook event names (lead.added) and in Activity.leadId, but
+  no Lead entity exists in the API - it is a DataObject of the tenant's lead type. An
+  integration written against the webhook vocabulary must resolve back to DataObjects.

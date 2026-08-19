@@ -1,0 +1,61 @@
+generated: '2026-08-13'
+method: searched
+source: https://developer.spotio2.com/docs/spotio2/qu2ht3gipl905-introduction
+derived_from: openapi/_original/spotio-swagger.json
+provider: SPOTIO
+providerId: spotio
+
+limit_count: 0
+published: false
+
+detail: >-
+  SPOTIO publishes no rate limits. Every article on the developer portal was read
+  (Introduction, Authenticating, Paginating and Sorting, Status Codes and Errors,
+  Filtering Collections, Working with DataObjects, Creating DataObjects, Working
+  with Exports, Working With Bulk Jobs) and none names a quota, a window, a burst
+  allowance or a throttling policy. The SPOTIO 2.0 OpenAPI declares 295 operations
+  and not one of them declares a 429 response; the string "429" and every
+  RateLimit/Retry-After header spelling are absent from the whole document. An
+  agent therefore has no runtime signal to back off on, which is the finding.
+
+limits: []
+
+response_headers:
+  observed: []
+  documented: []
+  note: >-
+    No X-RateLimit-Limit / X-RateLimit-Remaining / X-RateLimit-Reset, no RFC 9238
+    RateLimit-* and no Retry-After is documented or declared. Live observation is
+    not possible anonymously - every SPOTIO endpoint requires a Bearer token and
+    answers 401 without one.
+
+status_on_exhaustion: null
+
+related_throughput_controls:
+  - control: bulk jobs
+    detail: >-
+      SPOTIO's stated reason for the DataObjectsBulkJobs surface is to avoid
+      per-record calls - "instead of making individual API calls for each record,
+      you can batch thousands of records into a single job". That is throughput
+      guidance rather than a published limit, but it is the closest thing SPOTIO
+      offers to a volume policy.
+    docs: https://developer.spotio2.com/docs/spotio2/8zeggtfnhfk9t-working-with-bulk-jobs
+  - control: webhook delivery
+    detail: >-
+      On the outbound side SPOTIO does publish delivery limits - each webhook POST
+      times out after 10 seconds and is retried up to 3 times with increasing
+      intervals. That governs SPOTIO calling you, not you calling SPOTIO.
+    docs: https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks
+  - control: export polling
+    detail: >-
+      CSV exports are submit-then-poll with no documented minimum poll interval.
+
+x-evidence:
+- url: https://developer.spotio2.com/docs/spotio2/qu2ht3gipl905-introduction
+  http_status: 200
+  finding: no rate-limit section
+- url: https://stoplight.io/api/v1/projects/cHJqOjIzMTU4MQ/table-of-contents?branch=main
+  http_status: 200
+  finding: full documentation table of contents has no rate-limits page
+- source: openapi/_original/spotio-swagger.json
+  finding: 0 of 295 operations declare a 429 response

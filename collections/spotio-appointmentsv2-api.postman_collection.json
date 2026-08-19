@@ -1,0 +1,2822 @@
+{
+  "item": [
+    {
+      "id": "450b7e60-f6bd-49ab-97c7-e8f9c3511ec9",
+      "name": "AppointmentsV2",
+      "description": {
+        "content": "\nThe controller is responsible for handling the creation, updating, deleting and retrieval of appointment.\nMainly the controller allow to manage appointment (current and future).\nEvery appointment has related activity.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7d69a723-3049-4ce5-ba53-d24cef3b31d8",
+          "name": "Get an appointment by ID",
+          "request": {
+            "name": "Get an appointment by ID",
+            "description": {
+              "content": "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "appointments",
+                ":appointmentId"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appointmentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "07a9659f-1f60-4714-bd68-a33d57c90a1e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"dataObjectId\": \"string\",\n  \"ownerId\": \"string\",\n  \"date\": \"2024-04-03T22:14:26.187Z\",\n  \"duration\": 9129,\n  \"title\": null,\n  \"notes\": null,\n  \"activityId\": \"string\",\n  \"allDay\": true,\n  \"done\": false,\n  \"autoplayDataObjectId\": null,\n  \"recurringDefinition\": {\n    \"id\": null,\n    \"periodicity\": \"None\",\n    \"interval\": 4778,\n    \"repeatOn\": null,\n    \"until\": null,\n    \"count\": null,\n    \"timezone\": \"string\"\n  },\n  \"activityTemplateId\": null,\n  \"remindBeforeInSeconds\": 2166,\n  \"auto\": null,\n  \"autoplayDataObjectStepId\": null,\n  \"allDayDate\": \"string\",\n  \"createdById\": \"string\",\n  \"dataObjectTypeId\": null,\n  \"dataObject\": {\n    \"value\": \"reference #/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.AppointmentWithDataObject%2BDataObjectWithParentAndChildDto not found in the OpenAPI spec\"\n  },\n  \"access\": \"NotVisible\",\n  \"sendInvitation\": true,\n  \"invitationStatus\": \"Noreply\",\n  \"invitationDescription\": \"string\",\n  \"updatedById\": 4619,\n  \"updatedAt\": \"1952-12-05T08:01:59.316Z\",\n  \"nbaId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f57f07b2-89c3-407a-83fd-3929c14fce76",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c426389-5383-438f-b416-690aa8dae56b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d12405f8-bb7c-496f-96bf-5869d3403c95",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "087b7d86-ffe6-4d9e-9918-eab47f6771dc",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcf8296a-31bf-4e12-85d1-6cc85e1de5dd",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9078688d-dbd6-446c-adff-1e04fc8bd5d5",
+          "name": "Update an existing appointment",
+          "request": {
+            "name": "Update an existing appointment",
+            "description": {
+              "content": "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "appointments",
+                ":appointmentId"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appointmentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataObjectId\": \"<string,null>\",\n  \"ownerId\": \"<string,null>\",\n  \"date\": \"<string,null-date-time>\",\n  \"duration\": \"<integer,null-int32>\",\n  \"title\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"activityId\": \"<string,null>\",\n  \"allDay\": \"<boolean>\",\n  \"done\": \"<boolean>\",\n  \"recurringDefinition\": {\n    \"id\": \"<string,null>\",\n    \"periodicity\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"repeatOn\": \"<array,null>\",\n    \"until\": \"<string,null>\",\n    \"count\": \"<integer,null-int32>\",\n    \"timezone\": \"<string,null>\"\n  },\n  \"remindBeforeInSeconds\": \"<integer,null-int32>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"intention\": \"<string>\",\n  \"originalStartDate\": \"<dateTime>\",\n  \"allDayDate\": \"<string,null>\",\n  \"appendRecordNameToTitle\": \"<boolean,null>\",\n  \"sendInvitation\": \"<boolean,null>\",\n  \"invitationDescription\": \"<string,null>\",\n  \"nbaId\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ae90e860-cef5-4ec3-ad2b-aaf0dbbfe29d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9449667+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9449707+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"2163003\",\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9506031+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"activityTemplateId\": \"4\",\n  \"remindBeforeInSeconds\": 3600,\n  \"auto\": false,\n  \"createdById\": \"1234\",\n  \"dataObjectTypeId\": 1,\n  \"access\": \"full\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6985ed9-18c0-4cb2-9337-867b18ef07d0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9449667+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9449707+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6284c2f-c5de-4ff9-97ca-6424ead5c2c2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9449667+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9449707+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aee68aee-2525-4c58-92ae-eac9b54470bc",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9449667+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9449707+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a4616a1-f0ea-4a83-9993-d4797bf3f51d",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9449667+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9449707+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c96cbcf3-94eb-4be8-94e7-ad7aae2d4b38",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9449667+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9449707+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65edde8e-71d4-4245-9e4d-75cd6a11565f",
+          "name": "Partially update an existing appointment",
+          "request": {
+            "name": "Partially update an existing appointment",
+            "description": {
+              "content": "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "appointments",
+                ":appointmentId"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appointmentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d987a763-522a-4b36-a165-7bc6a8289654",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9683473+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9683532+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"2163003\",\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9729001+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"activityTemplateId\": \"4\",\n  \"remindBeforeInSeconds\": 3600,\n  \"auto\": false,\n  \"createdById\": \"1234\",\n  \"dataObjectTypeId\": 1,\n  \"access\": \"full\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8693f99a-0a3c-4683-9bac-4519d5be2cf1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9683473+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9683532+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca2d2bd7-8123-4fe2-898c-3e62212ed4ff",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9683473+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9683532+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ed92f1f-81e6-451c-b596-97ca8f9c68cc",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9683473+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9683532+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3df8f5f1-b43b-4f55-9832-3f63a0b20758",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9683473+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9683532+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68a5b329-96af-4fdb-9f44-f4f67d3a75f8",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    ":appointmentId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appointmentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9683473+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9683532+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1543d6e6-b94a-45b8-aa1d-b3384defc45b",
+          "name": "Get an appointment by activity ID",
+          "request": {
+            "name": "Get an appointment by activity ID",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "appointments",
+                "byActivity",
+                ":activityId"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "activityId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "34f7d777-ee74-4d09-8dfa-c0a8d9251728",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "byActivity",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "activityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": null,\n  \"dataObjectId\": \"string\",\n  \"ownerId\": null,\n  \"date\": \"2006-12-15T19:28:58.711Z\",\n  \"duration\": 4054,\n  \"title\": \"string\",\n  \"notes\": \"string\",\n  \"activityId\": null,\n  \"allDay\": true,\n  \"done\": false,\n  \"autoplayDataObjectId\": null,\n  \"recurringDefinition\": {\n    \"id\": \"<string,null>\",\n    \"periodicity\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"repeatOn\": \"<array,null>\",\n    \"until\": \"<string,null>\",\n    \"count\": \"<integer,null-int32>\",\n    \"timezone\": \"<string,null>\"\n  },\n  \"activityTemplateId\": \"string\",\n  \"remindBeforeInSeconds\": null,\n  \"auto\": null,\n  \"autoplayDataObjectStepId\": \"string\",\n  \"allDayDate\": null,\n  \"createdById\": \"string\",\n  \"dataObjectTypeId\": null,\n  \"dataObject\": {\n    \"value\": \"reference #/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.AppointmentWithDataObject%2BDataObjectWithParentAndChildDto not found in the OpenAPI spec\"\n  },\n  \"access\": \"Visible\",\n  \"sendInvitation\": true,\n  \"invitationStatus\": \"Noreply\",\n  \"invitationDescription\": \"string\",\n  \"updatedById\": 5720,\n  \"updatedAt\": \"1949-03-17T11:56:18.725Z\",\n  \"nbaId\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81017687-8d5f-443b-a3b1-a0b9103e55c3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "byActivity",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "activityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77e33f1b-4052-427e-a622-d004823804fe",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "byActivity",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "activityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90122ea6-1f7c-45f0-b3a6-c1090348d54a",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "byActivity",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "activityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc83d914-d4b7-4030-8ce8-9b3451538cad",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "byActivity",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "activityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecd6672b-95dc-4101-bf91-24d54878276c",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "byActivity",
+                    ":activityId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "activityId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d68a53f5-21ba-4480-817f-54186963ecae",
+          "name": "Create a new appointment",
+          "request": {
+            "name": "Create a new appointment",
+            "description": {
+              "content": "If AllDay = true (lasts for the entirety of the date), an appointment is created without a start and end\n### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "appointments"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataObjectId\": \"<string,null>\",\n  \"ownerId\": \"<string,null>\",\n  \"date\": \"<string,null-date-time>\",\n  \"duration\": \"<integer,null-int32>\",\n  \"title\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"activityId\": \"<string,null>\",\n  \"allDay\": \"<boolean>\",\n  \"done\": \"<boolean>\",\n  \"recurringDefinition\": {\n    \"id\": \"<string,null>\",\n    \"periodicity\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"repeatOn\": \"<array,null>\",\n    \"until\": \"<string,null>\",\n    \"count\": \"<integer,null-int32>\",\n    \"timezone\": \"<string,null>\"\n  },\n  \"remindBeforeInSeconds\": \"<integer,null-int32>\",\n  \"activityTemplateId\": \"<string,null>\",\n  \"intention\": \"<string>\",\n  \"originalStartDate\": \"<dateTime>\",\n  \"allDayDate\": \"<string,null>\",\n  \"appendRecordNameToTitle\": \"<boolean,null>\",\n  \"sendInvitation\": \"<boolean,null>\",\n  \"invitationDescription\": \"<string,null>\",\n  \"nbaId\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1570c4ba-6ca2-43aa-90ac-31913383d449",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.981722+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9817243+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"2163003\",\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.9820425+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"activityTemplateId\": \"4\",\n  \"remindBeforeInSeconds\": 3600,\n  \"auto\": false,\n  \"createdById\": \"1234\",\n  \"dataObjectTypeId\": 1,\n  \"access\": \"full\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a93cee8-620c-45f4-977a-f067ec49efde",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.981722+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9817243+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "578eea7e-67d9-4b3b-bb6e-85186fe83f2b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.981722+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9817243+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dc6ca428-489f-4714-b6da-9687e57f8cd4",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.981722+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9817243+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e75471fb-29dd-4ac5-86d8-9062ca694364",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.981722+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9817243+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2043c53-d51c-45dd-878a-c5d4da1e06d4",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataObjectId\": \"6141d5853bf5da0001e891ee\",\n  \"ownerId\": \"2\",\n  \"date\": \"2026-08-03T07:14:38.981722+00:00\",\n  \"duration\": 60,\n  \"title\": \"Talk about insurance\",\n  \"notes\": \"They want to buy\",\n  \"activityId\": \"2163003\",\n  \"allDay\": false,\n  \"done\": false,\n  \"recurringDefinition\": {\n    \"id\": \"304\",\n    \"periodicity\": \"hours\",\n    \"interval\": 5,\n    \"repeatOn\": [\n      \"monday\",\n      \"friday\"\n    ],\n    \"count\": 5\n  },\n  \"remindBeforeInSeconds\": 3600,\n  \"activityTemplateId\": \"4\",\n  \"intention\": \"allFromRecurring\",\n  \"originalStartDate\": \"2026-08-03T07:14:38.9817243+00:00\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "966803e5-5df6-4e41-9415-fa01e5fcb0e7",
+          "name": "Bulk actions to create appointment for many records",
+          "request": {
+            "name": "Bulk actions to create appointment for many records",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "appointments",
+                "bulk",
+                "create"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"polygon\": {\n    \"points\": \"<array,null>\"\n  },\n  \"filterId\": \"<string,null>\",\n  \"dataObjectIds\": \"<array,null>\",\n  \"q\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"appointment\": {\n    \"dataObjectId\": \"<string,null>\",\n    \"ownerId\": \"<string,null>\",\n    \"date\": \"<string,null-date-time>\",\n    \"duration\": \"<integer,null-int32>\",\n    \"title\": \"<string,null>\",\n    \"notes\": \"<string,null>\",\n    \"activityId\": \"<string,null>\",\n    \"allDay\": \"<boolean>\",\n    \"done\": \"<boolean>\",\n    \"recurringDefinition\": {\n      \"id\": \"<string,null>\",\n      \"periodicity\": \"<string>\",\n      \"interval\": \"<integer>\",\n      \"repeatOn\": \"<array,null>\",\n      \"until\": \"<string,null>\",\n      \"count\": \"<integer,null-int32>\",\n      \"timezone\": \"<string,null>\"\n    },\n    \"remindBeforeInSeconds\": \"<integer,null-int32>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"intention\": \"<string>\",\n    \"originalStartDate\": \"<dateTime>\",\n    \"allDayDate\": \"<string,null>\",\n    \"appendRecordNameToTitle\": \"<boolean,null>\",\n    \"sendInvitation\": \"<boolean,null>\",\n    \"invitationDescription\": \"<string,null>\",\n    \"nbaId\": \"<string,null>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81eba9d3-b78f-4d46-a4bf-706ed68d009c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "bulk",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"polygon\": {\n    \"points\": \"<array,null>\"\n  },\n  \"filterId\": \"<string,null>\",\n  \"dataObjectIds\": \"<array,null>\",\n  \"q\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"appointment\": {\n    \"dataObjectId\": \"<string,null>\",\n    \"ownerId\": \"<string,null>\",\n    \"date\": \"<string,null-date-time>\",\n    \"duration\": \"<integer,null-int32>\",\n    \"title\": \"<string,null>\",\n    \"notes\": \"<string,null>\",\n    \"activityId\": \"<string,null>\",\n    \"allDay\": \"<boolean>\",\n    \"done\": \"<boolean>\",\n    \"recurringDefinition\": {\n      \"id\": \"<string,null>\",\n      \"periodicity\": \"<string>\",\n      \"interval\": \"<integer>\",\n      \"repeatOn\": \"<array,null>\",\n      \"until\": \"<string,null>\",\n      \"count\": \"<integer,null-int32>\",\n      \"timezone\": \"<string,null>\"\n    },\n    \"remindBeforeInSeconds\": \"<integer,null-int32>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"intention\": \"<string>\",\n    \"originalStartDate\": \"<dateTime>\",\n    \"allDayDate\": \"<string,null>\",\n    \"appendRecordNameToTitle\": \"<boolean,null>\",\n    \"sendInvitation\": \"<boolean,null>\",\n    \"invitationDescription\": \"<string,null>\",\n    \"nbaId\": \"<string,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "031ecfe8-d31a-41ff-8961-fc7c923be59f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "bulk",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"polygon\": {\n    \"points\": \"<array,null>\"\n  },\n  \"filterId\": \"<string,null>\",\n  \"dataObjectIds\": \"<array,null>\",\n  \"q\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"appointment\": {\n    \"dataObjectId\": \"<string,null>\",\n    \"ownerId\": \"<string,null>\",\n    \"date\": \"<string,null-date-time>\",\n    \"duration\": \"<integer,null-int32>\",\n    \"title\": \"<string,null>\",\n    \"notes\": \"<string,null>\",\n    \"activityId\": \"<string,null>\",\n    \"allDay\": \"<boolean>\",\n    \"done\": \"<boolean>\",\n    \"recurringDefinition\": {\n      \"id\": \"<string,null>\",\n      \"periodicity\": \"<string>\",\n      \"interval\": \"<integer>\",\n      \"repeatOn\": \"<array,null>\",\n      \"until\": \"<string,null>\",\n      \"count\": \"<integer,null-int32>\",\n      \"timezone\": \"<string,null>\"\n    },\n    \"remindBeforeInSeconds\": \"<integer,null-int32>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"intention\": \"<string>\",\n    \"originalStartDate\": \"<dateTime>\",\n    \"allDayDate\": \"<string,null>\",\n    \"appendRecordNameToTitle\": \"<boolean,null>\",\n    \"sendInvitation\": \"<boolean,null>\",\n    \"invitationDescription\": \"<string,null>\",\n    \"nbaId\": \"<string,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a16345af-cbd4-49c4-a90f-963a2339ff9b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "bulk",
+                    "create"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"polygon\": {\n    \"points\": \"<array,null>\"\n  },\n  \"filterId\": \"<string,null>\",\n  \"dataObjectIds\": \"<array,null>\",\n  \"q\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"appointment\": {\n    \"dataObjectId\": \"<string,null>\",\n    \"ownerId\": \"<string,null>\",\n    \"date\": \"<string,null-date-time>\",\n    \"duration\": \"<integer,null-int32>\",\n    \"title\": \"<string,null>\",\n    \"notes\": \"<string,null>\",\n    \"activityId\": \"<string,null>\",\n    \"allDay\": \"<boolean>\",\n    \"done\": \"<boolean>\",\n    \"recurringDefinition\": {\n      \"id\": \"<string,null>\",\n      \"periodicity\": \"<string>\",\n      \"interval\": \"<integer>\",\n      \"repeatOn\": \"<array,null>\",\n      \"until\": \"<string,null>\",\n      \"count\": \"<integer,null-int32>\",\n      \"timezone\": \"<string,null>\"\n    },\n    \"remindBeforeInSeconds\": \"<integer,null-int32>\",\n    \"activityTemplateId\": \"<string,null>\",\n    \"intention\": \"<string>\",\n    \"originalStartDate\": \"<dateTime>\",\n    \"allDayDate\": \"<string,null>\",\n    \"appendRecordNameToTitle\": \"<boolean,null>\",\n    \"sendInvitation\": \"<boolean,null>\",\n    \"invitationDescription\": \"<string,null>\",\n    \"nbaId\": \"<string,null>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99cfe11d-0dae-4846-bc04-3478a7248f95",
+          "name": "Create multiple appointments (max 20)",
+          "request": {
+            "name": "Create multiple appointments (max 20)",
+            "description": {
+              "content": "Creates multiple appointments in a single request (max 20 per request). Each appointment is processed individually and the response \nincludes the result for each appointment (success with created appointment or failure with error details).\nPartial success is possible - some appointments may succeed while others fail.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "appointments",
+                "multiple"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointments\": \"<array,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4423dd09-e5a0-4544-8e7c-7c7a5b4755b0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "multiple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appointments\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": null,\n  \"successCount\": 9856,\n  \"failureCount\": 3156\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99ca1fbc-d390-42b6-9f28-10e0a689c80e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "multiple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appointments\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d4bb3a4-022c-4c18-8e73-9ac81e1ca212",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "multiple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appointments\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b648fcb-c3c0-4be5-98cb-f7e8ee2f909c",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "multiple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appointments\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8eb838e0-9a32-49fb-8150-ed2861cce666",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "multiple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appointments\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2f86c85-9c50-4ffe-a23a-b8419fad5fbd",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "appointments",
+                    "multiple"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"appointments\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "29a8ed03-32ff-4dcb-92a4-0831abac0dc8",
+    "name": "Spotio 2.0 Appointments V2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "\nThe controller is responsible for handling the creation, updating, deleting and retrieval of appointment.\nMainly the controller allow to manage appointment (current and future).\nEvery appointment has related activity.\n\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

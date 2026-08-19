@@ -1,0 +1,385 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spotio 2.0 My Reports API",
+    "version": "v1"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MyReports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of My Reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/MyReports",
+            "params": [
+              {
+                "name": "showMine",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to return only the reports created by the current user."
+              },
+              {
+                "name": "dataObjectTypeId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the Data Object type that the reports should be filtered by. If not specified, all report types will be returned."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieves a list of My Reports based on the specified filters."
+        },
+        {
+          "info": {
+            "name": "Create a new report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/MyReports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new report"
+        },
+        {
+          "info": {
+            "name": "Get a specific report.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/MyReports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report Id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the report with the specified ID."
+        },
+        {
+          "info": {
+            "name": "Update existing report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.spotio2.com/api/MyReports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update existing report"
+        },
+        {
+          "info": {
+            "name": "Delete existing report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.spotio2.com/api/MyReports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete existing report"
+        },
+        {
+          "info": {
+            "name": "Render report by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.spotio2.com/api/MyReports/:id/render",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter"
+              },
+              {
+                "name": "includeValueRef",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format override"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report id"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Render report by id"
+        },
+        {
+          "info": {
+            "name": "Render report by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/MyReports/:id/render",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter"
+              },
+              {
+                "name": "includeValueRef",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format override"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Render report by id"
+        },
+        {
+          "info": {
+            "name": "Render report preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/MyReports/preview",
+            "params": [
+              {
+                "name": "includeValueRef",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format override"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Render report preview"
+        },
+        {
+          "info": {
+            "name": "Get cell details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/MyReports/:id/details",
+            "params": [
+              {
+                "name": "scrollId",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination (next page)"
+              },
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter id"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Sort by column: (title, dueDate, completedOn)"
+              },
+              {
+                "name": "dateFormat",
+                "value": "",
+                "type": "query",
+                "description": "Optional date format override"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get cell details"
+        },
+        {
+          "info": {
+            "name": "Export cell details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.spotio2.com/api/MyReports/:id/details/export",
+            "params": [
+              {
+                "name": "filterId",
+                "value": "",
+                "type": "query",
+                "description": "Filter id"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export cell details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

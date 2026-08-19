@@ -1,0 +1,94 @@
+generated: '2026-08-13'
+method: searched
+source: registry search across npm, PyPI, RubyGems, Packagist, NuGet, crates.io and the SPOTIO GitHub org
+provider: SPOTIO
+providerId: spotio
+
+package_count: 0
+official_sdk_count: 0
+packages: []
+
+detail: >-
+  SPOTIO publishes no client libraries. Every public registry was searched for a
+  first-party package and every one came back empty, and SPOTIO's own GitHub
+  organisation (github.com/Spotio, verified by its blog field pointing at
+  spotio.com) has zero public repositories. What the developer portal ships instead
+  is copy-paste Python: the Authenticating, Paginating and Filtering articles each
+  carry a worked `requests`-based class (token caching and renewal, scrollId
+  pagination, filter creation). Those are documentation samples, not a distributed,
+  versioned artifact - there is nothing for a consumer to pin, and no release date
+  from which to read maintenance.
+
+registries_searched:
+- registry: npm
+  query: spotio
+  endpoint: https://registry.npmjs.org/-/v1/search?text=spotio
+  http_status: 200
+  first_party_hits: 0
+  version: null
+- registry: pypi
+  query: spotio
+  endpoint: https://pypi.org/pypi/spotio/json
+  http_status: 404
+  first_party_hits: 0
+  version: null
+- registry: rubygems
+  query: spotio
+  endpoint: https://rubygems.org/api/v1/search.json?query=spotio
+  http_status: 200
+  first_party_hits: 0
+  version: null
+- registry: packagist
+  query: spotio
+  endpoint: https://packagist.org/search.json?q=spotio
+  http_status: 200
+  first_party_hits: 0
+  version: null
+- registry: nuget
+  query: spotio
+  endpoint: https://azuresearch-usnc.nuget.org/query?q=spotio
+  http_status: 200
+  total_hits: 0
+  first_party_hits: 0
+  version: null
+- registry: github
+  query: spotio (orgs + repos)
+  endpoint: https://api.github.com/search/users?q=spotio+type:org
+  http_status: 200
+  first_party_hits: 0
+  note: >-
+    github.com/Spotio exists and is SPOTIO's (blog = spotio.com) but publishes 0
+    public repositories. github.com/SPOTIO-Internal likewise publishes none. Every
+    "spotio" repository on GitHub with stars belongs to unrelated Spotify projects.
+
+code_samples:
+- language: python
+  kind: documentation sample
+  distributed: false
+  version: null
+  url: https://developer.spotio2.com/docs/spotio2/3f682d2s8ezln-authenticating-to-the-rest-api
+  covers: token minting, local token caching, expiry checking, renewal
+- language: python
+  kind: documentation sample
+  distributed: false
+  version: null
+  url: https://developer.spotio2.com/docs/spotio2/o5nz1a7nbyivu-paginating-and-sorting
+  covers: scrollId pagination loop over DataObjects search
+- language: python
+  kind: documentation sample
+  distributed: false
+  version: null
+  url: https://developer.spotio2.com/docs/spotio2/a56edkm4m96ez-filtering-collections
+  covers: creating a persisted 30-day filter and reusing its filterId
+- language: curl
+  kind: documentation sample
+  distributed: false
+  version: null
+  url: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+  covers: token request and a first authenticated GET
+
+note: >-
+  No SDKs pointer is emitted in apis.yml. An SDK count of zero is the honest reading
+  of this surface, and the absence is itself the finding: SPOTIO ships a 295-operation
+  API, a remote MCP server and a signed webhook system with no client library in any
+  language.

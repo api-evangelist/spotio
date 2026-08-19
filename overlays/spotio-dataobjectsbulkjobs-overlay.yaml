@@ -1,0 +1,33 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Spotio 2.0 Data Objects Bulk Jobs API
+  version: 1.0.0
+extends: openapi/spotio-dataobjectsbulkjobs-api-openapi.yml
+x-generated: '2026-08-13'
+x-method: generated
+x-source: openapi/_original/spotio-swagger.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: spotio
+    x-apievangelist-capability: DataObjectsBulkJobs
+    x-apievangelist-operations: 9
+    x-apievangelist-contract-source: https://api.stoplight.io/projects/cHJqOjIzMTU4MQ/branches/main/export/spotio-swagger.json
+    x-apievangelist-docs: https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api
+    x-apievangelist-auth: Bearer JWT minted at POST /api/users/apitoken with clientId + secret; tokens expire after
+      30 days
+    x-apievangelist-pagination: cursor via scrollId; repeat until scrollId is null. perPage overrides page size
+      where declared.
+    x-apievangelist-error-envelope: '{"errors": {"<field>": "<message>"}} - not RFC 9457'
+    x-apievangelist-idempotency: none published
+    x-apievangelist-rate-limits: none published; 429 declared on no operation
+    x-apievangelist-mcp: https://app.spotio2.com/mcp (SPOTIO-MCP-KEY)
+    x-apievangelist-known-defect: source document declares no operationId on any operation
+- target: $.servers
+  update:
+  - url: https://api.spotio2.com
+    description: Production
+  - url: https://app-test.spotio2.com
+    description: Test
+  - url: https://stoplight.io/mocks/spotio/spotio2/264959918
+    description: Prism mock published by SPOTIO Stoplight project - any Authorization bearer value is accepted

@@ -1,0 +1,308 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Webhooks API
+  description: "\nThe controller is responsible for handling webhooks related operations. \nIt provides methods for retrieving available webhook scopes, getting all webhooks for the current company, creating a new webhook, updating an existing webhook and deleting a webhook by its ID.\nMore information about webhooks and how it works can be found in the section 'Group Web hooks'\n"
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: Webhooks
+  description: "\nThe controller is responsible for handling webhooks related operations. \nIt provides methods for retrieving available webhook scopes, getting all webhooks for the current company, creating a new webhook, updating an existing webhook and deleting a webhook by its ID.\nMore information about webhooks and how it works can be found in the section 'Group Web hooks'\n"
+paths:
+  /api/Webhooks/scopes:
+    get:
+      tags:
+      - Webhooks
+      summary: Retrieve all available webhook scopes
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  type: string
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Webhooks:
+    get:
+      tags:
+      - Webhooks
+      summary: Get all webhooks for the current company
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhooksDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhooksDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhooksDto'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - Webhooks
+      summary: Create a new webhook
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/Webhooks/{id}:
+    put:
+      tags:
+      - Webhooks
+      summary: Update an existing webhook
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete a webhook by its ID
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.Webhooks.WebhooksDto:
+      type: object
+      description: A DTO containing webhook information
+      additionalProperties: false
+      properties:
+        secret:
+          type:
+          - string
+          - 'null'
+          description: The webhook secret
+        endpoints:
+          type:
+          - array
+          - 'null'
+          description: A list of webhook endpoints
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
+    Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto:
+      type: object
+      description: A DTO containing webhook endpoint information
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the webhook endpoint
+        callback:
+          type:
+          - string
+          - 'null'
+          description: The callback URL for the webhook
+        scopes:
+          type:
+          - array
+          - 'null'
+          description: A list of webhook scopes
+          items:
+            type: string
+        active:
+          type: boolean
+          description: The active status of the webhook
+        customHeaders:
+          type:
+          - array
+          - 'null'
+          description: A list of custom headers for the webhook
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
+    Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto:
+      type: object
+      description: A DTO for updating an existing webhook
+      additionalProperties: false
+      properties:
+        callback:
+          type:
+          - string
+          - 'null'
+          description: The updated callback URL for the webhook
+        scopes:
+          type:
+          - array
+          - 'null'
+          description: The updated list of webhook scopes
+          items:
+            type: string
+        active:
+          type: boolean
+          description: The updated active status of the webhook
+        customHeaders:
+          type:
+          - array
+          - 'null'
+          description: An optional updated list of custom headers for the webhook
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
+    Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto:
+      type: object
+      description: A DTO containing custom header information for a webhook
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the custom header
+        value:
+          type:
+          - string
+          - 'null'
+          description: The value of the custom header
+    Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto:
+      type: object
+      description: A DTO for creating a new webhook
+      additionalProperties: false
+      properties:
+        callback:
+          type:
+          - string
+          - 'null'
+          description: The callback URL for the new webhook
+        scopes:
+          type:
+          - array
+          - 'null'
+          description: A list of webhook scopes for the new webhook
+          items:
+            type: string
+        customHeaders:
+          type:
+          - array
+          - 'null'
+          description: An optional list of custom headers for the new webhook
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

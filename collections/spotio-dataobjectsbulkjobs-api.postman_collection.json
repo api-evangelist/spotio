@@ -1,0 +1,1850 @@
+{
+  "item": [
+    {
+      "id": "88300b44-8347-4d05-8cf9-5475915a1ac6",
+      "name": "DataObjectsBulkJobs",
+      "description": {
+        "content": "Bulk operations on data objects. Flow: Create job -> Upload NDJSON data -> Start processing -> Poll progress -> Download results -> Cleanup.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "16b18a88-582c-4bf4-934a-3eb7411df316",
+          "name": "Create a bulk job",
+          "request": {
+            "name": "Create a bulk job",
+            "description": {
+              "content": "Creates a new bulk job for the specified data object type. After creation, upload NDJSON data files, then start processing. Allowed operations: 'create', 'update', 'patch'.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operation\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75b1bd34-7baa-4a8d-a3d4-8c1249ef74f5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operation\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"operation\": \"string\",\n  \"dataObjectTypeId\": 3979,\n  \"createdById\": 751,\n  \"createdDate\": \"2021-01-10T22:16:22.792Z\",\n  \"updatedDate\": \"1979-08-25T09:57:46.376Z\",\n  \"state\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63004f27-1adf-45b6-82c2-bb04dfaf8fa8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operation\": \"<string,null>\",\n  \"dataObjectTypeId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4843033a-836b-4096-b0ef-306b278d751d",
+          "name": "Get in-progress bulk jobs",
+          "request": {
+            "name": "Get in-progress bulk jobs",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk",
+                "inprogress"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9cbead07-739b-4ca4-92b8-384cd75080ab",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    "inprogress"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": null,\n    \"operation\": \"string\",\n    \"dataObjectTypeId\": 8286,\n    \"createdById\": 3475,\n    \"createdDate\": \"1960-07-10T08:36:00.619Z\",\n    \"updatedDate\": \"1975-01-03T15:38:19.409Z\",\n    \"state\": \"string\"\n  },\n  {\n    \"id\": null,\n    \"operation\": \"string\",\n    \"dataObjectTypeId\": 8990,\n    \"createdById\": 7917,\n    \"createdDate\": \"1962-11-14T16:55:14.940Z\",\n    \"updatedDate\": \"2018-11-06T06:25:17.032Z\",\n    \"state\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eebfedfa-d1b0-4ec1-81b9-83742f7de29b",
+          "name": "Get a bulk job",
+          "request": {
+            "name": "Get a bulk job",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk",
+                ":id"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3ef92b55-c93a-4be6-b9dd-005296091e01",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"operation\": \"string\",\n  \"dataObjectTypeId\": 3979,\n  \"createdById\": 751,\n  \"createdDate\": \"2021-01-10T22:16:22.792Z\",\n  \"updatedDate\": \"1979-08-25T09:57:46.376Z\",\n  \"state\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25677d49-9591-41a0-8fa0-5bea250388dc",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f5d6c46-2fb3-4cfe-91a1-548176ac2254",
+          "name": "Upload bulk job data",
+          "request": {
+            "name": "Upload bulk job data",
+            "description": {
+              "content": "Upload an NDJSON file (one JSON object per line) as the raw request body. Each line must be a valid JSON object matching the BulkDataObjectRequest schema (see Schemas section for field definitions). Multiple files can be uploaded to the same job. Content-Type should be application/octet-stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk",
+                ":id",
+                "data"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-ndjson"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string,null>\",\n  \"stageId\": \"<integer,null-int32>\",\n  \"ownerId\": \"<integer,null-int32>\",\n  \"pin\": {\n    \"id\": \"<integer>\",\n    \"lat\": \"<double>\",\n    \"lng\": \"<double>\",\n    \"placeId\": \"<string,null>\",\n    \"address\": \"<string,null>\",\n    \"street\": \"<string,null>\",\n    \"houseNumber\": \"<string,null>\",\n    \"zip\": \"<string,null>\",\n    \"city\": \"<string,null>\",\n    \"state\": \"<string,null>\",\n    \"country\": \"<string,null>\",\n    \"shortAddress\": \"<string,null>\",\n    \"skipGeocoding\": \"<boolean>\"\n  },\n  \"source\": \"<string,null>\",\n  \"externalDataObjectId\": \"<string,null>\",\n  \"fields\": \"<array,null>\",\n  \"typeId\": \"<integer>\",\n  \"parentId\": \"<string,null>\",\n  \"createdAt\": \"<string,null-date-time>\",\n  \"updatedAt\": \"<string,null-date-time>\",\n  \"collaboratorIds\": \"<array,null>\"\n}"
+            }
+          },
+          "response": [
+            {
+              "id": "7ea28a16-505f-4157-bfde-0599ddb61fd3",
+              "name": "File uploaded successfully",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "data"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"Fields\": [{\"FieldId\": \"f-title\", \"Label\": \"Title\", \"Value\": \"Value A\", \"FormattedValue\": \"Value A\"}], \"TypeId\": 101, \"OwnerId\": 1}\n{\"Fields\": [{\"FieldId\": \"f-title\", \"Label\": \"Title\", \"Value\": \"Value B\", \"FormattedValue\": \"Value B\"}], \"TypeId\": 101, \"OwnerId\": 2}\n{\"Fields\": [{\"FieldId\": \"f-email\", \"Label\": \"Email\", \"Value\": \"test@example.com\", \"FormattedValue\": \"test@example.com\"}], \"TypeId\": 101, \"OwnerId\": 1, \"Pin\": {\"Id\": \"ChIJ...\", \"Lat\": 40.7128, \"Lng\": -74.0060, \"Address\": \"290 Broadway, New York, NY 10007, USA\", \"Street\": \"Broadway\", \"HouseNumber\": \"290\", \"Zip\": \"10007\", \"City\": \"New York\", \"Country\": \"USA\", \"ShortAddress\": \"290 Broadway\"}}"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"bulkJobId\": \"string\",\n  \"partNumber\": 5891,\n  \"size\": 6072,\n  \"recordCount\": 8428,\n  \"state\": null,\n  \"createdDate\": \"2014-01-11T15:43:21.697Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e68e339-df19-42bb-b1f3-1e0859e70e8a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "data"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"Fields\": [{\"FieldId\": \"f-title\", \"Label\": \"Title\", \"Value\": \"Value A\", \"FormattedValue\": \"Value A\"}], \"TypeId\": 101, \"OwnerId\": 1}\n{\"Fields\": [{\"FieldId\": \"f-title\", \"Label\": \"Title\", \"Value\": \"Value B\", \"FormattedValue\": \"Value B\"}], \"TypeId\": 101, \"OwnerId\": 2}\n{\"Fields\": [{\"FieldId\": \"f-email\", \"Label\": \"Email\", \"Value\": \"test@example.com\", \"FormattedValue\": \"test@example.com\"}], \"TypeId\": 101, \"OwnerId\": 1, \"Pin\": {\"Id\": \"ChIJ...\", \"Lat\": 40.7128, \"Lng\": -74.0060, \"Address\": \"290 Broadway, New York, NY 10007, USA\", \"Street\": \"Broadway\", \"HouseNumber\": \"290\", \"Zip\": \"10007\", \"City\": \"New York\", \"Country\": \"USA\", \"ShortAddress\": \"290 Broadway\"}}"
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5425d94-132a-4cbb-9e74-fca90ea7d5df",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "data"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"Fields\": [{\"FieldId\": \"f-title\", \"Label\": \"Title\", \"Value\": \"Value A\", \"FormattedValue\": \"Value A\"}], \"TypeId\": 101, \"OwnerId\": 1}\n{\"Fields\": [{\"FieldId\": \"f-title\", \"Label\": \"Title\", \"Value\": \"Value B\", \"FormattedValue\": \"Value B\"}], \"TypeId\": 101, \"OwnerId\": 2}\n{\"Fields\": [{\"FieldId\": \"f-email\", \"Label\": \"Email\", \"Value\": \"test@example.com\", \"FormattedValue\": \"test@example.com\"}], \"TypeId\": 101, \"OwnerId\": 1, \"Pin\": {\"Id\": \"ChIJ...\", \"Lat\": 40.7128, \"Lng\": -74.0060, \"Address\": \"290 Broadway, New York, NY 10007, USA\", \"Street\": \"Broadway\", \"HouseNumber\": \"290\", \"Zip\": \"10007\", \"City\": \"New York\", \"Country\": \"USA\", \"ShortAddress\": \"290 Broadway\"}}"
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a8847c0e-d536-43e9-88b1-00ef98c223e3",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "data"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"Fields\": [{\"FieldId\": \"f-title\", \"Label\": \"Title\", \"Value\": \"Value A\", \"FormattedValue\": \"Value A\"}], \"TypeId\": 101, \"OwnerId\": 1}\n{\"Fields\": [{\"FieldId\": \"f-title\", \"Label\": \"Title\", \"Value\": \"Value B\", \"FormattedValue\": \"Value B\"}], \"TypeId\": 101, \"OwnerId\": 2}\n{\"Fields\": [{\"FieldId\": \"f-email\", \"Label\": \"Email\", \"Value\": \"test@example.com\", \"FormattedValue\": \"test@example.com\"}], \"TypeId\": 101, \"OwnerId\": 1, \"Pin\": {\"Id\": \"ChIJ...\", \"Lat\": 40.7128, \"Lng\": -74.0060, \"Address\": \"290 Broadway, New York, NY 10007, USA\", \"Street\": \"Broadway\", \"HouseNumber\": \"290\", \"Zip\": \"10007\", \"City\": \"New York\", \"Country\": \"USA\", \"ShortAddress\": \"290 Broadway\"}}"
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1e767c1-1ab2-427a-bdcd-134c2bf7c8b5",
+          "name": "Start processing a bulk job",
+          "request": {
+            "name": "Start processing a bulk job",
+            "description": {
+              "content": "Marks the job as ready for processing. At least one data file must be uploaded before starting. The job must be in 'Open' state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk",
+                ":id",
+                "start"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cc143941-39d6-4997-91a9-e5d25ecd2dde",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "start"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"operation\": \"string\",\n  \"dataObjectTypeId\": 3979,\n  \"createdById\": 751,\n  \"createdDate\": \"2021-01-10T22:16:22.792Z\",\n  \"updatedDate\": \"1979-08-25T09:57:46.376Z\",\n  \"state\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "114af769-5169-4949-988b-af3cbb968f4d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "start"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "06e5d975-7c92-45bf-a227-bad15616d341",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "start"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90d49d61-7c6b-4500-ada1-881030bd3e8c",
+          "name": "Get bulk job progress",
+          "request": {
+            "name": "Get bulk job progress",
+            "description": {
+              "content": "Returns current processing progress including per-file breakdown of processed and failed records.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk",
+                ":id",
+                "progress"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6a6314cf-5cad-4cb6-ab59-9d34eea7c721",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "progress"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": null,\n  \"state\": \"string\",\n  \"operation\": \"string\",\n  \"dataObjectTypeId\": 4194,\n  \"createdById\": 9110,\n  \"createdDate\": \"1959-10-19T05:21:59.859Z\",\n  \"processingStartedAt\": null,\n  \"totalRecordsToProcess\": 3044,\n  \"recordsProcessed\": 1987,\n  \"recordsFailed\": 226,\n  \"errorMessage\": null,\n  \"files\": [\n    \"\",\n    \"\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e200fedb-c2fb-488b-99a1-2b6efb2e3d0d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "progress"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c20492ae-a0a3-4480-8aa5-618f4f98c890",
+          "name": "Download succeeded results",
+          "request": {
+            "name": "Download succeeded results",
+            "description": {
+              "content": "Downloads an NDJSON file with successfully processed records. Each line contains FileId, DataObjectId, and the original Data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk",
+                ":id",
+                "results",
+                "succeeded"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d297ff9d-1ea6-45bf-8565-80cb3ab98bd7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "results",
+                    "succeeded"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "056a1bd3-9cfc-4181-9598-f9b509f8e2aa",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "results",
+                    "succeeded"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8a48a43-c526-44b3-a2f0-0943c2cd3c73",
+          "name": "Download failed results",
+          "request": {
+            "name": "Download failed results",
+            "description": {
+              "content": "Downloads an NDJSON file with failed records. Each line contains FileId, Error message, and the original Data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk",
+                ":id",
+                "results",
+                "failed"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "586a413d-987e-4eff-a5d2-1ba179347f44",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "results",
+                    "failed"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68c7c82e-890d-4573-8cad-0a2c47dc1c26",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "results",
+                    "failed"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04e990da-b23c-437c-a5eb-48ed6a31d2b8",
+          "name": "Cleanup a bulk job",
+          "request": {
+            "name": "Cleanup a bulk job",
+            "description": {
+              "content": "Cleans up bulk job resources: drops the staging data table, deletes result files, and/or deletes uploaded files. The job state is set to 'Aborted'. All flags default to true.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "jobs",
+                "dataObjects",
+                "bulk",
+                ":id",
+                "cleanup"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dropDataTable\": \"<boolean>\",\n  \"deleteResultFiles\": \"<boolean>\",\n  \"deleteUploadedFiles\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bf6490e6-2036-4b1a-bb59-3ff26cb8c14a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "cleanup"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dropDataTable\": \"<boolean>\",\n  \"deleteResultFiles\": \"<boolean>\",\n  \"deleteUploadedFiles\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f49d862-23fe-48df-aeae-129b4bda43c6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "cleanup"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dropDataTable\": \"<boolean>\",\n  \"deleteResultFiles\": \"<boolean>\",\n  \"deleteUploadedFiles\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "314141e5-b8c0-4a48-b0a3-a60de7e2305d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "jobs",
+                    "dataObjects",
+                    "bulk",
+                    ":id",
+                    "cleanup"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dropDataTable\": \"<boolean>\",\n  \"deleteResultFiles\": \"<boolean>\",\n  \"deleteUploadedFiles\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ca345ec-4448-4392-96e5-1f5b07bc25b5",
+    "name": "Spotio 2.0 Data Objects Bulk Jobs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Bulk operations on data objects. Flow: Create job -> Upload NDJSON data -> Start processing -> Poll progress -> Download results -> Cleanup.\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

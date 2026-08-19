@@ -1,0 +1,701 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Data Objects Search API
+  description: "    This controller is responsible for searching data objects.\n    There are available endpoints for:\n    * simple global searches - return only basic information about data objects\n    * searching on lists - return more information about data objects\n\n    Sorting (ascending by default, use `-` prefix to sort descending):\n    * updatedat\n    * value\n    * visitscount\n    * lastvisitdate\n    * distance\n    * nextactivitytime\n    * lastvisitresult"
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: DataObjectsSearch
+  description: "    This controller is responsible for searching data objects.\n    There are available endpoints for:\n    * simple global searches - return only basic information about data objects\n    * searching on lists - return more information about data objects\n\n    Sorting (ascending by default, use `-` prefix to sort descending):\n    * updatedat\n    * value\n    * visitscount\n    * lastvisitdate\n    * distance\n    * nextactivitytime\n    * lastvisitresult"
+paths:
+  /api/DataObjectsSearch/simple:
+    get:
+      tags:
+      - DataObjectsSearch
+      summary: Search objects (simple)
+      description: Global search for objects, search should use address or other characteristic fields
+      parameters:
+      - name: q
+        in: query
+        description: Text that can be used in a search of objects
+        schema:
+          type: string
+      - name: scrollId
+        in: query
+        description: Cursor for pagination (next page)
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Returns objects filtered by filter with given Id
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        description: By what property objects should be sorted by
+        schema:
+          type: string
+      - name: lat
+        in: query
+        description: Latitude
+        schema:
+          type: number
+          format: double
+      - name: lng
+        in: query
+        description: Longitude
+        schema:
+          type: number
+          format: double
+      - name: hasAddress
+        in: query
+        description: If true, will return objects with address
+        schema:
+          type: boolean
+      - name: hasPhoneOrEmail
+        in: query
+        description: If true, will return objects with phone or email
+        schema:
+          type: boolean
+      - name: hasPhone
+        in: query
+        description: If true, will return objects with phone
+        schema:
+          type: boolean
+      - name: hasEmail
+        in: query
+        description: If true, will return objects with email
+        schema:
+          type: boolean
+      - name: typeId
+        in: query
+        description: Returns objects filtered by given type id
+        schema:
+          type: integer
+          format: int32
+      - name: phoneNumber
+        in: query
+        description: Phone number
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: Page size
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectWithParentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectWithParentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectWithParentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - DataObjectsSearch
+      summary: Search objects (simple)
+      description: Global search for objects, search should use address or other characteristic fields
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectWithParentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectWithParentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectWithParentDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjectsSearch:
+    get:
+      tags:
+      - DataObjectsSearch
+      summary: Search objects
+      description: Global search for objects, search should use address or other characteristic fields
+      parameters:
+      - name: scrollId
+        in: query
+        description: Cursor for pagination (next page)
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        description: By what property objects should be sorted by
+        schema:
+          type: string
+      - name: stageId
+        in: query
+        description: Will return only objects with this stage Id
+        schema:
+          type: string
+      - name: stageGroups
+        in: query
+        description: Will return objects in specific stage group, can be 'active', 'won', or 'lost'
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Returns objects filtered by filter with given Id
+        schema:
+          type: string
+      - name: includeCustomFieldIds
+        in: query
+        description: Included custom fields - should be separated by ","
+        schema:
+          type: string
+      - name: includeFilterOptionIds
+        in: query
+        description: Included filter option values - should be separated by ","
+        schema:
+          type: string
+      - name: area
+        in: query
+        description: Coordinates of the screen corners when looking at a map
+        schema:
+          type: string
+      - name: polygon
+        in: query
+        description: Polygon data
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.PolygonPoint'
+      - name: q
+        in: query
+        description: Text that can be used in a search of objects
+        schema:
+          type: string
+      - name: lat
+        in: query
+        description: Latitude
+        schema:
+          type: number
+          format: double
+      - name: lng
+        in: query
+        description: Longitude
+        schema:
+          type: number
+          format: double
+      - name: includeActivities
+        in: query
+        description: If true, will return details about upcoming activity
+        schema:
+          type: boolean
+          default: false
+      - name: hasAddress
+        in: query
+        description: If true, will return objects with address
+        schema:
+          type: boolean
+      - name: hasPhoneOrEmail
+        in: query
+        description: If true, will return objects with phone or email
+        schema:
+          type: boolean
+      - name: hasPhone
+        in: query
+        description: If true, will return objects with phone
+        schema:
+          type: boolean
+      - name: hasEmail
+        in: query
+        description: If true, will return objects with email
+        schema:
+          type: boolean
+      - name: singleType
+        in: query
+        description: Returns data objects with selected type id
+        schema:
+          type: integer
+          format: int32
+      - name: includeOwnerExternalUserId
+        in: query
+        description: If true, will add information about owner external system user Id to the response
+        schema:
+          type: boolean
+          default: false
+      - name: perPage
+        in: query
+        description: Number of objects per page
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: includeParentData
+        in: query
+        description: If true, will add information about parent to the response
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - DataObjectsSearch
+      summary: Search objects
+      description: Global search for objects, search should use address or other characteristic fields
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/DataObjectsSearch/list:
+    get:
+      tags:
+      - DataObjectsSearch
+      summary: Search objects on list
+      parameters:
+      - name: scrollId
+        in: query
+        description: Cursor for pagination (next page)
+        schema:
+          type: string
+      - name: sortBy
+        in: query
+        description: By what property objects should be sorted by
+        schema:
+          type: string
+      - name: stageId
+        in: query
+        description: Will return only objects with this stage Id
+        schema:
+          type: string
+      - name: stageGroups
+        in: query
+        description: Will return objects in specific stage group, can be 'active', 'won', or 'lost'
+        schema:
+          type: string
+      - name: filterId
+        in: query
+        description: Returns objects filtered by filter with given Id
+        schema:
+          type: string
+      - name: includeCustomFieldIds
+        in: query
+        description: Included custom fields - should be separated by ","
+        schema:
+          type: string
+      - name: includeFilterOptionIds
+        in: query
+        description: Included filter option values - should be separated by ","
+        schema:
+          type: string
+      - name: area
+        in: query
+        description: Coordinates of the screen corners when looking at a map
+        schema:
+          type: string
+      - name: q
+        in: query
+        description: Text that can be used in a search of objects
+        schema:
+          type: string
+      - name: lat
+        in: query
+        description: Latitude
+        schema:
+          type: number
+          format: double
+      - name: lng
+        in: query
+        description: Longitude
+        schema:
+          type: number
+          format: double
+      - name: hasAddress
+        in: query
+        description: If true, will return objects with address
+        schema:
+          type: boolean
+      - name: hasPhoneOrEmail
+        in: query
+        description: If true, will return objects with phone or email
+        schema:
+          type: boolean
+      - name: hasPhone
+        in: query
+        description: If true, will return objects with phone
+        schema:
+          type: boolean
+      - name: hasEmail
+        in: query
+        description: If true, will return objects with email
+        schema:
+          type: boolean
+      - name: singleType
+        in: query
+        description: Returns data objects with selected type id
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        description: Number of objects per page
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: includeParentData
+        in: query
+        description: If true, will add information about parent to the response
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectListItemDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectListItemDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectsResultDto%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectListItemDto%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        '401':
+          description: Unauthorized
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto:
+      type: object
+      additionalProperties: false
+      properties:
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Cursor for pagination (next page)
+        sortBy:
+          type:
+          - string
+          - 'null'
+          description: By what property objects should be sorted by
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: Will return only objects with this stage Id
+        stageGroups:
+          type:
+          - string
+          - 'null'
+          description: Will return objects in specific stage group, can be 'active', 'won', or 'lost'
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: Returns objects filtered by filter with given Id
+        includeCustomFieldIds:
+          type:
+          - string
+          - 'null'
+          description: Included custom fields - should be separated by ","
+        includeFilterOptionIds:
+          type:
+          - string
+          - 'null'
+          description: Included filter option values - should be separated by ","
+        area:
+          type:
+          - string
+          - 'null'
+          description: Coordinates of the screen corners when looking at a map
+        polygon:
+          type:
+          - array
+          - 'null'
+          description: Polygon data
+          items:
+            $ref: '#/components/schemas/Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.PolygonPoint'
+        queryText:
+          type:
+          - string
+          - 'null'
+          description: Text that can be used in a search of objects
+        lat:
+          type:
+          - number
+          - 'null'
+          description: Latitude
+          format: double
+        lng:
+          type:
+          - number
+          - 'null'
+          description: Longitude
+          format: double
+        includeActivities:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return details about upcoming activity
+        hasAddress:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with address
+        hasPhoneOrEmail:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with phone or email
+        hasPhone:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with phone
+        hasEmail:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with email
+        singleType:
+          type:
+          - integer
+          - 'null'
+          description: Returns data objects with selected type id
+          format: int32
+        perPage:
+          type:
+          - integer
+          - 'null'
+          description: Number of objects per page
+          format: int32
+        placeIds:
+          type:
+          - array
+          - 'null'
+          description: Phone number
+          items:
+            type: string
+        includeOwnerExternalUserId:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will add information about owner external system user Id to the response
+        includeParentData:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will add information about parent to the response
+    Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto:
+      type: object
+      additionalProperties: false
+      properties:
+        queryText:
+          type:
+          - string
+          - 'null'
+          description: Text that can be used in a search of objects
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Cursor for pagination (next page)
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: Returns objects filtered by filter with given Id
+        sortBy:
+          type:
+          - string
+          - 'null'
+          description: By what property objects should be sorted by
+        hasAddress:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with address
+        hasPhoneOrEmail:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with phone or email
+        hasPhone:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with phone
+        hasEmail:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with email
+        typeId:
+          type:
+          - integer
+          - 'null'
+          description: Returns objects filtered by given type id
+          format: int32
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: Phone number
+        placeIds:
+          type:
+          - array
+          - 'null'
+          description: Google place ids
+          items:
+            type: string
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: Data object ids
+          items:
+            type: string
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          description: Page size
+          format: int32
+        lat:
+          type:
+          - number
+          - 'null'
+          description: Latitude
+          format: double
+        lng:
+          type:
+          - number
+          - 'null'
+          description: Longitude
+          format: double
+    Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.PolygonPoint:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

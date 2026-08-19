@@ -1,0 +1,1140 @@
+{
+  "item": [
+    {
+      "id": "468cc7a8-b5ab-472a-9eb4-bc9db9a67ece",
+      "name": "FiltersV2",
+      "description": {
+        "content": "    The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data.\n    It can be passed wherever filterId query parameter or property is available.\n    Some apis are exposed through Filters and some through FiltersV2 both can be used interchangeably.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a6f96e4-8137-4dea-befc-09448cb90f87",
+          "name": "Create a new filter",
+          "request": {
+            "name": "Create a new filter",
+            "description": {
+              "content": "Creates a new filter based on the provided information, to create temporary filter do not send title, to save filter for later usage provide title.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "filters"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string,null>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"territoriesIds\": \"<array,null>\",\n  \"currentUser\": \"<boolean>\",\n  \"allUsers\": \"<boolean>\",\n  \"usersIds\": \"<array,null>\",\n  \"teamIds\": \"<array,null>\",\n  \"stageIds\": \"<array,null>\",\n  \"activityTemplateIds\": \"<array,null>\",\n  \"lastLocationStatusIds\": \"<array,null>\",\n  \"activityResultIds\": \"<array,null>\",\n  \"customFields\": \"<array,null>\",\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"isFromAutoplay\": \"<boolean,null>\",\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": \"<string,null>\",\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": \"<array,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"activityTemplateStats\": \"<array,null>\",\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": \"<array,null>\",\n  \"scoreLabels\": \"<array,null>\",\n  \"nbas\": \"<array,null>\",\n  \"seeOnlyOwnDataObjectTypeIds\": \"<array,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb710206-b56f-4396-be31-cfd394a8cc04",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"territoriesIds\": \"<array,null>\",\n  \"currentUser\": \"<boolean>\",\n  \"allUsers\": \"<boolean>\",\n  \"usersIds\": \"<array,null>\",\n  \"teamIds\": \"<array,null>\",\n  \"stageIds\": \"<array,null>\",\n  \"activityTemplateIds\": \"<array,null>\",\n  \"lastLocationStatusIds\": \"<array,null>\",\n  \"activityResultIds\": \"<array,null>\",\n  \"customFields\": \"<array,null>\",\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"isFromAutoplay\": \"<boolean,null>\",\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": \"<string,null>\",\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": \"<array,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"activityTemplateStats\": \"<array,null>\",\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": \"<array,null>\",\n  \"scoreLabels\": \"<array,null>\",\n  \"nbas\": \"<array,null>\",\n  \"seeOnlyOwnDataObjectTypeIds\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"startDate\": \"1987-05-28T08:58:18.641Z\",\n  \"endDate\": null,\n  \"territoriesIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"currentUser\": true,\n  \"allUsers\": true,\n  \"usersIds\": null,\n  \"teamIds\": null,\n  \"stageIds\": null,\n  \"activityTemplateIds\": null,\n  \"lastLocationStatusIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"activityResultIds\": null,\n  \"customFields\": null,\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": false,\n  \"position\": 421,\n  \"isFromAutoplay\": true,\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": null,\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": null,\n  \"sortBy\": \"string\",\n  \"dataObjectTypeIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"activityTemplateStats\": null,\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": null,\n  \"scoreLabels\": null,\n  \"nbas\": null,\n  \"seeOnlyOwnDataObjectTypeIds\": [\n    5969,\n    6597\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90e0c066-24f4-4ea3-bf97-ce2449bc193b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"territoriesIds\": \"<array,null>\",\n  \"currentUser\": \"<boolean>\",\n  \"allUsers\": \"<boolean>\",\n  \"usersIds\": \"<array,null>\",\n  \"teamIds\": \"<array,null>\",\n  \"stageIds\": \"<array,null>\",\n  \"activityTemplateIds\": \"<array,null>\",\n  \"lastLocationStatusIds\": \"<array,null>\",\n  \"activityResultIds\": \"<array,null>\",\n  \"customFields\": \"<array,null>\",\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"isFromAutoplay\": \"<boolean,null>\",\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": \"<string,null>\",\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": \"<array,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"activityTemplateStats\": \"<array,null>\",\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": \"<array,null>\",\n  \"scoreLabels\": \"<array,null>\",\n  \"nbas\": \"<array,null>\",\n  \"seeOnlyOwnDataObjectTypeIds\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "972c8efd-b034-4b95-91bc-a4c1bc6b6f25",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"territoriesIds\": \"<array,null>\",\n  \"currentUser\": \"<boolean>\",\n  \"allUsers\": \"<boolean>\",\n  \"usersIds\": \"<array,null>\",\n  \"teamIds\": \"<array,null>\",\n  \"stageIds\": \"<array,null>\",\n  \"activityTemplateIds\": \"<array,null>\",\n  \"lastLocationStatusIds\": \"<array,null>\",\n  \"activityResultIds\": \"<array,null>\",\n  \"customFields\": \"<array,null>\",\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"isFromAutoplay\": \"<boolean,null>\",\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": \"<string,null>\",\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": \"<array,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"activityTemplateStats\": \"<array,null>\",\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": \"<array,null>\",\n  \"scoreLabels\": \"<array,null>\",\n  \"nbas\": \"<array,null>\",\n  \"seeOnlyOwnDataObjectTypeIds\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "781c1ed2-b01f-4202-824d-d8ad628cd812",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"territoriesIds\": \"<array,null>\",\n  \"currentUser\": \"<boolean>\",\n  \"allUsers\": \"<boolean>\",\n  \"usersIds\": \"<array,null>\",\n  \"teamIds\": \"<array,null>\",\n  \"stageIds\": \"<array,null>\",\n  \"activityTemplateIds\": \"<array,null>\",\n  \"lastLocationStatusIds\": \"<array,null>\",\n  \"activityResultIds\": \"<array,null>\",\n  \"customFields\": \"<array,null>\",\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"isFromAutoplay\": \"<boolean,null>\",\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": \"<string,null>\",\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": \"<array,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"activityTemplateStats\": \"<array,null>\",\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": \"<array,null>\",\n  \"scoreLabels\": \"<array,null>\",\n  \"nbas\": \"<array,null>\",\n  \"seeOnlyOwnDataObjectTypeIds\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb88c787-676b-4c6c-b328-eb658339f2f7",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"territoriesIds\": \"<array,null>\",\n  \"currentUser\": \"<boolean>\",\n  \"allUsers\": \"<boolean>\",\n  \"usersIds\": \"<array,null>\",\n  \"teamIds\": \"<array,null>\",\n  \"stageIds\": \"<array,null>\",\n  \"activityTemplateIds\": \"<array,null>\",\n  \"lastLocationStatusIds\": \"<array,null>\",\n  \"activityResultIds\": \"<array,null>\",\n  \"customFields\": \"<array,null>\",\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"isFromAutoplay\": \"<boolean,null>\",\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": \"<string,null>\",\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": \"<array,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"activityTemplateStats\": \"<array,null>\",\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": \"<array,null>\",\n  \"scoreLabels\": \"<array,null>\",\n  \"nbas\": \"<array,null>\",\n  \"seeOnlyOwnDataObjectTypeIds\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe5e603d-1988-4d72-b384-a9574dc99b33",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string,null>\",\n  \"startDate\": \"<string,null-date-time>\",\n  \"endDate\": \"<string,null-date-time>\",\n  \"territoriesIds\": \"<array,null>\",\n  \"currentUser\": \"<boolean>\",\n  \"allUsers\": \"<boolean>\",\n  \"usersIds\": \"<array,null>\",\n  \"teamIds\": \"<array,null>\",\n  \"stageIds\": \"<array,null>\",\n  \"activityTemplateIds\": \"<array,null>\",\n  \"lastLocationStatusIds\": \"<array,null>\",\n  \"activityResultIds\": \"<array,null>\",\n  \"customFields\": \"<array,null>\",\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": \"<boolean>\",\n  \"position\": \"<integer>\",\n  \"isFromAutoplay\": \"<boolean,null>\",\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": \"<string,null>\",\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": \"<array,null>\",\n  \"sortBy\": \"<string,null>\",\n  \"dataObjectTypeIds\": \"<array,null>\",\n  \"activityTemplateStats\": \"<array,null>\",\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": \"<array,null>\",\n  \"scoreLabels\": \"<array,null>\",\n  \"nbas\": \"<array,null>\",\n  \"seeOnlyOwnDataObjectTypeIds\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8a889dea-44a9-4c69-93f8-07a5805739cf",
+          "name": "Retrieves a filter by ID",
+          "request": {
+            "name": "Retrieves a filter by ID",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "filters",
+                ":filterId"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "filterId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "x-app-version",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dee9ac6d-0dd4-426b-87c6-f468c7905b77",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"title\": \"string\",\n  \"startDate\": \"1987-05-28T08:58:18.641Z\",\n  \"endDate\": null,\n  \"territoriesIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"currentUser\": true,\n  \"allUsers\": true,\n  \"usersIds\": null,\n  \"teamIds\": null,\n  \"stageIds\": null,\n  \"activityTemplateIds\": null,\n  \"lastLocationStatusIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"activityResultIds\": null,\n  \"customFields\": null,\n  \"periodShortcut\": \"<string>\",\n  \"lastLocationStatus\": \"<string>\",\n  \"dashboardFilter\": false,\n  \"position\": 421,\n  \"isFromAutoplay\": true,\n  \"dateField\": \"<string>\",\n  \"userField\": \"<string>\",\n  \"timezone\": null,\n  \"filterType\": \"<string>\",\n  \"colorization\": {\n    \"type\": \"<string>\",\n    \"customFieldId\": \"<string,null>\",\n    \"activityTemplateId\": \"<string,null>\"\n  },\n  \"directions\": null,\n  \"sortBy\": \"string\",\n  \"dataObjectTypeIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"activityTemplateStats\": null,\n  \"sharingOptions\": {\n    \"visibility\": \"<string>\",\n    \"territoriesIds\": \"<array,null>\",\n    \"usersIds\": \"<array,null>\",\n    \"teamsIds\": \"<array,null>\"\n  },\n  \"textOptIns\": null,\n  \"scoreLabels\": null,\n  \"nbas\": null,\n  \"seeOnlyOwnDataObjectTypeIds\": [\n    5969,\n    6597\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "312e6ec9-0bf9-4f30-9172-866805ce9272",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b466ff14-f7cb-4b87-8855-75e8a43a1d22",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6e083bc-ca60-4e9e-bb75-f8471a3b11b2",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b4fe090-302a-48ef-b108-93e95eb64077",
+              "name": "Client Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2e7d0d4-e8c6-4a42-86b9-600ffc2bc6ec",
+              "name": "Server Error",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters",
+                    ":filterId"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filterId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "x-app-version",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28ef1b94-4175-4a9c-87e8-45f726f097c7",
+          "name": "Get list of filter options",
+          "request": {
+            "name": "Get list of filter options",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "filters",
+                "options"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "76fd3c1a-c061-4a6f-ad74-68bbc60d0dd8",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters",
+                    "options"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": null,\n    \"name\": \"string\",\n    \"type\": \"ActivityTemplateStats\",\n    \"options\": null\n  },\n  {\n    \"id\": null,\n    \"name\": \"string\",\n    \"type\": \"ActivityTemplateStats\",\n    \"options\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c523a46e-fc9d-477e-9ea1-c772136d6951",
+          "name": "Get list of shared filters",
+          "request": {
+            "name": "Get list of shared filters",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v2",
+                "filters",
+                "shared"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e74a7899-fee3-4035-9cdc-4224158598c1",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v2",
+                    "filters",
+                    "shared"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": null,\n    \"title\": null,\n    \"createdById\": null\n  },\n  {\n    \"id\": null,\n    \"title\": null,\n    \"createdById\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "add873b3-fe56-4c48-bdfb-fb4c4d1c9732",
+    "name": "Spotio 2.0 Filters V2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "    The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data.\n    It can be passed wherever filterId query parameter or property is available.\n    Some apis are exposed through Filters and some through FiltersV2 both can be used interchangeably.\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}

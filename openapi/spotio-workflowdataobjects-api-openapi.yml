@@ -1,0 +1,870 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Spotio 2.0 Workflow Data Objects API
+  description: "    This controller is responsible for managing data object definitions.\n    Data object definition consists of field and stages definitions.\n    To create records from the definition refer to DataObjectsController."
+  contact:
+    name: Contact us
+    url: https://spotio.com/contact/
+    email: support@spotio.com
+servers:
+- url: https://api.spotio2.com
+  description: Production
+- url: https://app-test.spotio2.com
+  description: Test
+security:
+- Bearer: []
+tags:
+- name: WorkflowDataObjects
+  description: "    This controller is responsible for managing data object definitions.\n    Data object definition consists of field and stages definitions.\n    To create records from the definition refer to DataObjectsController."
+paths:
+  /api/workflow/dataObjects/full:
+    get:
+      tags:
+      - WorkflowDataObjects
+      summary: Get all data object definitions
+      description: Retrieves a list of all available data object definitions.
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.DataObjectDefinition'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.DataObjectDefinition'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.DataObjectDefinition'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataObjects:
+    get:
+      tags:
+      - WorkflowDataObjects
+      summary: Get data object definitions
+      description: Retrieves a list of data object definitions
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    post:
+      tags:
+      - WorkflowDataObjects
+      summary: Create a new data object definition
+      description: Creates a new data object definition in the system.
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataObjects/{id}:
+    get:
+      tags:
+      - WorkflowDataObjects
+      summary: Get data object definition by ID
+      description: Returns a data object definition based on the provided ID.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    put:
+      tags:
+      - WorkflowDataObjects
+      summary: Update a data object definition
+      description: Updates an existing data object definition in the system.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectUpdateRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectUpdateRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectUpdateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectUpdateRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectUpdateRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+    delete:
+      tags:
+      - WorkflowDataObjects
+      summary: Delete data object definition
+      description: Deletes the specified data object definition if it exists and no records for the type exist.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+  /api/workflow/dataObjects/default:
+    put:
+      tags:
+      - WorkflowDataObjects
+      summary: Update the default data object for the current company
+      parameters:
+      - name: id
+        in: query
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.SetDefaultDataObjectRequest'
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.SetDefaultDataObjectRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.SetDefaultDataObjectRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.SetDefaultDataObjectRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.SetDefaultDataObjectRequest'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Spotio.Infrastructure.Common.DataModel.Error.Error'
+      security:
+      - Bearer: []
+      servers:
+      - url: https://api.spotio2.com
+        description: Production
+      - url: https://app-test.spotio2.com
+        description: Test
+components:
+  schemas:
+    Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto:
+      type: string
+      enum:
+      - Lead
+      - Churn
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto:
+      type: string
+      enum:
+      - Name
+      - Location
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: Parent data object ID, in case if new data object definition should be nested inside other data object type
+        extraSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest'
+        inheritOwnerFromParent:
+          type: boolean
+          description: Should objects created from this definition inherit owner from parent objects
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+        parentRequired:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if a parent is required for the data object
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectUpdateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        extraSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest'
+        inheritOwnerFromParent:
+          type: boolean
+          description: Inherit owner from parent data object
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+        parentRequired:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if a parent is required for the data object
+    Spotio.Frontend.ViewModel.Workflow.Fields.Field:
+      type: object
+      description: Represents a field for a data object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the field
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the field
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType'
+        stageConstraints:
+          type:
+          - array
+          - 'null'
+          description: The list of stage constraints
+          items:
+            type: string
+        createdAt:
+          type: string
+          description: The date and time the field was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: The date and time the field was last updated
+          format: date-time
+        readonly:
+          type: boolean
+          description: Indicates if the field is read-only
+        useAsFilter:
+          type: boolean
+          description: Indicates if the field should be used as a filter
+        activeOptions:
+          type:
+          - array
+          - 'null'
+          description: The list of active options for the field
+          items:
+            type: string
+        removedOptions:
+          type:
+          - array
+          - 'null'
+          description: The list of removed options for the field
+          items:
+            type: string
+        showInActivityFeed:
+          type: boolean
+          description: Indicates if the field should be shown in the activity feed
+        role:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto'
+        stageVisibility:
+          type:
+          - array
+          - 'null'
+          description: The list of stage visibility settings
+          items:
+            type: string
+        systemRole:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto'
+        requiredWithoutStage:
+          type: boolean
+          description: Indicates if the field is required without a stage
+        inherited:
+          type: boolean
+          description: Indicates if the field's value is inherited from parent object
+        inheritable:
+          type: boolean
+          description: Indicates if the field's value can be inherited from parent object
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.SetDefaultDataObjectRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the data object definition
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto:
+      type: string
+      enum:
+      - Company
+      - FirstName
+      - LastName
+      - Phone
+      - Email
+      - Value
+      - Unit
+      - Address
+      - LossReasons
+      - LeadMachine
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        won:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        lost:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+    Spotio.Frontend.ViewModel.Workflow.Settings.DataObjectDefinition:
+      type: object
+      additionalProperties: false
+      properties:
+        hasAddress:
+          type: boolean
+          description: Indicates if the data object definition has an address
+        fields:
+          type:
+          - array
+          - 'null'
+          description: List of fields in the data object definition
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+        stages:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse'
+        hasPhone:
+          type: boolean
+          description: Indicates if the data object definition has a phone field
+          readOnly: true
+        hasEmail:
+          type: boolean
+          description: Indicates if the data object definition has an email field
+          readOnly: true
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the data object
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: Parent data object ID
+        extraSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings'
+        inheritOwnerFromParent:
+          type: boolean
+          description: Inherit owner from parent data object
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+        parentRequired:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if a parent is required for the data object
+    Spotio.Frontend.ViewModel.Workflow.Stages.Stage:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the stage
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the stage
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the stage
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          description: List of loss reasons for the stage
+          items:
+            type: string
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+    Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType:
+      type: string
+      enum:
+      - Email
+      - Text
+      - Phone
+      - SingleChoice
+      - MultiChoice
+      - Date
+      - Number
+      - Address
+      - Currency
+      - DateTime
+      - MultiLine
+      - Attachment
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        allowAutoplays:
+          type: boolean
+          description: Determines if you are able to create autoplays for this type
+        enableLeadMachine:
+          type: boolean
+          description: Should you be able to generate this objects using lead machine
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings:
+      type: object
+      additionalProperties: false
+      properties:
+        allowAutoplays:
+          type: boolean
+          description: Determines if you are able to create autoplays for this type
+        enableLeadMachine:
+          type: boolean
+          description: Enable LeadMachine for this data object
+        allowEcontracts:
+          type: boolean
+          description: Allow eContracts for this data object
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          type: boolean
+          description: Indicates if the stage group is active
+        stages:
+          type:
+          - array
+          - 'null'
+          description: List of stages in the group
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the data object
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: Parent data object ID
+        extraSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings'
+        inheritOwnerFromParent:
+          type: boolean
+          description: Inherit owner from parent data object
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+        parentRequired:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if a parent is required for the data object
+  securitySchemes:
+    Bearer:
+      type: apiKey
+      description: 'Enter the Bearer Authorization string as following: `Bearer Generated-JWT-Token`'
+      name: Authorization
+      in: header

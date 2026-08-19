@@ -1,0 +1,108 @@
+generated: '2026-08-13'
+method: searched
+source: openapi/_original/spotio-swagger.json
+docs: https://developer.spotio2.com/docs/spotio2/8l7aj7gsg81ix-status-codes-and-errors
+format: vendor
+rfc9457: false
+envelope:
+  shape: '{"errors": {"<field or fieldTempId>": "<message>"}}'
+  media_types:
+  - application/json
+  - text/json
+  - text/plain
+  schemas:
+  - Spotio.Infrastructure.Common.DataModel.Error.Error
+  - ResultType.Results.Error
+  notes:
+  - SPOTIO does NOT use RFC 9457 application/problem+json. Errors come back as a plain `errors` object
+    keyed by field name.
+  - Validation errors on the entity itself (rather than a field) are keyed with "_".
+  - For large DataObject writes a client may supply a `fieldTempId` per field; SPOTIO echoes that fieldTempId
+    back as the error key so the message can be bound to the right input.
+  examples:
+  - operation: POST /api/DataObjects
+    body: '{"errors": {"stageId": "Stage with id: 3 does not exist."}}'
+  - operation: DELETE /collection/{id}
+    body: '{"errors": {"_": "Cannot delete the last item in the collection"}}'
+problems:
+- status: 400
+  title: Bad Request
+  description: The request couldn't be understood, usually because the JSON body contains an error.
+  remediation: Validate the JSON body against the operation schema; SPOTIO accepts JSON only.
+  occurrences: 196
+  example_operations:
+  - POST /api/v2/activities
+  - POST /api/ActivitiesV2
+  - PUT /api/v2/activities/{activityId}
+- status: 401
+  title: Unauthorized
+  description: Authentication failed, expired or was not provided. SPOTIO bearer tokens are valid for
+    30 days and are revoked on expiry.
+  remediation: Re-mint a token with POST /api/users/apitoken using your clientId and secret, then retry.
+  occurrences: 220
+  example_operations:
+  - POST /api/v2/activities
+  - POST /api/ActivitiesV2
+  - PUT /api/v2/activities/{activityId}
+- status: 403
+  title: Forbidden
+  description: The authenticated user's SPOTIO role does not grant this operation. API keys inherit the
+    role and privileges of the user account that created them.
+  remediation: Create the API key under an account holding the required role (Admin for most configuration
+    endpoints).
+  occurrences: 35
+  example_operations:
+  - GET /api/v2/activities/{activityId}
+  - GET /api/ActivitiesV2/{activityId}
+  - POST /api/Autoplays/{autoplayId}/bulk/enroll
+- status: 404
+  title: Not Found
+  description: The requested resource couldn't be found - check the URI for errors.
+  remediation: Verify the resource id; ids are opaque strings, not integers, for DataObjects.
+  occurrences: 104
+  example_operations:
+  - GET /api/v2/activities/{activityId}
+  - GET /api/ActivitiesV2/{activityId}
+  - POST /api/Autoplays/{autoplayId}/bulk/enroll
+- status: 409
+  title: Conflict
+  description: The request conflicts with the current state of the resource.
+  remediation: Re-read the resource and reconcile before retrying.
+  occurrences: 2
+  example_operations:
+  - POST /api/communication/templates
+  - PATCH /api/communication/templates/{id}
+- status: 415
+  title: Unsupported Media Type
+  description: The request Content-Type is not one the operation accepts.
+  remediation: Send application/json (SPOTIO also accepts application/merge-patch+json and application/json-patch+json
+    on PATCH operations).
+  occurrences: 77
+  example_operations:
+  - POST /api/v2/activities
+  - POST /api/ActivitiesV2
+  - PUT /api/v2/activities/{activityId}
+- status: 422
+  title: Unprocessable Entity
+  description: Syntactically correct request containing bad data - i.e. a validation error.
+  remediation: Read the `errors` object in the response body; keys are field names (or the fieldTempId
+    you supplied) and values are the validation message.
+  occurrences: 77
+  example_operations:
+  - POST /api/v2/activities
+  - POST /api/ActivitiesV2
+  - PUT /api/v2/activities/{activityId}
+- status: 500
+  title: Server Error
+  description: An unexpected error occurred inside SPOTIO.
+  remediation: Retry with backoff; if it persists contact support@spotio.com or check https://status.spotio2.com/.
+  occurrences: 84
+  example_operations:
+  - POST /api/v2/activities
+  - POST /api/ActivitiesV2
+  - PUT /api/v2/activities/{activityId}
+not_documented:
+- 429 Too Many Requests is not declared on any of the 295 operations and no rate-limit error is documented
+  (see rate-limits/spotio-rate-limits.yml).
+- SPOTIO documents 201 Created and 304 Not Modified in the status-code reference, but neither appears
+  in the OpenAPI - every success response is declared 200.

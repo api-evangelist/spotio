@@ -1,0 +1,861 @@
+{
+  "item": [
+    {
+      "id": "fa85968d-5fc0-4990-8ec5-4f4710b272ca",
+      "name": "Reports",
+      "description": {
+        "content": "The controller is responsible exporting data by selected report type.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3805a4a-ca4d-4129-ade7-25cf4ae20644",
+          "name": "Export specific chart to csv file",
+          "request": {
+            "name": "Export specific chart to csv file",
+            "description": {
+              "content": "The file will send to user email. Each user can have only one active export",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "Reports",
+                "export",
+                ":type"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Select chart type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"leadId\": \"<string,null>\",\n  \"dataObjectId\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"lostStageId\": \"<integer,null-int32>\",\n  \"type\": \"<string,null>\",\n  \"companyId\": \"<string,null>\",\n  \"filters\": \"<array,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"by\": \"<string,null>\",\n  \"steps\": \"<string,null>\",\n  \"orderBy\": \"<string,null>\",\n  \"projections\": \"<array,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d2bd1d24-38c2-4b63-8ec0-c7110ad157d4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "Reports",
+                    "export",
+                    ":type"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Select chart type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leadId\": \"<string,null>\",\n  \"dataObjectId\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"lostStageId\": \"<integer,null-int32>\",\n  \"type\": \"<string,null>\",\n  \"companyId\": \"<string,null>\",\n  \"filters\": \"<array,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"by\": \"<string,null>\",\n  \"steps\": \"<string,null>\",\n  \"orderBy\": \"<string,null>\",\n  \"projections\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": null,\n  \"updatedAt\": null,\n  \"createdAt\": \"1960-11-16T03:53:58.664Z\",\n  \"state\": \"Preparing\",\n  \"url\": \"string\",\n  \"typeName\": null,\n  \"filterId\": null,\n  \"territoryId\": null,\n  \"startDate\": null,\n  \"endDate\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "245d7aba-3757-4328-963b-20437ce83da0",
+          "name": "Get specific chart data",
+          "request": {
+            "name": "Get specific chart data",
+            "description": {
+              "content": "Response data is depend on chart type",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "Reports",
+                ":type"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Select chart type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"leadId\": \"<string,null>\",\n  \"dataObjectId\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"lostStageId\": \"<integer,null-int32>\",\n  \"type\": \"<string,null>\",\n  \"companyId\": \"<string,null>\",\n  \"filters\": \"<array,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"by\": \"<string,null>\",\n  \"steps\": \"<string,null>\",\n  \"orderBy\": \"<string,null>\",\n  \"projections\": \"<array,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5bbd9a88-1e65-43e4-8fad-7b7f0652f0bb",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "Reports",
+                    ":type"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Select chart type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leadId\": \"<string,null>\",\n  \"dataObjectId\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"lostStageId\": \"<integer,null-int32>\",\n  \"type\": \"<string,null>\",\n  \"companyId\": \"<string,null>\",\n  \"filters\": \"<array,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"by\": \"<string,null>\",\n  \"steps\": \"<string,null>\",\n  \"orderBy\": \"<string,null>\",\n  \"projections\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca14b7b1-4d33-47ed-bbf3-25845220dcb4",
+          "name": "Get specific chart data based on filterId and dataObjectType",
+          "request": {
+            "name": "Get specific chart data based on filterId and dataObjectType",
+            "description": {
+              "content": "Response data is depend on chart type",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "Reports",
+                ":type"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "The ID of the filter to apply."
+                },
+                {
+                  "disabled": false,
+                  "key": "singleType",
+                  "value": "<integer>",
+                  "description": "The ID of the single dataObjectType (from workflow settings) to display."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Select chart type."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1f9f96c1-f58a-45d9-9480-9f4e206b16c0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "Reports",
+                    ":type"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "singleType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Select chart type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5577629a-5b45-4f57-bc3a-4c3de445e1cd",
+          "name": "Get records related to a specific chart",
+          "request": {
+            "name": "Get records related to a specific chart",
+            "description": {
+              "content": "Response data is depend on chart type",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "Reports",
+                ":type",
+                "records"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Select chart type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"leadId\": \"<string,null>\",\n  \"dataObjectId\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"lostStageId\": \"<integer,null-int32>\",\n  \"type\": \"<string,null>\",\n  \"companyId\": \"<string,null>\",\n  \"filters\": \"<array,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"by\": \"<string,null>\",\n  \"steps\": \"<string,null>\",\n  \"orderBy\": \"<string,null>\",\n  \"projections\": \"<array,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5f0bac80-1cb7-440b-aa43-bbb14785fa8f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "Reports",
+                    ":type",
+                    "records"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Select chart type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leadId\": \"<string,null>\",\n  \"dataObjectId\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"lostStageId\": \"<integer,null-int32>\",\n  \"type\": \"<string,null>\",\n  \"companyId\": \"<string,null>\",\n  \"filters\": \"<array,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"by\": \"<string,null>\",\n  \"steps\": \"<string,null>\",\n  \"orderBy\": \"<string,null>\",\n  \"projections\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daff9528-9410-455b-9402-42f34aab103c",
+          "name": "Get specific dataObject chart data",
+          "request": {
+            "name": "Get specific dataObject chart data",
+            "description": {
+              "content": "Response data is depend on chart type",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "Reports",
+                "dataObject",
+                ":type"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Select chart type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"leadId\": \"<string,null>\",\n  \"dataObjectId\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"lostStageId\": \"<integer,null-int32>\",\n  \"type\": \"<string,null>\",\n  \"companyId\": \"<string,null>\",\n  \"filters\": \"<array,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"by\": \"<string,null>\",\n  \"steps\": \"<string,null>\",\n  \"orderBy\": \"<string,null>\",\n  \"projections\": \"<array,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38a4afb6-90eb-40fb-86c6-9c98a318c43e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "Reports",
+                    "dataObject",
+                    ":type"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Select chart type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"leadId\": \"<string,null>\",\n  \"dataObjectId\": \"<string,null>\",\n  \"singleType\": \"<integer,null-int32>\",\n  \"lostStageId\": \"<integer,null-int32>\",\n  \"type\": \"<string,null>\",\n  \"companyId\": \"<string,null>\",\n  \"filters\": \"<array,null>\",\n  \"scrollId\": \"<string,null>\",\n  \"by\": \"<string,null>\",\n  \"steps\": \"<string,null>\",\n  \"orderBy\": \"<string,null>\",\n  \"projections\": \"<array,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53140a44-8734-44f4-b0c1-88898d5febb5",
+          "name": "Get specific dataObject chart data based on filterId and dataObjectType",
+          "request": {
+            "name": "Get specific dataObject chart data based on filterId and dataObjectType",
+            "description": {
+              "content": "Response data is depend on chart type",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "Reports",
+                "dataObject",
+                ":type"
+              ],
+              "host": [
+                "api",
+                "spotio2",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filterId",
+                  "value": "<string>",
+                  "description": "The ID of the filter to apply."
+                },
+                {
+                  "disabled": false,
+                  "key": "singleType",
+                  "value": "<integer>",
+                  "description": "The ID of the single dataObjectType (from workflow settings) to display."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) Select chart type."
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c395c14d-a6e9-4e58-b81b-634ca92378b5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "Reports",
+                    "dataObject",
+                    ":type"
+                  ],
+                  "host": [
+                    "api",
+                    "spotio2",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "filterId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "singleType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) Select chart type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.spotio2.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d103e909-411d-4a42-acf9-f8ca24c2989a",
+    "name": "Spotio 2.0 Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The controller is responsible exporting data by selected report type.\n\nContact Support:\n Name: Contact us\n Email: support@spotio.com",
+      "type": "text/plain"
+    }
+  }
+}
