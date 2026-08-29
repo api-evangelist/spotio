@@ -13,6 +13,18 @@ description: 'SPOTIO is a field sales engagement and territory management platfo
   operates a first-party remote MCP server at app.spotio2.com/mcp, authenticated with a SPOTIO-MCP-KEY that the
   API itself mints, plus a signed outbound webhook system covering ten lead, activity and appointment events. It
   publishes no SDK in any language, no idempotency contract, no rate limits and no security.txt.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: approval
@@ -763,6 +775,9 @@ apis:
     url: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   baseURL: https://api.spotio2.com
 common:
+- type: CapabilityMap
+  url: capabilities/spotio-capability-edges.yml
+  name: SPOTIO Business Capability Map
 - type: AgenticAccess
   url: agentic-access/spotio-agentic-access.yml
 - type: Authentication
