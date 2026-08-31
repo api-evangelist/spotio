@@ -132,7 +132,7 @@ apis:
     as well as managing business card settings.
   humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
-  - Business Cards
+  - BusinessCards
   tags_raw:
   - BusinessCards
   properties:
@@ -188,7 +188,7 @@ apis:
     \ or automatically using the autoplay feature."
   humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
-  - Communication Templates
+  - CommunicationTemplates
   tags_raw:
   - CommunicationTemplates
   properties:
@@ -353,7 +353,7 @@ apis:
     \    Some apis are exposed through Filters and some through FiltersV2 both can be used interchangeably."
   humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
-  - Filters V2
+  - FiltersV2
   tags_raw:
   - FiltersV2
   properties:
@@ -650,7 +650,7 @@ apis:
     methods you can retrieve tracking data.
   humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
-  - User Tracking
+  - UserTracking
   tags_raw:
   - UserTracking
   properties:
@@ -763,6 +763,8 @@ apis:
     \ refer to DataObjectsController."
   humanURL: https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0
   tags:
+  - Workflow Stages
+  tags_raw:
   - WorkflowStages
   properties:
   - type: OpenAPI
