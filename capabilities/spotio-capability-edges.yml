@@ -1,0 +1,85 @@
+slug: spotio
+provider: SPOTIO
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Webhooks
+  spec_file: spotio-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.85
+  evidence: '"retrieving available webhook scopes, getting all webhooks for the current company, creating
+    a new webhook, updating an existing webhook and deleting a webhook"'
+  reason: Lifecycle management of outbound webhook subscriptions for platform consumers maps directly
+    to webhook & event subscription management.
+- tag: Territories
+  spec_file: spotio-territories-api-openapi.yml
+  capability_id: BC-410.10
+  capability_id_l1: BC-410
+  capability_name: Sales Strategy Management
+  confidence: 0.8
+  evidence: '"Get all existing territories"; "Add a new territory"; TerritoryFull, Polygon, "Get territory
+    in GeoJSON format"'
+  reason: Sales territory definition with geographic polygons — coverage model and segmentation under
+    Sales Strategy Management, consistent with the vendor's territory management product.
+- tag: Leaderboards
+  spec_file: spotio-leaderboards-api-openapi.yml
+  capability_id: BC-410.70
+  capability_id_l1: BC-410
+  capability_name: Sales Performance Management
+  confidence: 0.75
+  evidence: '"Render leaderboard by id"; Spotio.Frontend.ViewModel.MyReports.Leaderboards.ContributionStatistics,
+    MetricTitle'
+  reason: Ranked performance metrics for sales reps/teams — sales performance analytics. Sits under Sales
+    Performance Management; slight ambiguity vs generic management reporting.
+- tag: ActivitiesV2
+  spec_file: spotio-activitiesv2-api-openapi.yml
+  capability_id: BC-410
+  capability_id_l1: BC-410
+  capability_name: Sales Management
+  confidence: 0.72
+  evidence: '''The controller is responsible for handling the creation, updating, and retrieval of activities...
+    manage activities (current and done)''; ''Get activity feed'''
+  reason: Field-sales activity logging and activity feed in a sales engagement platform — sales execution
+    tracking. Ambiguous between sales operations and pipeline management sub-capabilities, so L1 only.
+- tag: AppointmentsV2
+  spec_file: spotio-appointmentsv2-api-openapi.yml
+  capability_id: BC-410
+  capability_id_l1: BC-410
+  capability_name: Sales Management
+  confidence: 0.7
+  evidence: '''manage appointment (current and future). Every appointment has related activity''; POST
+    /api/v2/appointments ''Create a new appointment'''
+  reason: Appointment setting for outside sales reps, tied to sales activities — part of the lead-to-order
+    sales motion. Sub-capability is not clearly named by the operations, so L1 only.
+- tag: Mcp
+  spec_file: spotio-mcp-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: '"endpoints for generating, retrieving, deactivating, and regenerating MCP keys. These keys
+    are used for authenticating and authorizing access to MCP Server"'
+  reason: API key issuance/rotation for programmatic (MCP) access — developer credential management. Alternatively
+    generic IAM, but this is developer-facing platform credentialing.
+- tag: MyReports
+  spec_file: spotio-myreports-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.7
+  evidence: '"managing MyReports in a web application, creation, updating and rendering MyReports"; POST
+    /api/MyReports/preview Render report preview'
+  reason: User-defined report definition, rendering and export — reporting/BI delivery capability. Generic
+    report builder, so Analytics & BI Management rather than a sales-specific capability.
