@@ -2,7 +2,9 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Autoplays API
-  description: "\nThe controller provides various endpoints for managing autoplays, which are automated workflows that can be triggered for dataObject in application.\nAllowed is adding / editing contacts and changing step status. \n"
+  description: 'The controller provides various endpoints for managing autoplays, which are automated workflows that can be triggered for dataObject in application.
+
+    Allowed is adding / editing contacts and changing step status.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -16,7 +18,9 @@ security:
 - Bearer: []
 tags:
 - name: Autoplays
-  description: "\nThe controller provides various endpoints for managing autoplays, which are automated workflows that can be triggered for dataObject in application.\nAllowed is adding / editing contacts and changing step status. \n"
+  description: 'The controller provides various endpoints for managing autoplays, which are automated workflows that can be triggered for dataObject in application.
+
+    Allowed is adding / editing contacts and changing step status.'
 paths:
   /api/Autoplays/{autoplayId}/bulk/enroll:
     post:
@@ -105,6 +109,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiAutoplaysByAutoplayIdBulkEnroll
+      x-operation-id-source: derived
   /api/Autoplays/{autoplayId}/dataObjects:
     post:
       tags:
@@ -192,6 +198,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiAutoplaysByAutoplayIdDataObjects
+      x-operation-id-source: derived
   /api/Autoplays/{autoplayId}/dataobjects:
     get:
       tags:
@@ -284,6 +292,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiAutoplaysByAutoplayIdDataobjects
+      x-operation-id-source: derived
   /api/Autoplays/dataObjects/{autoplayContactId}/steps/{autoplayContactStepId}:
     patch:
       tags:
@@ -343,6 +353,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiAutoplaysDataObjectsByAutoplayContactIdStepsByAutoplayContactStepId
+      x-operation-id-source: derived
   /api/Autoplays/contacts/{autoplayContactId}/steps/{autoplayContactStepId}:
     patch:
       tags:
@@ -402,8 +414,167 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiAutoplaysContactsByAutoplayContactIdStepsByAutoplayContactStepId
+      x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.Autoplays.DataObjectsPerStep:
+      type: object
+      additionalProperties: false
+      properties:
+        stepId:
+          type:
+          - string
+          - 'null'
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+        auto:
+          type: boolean
+        description:
+          type:
+          - string
+          - 'null'
+        position:
+          type: integer
+          format: int32
+        dataObjects:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Autoplays.DataObjectPerStep'
+    Spotio.Frontend.ViewModel.Autoplays.AutoplayContactStepSimple:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        executionDate:
+          type: string
+          format: date-time
+        status:
+          $ref: '#/components/schemas/Spotio.Autoplays.Client.Model.AutoplayDataObjectStepStatusDto'
+    Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PolygonPoint'
+    Spotio.Frontend.ViewModel.Autoplays.DataObjectEnrollment:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        isValid:
+          type: boolean
+        errors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Autoplays.Client.Model.ValidationErrorTypeDto'
+        alreadyEnrolled:
+          type: boolean
+        parentId:
+          type:
+          - string
+          - 'null'
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Autoplays.EnrollDataObjectsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        enrollWithPartialInfo:
+          type: boolean
+          description: Ignore missing dataObjects (contacts) fields (email or phone)
+        enrollAlreadyEnrolled:
+          type: boolean
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: DataObjects (contacts) Ids
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Autoplays.BulkEnrollDataObjectsToAutoplayRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        enrollWithPartialInfo:
+          type: boolean
+          description: Ignore missing dataObjects (contacts) fields (email or phone)
+        enrollAlreadyEnrolled:
+          type: boolean
+        polygon:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter'
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: Filter data objects by filter ID
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: IDs of the data objects to perform bulk actions on
+          items:
+            type: string
+        q:
+          type:
+          - string
+          - 'null'
+          description: Search query
+        singleType:
+          type:
+          - integer
+          - 'null'
+          description: Type ID of the data objects to perform bulk actions on, if only a single type is selected from workflow settings
+          format: int32
+    Spotio.Frontend.ViewModel.Autoplays.EnrollDataObjectsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        successfullyEnrolledCount:
+          type: integer
+          format: int32
+        unsuccessfulEnrollments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Autoplays.DataObjectEnrollment'
+    Spotio.Autoplays.Client.Model.ValidationErrorTypeDto:
+      type: string
+      enum:
+      - MissingPhoneNumber
+      - MissingEmailAddress
+      - UserHasNoPhoneNumber
+      - UserHasNoEmailAddress
+      - AutoEmailsLimitExceeded
+      - RequiredC3
+      - InvalidPhoneNumber
+      - PhoneNumberOptedOut
+      - TextOptInMissing
     Spotio.Frontend.ViewModel.Autoplays.DataObjectPerStep:
       type: object
       additionalProperties: false
@@ -455,32 +626,16 @@ components:
       - Attempted
       - Invalid
       - AttemptedRescheduled
-    Spotio.Frontend.ViewModel.Autoplays.DataObjectEnrollment:
+    Spotio.Frontend.ViewModel.DataObjects.PolygonPoint:
       type: object
       additionalProperties: false
       properties:
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        isValid:
-          type: boolean
-        errors:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Autoplays.Client.Model.ValidationErrorTypeDto'
-        alreadyEnrolled:
-          type: boolean
-        parentId:
-          type:
-          - string
-          - 'null'
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
     Spotio.Frontend.ViewModel.Autoplays.AutoplayContactStepRequest:
       type: object
       additionalProperties: false
@@ -492,147 +647,6 @@ components:
           format: date-time
         status:
           $ref: '#/components/schemas/Spotio.Autoplays.Client.Model.AutoplayDataObjectStepStatusDto'
-    Spotio.Frontend.ViewModel.Autoplays.BulkEnrollDataObjectsToAutoplayRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        enrollWithPartialInfo:
-          type: boolean
-          description: Ignore missing dataObjects (contacts) fields (email or phone)
-        enrollAlreadyEnrolled:
-          type: boolean
-        polygon:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter'
-        filterId:
-          type:
-          - string
-          - 'null'
-          description: Filter data objects by filter ID
-        dataObjectIds:
-          type:
-          - array
-          - 'null'
-          description: IDs of the data objects to perform bulk actions on
-          items:
-            type: string
-        q:
-          type:
-          - string
-          - 'null'
-          description: Search query
-        singleType:
-          type:
-          - integer
-          - 'null'
-          description: Type ID of the data objects to perform bulk actions on, if only a single type is selected from workflow settings
-          format: int32
-    Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter:
-      type: object
-      additionalProperties: false
-      properties:
-        points:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PolygonPoint'
-    Spotio.Frontend.ViewModel.Autoplays.DataObjectsPerStep:
-      type: object
-      additionalProperties: false
-      properties:
-        stepId:
-          type:
-          - string
-          - 'null'
-        activityTemplateId:
-          type:
-          - string
-          - 'null'
-        auto:
-          type: boolean
-        description:
-          type:
-          - string
-          - 'null'
-        position:
-          type: integer
-          format: int32
-        dataObjects:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Autoplays.DataObjectPerStep'
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.DataObjects.PolygonPoint:
-      type: object
-      additionalProperties: false
-      properties:
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
-    Spotio.Frontend.ViewModel.Autoplays.EnrollDataObjectsResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        successfullyEnrolledCount:
-          type: integer
-          format: int32
-        unsuccessfulEnrollments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Autoplays.DataObjectEnrollment'
-    Spotio.Frontend.ViewModel.Autoplays.AutoplayContactStepSimple:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        executionDate:
-          type: string
-          format: date-time
-        status:
-          $ref: '#/components/schemas/Spotio.Autoplays.Client.Model.AutoplayDataObjectStepStatusDto'
-    Spotio.Autoplays.Client.Model.ValidationErrorTypeDto:
-      type: string
-      enum:
-      - MissingPhoneNumber
-      - MissingEmailAddress
-      - UserHasNoPhoneNumber
-      - UserHasNoEmailAddress
-      - AutoEmailsLimitExceeded
-      - RequiredC3
-      - InvalidPhoneNumber
-      - PhoneNumberOptedOut
-      - TextOptInMissing
-    Spotio.Frontend.ViewModel.Autoplays.EnrollDataObjectsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        enrollWithPartialInfo:
-          type: boolean
-          description: Ignore missing dataObjects (contacts) fields (email or phone)
-        enrollAlreadyEnrolled:
-          type: boolean
-        dataObjectIds:
-          type:
-          - array
-          - 'null'
-          description: DataObjects (contacts) Ids
-          items:
-            type: string
   securitySchemes:
     Bearer:
       type: apiKey

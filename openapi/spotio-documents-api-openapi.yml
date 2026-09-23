@@ -2,7 +2,9 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Documents API
-  description: "    The controller is responsible for handling the upload and retrieval of documents.\n    Documents can be attached to data object, activity or be available company wide."
+  description: 'The controller is responsible for handling the upload and retrieval of documents.
+
+    Documents can be attached to data object, activity or be available company wide.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -16,7 +18,9 @@ security:
 - Bearer: []
 tags:
 - name: Documents
-  description: "    The controller is responsible for handling the upload and retrieval of documents.\n    Documents can be attached to data object, activity or be available company wide."
+  description: 'The controller is responsible for handling the upload and retrieval of documents.
+
+    Documents can be attached to data object, activity or be available company wide.'
 paths:
   /api/Documents:
     post:
@@ -110,6 +114,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDocuments
+      x-operation-id-source: derived
     get:
       tags:
       - Documents
@@ -211,6 +217,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDocuments
+      x-operation-id-source: derived
   /api/Documents/paged:
     get:
       tags:
@@ -305,6 +313,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDocumentsPaged
+      x-operation-id-source: derived
     post:
       tags:
       - Documents
@@ -396,6 +406,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDocumentsPaged
+      x-operation-id-source: derived
   /api/Documents/company:
     get:
       tags:
@@ -477,6 +489,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDocumentsCompany
+      x-operation-id-source: derived
   /api/Documents/{documentId}:
     get:
       tags:
@@ -558,6 +572,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDocumentsByDocumentId
+      x-operation-id-source: derived
     delete:
       tags:
       - Documents
@@ -638,6 +654,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiDocumentsByDocumentId
+      x-operation-id-source: derived
   /api/Documents/{documentId}/url:
     get:
       tags:
@@ -720,6 +738,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDocumentsByDocumentIdUrl
+      x-operation-id-source: derived
   /api/Documents/company/{documentId}:
     put:
       tags:
@@ -819,8 +839,26 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiDocumentsCompanyByDocumentId
+      x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        includeInCompanyDocs:
+          type: boolean
+        includeInAiChat:
+          type: boolean
+    Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest:
       type: object
       description: The request object for retrieving documents with pagination.
@@ -852,41 +890,17 @@ components:
           - string
           - 'null'
           description: Pagination cursor for retrieving the next page. Null for the first page.
-    Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel:
-      type: string
-      enum:
-      - Company
-      - Lead
-      - CommunicationTemplate
-      - Activity
-    Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        includeInCompanyDocs:
-          type: boolean
-        includeInAiChat:
-          type: boolean
-    Spotio.Documents.Client.DTO.AiIndexingStatusDto:
-      type: string
-      enum:
-      - NotSynced
-      - Processing
-      - Active
-      - Failed
     Spotio.Documents.Client.DTO.DocumentState:
       type: string
       enum:
       - Uploading
       - Ready
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.Documents.Document:
       type: object
       additionalProperties: false
@@ -956,12 +970,13 @@ components:
         deletable:
           type: boolean
           description: Indicates whether the document can be deleted
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
+    Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel:
+      type: string
+      enum:
+      - Company
+      - Lead
+      - CommunicationTemplate
+      - Activity
     Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse:
       type: object
       description: The response object for paginated documents.
@@ -979,6 +994,13 @@ components:
           - string
           - 'null'
           description: Pagination cursor for retrieving the next page. Null if this is the last page.
+    Spotio.Documents.Client.DTO.AiIndexingStatusDto:
+      type: string
+      enum:
+      - NotSynced
+      - Processing
+      - Active
+      - Failed
     Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest:
       type: object
       description: The request object for uploading a document.

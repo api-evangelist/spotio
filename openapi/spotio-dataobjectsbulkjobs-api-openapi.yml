@@ -63,6 +63,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiJobsDataObjectsBulk
+      x-operation-id-source: derived
   /api/jobs/dataObjects/bulk/inprogress:
     get:
       tags:
@@ -94,6 +96,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiJobsDataObjectsBulkInprogress
+      x-operation-id-source: derived
   /api/jobs/dataObjects/bulk/{id}:
     get:
       tags:
@@ -128,6 +132,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiJobsDataObjectsBulkById
+      x-operation-id-source: derived
   /api/jobs/dataObjects/bulk/{id}/data:
     put:
       tags:
@@ -191,6 +197,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiJobsDataObjectsBulkByIdData
+      x-operation-id-source: derived
   /api/jobs/dataObjects/bulk/{id}/start:
     post:
       tags:
@@ -228,6 +236,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiJobsDataObjectsBulkByIdStart
+      x-operation-id-source: derived
   /api/jobs/dataObjects/bulk/{id}/progress:
     get:
       tags:
@@ -263,6 +273,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiJobsDataObjectsBulkByIdProgress
+      x-operation-id-source: derived
   /api/jobs/dataObjects/bulk/{id}/results/succeeded:
     get:
       tags:
@@ -288,6 +300,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiJobsDataObjectsBulkByIdResultsSucceeded
+      x-operation-id-source: derived
   /api/jobs/dataObjects/bulk/{id}/results/failed:
     get:
       tags:
@@ -313,6 +327,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiJobsDataObjectsBulkByIdResultsFailed
+      x-operation-id-source: derived
   /api/jobs/dataObjects/bulk/{id}/cleanup:
     delete:
       tags:
@@ -357,115 +373,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiJobsDataObjectsBulkByIdCleanup
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        operation:
-          type:
-          - string
-          - 'null'
-        dataObjectTypeId:
-          type: integer
-          format: int32
-        createdById:
-          type: integer
-          format: int32
-        createdDate:
-          type: string
-          format: date-time
-        updatedDate:
-          type: string
-          format: date-time
-        state:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFile:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        bulkJobId:
-          type:
-          - string
-          - 'null'
-        partNumber:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int64
-        recordCount:
-          type: integer
-          format: int32
-        state:
-          type:
-          - string
-          - 'null'
-        createdDate:
-          type: string
-          format: date-time
-    Spotio.DataObjects.Client.Contract.Bulks.BulkPin:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
-        placeId:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-        street:
-          type:
-          - string
-          - 'null'
-        houseNumber:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        shortAddress:
-          type:
-          - string
-          - 'null'
-        skipGeocoding:
-          type: boolean
     Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobProgress:
       type: object
       additionalProperties: false
@@ -515,32 +426,72 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFileProgress'
-    Spotio.DataObjects.Client.Contract.Bulks.BulkFieldValue:
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFile:
       type: object
       additionalProperties: false
       properties:
-        fieldId:
+        id:
           type:
           - string
           - 'null'
-        label:
+        bulkJobId:
           type:
           - string
           - 'null'
-        value:
+        partNumber:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int64
+        recordCount:
+          type: integer
+          format: int32
+        state:
           type:
           - string
           - 'null'
-        formattedValue:
+        createdDate:
+          type: string
+          format: date-time
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dropDataTable:
+          type: boolean
+        deleteResultFiles:
+          type: boolean
+        deleteUploadedFiles:
+          type: boolean
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJob:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
           type:
           - string
           - 'null'
-        values:
+        operation:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            type: string
+        dataObjectTypeId:
+          type: integer
+          format: int32
+        createdById:
+          type: integer
+          format: int32
+        createdDate:
+          type: string
+          format: date-time
+        updatedDate:
+          type: string
+          format: date-time
+        state:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFileProgress:
       type: object
       additionalProperties: false
@@ -563,17 +514,6 @@ components:
           type: integer
           format: int32
         recordsFailed:
-          type: integer
-          format: int32
-    Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        operation:
-          type:
-          - string
-          - 'null'
-        dataObjectTypeId:
           type: integer
           format: int32
     Spotio.DataObjects.Client.Contract.Bulks.BulkDataObjectRequest:
@@ -634,16 +574,94 @@ components:
           items:
             type: integer
             format: int32
-    Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest:
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest:
       type: object
       additionalProperties: false
       properties:
-        dropDataTable:
+        operation:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type: integer
+          format: int32
+    Spotio.DataObjects.Client.Contract.Bulks.BulkPin:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        shortAddress:
+          type:
+          - string
+          - 'null'
+        skipGeocoding:
           type: boolean
-        deleteResultFiles:
-          type: boolean
-        deleteUploadedFiles:
-          type: boolean
+    Spotio.DataObjects.Client.Contract.Bulks.BulkFieldValue:
+      type: object
+      additionalProperties: false
+      properties:
+        fieldId:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+        formattedValue:
+          type:
+          - string
+          - 'null'
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
   securitySchemes:
     Bearer:
       type: apiKey

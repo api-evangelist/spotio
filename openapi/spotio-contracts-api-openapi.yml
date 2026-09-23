@@ -110,11 +110,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiEcontractsV2Templates
+      x-operation-id-source: derived
   /api/econtracts/templates/all:
     get:
       tags:
       - Contracts
-      summary: Get all available sign templates.
+      summary: Get all available sign templates
       responses:
         '200':
           description: Success
@@ -191,6 +193,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiEcontractsTemplatesAll
+      x-operation-id-source: derived
   /api/econtracts/templates/{id}/sign:
     post:
       tags:
@@ -291,6 +295,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiEcontractsTemplatesByIdSign
+      x-operation-id-source: derived
   /api/econtracts/signature/{signatureId}/signurl:
     get:
       tags:
@@ -373,6 +379,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiEcontractsSignatureBySignatureIdSignurl
+      x-operation-id-source: derived
   /api/econtracts/signature/{id}:
     get:
       tags:
@@ -455,6 +463,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiEcontractsSignatureById
+      x-operation-id-source: derived
   /api/econtracts/signature/dataObject/{dataObjectId}:
     get:
       tags:
@@ -542,6 +552,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiEcontractsSignatureDataObjectByDataObjectId
+      x-operation-id-source: derived
   /api/econtracts/{id}/cancel:
     post:
       tags:
@@ -625,6 +637,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiEcontractsByIdCancel
+      x-operation-id-source: derived
   /api/econtracts/{id}/download:
     get:
       tags:
@@ -713,69 +727,106 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiEcontractsByIdDownload
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Contracts.SignContractCustomField:
+    Spotio.Frontend.ViewModel.Contracts.TemplateSignerRole:
       type: object
-      description: The value of the custom field.
       additionalProperties: false
       properties:
         name:
           type:
           - string
           - 'null'
-          description: TThe field name from workflow settings
-        value:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Contracts.SignatureEmbeddedUrl:
+        order:
+          type: integer
+          format: int32
+        fields:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignerFields'
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
-      description: Represents a signature embedded URL.
       additionalProperties: false
       properties:
-        signatureId:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Contracts.SignatureContract:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
           type:
           - string
           - 'null'
-          description: The ID of the signature.
-        signUrl:
+          description: The ID of the signature contract.
+        requestId:
           type:
           - string
           - 'null'
-          description: The signature URL.
-        expiresAt:
+          description: The request ID of the signature contract.
+        leadId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object for the signature contract.
+          readOnly: true
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object for the signature contract.
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The company ID of the signature contract.
+        mode:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractMode'
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the signature contract.
+        createdAt:
           type: string
-          description: The expiration date and time of the signature URL.
+          description: The date and time the signature contract was created.
           format: date-time
-    Spotio.Frontend.ViewModel.Contracts.TemplateFile:
-      type: object
-      additionalProperties: false
-      properties:
-        fileName:
+        updatedAt:
+          type: string
+          description: The date and time the signature contract was last updated.
+          format: date-time
+        state:
+          $ref: '#/components/schemas/Spotio.EContracts.Client.Model.EsignatureState'
+        signedAt:
           type:
           - string
           - 'null'
-        resource:
+          description: The date and time the signature contract was signed.
+          format: date-time
+        sentAt:
+          type: string
+          description: The date and time the signature contract was sent.
+          format: date-time
+        signedBy:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.Contracts.SignerFields:
-      type: object
-      additionalProperties: false
-      properties:
-        firstNameId:
+          description: The name of the person who signed the signature contract.
+        signatures:
           type:
-          - string
+          - array
           - 'null'
-        lastNameId:
-          type:
-          - string
-          - 'null'
-        emailId:
-          type:
-          - string
-          - 'null'
+          description: The signatures of the signature contract.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Signature'
+    Spotio.EContracts.Client.Model.EsignatureState:
+      type: string
+      enum:
+      - Waiting
+      - Signed
+      - Canceled
+      - InvalidEmail
+      - Unknown
     Spotio.Frontend.ViewModel.Contracts.Signature:
       type: object
       additionalProperties: false
@@ -799,6 +850,90 @@ components:
           - string
           - 'null'
           format: date-time
+    Spotio.Frontend.ViewModel.Contracts.SignContractTemplateSigner:
+      type: object
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the signer.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The full name of the signer.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the signer.
+    Spotio.Frontend.ViewModel.Contracts.SignContractCustomField:
+      type: object
+      description: The value of the custom field.
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: TThe field name from workflow settings
+        value:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Contracts.SignContractTemplate:
+      type: object
+      description: Object that represents a sign contract template request.
+      additionalProperties: false
+      properties:
+        leadId:
+          type:
+          - string
+          - 'null'
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        mode:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractMode'
+        byEmail:
+          type: boolean
+        title:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        signers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplateSigner'
+        customFields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractCustomField'
+    Spotio.Frontend.ViewModel.Contracts.SignatureContractCanceled:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        success:
+          type: boolean
     Spotio.Frontend.ViewModel.Contracts.DownloadResponse:
       type: object
       additionalProperties: false
@@ -807,27 +942,32 @@ components:
           type:
           - string
           - 'null'
-    Spotio.EContracts.Client.Model.EsignatureState:
-      type: string
-      enum:
-      - Waiting
-      - Signed
-      - Canceled
-      - InvalidEmail
-      - Unknown
-    Spotio.Frontend.ViewModel.Contracts.TemplateSignerRole:
+    Spotio.Frontend.ViewModel.Contracts.SignContractTemplateResult:
+      type: object
+      description: Represents the result of a sign contract template.
+      additionalProperties: false
+      properties:
+        contract:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
+        signUrls:
+          type:
+          - array
+          - 'null'
+          description: A list of sign URLs for the signers of the contract.
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Contracts.TemplateFile:
       type: object
       additionalProperties: false
       properties:
-        name:
+        fileName:
           type:
           - string
           - 'null'
-        order:
-          type: integer
-          format: int32
-        fields:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignerFields'
+        resource:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Contracts.Template:
       type: object
       description: Represents a template object.
@@ -933,111 +1073,12 @@ components:
           description: Indicates users of which territories have access to the template.
           items:
             type: string
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
     Spotio.Frontend.ViewModel.Contracts.SignContractMode:
       type: string
       enum:
       - Undefined
       - Embedded
       - Email
-    Spotio.Frontend.ViewModel.Contracts.SignatureContractCanceled:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        success:
-          type: boolean
-    Spotio.Frontend.ViewModel.Contracts.SignatureContract:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the signature contract.
-        requestId:
-          type:
-          - string
-          - 'null'
-          description: The request ID of the signature contract.
-        leadId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the data object for the signature contract.
-          readOnly: true
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the data object for the signature contract.
-        companyId:
-          type:
-          - string
-          - 'null'
-          description: The company ID of the signature contract.
-        mode:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractMode'
-        title:
-          type:
-          - string
-          - 'null'
-          description: The title of the signature contract.
-        createdAt:
-          type: string
-          description: The date and time the signature contract was created.
-          format: date-time
-        updatedAt:
-          type: string
-          description: The date and time the signature contract was last updated.
-          format: date-time
-        state:
-          $ref: '#/components/schemas/Spotio.EContracts.Client.Model.EsignatureState'
-        signedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time the signature contract was signed.
-          format: date-time
-        sentAt:
-          type: string
-          description: The date and time the signature contract was sent.
-          format: date-time
-        signedBy:
-          type:
-          - string
-          - 'null'
-          description: The name of the person who signed the signature contract.
-        signatures:
-          type:
-          - array
-          - 'null'
-          description: The signatures of the signature contract.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.Signature'
-    Spotio.Frontend.ViewModel.Contracts.SignContractTemplateResult:
-      type: object
-      description: Represents the result of a sign contract template.
-      additionalProperties: false
-      properties:
-        contract:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignatureContract'
-        signUrls:
-          type:
-          - array
-          - 'null'
-          description: A list of sign URLs for the signers of the contract.
-          items:
-            type: string
     Spotio.Frontend.ViewModel.Contracts.TemplateField:
       type: object
       additionalProperties: false
@@ -1050,66 +1091,41 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.Contracts.SignContractTemplate:
+    Spotio.Frontend.ViewModel.Contracts.SignatureEmbeddedUrl:
       type: object
-      description: Object that represents a sign contract template request.
+      description: Represents a signature embedded URL.
       additionalProperties: false
       properties:
-        leadId:
+        signatureId:
           type:
           - string
           - 'null'
-        dataObjectId:
+          description: The ID of the signature.
+        signUrl:
           type:
           - string
           - 'null'
-        mode:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractMode'
-        byEmail:
-          type: boolean
-        title:
-          type:
-          - string
-          - 'null'
-        subject:
-          type:
-          - string
-          - 'null'
-        message:
-          type:
-          - string
-          - 'null'
-        signers:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractTemplateSigner'
-        customFields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Contracts.SignContractCustomField'
-    Spotio.Frontend.ViewModel.Contracts.SignContractTemplateSigner:
+          description: The signature URL.
+        expiresAt:
+          type: string
+          description: The expiration date and time of the signature URL.
+          format: date-time
+    Spotio.Frontend.ViewModel.Contracts.SignerFields:
       type: object
       additionalProperties: false
       properties:
-        email:
+        firstNameId:
           type:
           - string
           - 'null'
-          description: The email address of the signer.
-        name:
+        lastNameId:
           type:
           - string
           - 'null'
-          description: The full name of the signer.
-        role:
+        emailId:
           type:
           - string
           - 'null'
-          description: The role of the signer.
   securitySchemes:
     Bearer:
       type: apiKey

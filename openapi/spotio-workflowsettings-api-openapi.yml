@@ -85,6 +85,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiWorkflow
+      x-operation-id-source: derived
   /api/workflow/properties:
     get:
       tags:
@@ -147,6 +149,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiWorkflowProperties
+      x-operation-id-source: derived
     put:
       tags:
       - WorkflowSettings
@@ -225,6 +229,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiWorkflowProperties
+      x-operation-id-source: derived
     patch:
       tags:
       - WorkflowSettings
@@ -303,6 +309,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiWorkflowProperties
+      x-operation-id-source: derived
   /api/workflow/permissions/sales:
     put:
       tags:
@@ -382,6 +390,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiWorkflowPermissionsSales
+      x-operation-id-source: derived
   /api/workflow/permissions/manager:
     put:
       tags:
@@ -461,6 +471,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiWorkflowPermissionsManager
+      x-operation-id-source: derived
   /api/workflow/permissions/security:
     put:
       tags:
@@ -540,6 +552,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiWorkflowPermissionsSecurity
+      x-operation-id-source: derived
   /api/workflow/categorization:
     get:
       tags:
@@ -602,6 +616,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiWorkflowCategorization
+      x-operation-id-source: derived
     put:
       tags:
       - WorkflowSettings
@@ -680,9 +696,35 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiWorkflowCategorization
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResult:
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        won:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        lost:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          type: boolean
+          description: Indicates if the stage group is active
+        stages:
+          type:
+          - array
+          - 'null'
+          description: List of stages in the group
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+    Spotio.Frontend.ViewModel.Workflow.Stages.Stage:
       type: object
       additionalProperties: false
       properties:
@@ -690,39 +732,26 @@ components:
           type:
           - string
           - 'null'
-          description: Unique identifier of the activity result
+          description: Unique identifier of the stage
         name:
           type:
           - string
           - 'null'
-          description: Name of the activity result
+          description: Name of the stage
         color:
           type:
           - string
           - 'null'
-          description: Color for the activity result
-        active:
-          type: boolean
-          description: Indicates if the activity result is active
-        isSystem:
-          type: boolean
-          description: Describes if the result is of system type
-    Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto:
-      type: string
-      enum:
-      - Lead
-      - Churn
-    Spotio.Frontend.ViewModel.Workflow.Settings.ObjectRelatedSalesPermissionsGroup:
-      type: object
-      additionalProperties: false
-      properties:
-        permissions:
+          description: Color of the stage
+        lossReasons:
           type:
           - array
           - 'null'
-          description: List of object related permissions
+          description: List of loss reasons for the stage
           items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.ObjectRelatedSalesPermissions'
+            type: string
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
     Spotio.Frontend.ViewModel.Workflow.WorkflowSettings:
       type: object
       additionalProperties: false
@@ -747,115 +776,7 @@ components:
           description: List of data object definitions
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.DataObjectDefinition'
-    Spotio.Frontend.ViewModel.Workflow.Settings.Permissions:
-      type: object
-      additionalProperties: false
-      properties:
-        companyPermissions:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.CompanyPermissions'
-        salesPermissions:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.SalesPermissions'
-        managerPermissions:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.ManagerPermissions'
-    Spotio.Frontend.ViewModel.Workflow.UpdateSalesPermissionsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        allowToCreateCommunicationTemplates:
-          type: boolean
-          description: Can create communication templates
-        canCreateAndUpdateAutoplays:
-          type: boolean
-          description: Can create and update Autoplays
-        canUpdatePersonalInfo:
-          type: boolean
-          description: Can update personal information
-        deleteOwnDataObjects:
-          type:
-          - boolean
-          - 'null'
-          description: Can delete their own data objects
-        editNotOwnedDataObjectsInAssignedVisibilityUnits:
-          type:
-          - boolean
-          - 'null'
-          description: Can edit not-owned data objects in assigned visibility units
-        showNotOwnedDataObjectsInAssignedVisibilityUnits:
-          type:
-          - boolean
-          - 'null'
-          description: Can view not-owned data objects in assigned visibility units
-        showGhostDataObjects:
-          type:
-          - boolean
-          - 'null'
-          description: Can view ghost data objects
-        seeNotOwnedActivities:
-          type: boolean
-          description: Can view not-owned activities in assigned visibility units
-        seeNotOwnedCompletedActivities:
-          type: boolean
-          description: Can view not-owned completed activities in assigned visibility units
-        editNotOwnedActivities:
-          type: boolean
-          description: Can edit not-owned activities in assigned visibility units
-        showGhostActivities:
-          type: boolean
-          description: Can view ghost activities
-        deleteOwnActivities:
-          type: boolean
-          description: Can delete their own activities
-        canCreateDataObjects:
-          type:
-          - boolean
-          - 'null'
-          description: Can create data objects
-        bulkMcc:
-          type:
-          - boolean
-          - 'null'
-          description: Can access bulk MCC
-        bulkAddToRoute:
-          type:
-          - boolean
-          - 'null'
-          description: Can access bulk add to route
-        bulkSchedule:
-          type:
-          - boolean
-          - 'null'
-          description: Can access bulk schedule
-        bulkReassign:
-          type:
-          - boolean
-          - 'null'
-          description: Can access bulk reassign
-        bulkStageChange:
-          type:
-          - boolean
-          - 'null'
-          description: Can access bulk stage change
-        bulkDelete:
-          type:
-          - boolean
-          - 'null'
-          description: Can access bulk delete
-        resetActivityHistoryOnReassignment:
-          type:
-          - boolean
-          - 'null'
-          description: Can reset activity history visibility upon record reassignment
-        aiAccessAllowed:
-          type:
-          - boolean
-          - 'null'
-          description: Can access AI
-        aiNextBestActionAccess:
-          type: boolean
-          description: Can access AI Next Best Action
-        objectRelatedPermissions:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ObjectRelatedSalesPermissionsGroupRequest'
-    Spotio.Frontend.ViewModel.Workflow.UpsertCategorizationSettingsRequest:
+    Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationSettings:
       type: object
       additionalProperties: false
       properties:
@@ -863,142 +784,55 @@ components:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationResult'
         lostResult:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationResult'
-    Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationResult:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.Categorization.CategorizationType'
-        dataObjectTypeId:
-          type:
-          - string
-          - 'null'
-          description: Dataobject type Id
-        stageId:
-          type:
-          - string
-          - 'null'
-          description: Stage Id
-        activityTemplateId:
-          type:
-          - string
-          - 'null'
-          description: Activity template Id
-        activityResultId:
-          type:
-          - string
-          - 'null'
-          description: Activity result Id
-    Spotio.CompanySettings.Client.DTO.Workflow.ActivityTypeDto:
+    Spotio.CompanySettings.Contract.DTO.Activities.SystemRole:
       type: string
       enum:
-      - Event
-      - Task
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      - Note
+      - Visit
+      - Call
+      - Email
+      - Text
+      - Appointment
+      - BusinessCard
+      - OptInText
+      - RecordSummary
+      - RecordMerge
+    Spotio.Frontend.ViewModel.Workflow.ObjectRelatedSalesPermissionsGroupRequest:
       type: object
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.Workflow.Settings.InternalSettings:
-      type: object
-      additionalProperties: false
-      properties:
-        exampleCsvVersion:
-          type:
-          - string
-          - 'null'
-          description: Version of the example CSV file
-        minimumNumberOfDataObjectsInCluster:
-          type:
-          - integer
-          - 'null'
-          description: Minimum number of data objects in a cluster
-          format: int32
-        geocoding:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.GeocodingSettings'
-        applicationMode:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.ApplicationMode'
-        isNew:
-          type: boolean
-          description: Indicates if the company is new
-    Spotio.Frontend.ViewModel.Workflow.UpdateWorkflowPropertiesRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        userSettings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.UserLevelUserSettingsUpdate'
         permissions:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.UserLevelPermissionsUpdate'
-    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplate:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier of the activity template
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the activity template
-        defaultDuration:
-          type: integer
-          description: Default duration of the activity in minutes
-          format: int32
-        active:
-          type: boolean
-          description: Indicates if the activity template is active
-        primaryColor:
-          type:
-          - string
-          - 'null'
-          description: Primary color for the activity template
-        secondaryColor:
-          type:
-          - string
-          - 'null'
-          description: Secondary color for the activity template
-        creatable:
-          type: boolean
-          description: Determines whether activity of this type is creatable
-        systemRole:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Activities.SystemRole'
-        activityResults:
           type:
           - array
           - 'null'
-          description: Array of results that can be assigned to this activity
+          description: List of object related permissions
           items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResult'
-        type:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityTypeDto'
-        category:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto'
-        requiredFields:
-          type:
-          - array
-          - 'null'
-          description: Required fields for the activity template based on integrations
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateRequiredFields'
-    Spotio.Frontend.ViewModel.Workflow.UpdateSecuritySettingsRequest:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ObjectRelatedSalesPermissionsRequest'
+    Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto:
+      type: string
+      enum:
+      - Lead
+      - Churn
+    System.DayOfWeek:
+      type: string
+      enum:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    Spotio.Frontend.ViewModel.Workflow.Settings.UserLevelCompanyPermissions:
       type: object
       additionalProperties: false
       properties:
-        enforceStrongPassword:
+        canAccessInfoTap:
           type: boolean
-          description: Enforce strong password
-        webSessionDuration:
-          type: integer
-          description: Web session duration
-          format: int32
-        mobileSessionDuration:
-          type: integer
-          description: Mobile session duration
-          format: int32
+          description: Can access InfoTap feature
+        eContractsAccess:
+          type: boolean
+          description: 'Can access E-Contracts feature '
     Spotio.Frontend.ViewModel.Workflow.Settings.CompanyPermissions:
       type: object
       additionalProperties: false
@@ -1078,6 +912,94 @@ components:
         winsHubAccess:
           type: boolean
           description: Can access wins hub tab
+    Spotio.Frontend.ViewModel.Workflow.Settings.Permissions:
+      type: object
+      additionalProperties: false
+      properties:
+        companyPermissions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.CompanyPermissions'
+        salesPermissions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.SalesPermissions'
+        managerPermissions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.ManagerPermissions'
+    Spotio.Frontend.ViewModel.Workflow.Settings.InternalSettings:
+      type: object
+      additionalProperties: false
+      properties:
+        exampleCsvVersion:
+          type:
+          - string
+          - 'null'
+          description: Version of the example CSV file
+        minimumNumberOfDataObjectsInCluster:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of data objects in a cluster
+          format: int32
+        geocoding:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.GeocodingSettings'
+        applicationMode:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.ApplicationMode'
+        isNew:
+          type: boolean
+          description: Indicates if the company is new
+    Spotio.CompanySettings.Contract.DTO.ApplicationMode:
+      type: string
+      enum:
+      - Classic
+      - Flexible
+    Spotio.Frontend.ViewModel.Workflow.Settings.DataObjectDefinition:
+      type: object
+      additionalProperties: false
+      properties:
+        hasAddress:
+          type: boolean
+          description: Indicates if the data object definition has an address
+        fields:
+          type:
+          - array
+          - 'null'
+          description: List of fields in the data object definition
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+        stages:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse'
+        hasPhone:
+          type: boolean
+          description: Indicates if the data object definition has a phone field
+          readOnly: true
+        hasEmail:
+          type: boolean
+          description: Indicates if the data object definition has an email field
+          readOnly: true
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the data object
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: Parent data object ID
+        extraSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings'
+        inheritOwnerFromParent:
+          type: boolean
+          description: Inherit owner from parent data object
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+        parentRequired:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if a parent is required for the data object
     Spotio.Frontend.ViewModel.Workflow.Fields.Field:
       type: object
       description: Represents a field for a data object
@@ -1153,181 +1075,31 @@ components:
         inheritable:
           type: boolean
           description: Indicates if the field's value can be inherited from parent object
-    Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto:
-      type: string
-      enum:
-      - Company
-      - FirstName
-      - LastName
-      - Phone
-      - Email
-      - Value
-      - Unit
-      - Address
-      - LossReasons
-      - LeadMachine
-    Spotio.Frontend.ViewModel.Workflow.Settings.GeocodingSettings:
+    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResult:
       type: object
       additionalProperties: false
       properties:
-        preferedGeocoder:
+        id:
           type:
           - string
           - 'null'
-          description: Preferred geocoder provider
-        skipCachedLocations:
-          type: boolean
-          description: Skip cached geolocation data
-        useOnlyGoogleProvider:
-          type: boolean
-          description: Use only Google geocoding provider
-    Spotio.Frontend.ViewModel.Workflow.Settings.UserLevelCompanyPermissions:
-      type: object
-      additionalProperties: false
-      properties:
-        canAccessInfoTap:
-          type: boolean
-          description: Can access InfoTap feature
-        eContractsAccess:
-          type: boolean
-          description: 'Can access E-Contracts feature '
-    System.DayOfWeek:
-      type: string
-      enum:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
-      - Saturday
-    Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto:
-      type: string
-      enum:
-      - Name
-      - Location
-    Spotio.Frontend.ViewModel.Workflow.ObjectRelatedSalesPermissionsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectId:
+          description: Unique identifier of the activity result
+        name:
           type:
           - string
           - 'null'
-          description: Related data object Id
-        deleteOwnDataObjects:
-          type: boolean
-          description: Can delete their own data objects
-        editNotOwnedDataObjectsInAssignedVisibilityUnits:
-          type: boolean
-          description: Can edit not-owned data objects in assigned visibility units
-        showNotOwnedDataObjectsInAssignedVisibilityUnits:
-          type: boolean
-          description: Can view not-owned data objects in assigned visibility units
-        showGhostDataObjects:
-          type: boolean
-          description: Can view ghost data objects
-        seeNotOwnedActivities:
-          type: boolean
-          description: Can view not-owned activities in assigned visibility units
-        seeNotOwnedCompletedActivities:
-          type: boolean
-          description: Can view not-owned completed activities in assigned visibility units
-        editNotOwnedActivities:
-          type: boolean
-          description: Can edit not-owned activities in assigned visibility units
-        showGhostActivities:
-          type: boolean
-          description: Can view ghost activities
-        deleteOwnActivities:
-          type: boolean
-          description: Can delete their own activities
-        canCreateDataObjects:
-          type: boolean
-          description: Can create records
-        resetActivityHistoryOnReassignment:
-          type: boolean
-          description: Can reset activity history visibility upon record reassignment
-    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateRequiredFields:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectTypeId:
+          description: Name of the activity result
+        color:
           type:
           - string
           - 'null'
-        fieldIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    Spotio.Frontend.ViewModel.Workflow.UpdateManagerPermissionsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        seeAllTerritories:
+          description: Color for the activity result
+        active:
           type: boolean
-          description: Can view all territories
-        canAddTerritoriesOutsideAssigned:
+          description: Indicates if the activity result is active
+        isSystem:
           type: boolean
-          description: Can add territories outside assigned
-        canDeleteTerritoriesOutsideAssigned:
-          type: boolean
-          description: Can delete territories outside assigned
-        canAssignUsersToTerritoryOutsideAssigned:
-          type: boolean
-          description: Can assign users to territories outside assigned
-        canManageTerritoryWithinAssigned:
-          type: boolean
-          description: Can manage territory within assigned
-        canAssignUsersToTerritoryWithinAssigned:
-          type: boolean
-          description: Can assign users to territory within assigned
-        seeAllTeams:
-          type: boolean
-          description: Can view all teams
-        canAddTeamsOutsideAssigned:
-          type: boolean
-          description: Can add teams outside assigned
-        canDeleteTeamsOutsideAssigned:
-          type: boolean
-          description: Can delete teams outside assigned
-        canManageTeamsWithinAssigned:
-          type: boolean
-          description: Can manage teams within assigned
-        canAssignUsersToTeamsWithinAssigned:
-          type: boolean
-          description: Can assign users to teams within assigned
-        canAddUsers:
-          type: boolean
-          description: Can add users
-        canExport:
-          type: boolean
-          description: Can export data
-        showAllDataObjects:
-          type: boolean
-          description: Can view all data objects
-        canCreateAndUpdateAutoplays:
-          type: boolean
-          description: Can create and update Autoplays
-        canCreateAndUpdateRepsAutoplays:
-          type: boolean
-          description: Can create and update reps' Autoplays
-        canAssignUsersToTeamsOutsideAssigned:
-          type: boolean
-          description: Can assign users to teams outside assigned
-        canMergeRecords:
-          type: boolean
-          description: Can merge records
-        aiAccessAllowed:
-          type:
-          - boolean
-          - 'null'
-          description: Can access AI
-        aiNextBestActionAccess:
-          type: boolean
-          description: Can access AI Next Best Action
+          description: Describes if the result is of system type
     Spotio.Frontend.ViewModel.Workflow.Settings.ObjectRelatedSalesPermissions:
       type: object
       additionalProperties: false
@@ -1370,259 +1142,11 @@ components:
         resetActivityHistoryOnReassignment:
           type: boolean
           description: Can reset activity history visibility upon record reassignment
-    Spotio.Frontend.ViewModel.Workflow.Settings.SalesPermissions:
-      type: object
-      additionalProperties: false
-      properties:
-        deleteOwnDataObjects:
-          type: boolean
-          description: Can delete their own data objects
-        showAllTerritories:
-          type: boolean
-          description: Can view all territories
-        canUpdatePersonalInfo:
-          type: boolean
-          description: Can update personal information
-        showNotOwnedDataObjectsInAssignedVisibilityUnits:
-          type: boolean
-          description: Can view not-owned data objects in assigned visibility units
-        showGhostDataObjects:
-          type: boolean
-          description: Can view ghost data objects
-        editNotOwnedDataObjectsInAssignedVisibilityUnits:
-          type: boolean
-          description: Can edit not-owned data objects in assigned visibility units
-        allowToCreateCommunicationTemplates:
-          type: boolean
-          description: Can create communication templates
-        canCreateAndUpdateAutoplays:
-          type: boolean
-          description: Can create and update Autoplays
-        canDeleteContacts:
-          type: boolean
-          description: Can delete contacts
-        seeNotOwnedActivities:
-          type: boolean
-          description: Can view not-owned activities in assigned visibility units
-        seeNotOwnedCompletedActivities:
-          type: boolean
-          description: Can view not-owned completed activities in assigned visibility units
-        editNotOwnedActivities:
-          type: boolean
-          description: Can edit not-owned activities in assigned visibility units
-        showGhostActivities:
-          type: boolean
-          description: Can view ghost activities
-        deleteOwnActivities:
-          type: boolean
-          description: Can delete their own activities
-        canCreateDataObjects:
-          type: boolean
-          description: Can create data objects
-        bulkMcc:
-          type: boolean
-          description: Can access bulk MCC
-        bulkAddToRoute:
-          type: boolean
-          description: Can access bulk add to route
-        bulkSchedule:
-          type: boolean
-          description: Can access bulk schedule
-        bulkReassign:
-          type: boolean
-          description: Can access bulk reassign
-        bulkStageChange:
-          type: boolean
-          description: Can access bulk stage change
-        bulkDelete:
-          type: boolean
-          description: Can access bulk delete
-        resetActivityHistoryOnReassignment:
-          type: boolean
-          description: Can reset activity history visibility upon record reassignment
-        aiAccessAllowed:
-          type: boolean
-          description: Can sales access to AI
-        aiNextBestActionAccess:
-          type: boolean
-          description: Can sales access AI Next Best Action
-        objectRelatedPermissions:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.ObjectRelatedSalesPermissionsGroup'
-        objectLevelVisibility:
-          type: boolean
-          description: Show object level visibility
-          readOnly: true
-    Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        active:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
-        won:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
-        lost:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
-    Spotio.CompanySettings.Contract.DTO.ApplicationMode:
+    Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto:
       type: string
       enum:
-      - Classic
-      - Flexible
-    Spotio.Frontend.ViewModel.Workflow.Stages.Stage:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier of the stage
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the stage
-        color:
-          type:
-          - string
-          - 'null'
-          description: Color of the stage
-        lossReasons:
-          type:
-          - array
-          - 'null'
-          description: List of loss reasons for the stage
-          items:
-            type: string
-        scoringType:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
-    Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType:
-      type: string
-      enum:
-      - Email
-      - Text
-      - Phone
-      - SingleChoice
-      - MultiChoice
-      - Date
-      - Number
-      - Address
-      - Currency
-      - DateTime
-      - MultiLine
-      - Attachment
-    Spotio.Frontend.ViewModel.Workflow.UserLevelUserSettingsUpdate:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the user
-        alwaysSendEmailWithMobileCode:
-          type: boolean
-          description: Always send email with mobile code
-        enforceStrongPassword:
-          type: boolean
-          description: Enforce strong password
-        webSessionDuration:
-          type: integer
-          description: Web session duration
-          format: int32
-        mobileSessionDuration:
-          type: integer
-          description: Mobile session duration
-          format: int32
-        dailyReportEnabled:
-          type: boolean
-          description: Enable daily reports
-        weeklyReportEnabled:
-          type: boolean
-          description: Enable weekly reports
-        countryCode:
-          type:
-          - string
-          - 'null'
-          description: Country code
-        extendedPhoneValidation:
-          type: boolean
-          description: Enable extended phone validation
-        autoVisitsEnabled:
-          type: boolean
-          description: Enable automatic visits
-        showNumberOfVisitsOnMap:
-          type: boolean
-          description: Show number of visits on map
-        contractsCcMailAddress:
-          type:
-          - string
-          - 'null'
-          description: CC email address for contracts
-        sendEmbeddedContractsCcToDataObjectOwner:
-          type: boolean
-          description: Send embedded contracts CC to data object owner
-        sendEmbeddedContractsCcToCustomer:
-          type: boolean
-          description: Send embedded contracts CC to customer
-        logoUrl:
-          type:
-          - string
-          - 'null'
-          description: Logo URL
-        color:
-          type:
-          - string
-          - 'null'
-          description: Color
-        timezone:
-          type:
-          - string
-          - 'null'
-          description: Timezone
-        visitsFrequencyEnabled:
-          type: boolean
-          description: Enable visits frequency
-        visitsFrequencyDays:
-          type: integer
-          description: Visits frequency in days
-          format: int32
-        currency:
-          type:
-          - string
-          - 'null'
-          description: Currency
-        trackManualVisitsDuration:
-          type: boolean
-          description: Track manual visits duration
-        prioritizeLoggingVisits:
-          type: boolean
-          description: Prioritize logging visits
-        allowCollaborators:
-          type: boolean
-          description: Allow collaborators to be added to objects
-        recordHandlerId:
-          type:
-          - string
-          - 'null'
-          description: User ID to who records of deleted users will be assigned.
-        allowMultipleRecordsAtTheSameAddress:
-          type:
-          - boolean
-          - 'null'
-          description: Allow multiple records at the same address
-        minDistanceBetweenRecords:
-          type:
-          - number
-          - 'null'
-          description: Minimum distance between records
-          format: double
-        isCustomWorkingDaysEnabled:
-          type: boolean
-          description: Indicates whether to use a custom work week
-        startOfCustomWorkingDay:
-          $ref: '#/components/schemas/System.DayOfWeek'
-        endOfCustomWorkingDay:
-          $ref: '#/components/schemas/System.DayOfWeek'
+      - InPerson
+      - Virtual
     Spotio.Frontend.ViewModel.Workflow.Settings.UserSettings:
       type: object
       additionalProperties: false
@@ -1746,17 +1270,287 @@ components:
           $ref: '#/components/schemas/System.DayOfWeek'
         endOfCustomWorkingDay:
           $ref: '#/components/schemas/System.DayOfWeek'
-    Spotio.Frontend.ViewModel.Workflow.ObjectRelatedSalesPermissionsGroupRequest:
+    Spotio.Frontend.ViewModel.Workflow.UpdateSalesPermissionsRequest:
       type: object
       additionalProperties: false
       properties:
-        permissions:
+        allowToCreateCommunicationTemplates:
+          type: boolean
+          description: Can create communication templates
+        canCreateAndUpdateAutoplays:
+          type: boolean
+          description: Can create and update Autoplays
+        canUpdatePersonalInfo:
+          type: boolean
+          description: Can update personal information
+        deleteOwnDataObjects:
           type:
-          - array
+          - boolean
           - 'null'
-          description: List of object related permissions
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ObjectRelatedSalesPermissionsRequest'
+          description: Can delete their own data objects
+        editNotOwnedDataObjectsInAssignedVisibilityUnits:
+          type:
+          - boolean
+          - 'null'
+          description: Can edit not-owned data objects in assigned visibility units
+        showNotOwnedDataObjectsInAssignedVisibilityUnits:
+          type:
+          - boolean
+          - 'null'
+          description: Can view not-owned data objects in assigned visibility units
+        showGhostDataObjects:
+          type:
+          - boolean
+          - 'null'
+          description: Can view ghost data objects
+        seeNotOwnedActivities:
+          type: boolean
+          description: Can view not-owned activities in assigned visibility units
+        seeNotOwnedCompletedActivities:
+          type: boolean
+          description: Can view not-owned completed activities in assigned visibility units
+        editNotOwnedActivities:
+          type: boolean
+          description: Can edit not-owned activities in assigned visibility units
+        showGhostActivities:
+          type: boolean
+          description: Can view ghost activities
+        deleteOwnActivities:
+          type: boolean
+          description: Can delete their own activities
+        canCreateDataObjects:
+          type:
+          - boolean
+          - 'null'
+          description: Can create data objects
+        bulkMcc:
+          type:
+          - boolean
+          - 'null'
+          description: Can access bulk MCC
+        bulkAddToRoute:
+          type:
+          - boolean
+          - 'null'
+          description: Can access bulk add to route
+        bulkSchedule:
+          type:
+          - boolean
+          - 'null'
+          description: Can access bulk schedule
+        bulkReassign:
+          type:
+          - boolean
+          - 'null'
+          description: Can access bulk reassign
+        bulkStageChange:
+          type:
+          - boolean
+          - 'null'
+          description: Can access bulk stage change
+        bulkDelete:
+          type:
+          - boolean
+          - 'null'
+          description: Can access bulk delete
+        resetActivityHistoryOnReassignment:
+          type:
+          - boolean
+          - 'null'
+          description: Can reset activity history visibility upon record reassignment
+        aiAccessAllowed:
+          type:
+          - boolean
+          - 'null'
+          description: Can access AI
+        aiNextBestActionAccess:
+          type: boolean
+          description: Can access AI Next Best Action
+        objectRelatedPermissions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ObjectRelatedSalesPermissionsGroupRequest'
+    Spotio.Frontend.ViewModel.Workflow.UserLevelUserSettingsUpdate:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the user
+        alwaysSendEmailWithMobileCode:
+          type: boolean
+          description: Always send email with mobile code
+        enforceStrongPassword:
+          type: boolean
+          description: Enforce strong password
+        webSessionDuration:
+          type: integer
+          description: Web session duration
+          format: int32
+        mobileSessionDuration:
+          type: integer
+          description: Mobile session duration
+          format: int32
+        dailyReportEnabled:
+          type: boolean
+          description: Enable daily reports
+        weeklyReportEnabled:
+          type: boolean
+          description: Enable weekly reports
+        countryCode:
+          type:
+          - string
+          - 'null'
+          description: Country code
+        extendedPhoneValidation:
+          type: boolean
+          description: Enable extended phone validation
+        autoVisitsEnabled:
+          type: boolean
+          description: Enable automatic visits
+        showNumberOfVisitsOnMap:
+          type: boolean
+          description: Show number of visits on map
+        contractsCcMailAddress:
+          type:
+          - string
+          - 'null'
+          description: CC email address for contracts
+        sendEmbeddedContractsCcToDataObjectOwner:
+          type: boolean
+          description: Send embedded contracts CC to data object owner
+        sendEmbeddedContractsCcToCustomer:
+          type: boolean
+          description: Send embedded contracts CC to customer
+        logoUrl:
+          type:
+          - string
+          - 'null'
+          description: Logo URL
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: Timezone
+        visitsFrequencyEnabled:
+          type: boolean
+          description: Enable visits frequency
+        visitsFrequencyDays:
+          type: integer
+          description: Visits frequency in days
+          format: int32
+        currency:
+          type:
+          - string
+          - 'null'
+          description: Currency
+        trackManualVisitsDuration:
+          type: boolean
+          description: Track manual visits duration
+        prioritizeLoggingVisits:
+          type: boolean
+          description: Prioritize logging visits
+        allowCollaborators:
+          type: boolean
+          description: Allow collaborators to be added to objects
+        recordHandlerId:
+          type:
+          - string
+          - 'null'
+          description: User ID to who records of deleted users will be assigned.
+        allowMultipleRecordsAtTheSameAddress:
+          type:
+          - boolean
+          - 'null'
+          description: Allow multiple records at the same address
+        minDistanceBetweenRecords:
+          type:
+          - number
+          - 'null'
+          description: Minimum distance between records
+          format: double
+        isCustomWorkingDaysEnabled:
+          type: boolean
+          description: Indicates whether to use a custom work week
+        startOfCustomWorkingDay:
+          $ref: '#/components/schemas/System.DayOfWeek'
+        endOfCustomWorkingDay:
+          $ref: '#/components/schemas/System.DayOfWeek'
+    Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType:
+      type: string
+      enum:
+      - Email
+      - Text
+      - Phone
+      - SingleChoice
+      - MultiChoice
+      - Date
+      - Number
+      - Address
+      - Currency
+      - DateTime
+      - MultiLine
+      - Attachment
+    Spotio.Frontend.ViewModel.Workflow.Settings.GeocodingSettings:
+      type: object
+      additionalProperties: false
+      properties:
+        preferedGeocoder:
+          type:
+          - string
+          - 'null'
+          description: Preferred geocoder provider
+        skipCachedLocations:
+          type: boolean
+          description: Skip cached geolocation data
+        useOnlyGoogleProvider:
+          type: boolean
+          description: Use only Google geocoding provider
+    Spotio.Frontend.ViewModel.Workflow.UpsertCategorizationSettingsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        wonResult:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationResult'
+        lostResult:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationResult'
+    Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationResult:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.Categorization.CategorizationType'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: Dataobject type Id
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: Stage Id
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: Activity template Id
+        activityResultId:
+          type:
+          - string
+          - 'null'
+          description: Activity result Id
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.Workflow.UserLevelPermissionsUpdate:
       type: object
       additionalProperties: false
@@ -1767,21 +1561,6 @@ components:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.ManagerPermissions'
         companyPermissions:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.UserLevelCompanyPermissions'
-    Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto:
-      type: string
-      enum:
-      - InPerson
-      - Virtual
-    Spotio.Frontend.ViewModel.Workflow.WorkflowProperties:
-      type: object
-      additionalProperties: false
-      properties:
-        internalSettings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.InternalSettings'
-        userSettings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.UserSettings'
-        permissions:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.Permissions'
     Microsoft.AspNetCore.JsonPatch.Operations.Operation:
       type: object
       additionalProperties: false
@@ -1799,11 +1578,91 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Infrastructure.Events.PermissionsMode:
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto:
       type: string
       enum:
-      - Territories
-      - Teams
+      - Company
+      - FirstName
+      - LastName
+      - Phone
+      - Email
+      - Value
+      - Unit
+      - Address
+      - LossReasons
+      - LeadMachine
+    Spotio.CompanySettings.Client.DTO.Workflow.Categorization.CategorizationType:
+      type: string
+      enum:
+      - ActivityResult
+      - StageChange
+      - RecordCreated
+      - ActivityScheduled
+      - ActivityLogged
+    Spotio.Frontend.ViewModel.Workflow.WorkflowProperties:
+      type: object
+      additionalProperties: false
+      properties:
+        internalSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.InternalSettings'
+        userSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.UserSettings'
+        permissions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.Permissions'
+    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplate:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the activity template
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the activity template
+        defaultDuration:
+          type: integer
+          description: Default duration of the activity in minutes
+          format: int32
+        active:
+          type: boolean
+          description: Indicates if the activity template is active
+        primaryColor:
+          type:
+          - string
+          - 'null'
+          description: Primary color for the activity template
+        secondaryColor:
+          type:
+          - string
+          - 'null'
+          description: Secondary color for the activity template
+        creatable:
+          type: boolean
+          description: Determines whether activity of this type is creatable
+        systemRole:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Activities.SystemRole'
+        activityResults:
+          type:
+          - array
+          - 'null'
+          description: Array of results that can be assigned to this activity
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResult'
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityTypeDto'
+        category:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto'
+        requiredFields:
+          type:
+          - array
+          - 'null'
+          description: Required fields for the activity template based on integrations
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateRequiredFields'
     Spotio.Frontend.ViewModel.Workflow.Settings.ManagerPermissions:
       type: object
       additionalProperties: false
@@ -1868,65 +1727,183 @@ components:
         aiNextBestActionAccess:
           type: boolean
           description: Can manager access AI Next Best Action
-    Spotio.Frontend.ViewModel.Workflow.Settings.DataObjectDefinition:
+    Spotio.Frontend.ViewModel.Workflow.UpdateManagerPermissionsRequest:
       type: object
       additionalProperties: false
       properties:
-        hasAddress:
+        seeAllTerritories:
           type: boolean
-          description: Indicates if the data object definition has an address
-        fields:
-          type:
-          - array
-          - 'null'
-          description: List of fields in the data object definition
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
-        stages:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse'
-        hasPhone:
+          description: Can view all territories
+        canAddTerritoriesOutsideAssigned:
           type: boolean
-          description: Indicates if the data object definition has a phone field
-          readOnly: true
-        hasEmail:
+          description: Can add territories outside assigned
+        canDeleteTerritoriesOutsideAssigned:
           type: boolean
-          description: Indicates if the data object definition has an email field
-          readOnly: true
-        id:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier of the data object
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the data object
-        parentId:
-          type:
-          - string
-          - 'null'
-          description: Parent data object ID
-        extraSettings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings'
-        inheritOwnerFromParent:
+          description: Can delete territories outside assigned
+        canAssignUsersToTerritoryOutsideAssigned:
           type: boolean
-          description: Inherit owner from parent data object
-        scoringType:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
-        parentRequired:
+          description: Can assign users to territories outside assigned
+        canManageTerritoryWithinAssigned:
+          type: boolean
+          description: Can manage territory within assigned
+        canAssignUsersToTerritoryWithinAssigned:
+          type: boolean
+          description: Can assign users to territory within assigned
+        seeAllTeams:
+          type: boolean
+          description: Can view all teams
+        canAddTeamsOutsideAssigned:
+          type: boolean
+          description: Can add teams outside assigned
+        canDeleteTeamsOutsideAssigned:
+          type: boolean
+          description: Can delete teams outside assigned
+        canManageTeamsWithinAssigned:
+          type: boolean
+          description: Can manage teams within assigned
+        canAssignUsersToTeamsWithinAssigned:
+          type: boolean
+          description: Can assign users to teams within assigned
+        canAddUsers:
+          type: boolean
+          description: Can add users
+        canExport:
+          type: boolean
+          description: Can export data
+        showAllDataObjects:
+          type: boolean
+          description: Can view all data objects
+        canCreateAndUpdateAutoplays:
+          type: boolean
+          description: Can create and update Autoplays
+        canCreateAndUpdateRepsAutoplays:
+          type: boolean
+          description: Can create and update reps' Autoplays
+        canAssignUsersToTeamsOutsideAssigned:
+          type: boolean
+          description: Can assign users to teams outside assigned
+        canMergeRecords:
+          type: boolean
+          description: Can merge records
+        aiAccessAllowed:
           type:
           - boolean
           - 'null'
-          description: Indicates if a parent is required for the data object
-    Spotio.CompanySettings.Client.DTO.Workflow.Categorization.CategorizationType:
+          description: Can access AI
+        aiNextBestActionAccess:
+          type: boolean
+          description: Can access AI Next Best Action
+    Spotio.Frontend.ViewModel.Workflow.UpdateWorkflowPropertiesRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        userSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.UserLevelUserSettingsUpdate'
+        permissions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.UserLevelPermissionsUpdate'
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto:
       type: string
       enum:
-      - ActivityResult
-      - StageChange
-      - RecordCreated
-      - ActivityScheduled
-      - ActivityLogged
+      - Name
+      - Location
+    Spotio.Infrastructure.Events.PermissionsMode:
+      type: string
+      enum:
+      - Territories
+      - Teams
+    Spotio.Frontend.ViewModel.Workflow.Settings.ObjectRelatedSalesPermissionsGroup:
+      type: object
+      additionalProperties: false
+      properties:
+        permissions:
+          type:
+          - array
+          - 'null'
+          description: List of object related permissions
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.ObjectRelatedSalesPermissions'
+    Spotio.Frontend.ViewModel.Workflow.Settings.SalesPermissions:
+      type: object
+      additionalProperties: false
+      properties:
+        deleteOwnDataObjects:
+          type: boolean
+          description: Can delete their own data objects
+        showAllTerritories:
+          type: boolean
+          description: Can view all territories
+        canUpdatePersonalInfo:
+          type: boolean
+          description: Can update personal information
+        showNotOwnedDataObjectsInAssignedVisibilityUnits:
+          type: boolean
+          description: Can view not-owned data objects in assigned visibility units
+        showGhostDataObjects:
+          type: boolean
+          description: Can view ghost data objects
+        editNotOwnedDataObjectsInAssignedVisibilityUnits:
+          type: boolean
+          description: Can edit not-owned data objects in assigned visibility units
+        allowToCreateCommunicationTemplates:
+          type: boolean
+          description: Can create communication templates
+        canCreateAndUpdateAutoplays:
+          type: boolean
+          description: Can create and update Autoplays
+        canDeleteContacts:
+          type: boolean
+          description: Can delete contacts
+        seeNotOwnedActivities:
+          type: boolean
+          description: Can view not-owned activities in assigned visibility units
+        seeNotOwnedCompletedActivities:
+          type: boolean
+          description: Can view not-owned completed activities in assigned visibility units
+        editNotOwnedActivities:
+          type: boolean
+          description: Can edit not-owned activities in assigned visibility units
+        showGhostActivities:
+          type: boolean
+          description: Can view ghost activities
+        deleteOwnActivities:
+          type: boolean
+          description: Can delete their own activities
+        canCreateDataObjects:
+          type: boolean
+          description: Can create data objects
+        bulkMcc:
+          type: boolean
+          description: Can access bulk MCC
+        bulkAddToRoute:
+          type: boolean
+          description: Can access bulk add to route
+        bulkSchedule:
+          type: boolean
+          description: Can access bulk schedule
+        bulkReassign:
+          type: boolean
+          description: Can access bulk reassign
+        bulkStageChange:
+          type: boolean
+          description: Can access bulk stage change
+        bulkDelete:
+          type: boolean
+          description: Can access bulk delete
+        resetActivityHistoryOnReassignment:
+          type: boolean
+          description: Can reset activity history visibility upon record reassignment
+        aiAccessAllowed:
+          type: boolean
+          description: Can sales access to AI
+        aiNextBestActionAccess:
+          type: boolean
+          description: Can sales access AI Next Best Action
+        objectRelatedPermissions:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.ObjectRelatedSalesPermissionsGroup'
+        objectLevelVisibility:
+          type: boolean
+          description: Show object level visibility
+          readOnly: true
     Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings:
       type: object
       additionalProperties: false
@@ -1940,41 +1917,82 @@ components:
         allowEcontracts:
           type: boolean
           description: Allow eContracts for this data object
-    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse:
+    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateRequiredFields:
       type: object
       additionalProperties: false
       properties:
-        active:
-          type: boolean
-          description: Indicates if the stage group is active
-        stages:
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+        fieldIds:
           type:
           - array
           - 'null'
-          description: List of stages in the group
           items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
-    Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationSettings:
+            type: string
+    Spotio.CompanySettings.Client.DTO.Workflow.ActivityTypeDto:
+      type: string
+      enum:
+      - Event
+      - Task
+    Spotio.Frontend.ViewModel.Workflow.ObjectRelatedSalesPermissionsRequest:
       type: object
       additionalProperties: false
       properties:
-        wonResult:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationResult'
-        lostResult:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Settings.CategorizationResult'
-    Spotio.CompanySettings.Contract.DTO.Activities.SystemRole:
-      type: string
-      enum:
-      - Note
-      - Visit
-      - Call
-      - Email
-      - Text
-      - Appointment
-      - BusinessCard
-      - OptInText
-      - RecordSummary
-      - RecordMerge
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: Related data object Id
+        deleteOwnDataObjects:
+          type: boolean
+          description: Can delete their own data objects
+        editNotOwnedDataObjectsInAssignedVisibilityUnits:
+          type: boolean
+          description: Can edit not-owned data objects in assigned visibility units
+        showNotOwnedDataObjectsInAssignedVisibilityUnits:
+          type: boolean
+          description: Can view not-owned data objects in assigned visibility units
+        showGhostDataObjects:
+          type: boolean
+          description: Can view ghost data objects
+        seeNotOwnedActivities:
+          type: boolean
+          description: Can view not-owned activities in assigned visibility units
+        seeNotOwnedCompletedActivities:
+          type: boolean
+          description: Can view not-owned completed activities in assigned visibility units
+        editNotOwnedActivities:
+          type: boolean
+          description: Can edit not-owned activities in assigned visibility units
+        showGhostActivities:
+          type: boolean
+          description: Can view ghost activities
+        deleteOwnActivities:
+          type: boolean
+          description: Can delete their own activities
+        canCreateDataObjects:
+          type: boolean
+          description: Can create records
+        resetActivityHistoryOnReassignment:
+          type: boolean
+          description: Can reset activity history visibility upon record reassignment
+    Spotio.Frontend.ViewModel.Workflow.UpdateSecuritySettingsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        enforceStrongPassword:
+          type: boolean
+          description: Enforce strong password
+        webSessionDuration:
+          type: integer
+          description: Web session duration
+          format: int32
+        mobileSessionDuration:
+          type: integer
+          description: Mobile session duration
+          format: int32
   securitySchemes:
     Bearer:
       type: apiKey

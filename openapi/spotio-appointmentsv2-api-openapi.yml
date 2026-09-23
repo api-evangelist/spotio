@@ -2,15 +2,11 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Appointments V2 API
-  description: '
-
-    The controller is responsible for handling the creation, updating, deleting and retrieval of appointment.
+  description: 'The controller is responsible for handling the creation, updating, deleting and retrieval of appointment.
 
     Mainly the controller allow to manage appointment (current and future).
 
-    Every appointment has related activity.
-
-    '
+    Every appointment has related activity.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -24,22 +20,26 @@ security:
 - Bearer: []
 tags:
 - name: AppointmentsV2
-  description: '
-
-    The controller is responsible for handling the creation, updating, deleting and retrieval of appointment.
+  description: 'The controller is responsible for handling the creation, updating, deleting and retrieval of appointment.
 
     Mainly the controller allow to manage appointment (current and future).
 
-    Every appointment has related activity.
-
-    '
+    Every appointment has related activity.'
 paths:
   /api/v2/appointments/{appointmentId}:
     get:
       tags:
       - AppointmentsV2
       summary: Get an appointment by ID
-      description: "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n"
+      description: '### Appointment id formats
+
+        #### Single appointment
+
+        * "{Id}" --> "997"
+
+        #### Single appointment from recurring series ("ghost" appointment from future)
+
+        * "{Id]-[RecurringDefinitionId}-{OriginalStartDate}" --> "0-5173-638186040000000000"'
       parameters:
       - name: appointmentId
         in: path
@@ -116,11 +116,21 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiV2AppointmentsByAppointmentId
+      x-operation-id-source: derived
     put:
       tags:
       - AppointmentsV2
       summary: Update an existing appointment
-      description: "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n"
+      description: '### Appointment id formats
+
+        #### Single appointment
+
+        * "{Id}" --> "997"
+
+        #### Single appointment from recurring series ("ghost" appointment from future)
+
+        * "{Id]-[RecurringDefinitionId}-{OriginalStartDate}" --> "0-5173-638186040000000000"'
       parameters:
       - name: appointmentId
         in: path
@@ -415,11 +425,21 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiV2AppointmentsByAppointmentId
+      x-operation-id-source: derived
     patch:
       tags:
       - AppointmentsV2
       summary: Partially update an existing appointment
-      description: "### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n"
+      description: '### Appointment id formats
+
+        #### Single appointment
+
+        * "{Id}" --> "997"
+
+        #### Single appointment from recurring series ("ghost" appointment from future)
+
+        * "{Id]-[RecurringDefinitionId}-{OriginalStartDate}" --> "0-5173-638186040000000000"'
       parameters:
       - name: appointmentId
         in: path
@@ -714,6 +734,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiV2AppointmentsByAppointmentId
+      x-operation-id-source: derived
   /api/v2/appointments/byActivity/{activityId}:
     get:
       tags:
@@ -796,12 +818,24 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiV2AppointmentsByActivityByActivityId
+      x-operation-id-source: derived
   /api/v2/appointments:
     post:
       tags:
       - AppointmentsV2
       summary: Create a new appointment
-      description: "If AllDay = true (lasts for the entirety of the date), an appointment is created without a start and end\n### Appointment id formats\n####  Single appointment \n* \"{Id}\"  -->   \"997\"\n####  Single appointment from recurring series (\"ghost\" appointment from future)\n*  \"{Id]-[RecurringDefinitionId}-{OriginalStartDate}\"  -->   \"0-5173-638186040000000000\"            \n"
+      description: 'If AllDay = true (lasts for the entirety of the date), an appointment is created without a start and end
+
+        ### Appointment id formats
+
+        #### Single appointment
+
+        * "{Id}" --> "997"
+
+        #### Single appointment from recurring series ("ghost" appointment from future)
+
+        * "{Id]-[RecurringDefinitionId}-{OriginalStartDate}" --> "0-5173-638186040000000000"'
       requestBody:
         content:
           application/merge-patch+json:
@@ -1090,6 +1124,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiV2Appointments
+      x-operation-id-source: derived
   /api/v2/appointments/bulk/create:
     post:
       tags:
@@ -1126,12 +1162,18 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiV2AppointmentsBulkCreate
+      x-operation-id-source: derived
   /api/v2/appointments/multiple:
     post:
       tags:
       - AppointmentsV2
       summary: Create multiple appointments (max 20)
-      description: "Creates multiple appointments in a single request (max 20 per request). Each appointment is processed individually and the response \nincludes the result for each appointment (success with created appointment or failure with error details).\nPartial success is possible - some appointments may succeed while others fail."
+      description: 'Creates multiple appointments in a single request (max 20 per request). Each appointment is processed individually and the response
+
+        includes the result for each appointment (success with created appointment or failure with error details).
+
+        Partial success is possible - some appointments may succeed while others fail.'
       requestBody:
         content:
           application/merge-patch+json:
@@ -1219,119 +1261,41 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiV2AppointmentsMultiple
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Appointment.RecurringAppointmentDefinitionPatch:
+    Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentResult:
       type: object
-      description: Equivalent to RRule - recurring settings
       additionalProperties: false
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-        periodicity:
-          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.PeriodicityDto'
-        interval:
+        index:
           type: integer
+          description: The index of the appointment in the original request.
           format: int32
-        repeatOn:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/System.DayOfWeek'
-        until:
-          type:
-          - string
-          - 'null'
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        timezone:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Appointment.V2.AppointmentAccessDto:
-      type: string
-      enum:
-      - Full
-      - Ghost
-      - Visible
-      - Editable
-      - NotVisible
-    Spotio.Appointments.Client.Model.ChangeAppointmentIntentionDto:
-      type: string
-      enum:
-      - Single
-      - SingleFromRecurring
-      - AllInFutureFromRecurring
-      - AllFromRecurring
-    Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter:
-      type: object
-      additionalProperties: false
-      properties:
-        points:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PolygonPoint'
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
+        success:
+          type: boolean
+          description: Indicates whether the appointment was successfully created.
+        appointment:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.AppointmentV2'
         errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentError:
-      type: object
-      additionalProperties: false
-      properties:
-        code:
-          type:
-          - string
-          - 'null'
-          description: The error code.
-        message:
-          type:
-          - string
-          - 'null'
-          description: The error message.
-    Spotio.Frontend.ViewModel.Appointment.RecurringAppointmentDefinition:
-      type: object
-      description: Equivalent to RRule - recurring settings
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        periodicity:
-          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.PeriodicityDto'
-        interval:
-          type: integer
-          format: int32
-        repeatOn:
           type:
           - array
           - 'null'
+          description: The errors that occurred during creation, if unsuccessful.
           items:
-            $ref: '#/components/schemas/System.DayOfWeek'
-        until:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentError'
+    Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        appointments:
           type:
-          - string
+          - array
           - 'null'
-        count:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        timezone:
-          type:
-          - string
-          - 'null'
+          description: The list of appointments to create.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.AppointmentV2Request'
     Spotio.Frontend.ViewModel.Appointment.V2.AppointmentWithDataObject:
       type: object
       additionalProperties: false
@@ -1453,13 +1417,6 @@ components:
           - string
           - 'null'
           description: The unique identifier of the NBA recommendation.
-    InvitationStatus:
-      type: string
-      enum:
-      - 'Yes'
-      - 'No'
-      - Maybe
-      - Noreply
     System.DayOfWeek:
       type: string
       enum:
@@ -1470,26 +1427,312 @@ components:
       - Thursday
       - Friday
       - Saturday
-    Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentResult:
+    Spotio.Appointments.Client.Model.PeriodicityDto:
+      type: string
+      enum:
+      - None
+      - Seconds
+      - Minutes
+      - Hours
+      - Days
+      - Weeks
+      - Months
+      - Years
+    Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentsResponse:
       type: object
       additionalProperties: false
       properties:
-        index:
-          type: integer
-          description: The index of the appointment in the original request.
-          format: int32
-        success:
-          type: boolean
-          description: Indicates whether the appointment was successfully created.
-        appointment:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.AppointmentV2'
-        errors:
+        results:
           type:
           - array
           - 'null'
-          description: The errors that occurred during creation, if unsuccessful.
+          description: The results of creating each appointment.
           items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentError'
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentResult'
+        successCount:
+          type: integer
+          description: The number of appointments that were successfully created.
+          format: int32
+          readOnly: true
+        failureCount:
+          type: integer
+          description: The number of appointments that failed to be created.
+          format: int32
+          readOnly: true
+    Spotio.Appointments.Client.Model.ChangeAppointmentIntentionDto:
+      type: string
+      enum:
+      - Single
+      - SingleFromRecurring
+      - AllInFutureFromRecurring
+      - AllFromRecurring
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Appointment.RecurringAppointmentDefinitionPatch:
+      type: object
+      description: Equivalent to RRule - recurring settings
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        periodicity:
+          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.PeriodicityDto'
+        interval:
+          type: integer
+          format: int32
+        repeatOn:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/System.DayOfWeek'
+        until:
+          type:
+          - string
+          - 'null'
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        timezone:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        ownerId:
+          type:
+          - string
+          - 'null'
+        date:
+          type:
+          - string
+          - 'null'
+          description: Date of the appointment
+          format: date-time
+        duration:
+          type:
+          - integer
+          - 'null'
+          description: Duration in minutes
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        activityId:
+          type:
+          - string
+          - 'null'
+        allDay:
+          type:
+          - boolean
+          - 'null'
+          description: All Day - if true, the appointment will have an all day duration. False by default
+        done:
+          type:
+          - boolean
+          - 'null'
+          description: If true, the appointment will not be scheduled in the upcoming events, but historical
+        recurringDefinition:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.RecurringAppointmentDefinitionPatch'
+        remindBeforeInSeconds:
+          type:
+          - integer
+          - 'null'
+          description: How many seconds before scheduled start of the activity reminder should be sent
+          format: int32
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: ActivityTemplateId from workflow settings
+        intention:
+          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.ChangeAppointmentIntentionDto'
+        originalStartDate:
+          type:
+          - string
+          - 'null'
+          description: Date and time when activity was created to recurring events, the original start time of the event
+          format: date-time
+        allDayDate:
+          type:
+          - string
+          - 'null'
+          description: If AllDay = true, the day of the activity without time
+        nbaId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the NBA recommendation.
+    Spotio.Frontend.ViewModel.Appointment.RecurringAppointmentDefinition:
+      type: object
+      description: Equivalent to RRule - recurring settings
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        periodicity:
+          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.PeriodicityDto'
+        interval:
+          type: integer
+          format: int32
+        repeatOn:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/System.DayOfWeek'
+        until:
+          type:
+          - string
+          - 'null'
+        count:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        timezone:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.PolygonPoint:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+    InvitationStatus:
+      type: string
+      enum:
+      - 'Yes'
+      - 'No'
+      - Maybe
+      - Noreply
+    Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PolygonPoint'
+    Spotio.Frontend.ViewModel.Appointment.V2.AppointmentV2Request:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the data object associated with the appointment.
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the owner of the appointment.
+        date:
+          type:
+          - string
+          - 'null'
+          description: The date and time of the appointment.
+          format: date-time
+        duration:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the appointment in minutes.
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the appointment.
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Additional notes about the appointment.
+        activityId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity associated with the appointment.
+        allDay:
+          type: boolean
+          description: Indicates whether the appointment has an all-day duration.
+        done:
+          type: boolean
+          description: Indicates whether the appointment has been completed.
+        recurringDefinition:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.RecurringAppointmentDefinition'
+        remindBeforeInSeconds:
+          type:
+          - integer
+          - 'null'
+          description: The number of seconds before the scheduled start of the appointment when a reminder should be sent.
+          format: int32
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity template associated with the appointment.
+        intention:
+          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.ChangeAppointmentIntentionDto'
+        originalStartDate:
+          type: string
+          description: The original start date and time of the appointment if it has been rescheduled.
+          format: date-time
+        allDayDate:
+          type:
+          - string
+          - 'null'
+          description: If AllDay is true, the date of the appointment without the time component.
+        appendRecordNameToTitle:
+          type:
+          - boolean
+          - 'null'
+          description: Append record name to the title
+        sendInvitation:
+          type:
+          - boolean
+          - 'null'
+          description: Determines if the invitation email should be sent
+        invitationDescription:
+          type:
+          - string
+          - 'null'
+          description: The invitation description.
+        nbaId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the NBA recommendation.
     Spotio.Frontend.ViewModel.Appointment.V2.AppointmentV2:
       type: object
       additionalProperties: false
@@ -1601,217 +1844,14 @@ components:
           - string
           - 'null'
           description: The unique identifier of the NBA recommendation.
-    Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentsResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        results:
-          type:
-          - array
-          - 'null'
-          description: The results of creating each appointment.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentResult'
-        successCount:
-          type: integer
-          description: The number of appointments that were successfully created.
-          format: int32
-          readOnly: true
-        failureCount:
-          type: integer
-          description: The number of appointments that failed to be created.
-          format: int32
-          readOnly: true
-    Spotio.Appointments.Client.Model.PeriodicityDto:
+    Spotio.Frontend.ViewModel.Appointment.V2.AppointmentAccessDto:
       type: string
       enum:
-      - None
-      - Seconds
-      - Minutes
-      - Hours
-      - Days
-      - Weeks
-      - Months
-      - Years
-    Spotio.Frontend.ViewModel.Appointment.V2.AppointmentV2Request:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the data object associated with the appointment.
-        ownerId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the owner of the appointment.
-        date:
-          type:
-          - string
-          - 'null'
-          description: The date and time of the appointment.
-          format: date-time
-        duration:
-          type:
-          - integer
-          - 'null'
-          description: The duration of the appointment in minutes.
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-          description: The title of the appointment.
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Additional notes about the appointment.
-        activityId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the activity associated with the appointment.
-        allDay:
-          type: boolean
-          description: Indicates whether the appointment has an all-day duration.
-        done:
-          type: boolean
-          description: Indicates whether the appointment has been completed.
-        recurringDefinition:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.RecurringAppointmentDefinition'
-        remindBeforeInSeconds:
-          type:
-          - integer
-          - 'null'
-          description: The number of seconds before the scheduled start of the appointment when a reminder should be sent.
-          format: int32
-        activityTemplateId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the activity template associated with the appointment.
-        intention:
-          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.ChangeAppointmentIntentionDto'
-        originalStartDate:
-          type: string
-          description: The original start date and time of the appointment if it has been rescheduled.
-          format: date-time
-        allDayDate:
-          type:
-          - string
-          - 'null'
-          description: If AllDay is true, the date of the appointment without the time component.
-        appendRecordNameToTitle:
-          type:
-          - boolean
-          - 'null'
-          description: Append record name to the title
-        sendInvitation:
-          type:
-          - boolean
-          - 'null'
-          description: Determines if the invitation email should be sent
-        invitationDescription:
-          type:
-          - string
-          - 'null'
-          description: The invitation description.
-        nbaId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the NBA recommendation.
-    Spotio.Frontend.ViewModel.Appointment.V2.PatchAppointmentV2:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-        ownerId:
-          type:
-          - string
-          - 'null'
-        date:
-          type:
-          - string
-          - 'null'
-          description: Date of the appointment
-          format: date-time
-        duration:
-          type:
-          - integer
-          - 'null'
-          description: Duration in minutes
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-        notes:
-          type:
-          - string
-          - 'null'
-        activityId:
-          type:
-          - string
-          - 'null'
-        allDay:
-          type:
-          - boolean
-          - 'null'
-          description: All Day - if true, the appointment will have an all day duration. False by default
-        done:
-          type:
-          - boolean
-          - 'null'
-          description: If true, the appointment will not be scheduled in the upcoming events, but historical
-        recurringDefinition:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.RecurringAppointmentDefinitionPatch'
-        remindBeforeInSeconds:
-          type:
-          - integer
-          - 'null'
-          description: How many seconds before scheduled start of the activity reminder should be sent
-          format: int32
-        activityTemplateId:
-          type:
-          - string
-          - 'null'
-          description: ActivityTemplateId from workflow settings
-        intention:
-          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.ChangeAppointmentIntentionDto'
-        originalStartDate:
-          type:
-          - string
-          - 'null'
-          description: Date and time when activity was created to recurring events, the original start time of the event
-          format: date-time
-        allDayDate:
-          type:
-          - string
-          - 'null'
-          description: If AllDay = true, the day of the activity without time
-        nbaId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the NBA recommendation.
-    Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        appointments:
-          type:
-          - array
-          - 'null'
-          description: The list of appointments to create.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.AppointmentV2Request'
+      - Full
+      - Ghost
+      - Visible
+      - Editable
+      - NotVisible
     Spotio.Frontend.ViewModel.Appointment.CreateAppointmentBulkRequestDto:
       type: object
       additionalProperties: false
@@ -1843,16 +1883,20 @@ components:
           format: int32
         appointment:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Appointment.V2.AppointmentV2Request'
-    Spotio.Frontend.ViewModel.DataObjects.PolygonPoint:
+    Spotio.Frontend.ViewModel.Appointment.V2.CreateAppointmentError:
       type: object
       additionalProperties: false
       properties:
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
+        code:
+          type:
+          - string
+          - 'null'
+          description: The error code.
+        message:
+          type:
+          - string
+          - 'null'
+          description: The error message.
   securitySchemes:
     Bearer:
       type: apiKey

@@ -2,7 +2,11 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Notifications V2 API
-  description: "    The controller is responsible for handling operations on notification objects.\n    Notifications are created automatically when creating appointments with reminder property set.\n    Push notifications are supported through this module."
+  description: 'The controller is responsible for handling operations on notification objects.
+
+    Notifications are created automatically when creating appointments with reminder property set.
+
+    Push notifications are supported through this module.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -16,7 +20,11 @@ security:
 - Bearer: []
 tags:
 - name: NotificationsV2
-  description: "    The controller is responsible for handling operations on notification objects.\n    Notifications are created automatically when creating appointments with reminder property set.\n    Push notifications are supported through this module."
+  description: 'The controller is responsible for handling operations on notification objects.
+
+    Notifications are created automatically when creating appointments with reminder property set.
+
+    Push notifications are supported through this module.'
 paths:
   /api/NotificationsV2:
     get:
@@ -113,6 +121,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiNotificationsV2
+      x-operation-id-source: derived
   /api/NotificationsV2/filtered:
     get:
       tags:
@@ -203,6 +213,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiNotificationsV2Filtered
+      x-operation-id-source: derived
   /api/NotificationsV2/{id}:
     get:
       tags:
@@ -288,8 +300,48 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiNotificationsV2ById
+      x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Notifications.Client.Models.IssueSource:
+      type: string
+      enum:
+      - DataObject
+      - UserMailIntegration
+      - UserPhoneIntegration
+    Spotio.Notifications.Client.Models.NotificationType:
+      type: string
+      enum:
+      - MissedCall
+      - Text
+      - Email
+      - VoiceMail
+      - Reminder
+      - AutoplayIssue
+      - AssignedToDataObject
+      - AssignedToTerritory
+      - AssignedToRoute
+      - AssignedToTeam
+      - TodayAgenda
+      - EndOfDay
+      - EmailOpened
+      - BusinessCardOpened
+      - EngagementMondayToFridayOnly
+      - TextOptedIn
+      - TextOptedOut
+      - AssignedToActivity
+      - ActivityUpdated
+      - ActivityDeleted
+      - DataObjectUpdated
+      - DataObjectDeleted
+      - InviteResponded
     Spotio.Frontend.ViewModel.Notifications.NotificationV2Dto:
       type: object
       additionalProperties: false
@@ -391,44 +443,6 @@ components:
           - string
           - 'null'
           description: Id of the appointment associated with the notification
-    Spotio.Notifications.Client.Models.NotificationType:
-      type: string
-      enum:
-      - MissedCall
-      - Text
-      - Email
-      - VoiceMail
-      - Reminder
-      - AutoplayIssue
-      - AssignedToDataObject
-      - AssignedToTerritory
-      - AssignedToRoute
-      - AssignedToTeam
-      - TodayAgenda
-      - EndOfDay
-      - EmailOpened
-      - BusinessCardOpened
-      - EngagementMondayToFridayOnly
-      - TextOptedIn
-      - TextOptedOut
-      - AssignedToActivity
-      - ActivityUpdated
-      - ActivityDeleted
-      - DataObjectUpdated
-      - DataObjectDeleted
-      - InviteResponded
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Notifications.Client.Models.IssueSource:
-      type: string
-      enum:
-      - DataObject
-      - UserMailIntegration
-      - UserPhoneIntegration
   securitySchemes:
     Bearer:
       type: apiKey

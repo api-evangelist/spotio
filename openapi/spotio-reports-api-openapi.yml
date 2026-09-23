@@ -148,6 +148,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiReportsExportByType
+      x-operation-id-source: derived
   /api/Reports/{type}:
     post:
       tags:
@@ -268,6 +270,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiReportsByType
+      x-operation-id-source: derived
     get:
       tags:
       - Reports
@@ -381,6 +385,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiReportsByType
+      x-operation-id-source: derived
   /api/Reports/{type}/records:
     post:
       tags:
@@ -501,6 +507,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiReportsByTypeRecords
+      x-operation-id-source: derived
   /api/Reports/dataObject/{type}:
     post:
       tags:
@@ -621,6 +629,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiReportsDataObjectByType
+      x-operation-id-source: derived
     get:
       tags:
       - Reports
@@ -734,8 +744,75 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiReportsDataObjectByType
+      x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+    Spotio.Dashboard.Contract.RequestProjection:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+    Spotio.Exports.Client.Model.Export:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        state:
+          $ref: '#/components/schemas/Spotio.Exports.Client.Model.ExportState'
+        url:
+          type:
+          - string
+          - 'null'
+        typeName:
+          type:
+          - string
+          - 'null'
+        filterId:
+          type:
+          - string
+          - 'null'
+        territoryId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
     Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto:
       type: object
       description: Represents the request data for legacy dashboard charts.
@@ -799,71 +876,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Dashboard.Contract.RequestProjection'
-    Spotio.Dashboard.Contract.RequestProjection:
-      type: object
-      additionalProperties: false
-      properties:
-        data:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-    Spotio.Exports.Client.Model.Export:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        updatedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        state:
-          $ref: '#/components/schemas/Spotio.Exports.Client.Model.ExportState'
-        url:
-          type:
-          - string
-          - 'null'
-        typeName:
-          type:
-          - string
-          - 'null'
-        filterId:
-          type:
-          - string
-          - 'null'
-        territoryId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        startDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        endDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
     Spotio.Exports.Client.Model.ExportState:
       type: string
       enum:

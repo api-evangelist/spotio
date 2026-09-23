@@ -1,7 +1,7 @@
 {
   "provider": "spotio",
   "sources": [
-    "spotio-swagger.json"
+    "_original/spotio-swagger.json"
   ],
   "outputs": [
     "spotio-activitiesv2-api-openapi.yml",
@@ -45,7 +45,7 @@
     "spotio-workflowstages-api-openapi.yml"
   ],
   "archived": [
-    "archived openapi/spotio-swagger.json"
+    "deleted 4 superseded output(s) from the previous generation"
   ],
   "errors": [
     "spotio-swagger.json: dangling $ref: #/components/schemas/Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.DataObjectPatchRequest%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D",
@@ -83,9 +83,51 @@
   ],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "spotio-swagger.json: upgraded openapi 3.0.1 -> OpenAPI 3.2.0; renamed 41 component key(s) illegal in 3.x (e.g. Microsoft.AspNetCore.JsonPatch.JsonPatchDocument`1[[Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchRequest, Spotio.Frontend.ViewModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]])",
     "spotio-swagger.json: declared missing tag: Layouts",
-    "apis.yml register: written (+39 apis, 45 total)"
+    "superseded outputs removed: spotio-communication-templates-api-openapi.yml, spotio-filters-v2-api-openapi.yml, spotio-user-tracking-api-openapi.yml, spotio-workflow-stages-api-openapi.yml",
+    "apis.yml register: written (+4 apis, 39 total)"
   ],
-  "skipped": []
+  "skipped": [
+    "spotio-activitiesv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-appointmentsv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-autoplays-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-businesscards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-calendarsettings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-communication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-communication-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-connectors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-contracts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-dataobjects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-dataobjectsbulkjobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-dataobjectssearch-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-exports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-filters-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-filters-v2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-generatecontent-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-layouts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-leaderboards-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-mcp-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-multichannelcommunication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-myreports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-notificationsv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-pinsv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-routesv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-territories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-trips-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-tripsv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-uploadcare-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-user-tracking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-workflow-stages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-workflowactivitytemplates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-workflowdataobjects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-workflowfields-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "spotio-workflowsettings-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

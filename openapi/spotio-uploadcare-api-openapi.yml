@@ -23,7 +23,27 @@ paths:
       tags:
       - UploadCare
       summary: Get upload signature
-      description: "\"Generates a time-limited signature for secure file uploads to SPOTIO storage .\n                After getting the response upload file like this (provide your file, and use response data):\n                curl -F \"UPLOADCARE_PUB_KEY=response.publicKey\" \\\n                     -F \"signature=response.signature\" \\\n                     -F \"expire=response.expire\" \\\n                     -F \"file=@yourfile.jpg\" \\\n                     \"response.uploadUrl\"\n                Curl request is going to return: uploadResponse = { file: string },\n                to build url to the file that will be accepted by spotio, use:\n                `${response.cdnUrl}/${uploadResponse.file}/`\n            \""
+      description: '"Generates a time-limited signature for secure file uploads to SPOTIO storage .
+
+        After getting the response upload file like this (provide your file, and use response data):
+
+        curl -F "UPLOADCARE_PUB_KEY=response.publicKey" \
+
+        -F "signature=response.signature" \
+
+        -F "expire=response.expire" \
+
+        -F "file=@yourfile.jpg" \
+
+        "response.uploadUrl"
+
+        Curl request is going to return: uploadResponse = { file: string },
+
+        to build url to the file that will be accepted by spotio, use:
+
+        `${response.cdnUrl}/${uploadResponse.file}/`
+
+        "'
       responses:
         '200':
           description: Success
@@ -70,8 +90,16 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiUploadCareSignature
+      x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.UploadCare.UploadSignatureResponse:
       type: object
       additionalProperties: false
@@ -95,12 +123,6 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
   securitySchemes:
     Bearer:
       type: apiKey

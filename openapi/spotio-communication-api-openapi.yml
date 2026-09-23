@@ -22,7 +22,7 @@ paths:
     get:
       tags:
       - Communication
-      summary: Get user call activities list.
+      summary: Get user call activities list
       parameters:
       - name: scrollId
         in: query
@@ -73,11 +73,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationV3Calls
+      x-operation-id-source: derived
   /api/Communication/v2/calls/seen:
     post:
       tags:
       - Communication
-      summary: Mark selected calls as seen.
+      summary: Mark selected calls as seen
       parameters:
       - name: scrollId
         in: query
@@ -113,11 +115,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiCommunicationV2CallsSeen
+      x-operation-id-source: derived
   /api/Communication/v3/texts:
     get:
       tags:
       - Communication
-      summary: Get user text activities list.
+      summary: Get user text activities list
       parameters:
       - name: scrollId
         in: query
@@ -163,11 +167,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationV3Texts
+      x-operation-id-source: derived
   /api/Communication/v2/mails:
     post:
       tags:
       - Communication
-      summary: Send email.
+      summary: Send email
       requestBody:
         content:
           application/merge-patch+json:
@@ -213,11 +219,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiCommunicationV2Mails
+      x-operation-id-source: derived
   /api/Communication/v3/mails:
     get:
       tags:
       - Communication
-      summary: Get user mail activities list.
+      summary: Get user mail activities list
       parameters:
       - name: scrollId
         in: query
@@ -263,11 +271,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationV3Mails
+      x-operation-id-source: derived
   /api/Communication/texts/{id}/read:
     post:
       tags:
       - Communication
-      summary: Mark thread as read.
+      summary: Mark thread as read
       parameters:
       - name: id
         in: path
@@ -285,11 +295,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiCommunicationTextsByIdRead
+      x-operation-id-source: derived
   /api/Communication/mails/{id}/read:
     post:
       tags:
       - Communication
-      summary: Mark mail as read.
+      summary: Mark mail as read
       parameters:
       - name: id
         in: path
@@ -307,11 +319,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiCommunicationMailsByIdRead
+      x-operation-id-source: derived
   /api/Communication/v2/texts/{phone}:
     get:
       tags:
       - Communication
-      summary: Get user text thread by phone.
+      summary: Get user text thread by phone
       parameters:
       - name: scrollId
         in: query
@@ -363,11 +377,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationV2TextsByPhone
+      x-operation-id-source: derived
   /api/Communication/v2/log:
     get:
       tags:
       - Communication
-      summary: Get communication log.
+      summary: Get communication log
       parameters:
       - name: filterId
         in: query
@@ -431,11 +447,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationV2Log
+      x-operation-id-source: derived
   /api/Communication/v3/mails/{id}:
     get:
       tags:
       - Communication
-      summary: Get email by id.
+      summary: Get email by id
       parameters:
       - name: id
         in: path
@@ -465,11 +483,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationV3MailsById
+      x-operation-id-source: derived
   /api/Communication/attachments/{id}:
     get:
       tags:
       - Communication
-      summary: Get attachment by id.
+      summary: Get attachment by id
       parameters:
       - name: id
         in: path
@@ -489,11 +509,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationAttachmentsById
+      x-operation-id-source: derived
   /api/Communication/search:
     get:
       tags:
       - Communication
-      summary: Search records for communication.
+      summary: Search records for communication
       parameters:
       - name: q
         in: query
@@ -625,33 +647,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationSearch
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-        leadId:
-          type:
-          - string
-          - 'null'
-        email:
-          type:
-          - string
-          - 'null'
-        existingActivityId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        activityDone:
-          type:
-          - boolean
-          - 'null'
     Spotio.Frontend.ViewModel.Communication.V2.UserTextThreadCommunicationFeed:
       type: object
       additionalProperties: false
@@ -671,80 +670,47 @@ components:
         textOptedIn:
           type: boolean
           description: Indicates whether record opted in for text messages.
-    Spotio.Frontend.ViewModel.Communication.FileDto:
+    Spotio.Frontend.ViewModel.MailSuite.SendRequestDto:
       type: object
       additionalProperties: false
       properties:
-        id:
+        subject:
           type:
           - string
           - 'null'
-        name:
+          description: The subject of the email.
+        body:
           type:
           - string
           - 'null'
-        contentType:
+          description: The body of the email.
+        to:
+          type:
+          - array
+          - 'null'
+          description: The list of email addresses to which the email will be sent.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto'
+        attachments:
+          type:
+          - array
+          - 'null'
+          description: The list of attachments to include with the email.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.AttachmentDto'
+        templateId:
           type:
           - string
           - 'null'
-        size:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        contentId:
-          type:
-          - string
-          - 'null'
-        contentDisposition:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.MailSuite.AttachmentDto:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        contentType:
-          type:
-          - string
-          - 'null'
-        id:
-          type:
-          - string
-          - 'null'
+          description: The ID of the email template to use for the email.
+        force:
+          type: boolean
+          description: Indicates whether to force sending the email even if not all template variables can be rendered.
     Spotio.Activities.Client.Model.Direction:
       type: string
       enum:
       - In
       - Out
-    Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        typeId:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        stageId:
-          type:
-          - string
-          - 'null'
     Spotio.Frontend.ViewModel.Communication.TextThreadActivityV2:
       type: object
       additionalProperties: false
@@ -827,42 +793,106 @@ components:
         isRead:
           type: boolean
           description: Indicates whether the email has been read or not.
-    Spotio.Frontend.ViewModel.MailSuite.SendRequestDto:
+    Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto:
       type: object
       additionalProperties: false
       properties:
-        subject:
+        id:
           type:
           - string
           - 'null'
-          description: The subject of the email.
-        body:
+        typeId:
           type:
           - string
           - 'null'
-          description: The body of the email.
-        to:
-          type:
-          - array
-          - 'null'
-          description: The list of email addresses to which the email will be sent.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto'
-        attachments:
-          type:
-          - array
-          - 'null'
-          description: The list of attachments to include with the email.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.AttachmentDto'
-        templateId:
+        name:
           type:
           - string
           - 'null'
-          description: The ID of the email template to use for the email.
-        force:
-          type: boolean
-          description: Indicates whether to force sending the email even if not all template variables can be rendered.
+        stageId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectAndActivityDto:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto'
+        email:
+          type:
+          - string
+          - 'null'
+        resultId:
+          type:
+          - string
+          - 'null'
+        activityId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        leadId:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        existingActivityId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityDone:
+          type:
+          - boolean
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.EmailAccepted:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.FileDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+        size:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        contentId:
+          type:
+          - string
+          - 'null'
+        contentDisposition:
+          type:
+          - string
+          - 'null'
     ResultType.Results.IError:
       type: object
       additionalProperties: false
@@ -886,14 +916,6 @@ components:
           type: integer
           format: int32
           readOnly: true
-    Spotio.Frontend.ViewModel.Communication.EmailAccepted:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
     Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto:
       type: object
       additionalProperties: false
@@ -948,6 +970,26 @@ components:
           format: int32
         aggregateError:
           $ref: '#/components/schemas/ResultType.Results.IError'
+    Spotio.Frontend.ViewModel.MailSuite.AttachmentDto:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Communication.TextMedia:
       type: object
       additionalProperties: false
@@ -967,24 +1009,6 @@ components:
         isImage:
           type: boolean
         mimeType:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectAndActivityDto:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObject:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto'
-        email:
-          type:
-          - string
-          - 'null'
-        resultId:
-          type:
-          - string
-          - 'null'
-        activityId:
           type:
           - string
           - 'null'

@@ -2,7 +2,11 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Filters V2 API
-  description: "    The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data.\n    It can be passed wherever filterId query parameter or property is available.\n    Some apis are exposed through Filters and some through FiltersV2 both can be used interchangeably."
+  description: 'The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data.
+
+    It can be passed wherever filterId query parameter or property is available.
+
+    Some apis are exposed through Filters and some through FiltersV2 both can be used interchangeably.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -15,13 +19,17 @@ servers:
 security:
 - Bearer: []
 tags:
-- name: FiltersV2
-  description: "    The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data.\n    It can be passed wherever filterId query parameter or property is available.\n    Some apis are exposed through Filters and some through FiltersV2 both can be used interchangeably."
+- name: Filters V2
+  description: 'The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data.
+
+    It can be passed wherever filterId query parameter or property is available.
+
+    Some apis are exposed through Filters and some through FiltersV2 both can be used interchangeably.'
 paths:
   /api/v2/filters:
     post:
       tags:
-      - FiltersV2
+      - Filters V2
       summary: Create a new filter
       description: Creates a new filter based on the provided information, to create temporary filter do not send title, to save filter for later usage provide title.
       parameters:
@@ -116,10 +124,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiV2Filters
+      x-operation-id-source: derived
   /api/v2/filters/{filterId}:
     get:
       tags:
-      - FiltersV2
+      - Filters V2
       summary: Retrieves a filter by ID
       parameters:
       - name: x-app-version
@@ -201,10 +211,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiV2FiltersByFilterId
+      x-operation-id-source: derived
   /api/v2/filters/options:
     get:
       tags:
-      - FiltersV2
+      - Filters V2
       summary: Get list of filter options
       responses:
         '200':
@@ -232,10 +244,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiV2FiltersOptions
+      x-operation-id-source: derived
   /api/v2/filters/shared:
     get:
       tags:
-      - FiltersV2
+      - Filters V2
       summary: Get list of shared filters
       responses:
         '200':
@@ -263,88 +277,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiV2FiltersShared
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Filters.SharingOptions:
-      type: object
-      additionalProperties: false
-      properties:
-        visibility:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Visibility'
-        territoriesIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        usersIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        teamsIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    Spotio.Utils.Client.DTO.Filters.PeriodShortcut:
-      type: string
-      enum:
-      - DAY
-      - WEEK
-      - MONTH
-      - YTD
-      - CUSTOM
-      - ALL
-      - LASTWEEK
-      - LASTMONTH
-      - LASTYEAR
-      - YESTERDAY
-      - TODAY
-      - LAST30DAYS
-      - DEFAULT
-      - QUARTER
-      - LASTQUARTER
-      - THISWORKWEEK
-      - LASTWORKWEEK
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.Filters.Visibility:
-      type: string
-      enum:
-      - Private
-      - Public
-      - ByTerritory
-      - ByTeam
-      - ByUser
-    Spotio.Utils.Client.DTO.Filters.FilterType:
-      type: string
-      enum:
-      - Dashboard
-      - Other
-      - Home
-      - Autoplay
-      - Calendar
-      - HomeRepOverview
-      - MyReports
-    Spotio.Frontend.ViewModel.Filters.TextFilter:
-      type: object
-      additionalProperties: false
-      properties:
-        conditionType:
-          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.TextFilterConditionType'
-        values:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
     Spotio.Frontend.ViewModel.Filters.SharedFilter:
       type: object
       additionalProperties: false
@@ -361,42 +297,12 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.Filters.Colorization:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.AggregateTypeViewModel'
-        customFieldId:
-          type:
-          - string
-          - 'null'
-        activityTemplateId:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Filters.AggregateTypeViewModel:
+    Spotio.Utils.Client.DTO.Filters.LocationStatus:
       type: string
       enum:
-      - VisitsCount
-      - User
-      - Territory
-      - Stage
-      - ActivityTemplate
-      - CustomField
-      - LeadSource
-      - DaysSinceLastVisit
-      - LastActivityLocation
-      - LastVisitResult
-      - DaysSinceCreated
-      - VisitsCountSum
-      - DataObjectSource
-      - LossReason
-      - DaysSinceLastActivity
-      - NumberOfActivities
-      - CustomFieldRanges
-      - ScoreLabel
-      - Nba
+      - Verified
+      - Unverified
+      - Unknown
     Spotio.Frontend.ViewModel.Filters.DateField:
       type: string
       enum:
@@ -413,6 +319,28 @@ components:
       - ContractSignedDate
       - DataObjectCreatedAt
       - DataObjectUpdatedAt
+    Spotio.Frontend.ViewModel.Filters.FilterOptionDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The identifier
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterOptionType'
+        options:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterOptionDto%2BFilterOptionValue'
     Spotio.Frontend.ViewModel.Filters.FilterContent:
       type: object
       additionalProperties: false
@@ -582,11 +510,66 @@ components:
           items:
             type: integer
             format: int32
-    Spotio.Utils.Client.DTO.Filters.Direction:
+    Spotio.Frontend.ViewModel.Filters.TextFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        conditionType:
+          $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.TextFilterConditionType'
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Filters.FilterOptionType:
       type: string
       enum:
-      - In
-      - Out
+      - ActivityTemplateStats
+    Spotio.Utils.Client.DTO.Filters.PeriodShortcut:
+      type: string
+      enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YTD
+      - CUSTOM
+      - ALL
+      - LASTWEEK
+      - LASTMONTH
+      - LASTYEAR
+      - YESTERDAY
+      - TODAY
+      - LAST30DAYS
+      - DEFAULT
+      - QUARTER
+      - LASTQUARTER
+      - THISWORKWEEK
+      - LASTWORKWEEK
+    Spotio.Frontend.ViewModel.Filters.SharingOptions:
+      type: object
+      additionalProperties: false
+      properties:
+        visibility:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.Visibility'
+        territoriesIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        usersIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        teamsIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
     Spotio.Frontend.ViewModel.Filters.CustomFieldFilters:
       type: object
       additionalProperties: false
@@ -622,12 +605,30 @@ components:
           $ref: '#/components/schemas/Spotio.Utils.Client.DTO.Filters.PeriodShortcut'
         textFilter:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.TextFilter'
-    Spotio.Utils.Client.DTO.Filters.LocationStatus:
+    Spotio.Utils.Client.DTO.Filters.Direction:
       type: string
       enum:
-      - Verified
-      - Unverified
-      - Unknown
+      - In
+      - Out
+    Spotio.Utils.Client.DTO.Filters.OptInStatus:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Filters.Visibility:
+      type: string
+      enum:
+      - Private
+      - Public
+      - ByTerritory
+      - ByTeam
+      - ByUser
     Spotio.Utils.Client.DTO.Filters.TextFilterConditionType:
       type: string
       enum:
@@ -637,11 +638,6 @@ components:
       - DoNotExactlyMatch
       - AreBlank
       - AreNotBlank
-    Spotio.Utils.Client.DTO.Filters.OptInStatus:
-      type: string
-      enum:
-      - In
-      - Out
     Spotio.Frontend.ViewModel.Filters.UserField:
       type: string
       enum:
@@ -651,6 +647,28 @@ components:
       - DataObjectOwner
       - DataObjectLastActivityOwner
       - DataObjectUpdatedById
+    Spotio.Frontend.ViewModel.Filters.AggregateTypeViewModel:
+      type: string
+      enum:
+      - VisitsCount
+      - User
+      - Territory
+      - Stage
+      - ActivityTemplate
+      - CustomField
+      - LeadSource
+      - DaysSinceLastVisit
+      - LastActivityLocation
+      - LastVisitResult
+      - DaysSinceCreated
+      - VisitsCountSum
+      - DataObjectSource
+      - LossReason
+      - DaysSinceLastActivity
+      - NumberOfActivities
+      - CustomFieldRanges
+      - ScoreLabel
+      - Nba
     Spotio.Frontend.ViewModel.Filters.ActivityTemplateStatFilter:
       type: object
       additionalProperties: false
@@ -665,28 +683,6 @@ components:
           - 'null'
           items:
             type: string
-    Spotio.Frontend.ViewModel.Filters.FilterOptionDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The identifier
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name
-        type:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterOptionType'
-        options:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.FilterOptionDto%2BFilterOptionValue'
     Spotio.Frontend.ViewModel.Filters.Filter:
       type: object
       additionalProperties: false
@@ -861,10 +857,30 @@ components:
           items:
             type: integer
             format: int32
-    Spotio.Frontend.ViewModel.Filters.FilterOptionType:
+    Spotio.Utils.Client.DTO.Filters.FilterType:
       type: string
       enum:
-      - ActivityTemplateStats
+      - Dashboard
+      - Other
+      - Home
+      - Autoplay
+      - Calendar
+      - HomeRepOverview
+      - MyReports
+    Spotio.Frontend.ViewModel.Filters.Colorization:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Filters.AggregateTypeViewModel'
+        customFieldId:
+          type:
+          - string
+          - 'null'
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     Bearer:
       type: apiKey

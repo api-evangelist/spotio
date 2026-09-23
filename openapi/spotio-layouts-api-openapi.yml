@@ -47,6 +47,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Get api layouts all
+      x-summary-source: derived
+      operationId: getApiLayoutsAll
+      x-operation-id-source: derived
   /api/layouts/dataObject/{typeId}:
     get:
       tags:
@@ -78,6 +82,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Get api layouts data object by type id
+      x-summary-source: derived
+      operationId: getApiLayoutsDataObjectByTypeId
+      x-operation-id-source: derived
   /api/layouts/{id}/properties:
     patch:
       tags:
@@ -125,6 +133,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Update api layouts by id properties
+      x-summary-source: derived
+      operationId: patchApiLayoutsByIdProperties
+      x-operation-id-source: derived
   /api/layouts/{id}/section:
     post:
       tags:
@@ -172,6 +184,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Create api layouts by id section
+      x-summary-source: derived
+      operationId: postApiLayoutsByIdSection
+      x-operation-id-source: derived
   /api/layouts/{id}/section/{sectionId}:
     patch:
       tags:
@@ -224,6 +240,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Update api layouts by id section by section id
+      x-summary-source: derived
+      operationId: patchApiLayoutsByIdSectionBySectionId
+      x-operation-id-source: derived
     delete:
       tags:
       - Layouts
@@ -264,6 +284,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Delete api layouts by id section by section id
+      x-summary-source: derived
+      operationId: deleteApiLayoutsByIdSectionBySectionId
+      x-operation-id-source: derived
   /api/layouts/{id}/section/{sectionId}/move:
     post:
       tags:
@@ -322,6 +346,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Create api layouts by id section by section id move
+      x-summary-source: derived
+      operationId: postApiLayoutsByIdSectionBySectionIdMove
+      x-operation-id-source: derived
   /api/layouts/{id}/field/{fieldId}/move:
     post:
       tags:
@@ -381,6 +409,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Create api layouts by id field by field id move
+      x-summary-source: derived
+      operationId: postApiLayoutsByIdFieldByFieldIdMove
+      x-operation-id-source: derived
   /api/layouts/{id}/field/{fieldId}:
     delete:
       tags:
@@ -423,8 +455,49 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Delete api layouts by id field by field id
+      x-summary-source: derived
+      operationId: deleteApiLayoutsByIdFieldByFieldId
+      x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.Layouts.UpdateSectionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Layouts.Section:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        position:
+          type: integer
+          format: int32
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
     Spotio.Frontend.ViewModel.Layouts.AddSectionRequest:
       type: object
       additionalProperties: false
@@ -451,38 +524,6 @@ components:
         position:
           type: integer
           format: int32
-    Spotio.Frontend.ViewModel.Layouts.MoveSectionRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        position:
-          type: integer
-          format: int32
-    Spotio.Frontend.ViewModel.Layouts.Section:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-        position:
-          type: integer
-          format: int32
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
     Spotio.Frontend.ViewModel.Layouts.Properties:
       type: object
       additionalProperties: false
@@ -498,18 +539,13 @@ components:
           - 'null'
           items:
             type: string
-    Spotio.Frontend.ViewModel.Layouts.UpdateSectionRequest:
+    Spotio.Frontend.ViewModel.Layouts.MoveSectionRequest:
       type: object
       additionalProperties: false
       properties:
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
+        position:
+          type: integer
+          format: int32
     Spotio.Frontend.ViewModel.Layouts.UpdatePropertiesRequest:
       type: object
       additionalProperties: false

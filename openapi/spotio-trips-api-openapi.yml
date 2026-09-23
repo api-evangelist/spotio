@@ -2,7 +2,11 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Trips API
-  description: "    The controller is responsible for handling operations on trip objects.\n    Trips are created from routes and record places that user visited during the trip.\n    Some apis are exposed through Trips and some through TripsV2 both can be used interchangeably."
+  description: 'The controller is responsible for handling operations on trip objects.
+
+    Trips are created from routes and record places that user visited during the trip.
+
+    Some apis are exposed through Trips and some through TripsV2 both can be used interchangeably.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -16,7 +20,11 @@ security:
 - Bearer: []
 tags:
 - name: Trips
-  description: "    The controller is responsible for handling operations on trip objects.\n    Trips are created from routes and record places that user visited during the trip.\n    Some apis are exposed through Trips and some through TripsV2 both can be used interchangeably."
+  description: 'The controller is responsible for handling operations on trip objects.
+
+    Trips are created from routes and record places that user visited during the trip.
+
+    Some apis are exposed through Trips and some through TripsV2 both can be used interchangeably.'
 paths:
   /api/Trips:
     get:
@@ -97,6 +105,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTrips
+      x-operation-id-source: derived
   /api/Trips/summary:
     get:
       tags:
@@ -147,6 +157,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTripsSummary
+      x-operation-id-source: derived
   /api/Trips/active:
     get:
       tags:
@@ -187,6 +199,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTripsActive
+      x-operation-id-source: derived
   /api/Trips/{id}/arriving-time:
     get:
       tags:
@@ -256,6 +270,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTripsByIdArrivingTime
+      x-operation-id-source: derived
   /api/Trips/{id}/export/pdf:
     get:
       tags:
@@ -304,6 +320,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTripsByIdExportPdf
+      x-operation-id-source: derived
   /api/Trips/{id}/export/csv:
     get:
       tags:
@@ -342,6 +360,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTripsByIdExportCsv
+      x-operation-id-source: derived
   /api/Trips/export/{type}:
     post:
       tags:
@@ -396,25 +416,57 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiTripsExportByType
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.ArrivingTime:
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.GetList.TripListResponse:
       type: object
       additionalProperties: false
       properties:
-        stopId:
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll ID for the next page of results
+        items:
+          type:
+          - array
+          - 'null'
+          description: List of trips
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.GetList.TripForList'
+        totalItems:
           type: integer
-          description: The unique identifier of the stop
+          description: Total number of items in the result set
           format: int32
-        timeToStopInSeconds:
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Exports.ExportMultipleTripsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Dashboard.TripsSummaryResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        tripsCount:
           type: integer
-          description: The time in seconds until the arrival at the stop
+          description: The number of trips.
+          format: int32
+        totalDistanceTraveled:
+          type: integer
+          description: The total distance traveled in meters.
           format: int64
-    Spotio.Frontend.ViewModel.Common.ExportFileType:
-      type: string
-      enum:
-      - Csv
-      - Zip
+        totalTimeTraveledInSeconds:
+          type: integer
+          description: The total time traveled in seconds.
+          format: int64
     Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.GetList.TripForList:
       type: object
       additionalProperties: false
@@ -463,61 +515,23 @@ components:
           - string
           - 'null'
           description: Name of the trip
-    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Dashboard.TripsSummaryResponse:
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.ArrivingTime:
       type: object
       additionalProperties: false
       properties:
-        tripsCount:
+        stopId:
           type: integer
-          description: The number of trips.
+          description: The unique identifier of the stop
           format: int32
-        totalDistanceTraveled:
+        timeToStopInSeconds:
           type: integer
-          description: The total distance traveled in meters.
+          description: The time in seconds until the arrival at the stop
           format: int64
-        totalTimeTraveledInSeconds:
-          type: integer
-          description: The total time traveled in seconds.
-          format: int64
-    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Active.ActiveTrip:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier of the active trip
-        routeId:
-          type:
-          - string
-          - 'null'
-          description: Route identifier of the active trip
-    Spotio.UserTracking.Client.DTO.Routing.TripStatusDto:
+    Spotio.Frontend.ViewModel.Common.ExportFileType:
       type: string
       enum:
-      - Active
-      - Finished
-    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.GetList.TripListResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        scrollId:
-          type:
-          - string
-          - 'null'
-          description: Scroll ID for the next page of results
-        items:
-          type:
-          - array
-          - 'null'
-          description: List of trips
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.GetList.TripForList'
-        totalItems:
-          type: integer
-          description: Total number of items in the result set
-          format: int32
+      - Csv
+      - Zip
     ResultType.Results.IError:
       type: object
       additionalProperties: false
@@ -541,6 +555,11 @@ components:
           type: integer
           format: int32
           readOnly: true
+    Spotio.UserTracking.Client.DTO.Routing.TripStatusDto:
+      type: string
+      enum:
+      - Active
+      - Finished
     ResultType.Results.Error:
       type: object
       additionalProperties: false
@@ -563,17 +582,20 @@ components:
           format: int32
         aggregateError:
           $ref: '#/components/schemas/ResultType.Results.IError'
-    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Exports.ExportMultipleTripsRequest:
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Active.ActiveTrip:
       type: object
       additionalProperties: false
       properties:
-        ids:
+        id:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            type: integer
-            format: int32
+          description: Unique identifier of the active trip
+        routeId:
+          type:
+          - string
+          - 'null'
+          description: Route identifier of the active trip
   securitySchemes:
     Bearer:
       type: apiKey

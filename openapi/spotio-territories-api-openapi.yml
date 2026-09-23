@@ -99,6 +99,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTerritoriesAll
+      x-operation-id-source: derived
   /api/Territories:
     post:
       tags:
@@ -191,6 +193,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiTerritories
+      x-operation-id-source: derived
   /api/Territories/{id}:
     get:
       tags:
@@ -278,6 +282,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTerritoriesById
+      x-operation-id-source: derived
     put:
       tags:
       - Territories
@@ -376,6 +382,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiTerritoriesById
+      x-operation-id-source: derived
   /api/Territories/{id}/geojson:
     get:
       tags:
@@ -468,6 +476,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiTerritoriesByIdGeojson
+      x-operation-id-source: derived
 components:
   schemas:
     Spotio.Frontend.ViewModel.Territories.TerritoryFull:
@@ -543,36 +553,16 @@ components:
           - 'null'
           description: The date and time when the territory was last updated.
           format: date-time
-    Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties:
+    Spotio.Frontend.ViewModel.CommonModels.PolygonPoint:
       type: object
-      description: Represents the properties of a location within a territory.
       additionalProperties: false
       properties:
-        country:
-          type:
-          - string
-          - 'null'
-          description: The name of the country.
-        state:
-          type:
-          - string
-          - 'null'
-          description: The name of the state or province.
-        zipCode:
-          type:
-          - string
-          - 'null'
-          description: The postal code or zip code of the location.
-        city:
-          type:
-          - string
-          - 'null'
-          description: The name of the city or town.
-        county:
-          type:
-          - string
-          - 'null'
-          description: The name of the county or district.
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
     Spotio.Frontend.ViewModel.Territories.TerritoryToAddOrModify:
       type: object
       additionalProperties: false
@@ -627,16 +617,12 @@ components:
           description: Additional properties of the territory (e.g. country, state, etc.)
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties'
-    Spotio.Frontend.ViewModel.CommonModels.PolygonPoint:
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
       properties:
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.Territories.UpdateModel:
       type: object
       description: Model used to update a territory.
@@ -761,12 +747,6 @@ components:
           - 'null'
           description: The date and time when the territory was last updated.
           format: date-time
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
     Spotio.Frontend.ViewModel.CommonModels.Polygon:
       type: object
       additionalProperties: false
@@ -792,6 +772,36 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommonModels.PolygonPoint'
+    Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties:
+      type: object
+      description: Represents the properties of a location within a territory.
+      additionalProperties: false
+      properties:
+        country:
+          type:
+          - string
+          - 'null'
+          description: The name of the country.
+        state:
+          type:
+          - string
+          - 'null'
+          description: The name of the state or province.
+        zipCode:
+          type:
+          - string
+          - 'null'
+          description: The postal code or zip code of the location.
+        city:
+          type:
+          - string
+          - 'null'
+          description: The name of the city or town.
+        county:
+          type:
+          - string
+          - 'null'
+          description: The name of the county or district.
   securitySchemes:
     Bearer:
       type: apiKey

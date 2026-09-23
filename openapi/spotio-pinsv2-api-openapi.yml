@@ -154,6 +154,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiPinsV2
+      x-operation-id-source: derived
   /api/PinsV2/{pinId}:
     get:
       tags:
@@ -221,6 +223,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiPinsV2ByPinId
+      x-operation-id-source: derived
   /api/PinsV2/search:
     get:
       tags:
@@ -262,6 +266,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Get api pins v2 search
+      x-summary-source: derived
+      operationId: getApiPinsV2Search
+      x-operation-id-source: derived
   /api/PinsV2/nearest:
     get:
       tags:
@@ -323,6 +331,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiPinsV2Nearest
+      x-operation-id-source: derived
   /api/PinsV2/format-address:
     post:
       tags:
@@ -366,6 +376,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiPinsV2FormatAddress
+      x-operation-id-source: derived
   /api/PinsV2/move/summary:
     post:
       tags:
@@ -447,150 +459,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiPinsV2MoveSummary
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Pin.V2.DataObjectDto:
-      type: object
-      description: Data transfer object for a data object.
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID of the data object
-        typeId:
-          type:
-          - string
-          - 'null'
-          description: Type ID of the data object
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the data object
-        phones:
-          type:
-          - array
-          - 'null'
-          description: List of phone numbers
-          items:
-            type: string
-        emails:
-          type:
-          - array
-          - 'null'
-          description: List of email addresses
-          items:
-            type: string
-        addressUnit:
-          type:
-          - string
-          - 'null'
-          description: Address unit
-        value:
-          type: number
-          description: Value of the data object
-          format: double
-        stageId:
-          type:
-          - string
-          - 'null'
-          description: Stage ID
-        fields:
-          type:
-          - array
-          - 'null'
-          description: List of field values
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FieldValueDto'
-        ownerId:
-          type:
-          - string
-          - 'null'
-          description: Owner ID
-        updatedAt:
-          type: string
-          description: Updated at timestamp
-          format: date-time
-        createdAt:
-          type: string
-          description: Created at timestamp
-          format: date-time
-        stageUpdatedById:
-          type:
-          - string
-          - 'null'
-          description: Stage updated by ID
-        stageUpdatedAt:
-          type:
-          - string
-          - 'null'
-          description: Stage updated at timestamp
-          format: date-time
-        createdById:
-          type:
-          - string
-          - 'null'
-          description: Created by ID
-        updatedById:
-          type:
-          - string
-          - 'null'
-          description: Updated by ID
-        source:
-          type:
-          - string
-          - 'null'
-          description: Source of the data object
-        territoryId:
-          type:
-          - string
-          - 'null'
-          description: Territory ID
-        ghost:
-          type: boolean
-          description: Whether the data object is a ghost
-        visitsCount:
-          type: integer
-          description: Number of visits
-          format: int32
-        lastVisitDate:
-          type:
-          - string
-          - 'null'
-          description: Last visit date
-          format: date-time
-        lastVisitResultId:
-          type:
-          - string
-          - 'null'
-          description: Last visit result ID
-        callCount:
-          type: integer
-          description: Number of calls
-          format: int32
-        lastCallDate:
-          type:
-          - string
-          - 'null'
-          description: Last call date
-          format: date-time
-        lastCallResultId:
-          type:
-          - string
-          - 'null'
-          description: Last call result ID
-        scoreLabel:
-          type:
-          - string
-          - 'null'
-          description: Score label of the data object
-        nba:
-          type:
-          - string
-          - 'null'
-          description: Next best action for the data object
     Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsDto:
       type: object
       description: Data transfer object for a pin with its associated data objects.
@@ -661,6 +533,67 @@ components:
           description: List of associated data object IDs
           items:
             type: string
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.AreaFilterMode:
+      type: string
+      enum:
+      - ExactArea
+      - GeoTileGrid
+    Spotio.Frontend.ViewModel.Pin.V2.FormattedAddressDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        lat:
+          type:
+          - number
+          - 'null'
+          format: double
+        lng:
+          type:
+          - number
+          - 'null'
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse:
       type: object
       description: Response containing data objects and pin information for relocation.
@@ -677,28 +610,97 @@ components:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse%2BSourcePinSummary'
         destinationPin:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryResponse%2BDestinationPinSummary'
-    Spotio.Frontend.ViewModel.Pin.V2.FieldValueDto:
+    Spotio.Frontend.ViewModel.Pin.V2.DestinationPin:
       type: object
-      description: Data for a field value.
       additionalProperties: false
       properties:
-        fieldId:
+        lat:
+          type: number
+          description: Latitude
+          format: double
+        lng:
+          type: number
+          description: Longitude
+          format: double
+    Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryRequest:
+      type: object
+      description: Request to relocate data objects from source pin to destination coordinates.
+      additionalProperties: false
+      properties:
+        sourcePinId:
           type:
           - string
           - 'null'
-          description: ID of the field
-        value:
+          description: ID of the source pin
+        destinationPin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.DestinationPin'
+        filterId:
           type:
           - string
           - 'null'
-          description: Value of the field
-        values:
+          description: Optional filter ID for filtering data objects
+    Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsAndChildrenDto:
+      type: object
+      description: Data transfer object for a pin with its associated data objects.
+      additionalProperties: false
+      properties:
+        dataObjects:
           type:
           - array
           - 'null'
-          description: List of values for the field
+          description: List of associated data objects with children
           items:
-            type: string
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.DataObjectWithChildrenDto'
+        totalCount:
+          type: integer
+          description: Total count of data objects
+          format: int64
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll ID
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the pin
+        lat:
+          type: number
+          description: Latitude of the pin
+          format: double
+        lng:
+          type: number
+          description: Longitude of the pin
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: Google Place ID
+        address:
+          type:
+          - string
+          - 'null'
+          description: Address of the pin
+        zip:
+          type:
+          - string
+          - 'null'
+          description: Zip code of the pin
+    Spotio.Frontend.ViewModel.Pin.V2.CoordinateDto:
+      type: object
+      description: Represents a geographical coordinate.
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          description: Latitude
+          format: double
+        lng:
+          type: number
+          description: Longitude
+          format: double
     Spotio.Frontend.ViewModel.Pin.V2.DataObjectWithChildrenDto:
       type: object
       description: Data transfer object for a data object with its children.
@@ -861,18 +863,212 @@ components:
           - string
           - 'null'
           description: Next best action for the data object
-    Spotio.Frontend.ViewModel.Pin.V2.DestinationPin:
+    Spotio.Frontend.ViewModel.Pin.V2.FieldValueDto:
+      type: object
+      description: Data for a field value.
+      additionalProperties: false
+      properties:
+        fieldId:
+          type:
+          - string
+          - 'null'
+          description: ID of the field
+        value:
+          type:
+          - string
+          - 'null'
+          description: Value of the field
+        values:
+          type:
+          - array
+          - 'null'
+          description: List of values for the field
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Pin.V2.DataObjectDto:
+      type: object
+      description: Data transfer object for a data object.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the data object
+        typeId:
+          type:
+          - string
+          - 'null'
+          description: Type ID of the data object
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        phones:
+          type:
+          - array
+          - 'null'
+          description: List of phone numbers
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          description: List of email addresses
+          items:
+            type: string
+        addressUnit:
+          type:
+          - string
+          - 'null'
+          description: Address unit
+        value:
+          type: number
+          description: Value of the data object
+          format: double
+        stageId:
+          type:
+          - string
+          - 'null'
+          description: Stage ID
+        fields:
+          type:
+          - array
+          - 'null'
+          description: List of field values
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.FieldValueDto'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: Owner ID
+        updatedAt:
+          type: string
+          description: Updated at timestamp
+          format: date-time
+        createdAt:
+          type: string
+          description: Created at timestamp
+          format: date-time
+        stageUpdatedById:
+          type:
+          - string
+          - 'null'
+          description: Stage updated by ID
+        stageUpdatedAt:
+          type:
+          - string
+          - 'null'
+          description: Stage updated at timestamp
+          format: date-time
+        createdById:
+          type:
+          - string
+          - 'null'
+          description: Created by ID
+        updatedById:
+          type:
+          - string
+          - 'null'
+          description: Updated by ID
+        source:
+          type:
+          - string
+          - 'null'
+          description: Source of the data object
+        territoryId:
+          type:
+          - string
+          - 'null'
+          description: Territory ID
+        ghost:
+          type: boolean
+          description: Whether the data object is a ghost
+        visitsCount:
+          type: integer
+          description: Number of visits
+          format: int32
+        lastVisitDate:
+          type:
+          - string
+          - 'null'
+          description: Last visit date
+          format: date-time
+        lastVisitResultId:
+          type:
+          - string
+          - 'null'
+          description: Last visit result ID
+        callCount:
+          type: integer
+          description: Number of calls
+          format: int32
+        lastCallDate:
+          type:
+          - string
+          - 'null'
+          description: Last call date
+          format: date-time
+        lastCallResultId:
+          type:
+          - string
+          - 'null'
+          description: Last call result ID
+        scoreLabel:
+          type:
+          - string
+          - 'null'
+          description: Score label of the data object
+        nba:
+          type:
+          - string
+          - 'null'
+          description: Next best action for the data object
+    Spotio.Frontend.ViewModel.Pin.V2.FormatAddressRequestDto:
       type: object
       additionalProperties: false
       properties:
+        id:
+          type:
+          - string
+          - 'null'
         lat:
-          type: number
-          description: Latitude
+          type:
+          - number
+          - 'null'
           format: double
         lng:
-          type: number
-          description: Longitude
+          type:
+          - number
+          - 'null'
           format: double
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Pin.V2.PinOnMapV2Dto:
       type: object
       description: Data transfer object for a pin on a map.
@@ -960,188 +1156,6 @@ components:
           - string
           - 'null'
           description: Cluster ID for multi-pin clustering
-    Spotio.Frontend.ViewModel.Pin.V2.CoordinateDto:
-      type: object
-      description: Represents a geographical coordinate.
-      additionalProperties: false
-      properties:
-        lat:
-          type: number
-          description: Latitude
-          format: double
-        lng:
-          type: number
-          description: Longitude
-          format: double
-    Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.AreaFilterMode:
-      type: string
-      enum:
-      - ExactArea
-      - GeoTileGrid
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.Pin.V2.FormatAddressRequestDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        lat:
-          type:
-          - number
-          - 'null'
-          format: double
-        lng:
-          type:
-          - number
-          - 'null'
-          format: double
-        street:
-          type:
-          - string
-          - 'null'
-        houseNumber:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Pin.V2.FormattedAddressDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        lat:
-          type:
-          - number
-          - 'null'
-          format: double
-        lng:
-          type:
-          - number
-          - 'null'
-          format: double
-        placeId:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-        street:
-          type:
-          - string
-          - 'null'
-        houseNumber:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Pin.V2.PinWithDataObjectsAndChildrenDto:
-      type: object
-      description: Data transfer object for a pin with its associated data objects.
-      additionalProperties: false
-      properties:
-        dataObjects:
-          type:
-          - array
-          - 'null'
-          description: List of associated data objects with children
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.DataObjectWithChildrenDto'
-        totalCount:
-          type: integer
-          description: Total count of data objects
-          format: int64
-        scrollId:
-          type:
-          - string
-          - 'null'
-          description: Scroll ID
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID of the pin
-        lat:
-          type: number
-          description: Latitude of the pin
-          format: double
-        lng:
-          type: number
-          description: Longitude of the pin
-          format: double
-        placeId:
-          type:
-          - string
-          - 'null'
-          description: Google Place ID
-        address:
-          type:
-          - string
-          - 'null'
-          description: Address of the pin
-        zip:
-          type:
-          - string
-          - 'null'
-          description: Zip code of the pin
-    Spotio.Frontend.ViewModel.Pin.V2.GetMoveDataObjectsSummaryRequest:
-      type: object
-      description: Request to relocate data objects from source pin to destination coordinates.
-      additionalProperties: false
-      properties:
-        sourcePinId:
-          type:
-          - string
-          - 'null'
-          description: ID of the source pin
-        destinationPin:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Pin.V2.DestinationPin'
-        filterId:
-          type:
-          - string
-          - 'null'
-          description: Optional filter ID for filtering data objects
   securitySchemes:
     Bearer:
       type: apiKey

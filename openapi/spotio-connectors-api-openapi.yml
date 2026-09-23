@@ -2,7 +2,11 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Connectors API
-  description: "\nThe controller is responsible for managing company links (connectors). \nThe controller allows creating new connectors which user can use them on web or mobile app. \nConnector can can include information about dataObjects and current user.\n"
+  description: 'The controller is responsible for managing company links (connectors).
+
+    The controller allows creating new connectors which user can use them on web or mobile app.
+
+    Connector can can include information about dataObjects and current user.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -16,14 +20,28 @@ security:
 - Bearer: []
 tags:
 - name: Connectors
-  description: "\nThe controller is responsible for managing company links (connectors). \nThe controller allows creating new connectors which user can use them on web or mobile app. \nConnector can can include information about dataObjects and current user.\n"
+  description: 'The controller is responsible for managing company links (connectors).
+
+    The controller allows creating new connectors which user can use them on web or mobile app.
+
+    Connector can can include information about dataObjects and current user.'
 paths:
   /api/Connectors:
     post:
       tags:
       - Connectors
       summary: Create a new connector
-      description: "\nA connector can include user / dataObject variables.  \nAppropriate format is required  \n#### Web Regex - website url  `https://spotio2.com`\n* ^(((?i)(http|https):\\/\\/){1}(\\w+)+([\\p{L}0-9_ \\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\,{}]*)?)$  \n#### Mobile Regex - deep link   `slack://open?team={TEAM_ID}`\n* ^(((\\w+):\\/\\/){1}([\\p{L}0-9_ \\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\,{}]*)?)$\n"
+      description: 'A connector can include user / dataObject variables.
+
+        Appropriate format is required
+
+        #### Web Regex - website url `https://spotio2.com`
+
+        * ^(((?i)(http|https):\/\/){1}(\w+)+([\p{L}0-9_ \~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\,{}]*)?)$
+
+        #### Mobile Regex - deep link `slack://open?team={TEAM_ID}`
+
+        * ^(((\w+):\/\/){1}([\p{L}0-9_ \~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\,{}]*)?)$'
       requestBody:
         content:
           application/merge-patch+json:
@@ -63,6 +81,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiConnectors
+      x-operation-id-source: derived
     get:
       tags:
       - Connectors
@@ -107,12 +127,26 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiConnectors
+      x-operation-id-source: derived
   /api/Connectors/{id}:
     patch:
       tags:
       - Connectors
       summary: Patch the connector if user have a permission
-      description: " Update connector details.\nA connector can include user / dataObject variables.  \nAppropriate format is required  \n#### Web Regex - website url  `https://spotio2.com`\n* ^(((?i)(http|https):\\/\\/){1}(\\w+)+([\\p{L}0-9_ \\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\,{}]*)?)$  \n#### Mobile Regex - deep link   `slack://open?team={TEAM_ID}`\n* ^(((\\w+):\\/\\/){1}([\\p{L}0-9_ \\~\\!\\@\\#\\$\\%\\^\\&amp;\\*\\(\\)_\\-\\=\\+\\\\\\/\\?\\.\\:\\;\\,{}]*)?)$\n"
+      description: 'Update connector details.
+
+        A connector can include user / dataObject variables.
+
+        Appropriate format is required
+
+        #### Web Regex - website url `https://spotio2.com`
+
+        * ^(((?i)(http|https):\/\/){1}(\w+)+([\p{L}0-9_ \~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\,{}]*)?)$
+
+        #### Mobile Regex - deep link `slack://open?team={TEAM_ID}`
+
+        * ^(((\w+):\/\/){1}([\p{L}0-9_ \~\!\@\#\$\%\^\&\*\(\)_\-\=\+\\\/\?\.\:\;\,{}]*)?)$'
       parameters:
       - name: id
         in: path
@@ -159,6 +193,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiConnectorsById
+      x-operation-id-source: derived
     delete:
       tags:
       - Connectors
@@ -181,6 +217,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiConnectorsById
+      x-operation-id-source: derived
     get:
       tags:
       - Connectors
@@ -213,6 +251,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiConnectorsById
+      x-operation-id-source: derived
   /api/Connectors/profile:
     get:
       tags:
@@ -243,6 +283,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      summary: Get api connectors profile
+      x-summary-source: derived
+      operationId: getApiConnectorsProfile
+      x-operation-id-source: derived
   /api/Connectors/variables:
     get:
       tags:
@@ -290,6 +334,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiConnectorsVariables
+      x-operation-id-source: derived
   /api/Connectors/variables/all:
     get:
       tags:
@@ -328,19 +374,36 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiConnectorsVariablesAll
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Connectors.ConnectorScope:
-      type: string
-      enum:
-      - DataObject
-      - Global
-      - Profile
+    Spotio.Frontend.ViewModel.Variables.Variable:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Connectors.SortDirection:
       type: string
       enum:
       - Asc
       - Desc
+    Spotio.Frontend.ViewModel.Connectors.ConnectorType:
+      type: string
+      enum:
+      - Web
+      - App
     Spotio.Frontend.ViewModel.Connectors.ConnectorFull:
       type: object
       description: A full representation of a connector.
@@ -406,11 +469,24 @@ components:
           description: The ID of the data object type from workflow settings
         scope:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorScope'
-    Spotio.Frontend.ViewModel.Connectors.ConnectorType:
+    Spotio.Frontend.ViewModel.Connectors.ConnectorHeader:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Connectors.ConnectorScope:
       type: string
       enum:
-      - Web
-      - App
+      - DataObject
+      - Global
+      - Profile
     Spotio.Frontend.ViewModel.Connectors.ConnectorSimple:
       type: object
       additionalProperties: false
@@ -486,34 +562,6 @@ components:
           - 'null'
           description: The ID of the data object type from workflow settings.
           format: int32
-    Spotio.Frontend.ViewModel.Connectors.ConnectorHeader:
-      type: object
-      additionalProperties: false
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Variables.Variable:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        label:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
   securitySchemes:
     Bearer:
       type: apiKey

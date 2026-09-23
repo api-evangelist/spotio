@@ -2,7 +2,30 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Data Objects Search API
-  description: "    This controller is responsible for searching data objects.\n    There are available endpoints for:\n    * simple global searches - return only basic information about data objects\n    * searching on lists - return more information about data objects\n\n    Sorting (ascending by default, use `-` prefix to sort descending):\n    * updatedat\n    * value\n    * visitscount\n    * lastvisitdate\n    * distance\n    * nextactivitytime\n    * lastvisitresult"
+  description: 'This controller is responsible for searching data objects.
+
+    There are available endpoints for:
+
+    * simple global searches - return only basic information about data objects
+
+    * searching on lists - return more information about data objects
+
+
+    Sorting (ascending by default, use `-` prefix to sort descending):
+
+    * updatedat
+
+    * value
+
+    * visitscount
+
+    * lastvisitdate
+
+    * distance
+
+    * nextactivitytime
+
+    * lastvisitresult'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -16,7 +39,30 @@ security:
 - Bearer: []
 tags:
 - name: DataObjectsSearch
-  description: "    This controller is responsible for searching data objects.\n    There are available endpoints for:\n    * simple global searches - return only basic information about data objects\n    * searching on lists - return more information about data objects\n\n    Sorting (ascending by default, use `-` prefix to sort descending):\n    * updatedat\n    * value\n    * visitscount\n    * lastvisitdate\n    * distance\n    * nextactivitytime\n    * lastvisitresult"
+  description: 'This controller is responsible for searching data objects.
+
+    There are available endpoints for:
+
+    * simple global searches - return only basic information about data objects
+
+    * searching on lists - return more information about data objects
+
+
+    Sorting (ascending by default, use `-` prefix to sort descending):
+
+    * updatedat
+
+    * value
+
+    * visitscount
+
+    * lastvisitdate
+
+    * distance
+
+    * nextactivitytime
+
+    * lastvisitresult'
 paths:
   /api/DataObjectsSearch/simple:
     get:
@@ -116,6 +162,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsSearchSimple
+      x-operation-id-source: derived
     post:
       tags:
       - DataObjectsSearch
@@ -160,6 +208,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjectsSearchSimple
+      x-operation-id-source: derived
   /api/DataObjectsSearch:
     get:
       tags:
@@ -304,6 +354,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsSearch
+      x-operation-id-source: derived
     post:
       tags:
       - DataObjectsSearch
@@ -348,6 +400,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjectsSearch
+      x-operation-id-source: derived
   /api/DataObjectsSearch/list:
     get:
       tags:
@@ -472,6 +526,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsSearchList
+      x-operation-id-source: derived
 components:
   schemas:
     Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto:

@@ -2,13 +2,9 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Activities V2 API
-  description: '
+  description: 'The controller is responsible for handling the creation, updating, and retrieval of activities.
 
-    The controller is responsible for handling the creation, updating, and retrieval of activities.
-
-    Mainly the controller allow to manage activities (current and done)
-
-    '
+    Mainly the controller allow to manage activities (current and done)'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -22,13 +18,9 @@ security:
 - Bearer: []
 tags:
 - name: ActivitiesV2
-  description: '
+  description: 'The controller is responsible for handling the creation, updating, and retrieval of activities.
 
-    The controller is responsible for handling the creation, updating, and retrieval of activities.
-
-    Mainly the controller allow to manage activities (current and done)
-
-    '
+    Mainly the controller allow to manage activities (current and done)'
 paths:
   /api/v2/activities:
     post:
@@ -184,6 +176,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiV2Activities
+      x-operation-id-source: derived
   /api/ActivitiesV2:
     post:
       tags:
@@ -338,6 +332,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiActivitiesV2
+      x-operation-id-source: derived
   /api/v2/activities/{activityId}:
     put:
       tags:
@@ -545,6 +541,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiV2ActivitiesByActivityId
+      x-operation-id-source: derived
     patch:
       tags:
       - ActivitiesV2
@@ -739,6 +737,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiV2ActivitiesByActivityId
+      x-operation-id-source: derived
     get:
       tags:
       - ActivitiesV2
@@ -800,6 +800,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiV2ActivitiesByActivityId
+      x-operation-id-source: derived
   /api/ActivitiesV2/{activityId}:
     put:
       tags:
@@ -1007,6 +1009,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiActivitiesV2ByActivityId
+      x-operation-id-source: derived
     patch:
       tags:
       - ActivitiesV2
@@ -1201,6 +1205,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiActivitiesV2ByActivityId
+      x-operation-id-source: derived
     get:
       tags:
       - ActivitiesV2
@@ -1262,6 +1268,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiActivitiesV2ByActivityId
+      x-operation-id-source: derived
   /api/v2/activities/many:
     post:
       tags:
@@ -1389,6 +1397,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiV2ActivitiesMany
+      x-operation-id-source: derived
   /api/ActivitiesV2/many:
     post:
       tags:
@@ -1516,6 +1526,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiActivitiesV2Many
+      x-operation-id-source: derived
   /api/v2/activities/feed:
     get:
       tags:
@@ -1622,6 +1634,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiV2ActivitiesFeed
+      x-operation-id-source: derived
   /api/ActivitiesV2/feed:
     get:
       tags:
@@ -1728,22 +1742,21 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiActivitiesV2Feed
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Activities.Client.Model.Type:
-      type: string
-      enum:
-      - Note
-      - Event
-      - Transition
-      - Create
-      - OwnerChanged
-      - Update
     Spotio.Activities.Client.Model.Direction:
       type: string
       enum:
       - In
       - Out
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.Activity.Transition:
       type: object
       additionalProperties: false
@@ -1934,12 +1947,6 @@ components:
           - string
           - 'null'
           description: The date of the all-day event, if applicable.
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
     Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse:
       type: object
       additionalProperties: false
@@ -2139,6 +2146,15 @@ components:
           - string
           - 'null'
           readOnly: true
+    Spotio.Activities.Client.Model.Type:
+      type: string
+      enum:
+      - Note
+      - Event
+      - Transition
+      - Create
+      - OwnerChanged
+      - Update
   securitySchemes:
     Bearer:
       type: apiKey

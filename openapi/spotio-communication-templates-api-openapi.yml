@@ -2,7 +2,13 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Communication Templates API
-  description: "\nThe controller is responsible for managing company templates. \nTemplates for text messages and emails. \nThe controller allows creating new templates which can include information about dataObjects and current user.\nAll templates that users can use to send SMS/MMS/Email to customers. Users can send them manually or automatically using the autoplay feature.\n"
+  description: 'The controller is responsible for managing company templates.
+
+    Templates for text messages and emails.
+
+    The controller allows creating new templates which can include information about dataObjects and current user.
+
+    All templates that users can use to send SMS/MMS/Email to customers. Users can send them manually or automatically using the autoplay feature.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -15,13 +21,19 @@ servers:
 security:
 - Bearer: []
 tags:
-- name: CommunicationTemplates
-  description: "\nThe controller is responsible for managing company templates. \nTemplates for text messages and emails. \nThe controller allows creating new templates which can include information about dataObjects and current user.\nAll templates that users can use to send SMS/MMS/Email to customers. Users can send them manually or automatically using the autoplay feature.\n"
+- name: Communication Templates
+  description: 'The controller is responsible for managing company templates.
+
+    Templates for text messages and emails.
+
+    The controller allows creating new templates which can include information about dataObjects and current user.
+
+    All templates that users can use to send SMS/MMS/Email to customers. Users can send them manually or automatically using the autoplay feature.'
 paths:
   /api/communication/templates:
     get:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Get communication templates
       description: Returns a list of communication templates.
       parameters:
@@ -81,9 +93,11 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationTemplates
+      x-operation-id-source: derived
     post:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Create a new communication templates
       description: A template can include user / dataObject variables and attachments.
       requestBody:
@@ -127,10 +141,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiCommunicationTemplates
+      x-operation-id-source: derived
   /api/communication/templates/{id}:
     get:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Get a communication template by ID
       description: Retrieves a communication template by its unique ID.
       parameters:
@@ -151,9 +167,11 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationTemplatesById
+      x-operation-id-source: derived
     patch:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Patch the communication template if user have a permission
       description: Update template details.
       parameters:
@@ -203,9 +221,11 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiCommunicationTemplatesById
+      x-operation-id-source: derived
     delete:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Delete the communication template
       parameters:
       - name: id
@@ -225,11 +245,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiCommunicationTemplatesById
+      x-operation-id-source: derived
   /api/communication/templates/simple:
     get:
       tags:
-      - CommunicationTemplates
-      summary: ' Retrieves a list of communication templates with basic details'
+      - Communication Templates
+      summary: Retrieves a list of communication templates with basic details
       parameters:
       - name: type
         in: query
@@ -277,10 +299,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationTemplatesSimple
+      x-operation-id-source: derived
   /api/communication/templates/simple/{id}:
     get:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Get communication template with basic details by ID
       description: Returns a communication template with the specified ID.
       parameters:
@@ -312,10 +336,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationTemplatesSimpleById
+      x-operation-id-source: derived
   /api/communication/templates/variables:
     get:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Get available variables for dataObjectType ID
       parameters:
       - name: dataObjectTypeId
@@ -356,10 +382,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationTemplatesVariables
+      x-operation-id-source: derived
   /api/communication/templates/variables/all:
     get:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Get all available variables
       description: List of variables which a user can use to create a new template
       responses:
@@ -394,10 +422,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationTemplatesVariablesAll
+      x-operation-id-source: derived
   /api/communication/templates/all:
     get:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Get all available templates for dataObject Type ID)
       description: When DataObjectTypeId is empty return global templates
       parameters:
@@ -432,10 +462,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationTemplatesAll
+      x-operation-id-source: derived
   /api/communication/templates/{id}/autoplays:
     get:
       tags:
-      - CommunicationTemplates
+      - Communication Templates
       summary: Get simple autoplays for communication template
       parameters:
       - name: sortBy
@@ -486,133 +518,15 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCommunicationTemplatesByIdAutoplays
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.CommunicationTemplates.Client.Models.TemplateRoleDto:
-      type: string
-      enum:
-      - OptIn
     Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateStatusDto:
       type: string
       enum:
       - Inactive
       - Active
-    Spotio.Frontend.ViewModel.CommunicationTemplates.CommunicationTemplateForDictionary:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the template
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name is unique
-        status:
-          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateStatusDto'
-    Spotio.Frontend.ViewModel.CommunicationTemplates.PatchCommunicationTemplateRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-          description: The updated content of the communication template.
-        name:
-          type:
-          - string
-          - 'null'
-          description: The updated name of the communication template.
-        status:
-          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateStatusDto'
-        subject:
-          type:
-          - string
-          - 'null'
-          description: The updated subject of the communication template.
-        attachments:
-          type:
-          - array
-          - 'null'
-          description: The attachments for the communication template
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommunicationTemplates.CommunicationTemplateAttachment'
-        dataObjectTypeId:
-          type:
-          - integer
-          - 'null'
-          description: The ID of the data object type from workflow settings
-          format: int32
-    Spotio.Frontend.ViewModel.CommunicationTemplates.CreateCommunicationTemplateRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateTypeDto'
-        content:
-          type:
-          - string
-          - 'null'
-          description: The content of the communication template.
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the communication template.
-        status:
-          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateStatusDto'
-        subject:
-          type:
-          - string
-          - 'null'
-          description: The subject of the communication template
-        attachments:
-          type:
-          - array
-          - 'null'
-          description: The attachments of the communication template
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommunicationTemplates.CommunicationTemplateAttachment'
-        destination:
-          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.DestinationDto'
-        dataObjectTypeId:
-          type:
-          - integer
-          - 'null'
-          description: The ID of the data object type from workflow settings
-          format: int32
-    Spotio.Frontend.ViewModel.CommunicationTemplates.UploadedCommunicationTemplateAttachment:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the attachment.
-        url:
-          type:
-          - string
-          - 'null'
-          description: The URL of the attachment.
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the attachment.
-        contentType:
-          type:
-          - string
-          - 'null'
-          description: The content type of the attachment (MIME)
-        size:
-          type: integer
-          description: The size of the attachment in bytes.
-          format: int64
     Spotio.Frontend.ViewModel.CommunicationTemplates.CommunicationTemplateForList:
       type: object
       additionalProperties: false
@@ -668,17 +582,6 @@ components:
           description: The ID of the data object type from workflow settings
         role:
           $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.TemplateRoleDto'
-    Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateTypeDto:
-      type: string
-      enum:
-      - Email
-      - Text
-      - EmailSignature
-    Spotio.CommunicationTemplates.Client.Models.DestinationDto:
-      type: string
-      enum:
-      - Template
-      - Autoplay
     Spotio.Frontend.ViewModel.Variables.Variable:
       type: object
       additionalProperties: false
@@ -695,12 +598,143 @@ components:
           type:
           - string
           - 'null'
+    Spotio.CommunicationTemplates.Client.Models.TemplateRoleDto:
+      type: string
+      enum:
+      - OptIn
     Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
       properties:
         errors:
           readOnly: true
+    Spotio.Frontend.ViewModel.CommunicationTemplates.UploadedCommunicationTemplateAttachment:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the attachment.
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the attachment.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the attachment.
+        contentType:
+          type:
+          - string
+          - 'null'
+          description: The content type of the attachment (MIME)
+        size:
+          type: integer
+          description: The size of the attachment in bytes.
+          format: int64
+    Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateTypeDto:
+      type: string
+      enum:
+      - Email
+      - Text
+      - EmailSignature
+    Spotio.Frontend.ViewModel.CommunicationTemplates.PatchCommunicationTemplateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+          description: The updated content of the communication template.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The updated name of the communication template.
+        status:
+          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateStatusDto'
+        subject:
+          type:
+          - string
+          - 'null'
+          description: The updated subject of the communication template.
+        attachments:
+          type:
+          - array
+          - 'null'
+          description: The attachments for the communication template
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommunicationTemplates.CommunicationTemplateAttachment'
+        dataObjectTypeId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the data object type from workflow settings
+          format: int32
+    Spotio.Frontend.ViewModel.CommunicationTemplates.CommunicationTemplateForDictionary:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the template
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name is unique
+        status:
+          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateStatusDto'
+    Spotio.Frontend.ViewModel.CommunicationTemplates.CreateCommunicationTemplateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateTypeDto'
+        content:
+          type:
+          - string
+          - 'null'
+          description: The content of the communication template.
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the communication template.
+        status:
+          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.CommunicationTemplateStatusDto'
+        subject:
+          type:
+          - string
+          - 'null'
+          description: The subject of the communication template
+        attachments:
+          type:
+          - array
+          - 'null'
+          description: The attachments of the communication template
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommunicationTemplates.CommunicationTemplateAttachment'
+        destination:
+          $ref: '#/components/schemas/Spotio.CommunicationTemplates.Client.Models.DestinationDto'
+        dataObjectTypeId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the data object type from workflow settings
+          format: int32
+    Spotio.CommunicationTemplates.Client.Models.DestinationDto:
+      type: string
+      enum:
+      - Template
+      - Autoplay
     Spotio.Frontend.ViewModel.CommunicationTemplates.CommunicationTemplateAttachment:
       type: object
       additionalProperties: false

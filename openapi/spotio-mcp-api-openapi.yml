@@ -2,7 +2,11 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 MCP API
-  description: "    The controller is responsible for handling operations related to MCP.\n    It provides endpoints for generating, retrieving, deactivating, and regenerating MCP keys.\n    These keys are used for authenticating and authorizing access to MCP Server."
+  description: 'The controller is responsible for handling operations related to MCP.
+
+    It provides endpoints for generating, retrieving, deactivating, and regenerating MCP keys.
+
+    These keys are used for authenticating and authorizing access to MCP Server.'
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -15,13 +19,17 @@ servers:
 security:
 - Bearer: []
 tags:
-- name: Mcp
-  description: "    The controller is responsible for handling operations related to MCP.\n    It provides endpoints for generating, retrieving, deactivating, and regenerating MCP keys.\n    These keys are used for authenticating and authorizing access to MCP Server."
+- name: MCP
+  description: 'The controller is responsible for handling operations related to MCP.
+
+    It provides endpoints for generating, retrieving, deactivating, and regenerating MCP keys.
+
+    These keys are used for authenticating and authorizing access to MCP Server.'
 paths:
   /api/Mcp/keys/generate:
     post:
       tags:
-      - Mcp
+      - MCP
       summary: Generate a new MCP key
       description: Generates a new MCP key for the current user and company.
       responses:
@@ -46,10 +54,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiMcpKeysGenerate
+      x-operation-id-source: derived
   /api/Mcp/keys/current:
     get:
       tags:
-      - Mcp
+      - MCP
       summary: Get the current MCP key
       description: Retrieves the current active MCP key for the current user and company.
       responses:
@@ -74,9 +84,11 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiMcpKeysCurrent
+      x-operation-id-source: derived
     delete:
       tags:
-      - Mcp
+      - MCP
       summary: Deactivate the current MCP key
       description: Deactivates the current active MCP key for the current user and company.
       responses:
@@ -91,10 +103,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiMcpKeysCurrent
+      x-operation-id-source: derived
   /api/Mcp/keys/regenerate:
     put:
       tags:
-      - Mcp
+      - MCP
       summary: Regenerate the MCP key
       description: Deactivates the current MCP key (if any) and generates a new one for the current user and company.
       responses:
@@ -119,22 +133,10 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiMcpKeysRegenerate
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-        expiresAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
     Spotio.Frontend.ViewModel.Mcp.McpKeyInfo:
       type: object
       additionalProperties: false
@@ -154,6 +156,20 @@ components:
           type:
           - string
           - 'null'
+          format: date-time
+    Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+        expiresAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
           format: date-time
   securitySchemes:
     Bearer:

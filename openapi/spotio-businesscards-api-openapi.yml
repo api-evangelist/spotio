@@ -87,6 +87,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiBusinessCardsById
+      x-operation-id-source: derived
     put:
       tags:
       - BusinessCards
@@ -173,6 +175,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiBusinessCardsById
+      x-operation-id-source: derived
     patch:
       tags:
       - BusinessCards
@@ -259,6 +263,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiBusinessCardsById
+      x-operation-id-source: derived
     delete:
       tags:
       - BusinessCards
@@ -317,6 +323,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiBusinessCardsById
+      x-operation-id-source: derived
   /api/BusinessCards:
     get:
       tags:
@@ -391,6 +399,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiBusinessCards
+      x-operation-id-source: derived
     post:
       tags:
       - BusinessCards
@@ -470,6 +480,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiBusinessCards
+      x-operation-id-source: derived
   /api/BusinessCards/{id}/clone:
     post:
       tags:
@@ -539,6 +551,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiBusinessCardsByIdClone
+      x-operation-id-source: derived
   /api/BusinessCards/{id}/shareWithTeammate:
     post:
       tags:
@@ -636,6 +650,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiBusinessCardsByIdShareWithTeammate
+      x-operation-id-source: derived
   /api/BusinessCards/{id}/preview:
     post:
       tags:
@@ -705,6 +721,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiBusinessCardsByIdPreview
+      x-operation-id-source: derived
   /api/BusinessCards/{id}/share:
     post:
       tags:
@@ -783,6 +801,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiBusinessCardsByIdShare
+      x-operation-id-source: derived
   /api/BusinessCards/{id}/render:
     get:
       tags:
@@ -852,6 +872,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiBusinessCardsByIdRender
+      x-operation-id-source: derived
   /api/BusinessCards/{id}/download:
     get:
       tags:
@@ -924,6 +946,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiBusinessCardsByIdDownload
+      x-operation-id-source: derived
   /api/BusinessCards/settings:
     get:
       tags:
@@ -986,6 +1010,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiBusinessCardsSettings
+      x-operation-id-source: derived
     put:
       tags:
       - BusinessCards
@@ -1065,55 +1091,58 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiBusinessCardsSettings
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardForList:
+    Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings:
       type: object
       additionalProperties: false
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: ID of the business card
-        ownerId:
-          type:
-          - string
-          - 'null'
-          description: ID of the owner
-        cardTitle:
-          type:
-          - string
-          - 'null'
-          description: Title of the business card
-        imageUrl:
-          type:
-          - string
-          - 'null'
-          description: URL of the image
-        first:
-          type:
-          - string
-          - 'null'
-          description: First name of the contact
-        last:
-          type:
-          - string
-          - 'null'
-          description: Last name of the contact
-        phone:
-          type:
-          - string
-          - 'null'
-          description: Phone number of the contact
-        email:
-          type:
-          - string
-          - 'null'
-          description: Email address of the contact
-        active:
+        enabled:
           type: boolean
-          description: Indicates if the business card is active
+          description: Indicates if business cards are enabled
+        defaultBusinessCardId:
+          type:
+          - string
+          - 'null'
+          description: ID of the default business card
+        defaultBusinessCardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the default business card
+    Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest:
+      type: object
+      description: Request object for sharing a business card.
+      additionalProperties: false
+      properties:
+        leadId:
+          type:
+          - string
+          - 'null'
+          description: Lead ID
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: Data object ID
+        contactId:
+          type:
+          - string
+          - 'null'
+          description: Contact ID
+        text:
+          type: boolean
+          description: Indicates if the card should be shared via text message
+        email:
+          type: boolean
+          description: Indicates if the card should be shared via email
+        message:
+          type:
+          - string
+          - 'null'
+          description: Message to include when sharing the card
     Spotio.Frontend.ViewModel.BusinessCards.BusinessCardShareLink:
       type: object
       additionalProperties: false
@@ -1123,6 +1152,12 @@ components:
           - string
           - 'null'
           description: URL of the shared business card
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRender:
       type: object
       additionalProperties: false
@@ -1200,23 +1235,53 @@ components:
           - string
           - 'null'
           description: Spotio Phone number of the card owner
-    Spotio.Frontend.ViewModel.BusinessCards.Settings.BusinessCardSettings:
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardForList:
       type: object
       additionalProperties: false
       properties:
-        enabled:
+        id:
+          type:
+          - string
+          - 'null'
+          description: ID of the business card
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the owner
+        cardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the business card
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the image
+        first:
+          type:
+          - string
+          - 'null'
+          description: First name of the contact
+        last:
+          type:
+          - string
+          - 'null'
+          description: Last name of the contact
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the contact
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the contact
+        active:
           type: boolean
-          description: Indicates if business cards are enabled
-        defaultBusinessCardId:
-          type:
-          - string
-          - 'null'
-          description: ID of the default business card
-        defaultBusinessCardTitle:
-          type:
-          - string
-          - 'null'
-          description: Title of the default business card
+          description: Indicates if the business card is active
     Spotio.Frontend.ViewModel.BusinessCards.BusinessCard:
       type: object
       additionalProperties: false
@@ -1274,6 +1339,61 @@ components:
           - string
           - 'null'
           description: ID of the owner
+        sharedWithUsers:
+          type:
+          - array
+          - 'null'
+          description: List of user IDs that the card is shared with
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        cardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the business card
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the image
+        first:
+          type:
+          - string
+          - 'null'
+          description: First name of the contact
+        last:
+          type:
+          - string
+          - 'null'
+          description: Last name of the contact
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the contact
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the contact
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the contact
+        headline:
+          type:
+          - string
+          - 'null'
+          description: Headline of the contact
+        active:
+          type: boolean
+          description: Indicates if the business card is active
         sharedWithUsers:
           type:
           - array
@@ -1362,98 +1482,6 @@ components:
           - string
           - 'null'
           description: Color of the business card
-    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        cardTitle:
-          type:
-          - string
-          - 'null'
-          description: Title of the business card
-        imageUrl:
-          type:
-          - string
-          - 'null'
-          description: URL of the image
-        first:
-          type:
-          - string
-          - 'null'
-          description: First name of the contact
-        last:
-          type:
-          - string
-          - 'null'
-          description: Last name of the contact
-        phone:
-          type:
-          - string
-          - 'null'
-          description: Phone number of the contact
-        email:
-          type:
-          - string
-          - 'null'
-          description: Email address of the contact
-        title:
-          type:
-          - string
-          - 'null'
-          description: Title of the contact
-        headline:
-          type:
-          - string
-          - 'null'
-          description: Headline of the contact
-        active:
-          type: boolean
-          description: Indicates if the business card is active
-        sharedWithUsers:
-          type:
-          - array
-          - 'null'
-          description: List of user IDs that the card is shared with
-          items:
-            type: integer
-            format: int32
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest:
-      type: object
-      description: Request object for sharing a business card.
-      additionalProperties: false
-      properties:
-        leadId:
-          type:
-          - string
-          - 'null'
-          description: Lead ID
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-          description: Data object ID
-        contactId:
-          type:
-          - string
-          - 'null'
-          description: Contact ID
-        text:
-          type: boolean
-          description: Indicates if the card should be shared via text message
-        email:
-          type: boolean
-          description: Indicates if the card should be shared via email
-        message:
-          type:
-          - string
-          - 'null'
-          description: Message to include when sharing the card
   securitySchemes:
     Bearer:
       type: apiKey

@@ -22,7 +22,7 @@ paths:
     post:
       tags:
       - DataObjects
-      summary: Create a new data object.
+      summary: Create a new data object
       description: Create a new dataObject with an associated activity (activity is optional).
       requestBody:
         content:
@@ -87,11 +87,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjects
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}:
     get:
       tags:
       - DataObjects
-      summary: Get existing data object.
+      summary: Get existing data object
       description: Get information about the dataObject and related objects
       parameters:
       - name: dataObjectId
@@ -146,6 +148,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsByDataObjectId
+      x-operation-id-source: derived
     delete:
       tags:
       - DataObjects
@@ -210,6 +214,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiDataObjectsByDataObjectId
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}/jsonp:
     patch:
       tags:
@@ -304,6 +310,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiDataObjectsByDataObjectIdJsonp
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}/jsonp/withActivity:
     patch:
       tags:
@@ -398,6 +406,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiDataObjectsByDataObjectIdJsonpWithActivity
+      x-operation-id-source: derived
   /api/DataObjects/bulk:
     post:
       tags:
@@ -434,6 +444,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjectsBulk
+      x-operation-id-source: derived
   /api/DataObjects/bulk/validate:
     post:
       tags:
@@ -478,6 +490,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjectsBulkValidate
+      x-operation-id-source: derived
   /api/DataObjects/bulk/import/{importId}:
     delete:
       tags:
@@ -502,6 +516,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiDataObjectsBulkImportByImportId
+      x-operation-id-source: derived
   /api/DataObjects/deleted:
     get:
       tags:
@@ -548,6 +564,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsDeleted
+      x-operation-id-source: derived
   /api/DataObjects/withChildren:
     post:
       tags:
@@ -617,6 +635,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjectsWithChildren
+      x-operation-id-source: derived
   /api/DataObjects/move:
     post:
       tags:
@@ -676,6 +696,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjectsMove
+      x-operation-id-source: derived
   /api/DataObjects/withChildren/{dataObjectId}:
     get:
       tags:
@@ -733,6 +755,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsWithChildrenByDataObjectId
+      x-operation-id-source: derived
   /api/DataObjects/withChildren/many:
     get:
       tags:
@@ -771,6 +795,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsWithChildrenMany
+      x-operation-id-source: derived
   /api/DataObjects/many:
     get:
       tags:
@@ -809,11 +835,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsMany
+      x-operation-id-source: derived
   /api/DataObjects/withChildren/{dataObjectId}/jsonp:
     patch:
       tags:
       - DataObjects
-      summary: JSON Patch for data object in classic mode.
+      summary: JSON Patch for data object in classic mode
       parameters:
       - name: validateRequiredFields
         in: query
@@ -900,11 +928,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiDataObjectsWithChildrenByDataObjectIdJsonp
+      x-operation-id-source: derived
   /api/DataObjects/withChildren/{dataObjectId}/jsonp/withActivity:
     patch:
       tags:
       - DataObjects
-      summary: JSON Patch for data object in classic mode with activity.
+      summary: JSON Patch for data object in classic mode with activity
       parameters:
       - name: validateRequiredFields
         in: query
@@ -991,11 +1021,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: patchApiDataObjectsWithChildrenByDataObjectIdJsonpWithActivity
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}/activities/historical:
     post:
       tags:
       - DataObjects
-      summary: 'Historical activities '
+      summary: Historical activities
       description: Array of historical (already set as Done) activities for the object
       parameters:
       - name: x-app-version
@@ -1304,10 +1336,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjectsByDataObjectIdActivitiesHistorical
+      x-operation-id-source: derived
     get:
       tags:
       - DataObjects
-      summary: 'Historical activities '
+      summary: Historical activities
       description: Array of historical (already set as Done) activities for the object
       parameters:
       - name: x-app-version
@@ -1616,6 +1650,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsByDataObjectIdActivitiesHistorical
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}/activities/{activityId}:
     get:
       tags:
@@ -1669,11 +1705,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsByDataObjectIdActivitiesByActivityId
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}/appointments/upcoming:
     get:
       tags:
       - DataObjects
-      summary: 'Upcoming Appointments '
+      summary: Upcoming Appointments
       description: Array with upcoming appointments for the data object
       parameters:
       - name: scrollId
@@ -1884,10 +1922,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsByDataObjectIdAppointmentsUpcoming
+      x-operation-id-source: derived
     post:
       tags:
       - DataObjects
-      summary: 'Filtered Upcoming Appointments '
+      summary: Filtered Upcoming Appointments
       description: Filtered array with upcoming appointments for the data object
       parameters:
       - name: scrollId
@@ -2115,6 +2155,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiDataObjectsByDataObjectIdAppointmentsUpcoming
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}/related:
     get:
       tags:
@@ -2200,6 +2242,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsByDataObjectIdRelated
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}/related/{relatedDataObjectsTypeId}:
     get:
       tags:
@@ -2287,6 +2331,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsByDataObjectIdRelatedByRelatedDataObjectsTypeId
+      x-operation-id-source: derived
   /api/DataObjects/bulkActions/status:
     get:
       tags:
@@ -2339,6 +2385,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsBulkActionsStatus
+      x-operation-id-source: derived
   /api/DataObjects/{dataObjectId}/duplicatesByAddress:
     get:
       tags:
@@ -2378,62 +2426,49 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiDataObjectsByDataObjectIdDuplicatesByAddress
+      x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.DataObjects.ValidateBulkActionResponse:
+    Spotio.Frontend.ViewModel.DataObjects.ValidateBulkAction:
       type: object
       additionalProperties: false
       properties:
-        dataObjectTypeIds:
+        polygon:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter'
+        filterId:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkActionType'
+        dataObjectIds:
           type:
           - array
           - 'null'
           items:
             type: string
-        count:
-          type: integer
-          format: int64
-        childrenCount:
-          type: integer
+        q:
+          type:
+          - string
+          - 'null'
+        singleType:
+          type:
+          - integer
+          - 'null'
           format: int32
-        invalidDataObjectsNames:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        allWithoutRequiredField:
-          type: boolean
-        anyWithoutRequiredField:
-          type: boolean
-        allOptedIn:
-          type: boolean
-        anyOptedIn:
-          type: boolean
-        validCount:
-          type: integer
-          format: int64
-        showHistoryResetWarning:
-          type: boolean
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent:
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchWithActivityRequest:
       type: object
       additionalProperties: false
       properties:
-        parentsInfo:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ParentObjectInfo'
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the data object.
-        name:
-          type:
-          - string
-          - 'null'
+        dataObject:
+          $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.DataObjectPatchRequest%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        activity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObject:
+      type: object
+      additionalProperties: false
+      properties:
         stageId:
           type:
           - string
@@ -2442,33 +2477,13 @@ components:
           type:
           - string
           - 'null'
-          description: The ID of the owner of the data object.
-        pin:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Pin'
-        source:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type: string
-          format: date-time
         updatedAt:
           type: string
           format: date-time
-        lastVisitResultId:
-          type:
-          - string
-          - 'null'
-        lastVisitDate:
-          type:
-          - string
-          - 'null'
+        createdAt:
+          type: string
           format: date-time
-        lastVisitNote:
-          type:
-          - string
-          - 'null'
-        externalDataObjectId:
+        source:
           type:
           - string
           - 'null'
@@ -2476,292 +2491,21 @@ components:
           type:
           - string
           - 'null'
-        territories:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto'
-        stageUpdatedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        stageUpdatedById:
-          type:
-          - string
-          - 'null'
-        createdById:
-          type:
-          - string
-          - 'null'
-        updatedById:
-          type:
-          - string
-          - 'null'
-        lastLocationStatus:
-          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Activity.LocationStatus'
-        visitsCount:
-          type: integer
-          format: int32
-        lastActivityTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        nextActivityTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateOfAssignment:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        callsCount:
-          type: integer
-          format: int32
-        lastCallDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        lastCallResultId:
-          type:
-          - string
-          - 'null'
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectPin'
         typeId:
           type:
           - string
           - 'null'
-        access:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType'
-        phones:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        emails:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
         value:
           type:
           - number
           - 'null'
           format: double
-        addressUnit:
-          type:
-          - string
-          - 'null'
-        textOptedIn:
-          type: boolean
-        phonesFullInfo:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
-        collaboratorIds:
-          type:
-          - array
-          - 'null'
-          description: The list of collaborators.
-          items:
-            type: string
-    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectsResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        scrollId:
-          type:
-          - string
-          - 'null'
-        deletedDataObjects:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectMetadata'
-    Spotio.Frontend.ViewModel.DataObjects.ChildObjectRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
-        typeId:
-          type: integer
-          format: int32
-    Spotio.Frontend.ViewModel.DataObjects.DeleteDataObjectRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        mode:
-          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.V2.DeleteDataObjectMode'
-        reassignTypesIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        newParentId:
-          type:
-          - string
-          - 'null'
-        permanently:
-          type: boolean
-    Spotio.Frontend.ViewModel.DataObjects.BulkEmail:
-      type: object
-      additionalProperties: false
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-        subject:
-          type:
-          - string
-          - 'null'
-        templateId:
-          type:
-          - string
-          - 'null'
-        attachments:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkEmailAttachment'
-    Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter:
-      type: object
-      additionalProperties: false
-      properties:
-        points:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PolygonPoint'
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithActivityRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObject:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest'
-        activity:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
-    Spotio.Frontend.ViewModel.DataObjects.UpcomingDataObjectAppointmentRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectTypeIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-        activityTemplateIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest:
-      type: object
-      description: A request for creating a data object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the data object in bson format.
-        stageId:
-          type:
-          - integer
-          - 'null'
-          description: The ID of the stage (form workflow settings) in which the data object belongs.
-          format: int32
-        ownerId:
-          type:
-          - integer
-          - 'null'
-          description: The ID of the user who owns the data object.
-          format: int32
-        pin:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PinRequest'
-        source:
-          type:
-          - string
-          - 'null'
-          description: The source of the data object.
         externalDataObjectId:
           type:
           - string
           - 'null'
-          description: The ID of the data object in an external system.
-        fields:
-          type:
-          - array
-          - 'null'
-          description: The fields of the data object.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
-        typeId:
-          type: integer
-          description: The ID of the data object type from workflow settings.
-          format: int32
-        parentId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the parent data object.
-        createdAt:
-          type:
-          - string
-          - 'null'
-          description: The creation time of the data object.
-          format: date-time
-        updatedAt:
-          type:
-          - string
-          - 'null'
-          description: The update time of the data object.
-          format: date-time
-        collaboratorIds:
-          type:
-          - array
-          - 'null'
-          description: The collaborators of the data object.
-          items:
-            type: integer
-            format: int32
     Spotio.Frontend.ViewModel.DataObjects.DataObjectBulkActionRequest:
       type: object
       additionalProperties: false
@@ -2815,68 +2559,7 @@ components:
           description: Loss reasons
           items:
             type: string
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType:
-      type: string
-      enum:
-      - Full
-      - Editable
-      - Visible
-    Spotio.Frontend.ViewModel.DataObjects.Search.SearchPinInfoDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the pin
-        lat:
-          type: number
-          description: The latitude coordinate of the pin
-          format: double
-        lng:
-          type: number
-          description: The longitude coordinate of the pin
-          format: double
-        placeId:
-          type:
-          - string
-          - 'null'
-          description: The optional place identifier for the pin
-        address:
-          type:
-          - string
-          - 'null'
-          description: The address associated with the pin
-        zip:
-          type:
-          - string
-          - 'null'
-          description: The zip code associated with the pin
-    Spotio.Frontend.ViewModel.DataObjects.Activities.GetHistoricalActivitiesRequestDto:
-      type: object
-      additionalProperties: false
-      properties:
-        activityTemplateIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-        scrollId:
-          type:
-          - string
-          - 'null'
-        includeGhosts:
-          type:
-          - boolean
-          - 'null'
-        includeCallRecordings:
-          type:
-          - boolean
-          - 'null'
-    Spotio.Frontend.ViewModel.DataObjects.Activities.CallRecordingDto:
+    Spotio.Frontend.ViewModel.DataObjects.AttachmentValue:
       type: object
       additionalProperties: false
       properties:
@@ -2884,170 +2567,82 @@ components:
           type:
           - string
           - 'null'
-          description: The URL of the call recording.
-        durationInSeconds:
-          type: integer
-          description: The duration of the call recording in seconds.
-          format: int32
-        startTime:
-          type: string
-          description: The date and time when the call recording started.
-          format: date-time
-    Spotio.Activities.Client.Model.Type:
-      type: string
-      enum:
-      - Note
-      - Event
-      - Transition
-      - Create
-      - OwnerChanged
-      - Update
-    Spotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Short non-sequential url-friendly unique id.
-        activityTemplateId:
-          type:
-          - string
-          - 'null'
-          description: Reference to activity template
-        type:
-          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Type'
-        ownerId:
-          type:
-          - string
-          - 'null'
-          description: Id of appointment owner
         title:
           type:
           - string
           - 'null'
-          description: Title of the appointment
-        notes:
+        ownerId:
           type:
           - string
           - 'null'
-          description: Notes about the appointment
-        text:
-          type:
-          - string
-          - 'null'
-          description: Text
-        date:
+        createdAt:
           type: string
-          description: Date of the appointment
           format: date-time
-        durationSeconds:
-          type:
-          - integer
-          - 'null'
-          description: Appointment duration in seconds
-          format: int32
-        allDay:
+        isImage:
           type: boolean
-          description: All Day - if true, the appointment will have an all day duration. False by default
-        verified:
-          type:
-          - boolean
-          - 'null'
-          description: True if activity if verifies
-        distance:
-          type:
-          - number
-          - 'null'
-          description: Distance from the lead in the moment of setting activity as done
-          format: double
-        transition:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.Transition'
-        ownerChanged:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.OwnerChanged'
-        resultId:
-          type:
-          - string
-          - 'null'
-          description: Reference to the result of the activity
-        direction:
-          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
-        email:
-          type:
-          - string
-          - 'null'
-          description: Email
-        phoneNumber:
-          type:
-          - string
-          - 'null'
-          description: Phone Number
-        reference:
-          type:
-          - string
-          - 'null'
-          description: Reference
-        autoplay:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityAutoplayDto'
-        autoExecution:
-          type:
-          - boolean
-          - 'null'
-          description: Auto execution - if true, the appointment will have an auto execution. False by default
-        appointmentId:
-          type:
-          - string
-          - 'null'
-          description: Id of the appointment
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-          description: Id of the object that owns this activity
-        documents:
-          type:
-          - array
-          - 'null'
-          description: Documents related to activity
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityDocument'
-        plannedDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        access:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.ActivityAccessType'
-        snippet:
-          type:
-          - string
-          - 'null'
-          description: Activity snippet
-        callRecording:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.CallRecordingDto'
-        nbaId:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier of the NBA recommendation
-    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectMetadata:
+    Spotio.Frontend.ViewModel.DataObjects.DeleteDataObjectRequest:
       type: object
       additionalProperties: false
       properties:
-        deletedById:
+        mode:
+          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.V2.DeleteDataObjectMode'
+        reassignTypesIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        newParentId:
           type:
           - string
           - 'null'
-        deletedAt:
-          type: string
-          format: date-time
-        id:
+        permanently:
+          type: boolean
+    Spotio.DataObjects.Client.Contract.V2.DeleteDataObjectMode:
+      type: string
+      enum:
+      - Delete
+      - DeleteAndReassign
+    Spotio.Frontend.ViewModel.DataObjects.BulkActionType:
+      type: string
+      enum:
+      - Email
+      - Text
+      - Reassign
+    Spotio.Frontend.ViewModel.Activity.Transition:
+      type: object
+      additionalProperties: false
+      properties:
+        fromStageId:
           type:
           - string
           - 'null'
+        toStageId:
+          type:
+          - string
+          - 'null'
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenAndActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
         dataObject:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObject'
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenRequest'
+        activity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest'
+        activity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
     Spotio.Frontend.ViewModel.DataObjects.ChildObject:
       type: object
       additionalProperties: false
@@ -3094,6 +2689,41 @@ components:
           type:
           - string
           - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.ValidateBulkActionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectTypeIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        count:
+          type: integer
+          format: int64
+        childrenCount:
+          type: integer
+          format: int32
+        invalidDataObjectsNames:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        allWithoutRequiredField:
+          type: boolean
+        anyWithoutRequiredField:
+          type: boolean
+        allOptedIn:
+          type: boolean
+        anyOptedIn:
+          type: boolean
+        validCount:
+          type: integer
+          format: int64
+        showHistoryResetWarning:
+          type: boolean
     Spotio.Frontend.ViewModel.DataObjects.BulkEmailAttachment:
       type: object
       additionalProperties: false
@@ -3114,56 +2744,6 @@ components:
           type:
           - string
           - 'null'
-    Spotio.DataObjects.Client.Contract.Activity.LocationStatus:
-      type: string
-      enum:
-      - Verified
-      - Unverified
-      - Unknown
-    Spotio.Frontend.ViewModel.DataObjects.ValidateBulkAction:
-      type: object
-      additionalProperties: false
-      properties:
-        polygon:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter'
-        filterId:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkActionType'
-        dataObjectIds:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        q:
-          type:
-          - string
-          - 'null'
-        singleType:
-          type:
-          - integer
-          - 'null'
-          format: int32
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenAndActivityRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObject:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenRequest'
-        activity:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
-    Spotio.Frontend.ViewModel.Activity.ActivityAccessType:
-      type: string
-      enum:
-      - Full
-      - External
-      - NoAccess
-      - Editable
-      - Visible
-      - Ghost
     Spotio.Frontend.ViewModel.DataObjects.ParentObjectInfo:
       type: object
       additionalProperties: false
@@ -3176,6 +2756,70 @@ components:
           type:
           - string
           - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        scrollId:
+          type:
+          - string
+          - 'null'
+        deletedDataObjects:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectMetadata'
+    Spotio.Frontend.ViewModel.DataObjects.Activities.GetHistoricalActivitiesRequestDto:
+      type: object
+      additionalProperties: false
+      properties:
+        activityTemplateIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        scrollId:
+          type:
+          - string
+          - 'null'
+        includeGhosts:
+          type:
+          - boolean
+          - 'null'
+        includeCallRecordings:
+          type:
+          - boolean
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.Activities.CallRecordingDto:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the call recording.
+        durationInSeconds:
+          type: integer
+          description: The duration of the call recording in seconds.
+          format: int32
+        startTime:
+          type: string
+          description: The date and time when the call recording started.
+          format: date-time
+    Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo:
+      type: object
+      additionalProperties: false
+      properties:
+        phone:
+          type:
+          - string
+          - 'null'
+        textOptedIn:
+          type: boolean
     Spotio.Frontend.ViewModel.DataObjects.FieldValue:
       type: object
       description: A field and its value
@@ -3210,413 +2854,6 @@ components:
             type: string
         attachmentValue:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.AttachmentValue'
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectPatchWithActivityRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObject:
-          $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.DataObjectPatchRequest%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
-        activity:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        parent:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest'
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ChildObjectRequest'
-    Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo:
-      type: object
-      additionalProperties: false
-      properties:
-        phone:
-          type:
-          - string
-          - 'null'
-        textOptedIn:
-          type: boolean
-    Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityAutoplayDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        autoplayName:
-          type:
-          - string
-          - 'null'
-          description: Name of the autoplay the appointment is assigned to
-        autoplayStepDescription:
-          type:
-          - string
-          - 'null'
-          description: Description of the autoplay step the appointment is assigned to
-        autoplayDataObjectId:
-          type:
-          - string
-          - 'null'
-          description: Id of the autoplay data object the appointment is assigned to
-        autoplayDataObjectStepId:
-          type:
-          - string
-          - 'null'
-          description: Id of the autoplay data object step the appointment is assigned to
-        numberOfStep:
-          type:
-          - string
-          - 'null'
-          description: Number of step
-        totalSteps:
-          type:
-          - string
-          - 'null'
-          description: Total steps
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren:
-      type: object
-      additionalProperties: false
-      properties:
-        parent:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
-        children:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ChildObject'
-    Spotio.Frontend.ViewModel.DataObjects.DataObject:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the data object.
-        name:
-          type:
-          - string
-          - 'null'
-        stageId:
-          type:
-          - string
-          - 'null'
-        ownerId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the owner of the data object.
-        pin:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Pin'
-        source:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        lastVisitResultId:
-          type:
-          - string
-          - 'null'
-        lastVisitDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        lastVisitNote:
-          type:
-          - string
-          - 'null'
-        externalDataObjectId:
-          type:
-          - string
-          - 'null'
-        territoryId:
-          type:
-          - string
-          - 'null'
-        territories:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto'
-        stageUpdatedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        stageUpdatedById:
-          type:
-          - string
-          - 'null'
-        createdById:
-          type:
-          - string
-          - 'null'
-        updatedById:
-          type:
-          - string
-          - 'null'
-        lastLocationStatus:
-          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Activity.LocationStatus'
-        visitsCount:
-          type: integer
-          format: int32
-        lastActivityTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        nextActivityTime:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateOfAssignment:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        callsCount:
-          type: integer
-          format: int32
-        lastCallDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        lastCallResultId:
-          type:
-          - string
-          - 'null'
-        fields:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
-        typeId:
-          type:
-          - string
-          - 'null'
-        access:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType'
-        phones:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        emails:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        value:
-          type:
-          - number
-          - 'null'
-          format: double
-        addressUnit:
-          type:
-          - string
-          - 'null'
-        textOptedIn:
-          type: boolean
-        phonesFullInfo:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
-        collaboratorIds:
-          type:
-          - array
-          - 'null'
-          description: The list of collaborators.
-          items:
-            type: string
-    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectPin:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type: integer
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-        parentId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        global:
-          type: boolean
-    Spotio.Frontend.ViewModel.DataObjects.BulkText:
-      type: object
-      additionalProperties: false
-      properties:
-        templateId:
-          type:
-          - string
-          - 'null'
-        body:
-          type:
-          - string
-          - 'null'
-        mediaUrls:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchAndActivityRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObject:
-          $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchRequest%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
-        activity:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
-    Spotio.Frontend.ViewModel.DataObjects.AttachmentValue:
-      type: object
-      additionalProperties: false
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        ownerId:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type: string
-          format: date-time
-        isImage:
-          type: boolean
-    Spotio.Activities.Client.Model.Direction:
-      type: string
-      enum:
-      - In
-      - Out
-    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
-      type: object
-      additionalProperties: false
-      properties:
-        value: {}
-        path:
-          type:
-          - string
-          - 'null'
-        op:
-          type:
-          - string
-          - 'null'
-        from:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Activity.Transition:
-      type: object
-      additionalProperties: false
-      properties:
-        fromStageId:
-          type:
-          - string
-          - 'null'
-        toStageId:
-          type:
-          - string
-          - 'null'
-        lossReasons:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    Spotio.Frontend.ViewModel.DataObjects.PinRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
-        placeId:
-          type:
-          - string
-          - 'null'
-        address:
-          type:
-          - string
-          - 'null'
-        street:
-          type:
-          - string
-          - 'null'
-        houseNumber:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        city:
-          type:
-          - string
-          - 'null'
-        state:
-          type:
-          - string
-          - 'null'
-        country:
-          type:
-          - string
-          - 'null'
-        shortAddress:
-          type:
-          - string
-          - 'null'
-        skipGeocoding:
-          type: boolean
     Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
       type: object
       additionalProperties: false
@@ -3789,6 +3026,316 @@ components:
           - string
           - 'null'
           description: The date of the all-day event, if applicable.
+    Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityAutoplayDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        autoplayName:
+          type:
+          - string
+          - 'null'
+          description: Name of the autoplay the appointment is assigned to
+        autoplayStepDescription:
+          type:
+          - string
+          - 'null'
+          description: Description of the autoplay step the appointment is assigned to
+        autoplayDataObjectId:
+          type:
+          - string
+          - 'null'
+          description: Id of the autoplay data object the appointment is assigned to
+        autoplayDataObjectStepId:
+          type:
+          - string
+          - 'null'
+          description: Id of the autoplay data object step the appointment is assigned to
+        numberOfStep:
+          type:
+          - string
+          - 'null'
+          description: Number of step
+        totalSteps:
+          type:
+          - string
+          - 'null'
+          description: Total steps
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithParent:
+      type: object
+      additionalProperties: false
+      properties:
+        parentsInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ParentObjectInfo'
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object.
+        name:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - string
+          - 'null'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the owner of the data object.
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Pin'
+        source:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        lastVisitResultId:
+          type:
+          - string
+          - 'null'
+        lastVisitDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastVisitNote:
+          type:
+          - string
+          - 'null'
+        externalDataObjectId:
+          type:
+          - string
+          - 'null'
+        territoryId:
+          type:
+          - string
+          - 'null'
+        territories:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto'
+        stageUpdatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        stageUpdatedById:
+          type:
+          - string
+          - 'null'
+        createdById:
+          type:
+          - string
+          - 'null'
+        updatedById:
+          type:
+          - string
+          - 'null'
+        lastLocationStatus:
+          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Activity.LocationStatus'
+        visitsCount:
+          type: integer
+          format: int32
+        lastActivityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nextActivityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateOfAssignment:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        callsCount:
+          type: integer
+          format: int32
+        lastCallDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastCallResultId:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        typeId:
+          type:
+          - string
+          - 'null'
+        access:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType'
+        phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        value:
+          type:
+          - number
+          - 'null'
+          format: double
+        addressUnit:
+          type:
+          - string
+          - 'null'
+        textOptedIn:
+          type: boolean
+        phonesFullInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
+        collaboratorIds:
+          type:
+          - array
+          - 'null'
+          description: The list of collaborators.
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Activity.OwnerChanged:
+      type: object
+      additionalProperties: false
+      properties:
+        previousLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        newLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        previousDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        newDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+    Spotio.Frontend.ViewModel.DataObjects.Search.SearchPinInfoDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the pin
+        lat:
+          type: number
+          description: The latitude coordinate of the pin
+          format: double
+        lng:
+          type: number
+          description: The longitude coordinate of the pin
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+          description: The optional place identifier for the pin
+        address:
+          type:
+          - string
+          - 'null'
+          description: The address associated with the pin
+        zip:
+          type:
+          - string
+          - 'null'
+          description: The zip code associated with the pin
+    Spotio.Frontend.ViewModel.DataObjects.BulkEmail:
+      type: object
+      additionalProperties: false
+      properties:
+        content:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        templateId:
+          type:
+          - string
+          - 'null'
+        attachments:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.BulkEmailAttachment'
+    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectMetadata:
+      type: object
+      additionalProperties: false
+      properties:
+        deletedById:
+          type:
+          - string
+          - 'null'
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type:
+          - string
+          - 'null'
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObject'
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType:
+      type: string
+      enum:
+      - Full
+      - Editable
+      - Visible
+    Spotio.Activities.Client.Model.Type:
+      type: string
+      enum:
+      - Note
+      - Event
+      - Transition
+      - Create
+      - OwnerChanged
+      - Update
     Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityDocument:
       type: object
       additionalProperties: false
@@ -3811,30 +3358,6 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.DataObjects.PolygonPoint:
-      type: object
-      additionalProperties: false
-      properties:
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
-    Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectsRequest:
-      type: object
-      description: Request to move data objects to a different pin
-      additionalProperties: false
-      properties:
-        dataObjects:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectItem'
-        pinId:
-          type: integer
-          format: int32
     Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectItem:
       type: object
       description: Item representing a data object to move
@@ -3848,6 +3371,41 @@ components:
           type:
           - string
           - 'null'
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+        title:
+          type:
+          - string
+          - 'null'
+        parentId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        global:
+          type: boolean
+    Spotio.DataObjects.Client.Contract.Activity.LocationStatus:
+      type: string
+      enum:
+      - Verified
+      - Unverified
+      - Unknown
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.DataObjects.Pin:
       type: object
       additionalProperties: false
@@ -3898,37 +3456,331 @@ components:
           type:
           - string
           - 'null'
-    Spotio.DataObjects.Client.Contract.V2.DeleteDataObjectMode:
+    Spotio.Frontend.ViewModel.DataObjects.Activities.HistoricalDataObjectActivityDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Short non-sequential url-friendly unique id.
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: Reference to activity template
+        type:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Type'
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: Id of appointment owner
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the appointment
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Notes about the appointment
+        text:
+          type:
+          - string
+          - 'null'
+          description: Text
+        date:
+          type: string
+          description: Date of the appointment
+          format: date-time
+        durationSeconds:
+          type:
+          - integer
+          - 'null'
+          description: Appointment duration in seconds
+          format: int32
+        allDay:
+          type: boolean
+          description: All Day - if true, the appointment will have an all day duration. False by default
+        verified:
+          type:
+          - boolean
+          - 'null'
+          description: True if activity if verifies
+        distance:
+          type:
+          - number
+          - 'null'
+          description: Distance from the lead in the moment of setting activity as done
+          format: double
+        transition:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.Transition'
+        ownerChanged:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.OwnerChanged'
+        resultId:
+          type:
+          - string
+          - 'null'
+          description: Reference to the result of the activity
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: Phone Number
+        reference:
+          type:
+          - string
+          - 'null'
+          description: Reference
+        autoplay:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityAutoplayDto'
+        autoExecution:
+          type:
+          - boolean
+          - 'null'
+          description: Auto execution - if true, the appointment will have an auto execution. False by default
+        appointmentId:
+          type:
+          - string
+          - 'null'
+          description: Id of the appointment
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: Id of the object that owns this activity
+        documents:
+          type:
+          - array
+          - 'null'
+          description: Documents related to activity
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.ActivityDocument'
+        plannedDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        access:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.ActivityAccessType'
+        snippet:
+          type:
+          - string
+          - 'null'
+          description: Activity snippet
+        callRecording:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Activities.CallRecordingDto'
+        nbaId:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the NBA recommendation
+    Spotio.Frontend.ViewModel.Activity.ActivityAccessType:
       type: string
       enum:
-      - Delete
-      - DeleteAndReassign
-    Spotio.Frontend.ViewModel.Activity.OwnerChanged:
+      - Full
+      - External
+      - NoAccess
+      - Editable
+      - Visible
+      - Ghost
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildren:
       type: object
       additionalProperties: false
       properties:
-        previousLeadOwnerId:
+        parent:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObject'
+        children:
           type:
-          - string
+          - array
           - 'null'
-        newLeadOwnerId:
-          type:
-          - string
-          - 'null'
-        previousDataObjectOwnerId:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        newDataObjectOwnerId:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObject:
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ChildObject'
+    Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectPin:
       type: object
       additionalProperties: false
       properties:
+        id:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+    Microsoft.AspNetCore.JsonPatch.Operations.Operation:
+      type: object
+      additionalProperties: false
+      properties:
+        value: {}
+        path:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        from:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.PolygonPoint:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+    Spotio.Frontend.ViewModel.DataObjects.ChildObjectRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        typeId:
+          type: integer
+          format: int32
+    Spotio.Frontend.ViewModel.DataObjects.PinRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+        placeId:
+          type:
+          - string
+          - 'null'
+        address:
+          type:
+          - string
+          - 'null'
+        street:
+          type:
+          - string
+          - 'null'
+        houseNumber:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        city:
+          type:
+          - string
+          - 'null'
+        state:
+          type:
+          - string
+          - 'null'
+        country:
+          type:
+          - string
+          - 'null'
+        shortAddress:
+          type:
+          - string
+          - 'null'
+        skipGeocoding:
+          type: boolean
+    Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectsRequest:
+      type: object
+      description: Request to move data objects to a different pin
+      additionalProperties: false
+      properties:
+        dataObjects:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.MoveDataObjectItem'
+        pinId:
+          type: integer
+          format: int32
+    Spotio.Frontend.ViewModel.DataObjects.BulkPolygonFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PolygonPoint'
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        parent:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest'
+        children:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.ChildObjectRequest'
+    Spotio.Frontend.ViewModel.DataObjects.UpcomingDataObjectAppointmentRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectTypeIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+        activityTemplateIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.DataObjects.DataObject:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object.
+        name:
+          type:
+          - string
+          - 'null'
         stageId:
           type:
           - string
@@ -3937,13 +3789,33 @@ components:
           type:
           - string
           - 'null'
-        updatedAt:
-          type: string
-          format: date-time
+          description: The ID of the owner of the data object.
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Pin'
+        source:
+          type:
+          - string
+          - 'null'
         createdAt:
           type: string
           format: date-time
-        source:
+        updatedAt:
+          type: string
+          format: date-time
+        lastVisitResultId:
+          type:
+          - string
+          - 'null'
+        lastVisitDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastVisitNote:
+          type:
+          - string
+          - 'null'
+        externalDataObjectId:
           type:
           - string
           - 'null'
@@ -3951,21 +3823,109 @@ components:
           type:
           - string
           - 'null'
-        pin:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DeletedDataObjectPin'
+        territories:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectTerritoryAncestorDto'
+        stageUpdatedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        stageUpdatedById:
+          type:
+          - string
+          - 'null'
+        createdById:
+          type:
+          - string
+          - 'null'
+        updatedById:
+          type:
+          - string
+          - 'null'
+        lastLocationStatus:
+          $ref: '#/components/schemas/Spotio.DataObjects.Client.Contract.Activity.LocationStatus'
+        visitsCount:
+          type: integer
+          format: int32
+        lastActivityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        nextActivityTime:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateOfAssignment:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        callsCount:
+          type: integer
+          format: int32
+        lastCallDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        lastCallResultId:
+          type:
+          - string
+          - 'null'
+        fields:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
         typeId:
           type:
           - string
           - 'null'
+        access:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.DataObjectAccessType'
+        phones:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
         value:
           type:
           - number
           - 'null'
           format: double
-        externalDataObjectId:
+        addressUnit:
           type:
           - string
           - 'null'
+        textOptedIn:
+          type: boolean
+        phonesFullInfo:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
+        collaboratorIds:
+          type:
+          - array
+          - 'null'
+          description: The list of collaborators.
+          items:
+            type: string
     Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectDto:
       type: object
       additionalProperties: false
@@ -4011,12 +3971,102 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Common.PhoneNumberFullInfo'
-    Spotio.Frontend.ViewModel.DataObjects.BulkActionType:
-      type: string
-      enum:
-      - Email
-      - Text
-      - Reassign
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectRequest:
+      type: object
+      description: A request for creating a data object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object in bson format.
+        stageId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the stage (form workflow settings) in which the data object belongs.
+          format: int32
+        ownerId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the user who owns the data object.
+          format: int32
+        pin:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.PinRequest'
+        source:
+          type:
+          - string
+          - 'null'
+          description: The source of the data object.
+        externalDataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object in an external system.
+        fields:
+          type:
+          - array
+          - 'null'
+          description: The fields of the data object.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.FieldValue'
+        typeId:
+          type: integer
+          description: The ID of the data object type from workflow settings.
+          format: int32
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the parent data object.
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: The creation time of the data object.
+          format: date-time
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The update time of the data object.
+          format: date-time
+        collaboratorIds:
+          type:
+          - array
+          - 'null'
+          description: The collaborators of the data object.
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.DataObjects.BulkText:
+      type: object
+      additionalProperties: false
+      properties:
+        templateId:
+          type:
+          - string
+          - 'null'
+        body:
+          type:
+          - string
+          - 'null'
+        mediaUrls:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchAndActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Microsoft.AspNetCore.JsonPatch.JsonPatchDocument%601%5B%5BSpotio.Frontend.ViewModel.DataObjects.DataObjectWithChildrenPatchRequest%2C%20Spotio.Frontend.ViewModel%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull%5D%5D'
+        activity:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest'
   securitySchemes:
     Bearer:
       type: apiKey

@@ -15,14 +15,14 @@ servers:
 security:
 - Bearer: []
 tags:
-- name: UserTracking
+- name: User Tracking
   description: User tracking API. You can configure Spotio to track users which using the app. Using the following methods you can retrieve tracking data.
 paths:
   /api/UserTracking/map/users:
     get:
       tags:
-      - UserTracking
-      summary: Fetch users for the area.
+      - User Tracking
+      summary: Fetch users for the area
       parameters:
       - name: area
         in: query
@@ -110,11 +110,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiUserTrackingMapUsers
+      x-operation-id-source: derived
   /api/UserTracking/map/gpstrails:
     get:
       tags:
-      - UserTracking
-      summary: Get GPS trails for the users.
+      - User Tracking
+      summary: Get GPS trails for the users
       parameters:
       - name: filterId
         in: query
@@ -197,11 +199,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiUserTrackingMapGpstrails
+      x-operation-id-source: derived
   /api/UserTracking/last-position:
     get:
       tags:
-      - UserTracking
-      summary: Get the calling user's last known position (tracking or last logged activity).
+      - User Tracking
+      summary: Get the calling user's last known position (tracking or last logged activity)
       responses:
         '200':
           description: Success
@@ -236,11 +240,13 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiUserTrackingLastPosition
+      x-operation-id-source: derived
   /api/UserTracking/settings:
     get:
       tags:
-      - UserTracking
-      summary: Get user location sharing settings.
+      - User Tracking
+      summary: Get user location sharing settings
       responses:
         '200':
           description: Success
@@ -261,10 +267,12 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiUserTrackingSettings
+      x-operation-id-source: derived
     put:
       tags:
-      - UserTracking
-      summary: Update user location sharing settings.
+      - User Tracking
+      summary: Update user location sharing settings
       requestBody:
         content:
           application/merge-patch+json:
@@ -302,8 +310,34 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiUserTrackingSettings
+      x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        timeFrame:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto'
+        workingHours:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.WorkingHours'
+    Spotio.Frontend.ViewModel.UserTracking.Location:
+      type: object
+      additionalProperties: false
+      properties:
+        at:
+          type: string
+          description: The date and time when the location was recorded.
+          format: date-time
+        lat:
+          type: number
+          description: The latitude of the location.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the location.
+          format: double
     Spotio.Frontend.ViewModel.UserTracking.LastUserPosition:
       type: object
       additionalProperties: false
@@ -326,6 +360,26 @@ components:
           - 'null'
           description: When the position was recorded; null when unknown.
           format: date-time
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto:
+      type: string
+      enum:
+      - Always
+      - WorkingHours
+      - Never
+    Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        timeFrame:
+          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto'
+        workingHours:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.WorkingHours'
     Spotio.Frontend.ViewModel.UserTracking.GpsTrail:
       type: object
       additionalProperties: false
@@ -342,12 +396,6 @@ components:
           description: The collection of GPS locations recorded by the user.
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.Location'
-    Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto:
-      type: string
-      enum:
-      - Always
-      - WorkingHours
-      - Never
     Spotio.Frontend.ViewModel.UserTracking.TrackingActivity:
       type: object
       additionalProperties: false
@@ -368,54 +416,6 @@ components:
         online:
           type: boolean
           description: Whether the user is currently online.
-    Spotio.Frontend.ViewModel.UserTracking.Location:
-      type: object
-      additionalProperties: false
-      properties:
-        at:
-          type: string
-          description: The date and time when the location was recorded.
-          format: date-time
-        lat:
-          type: number
-          description: The latitude of the location.
-          format: double
-        lng:
-          type: number
-          description: The longitude of the location.
-          format: double
-    Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        timeFrame:
-          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto'
-        workingHours:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.WorkingHours'
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        timeFrame:
-          $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto'
-        workingHours:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.WorkingHours'
-    System.DayOfWeek:
-      type: string
-      enum:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
-      - Saturday
     Spotio.Frontend.ViewModel.UserTracking.WorkingHours:
       type: object
       additionalProperties: false
@@ -432,6 +432,16 @@ components:
         to:
           type: string
           format: time
+    System.DayOfWeek:
+      type: string
+      enum:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
   securitySchemes:
     Bearer:
       type: apiKey

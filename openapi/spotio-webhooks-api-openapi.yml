@@ -2,7 +2,11 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Webhooks API
-  description: "\nThe controller is responsible for handling webhooks related operations. \nIt provides methods for retrieving available webhook scopes, getting all webhooks for the current company, creating a new webhook, updating an existing webhook and deleting a webhook by its ID.\nMore information about webhooks and how it works can be found in the section 'Group Web hooks'\n"
+  description: 'The controller is responsible for handling webhooks related operations.
+
+    It provides methods for retrieving available webhook scopes, getting all webhooks for the current company, creating a new webhook, updating an existing webhook and deleting a webhook by its ID.
+
+    More information about webhooks and how it works can be found in the section ''Group Web hooks'''
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -16,7 +20,11 @@ security:
 - Bearer: []
 tags:
 - name: Webhooks
-  description: "\nThe controller is responsible for handling webhooks related operations. \nIt provides methods for retrieving available webhook scopes, getting all webhooks for the current company, creating a new webhook, updating an existing webhook and deleting a webhook by its ID.\nMore information about webhooks and how it works can be found in the section 'Group Web hooks'\n"
+  description: 'The controller is responsible for handling webhooks related operations.
+
+    It provides methods for retrieving available webhook scopes, getting all webhooks for the current company, creating a new webhook, updating an existing webhook and deleting a webhook by its ID.
+
+    More information about webhooks and how it works can be found in the section ''Group Web hooks'''
 paths:
   /api/Webhooks/scopes:
     get:
@@ -49,6 +57,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiWebhooksScopes
+      x-operation-id-source: derived
   /api/Webhooks:
     get:
       tags:
@@ -74,6 +84,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiWebhooks
+      x-operation-id-source: derived
     post:
       tags:
       - Webhooks
@@ -115,6 +127,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: postApiWebhooks
+      x-operation-id-source: derived
   /api/Webhooks/{id}:
     put:
       tags:
@@ -163,6 +177,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiWebhooksById
+      x-operation-id-source: derived
     delete:
       tags:
       - Webhooks
@@ -183,8 +199,52 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: deleteApiWebhooksById
+      x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto:
+      type: object
+      description: A DTO for updating an existing webhook
+      additionalProperties: false
+      properties:
+        callback:
+          type:
+          - string
+          - 'null'
+          description: The updated callback URL for the webhook
+        scopes:
+          type:
+          - array
+          - 'null'
+          description: The updated list of webhook scopes
+          items:
+            type: string
+        active:
+          type: boolean
+          description: The updated active status of the webhook
+        customHeaders:
+          type:
+          - array
+          - 'null'
+          description: An optional updated list of custom headers for the webhook
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
+    Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto:
+      type: object
+      description: A DTO containing custom header information for a webhook
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the custom header
+        value:
+          type:
+          - string
+          - 'null'
+          description: The value of the custom header
     Spotio.Frontend.ViewModel.Webhooks.WebhooksDto:
       type: object
       description: A DTO containing webhook information
@@ -234,48 +294,6 @@ components:
           description: A list of custom headers for the webhook
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
-    Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto:
-      type: object
-      description: A DTO for updating an existing webhook
-      additionalProperties: false
-      properties:
-        callback:
-          type:
-          - string
-          - 'null'
-          description: The updated callback URL for the webhook
-        scopes:
-          type:
-          - array
-          - 'null'
-          description: The updated list of webhook scopes
-          items:
-            type: string
-        active:
-          type: boolean
-          description: The updated active status of the webhook
-        customHeaders:
-          type:
-          - array
-          - 'null'
-          description: An optional updated list of custom headers for the webhook
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
-    Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto:
-      type: object
-      description: A DTO containing custom header information for a webhook
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the custom header
-        value:
-          type:
-          - string
-          - 'null'
-          description: The value of the custom header
     Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto:
       type: object
       description: A DTO for creating a new webhook

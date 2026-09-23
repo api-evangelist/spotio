@@ -2,11 +2,7 @@ openapi: 3.2.0
 info:
   version: v1
   title: Spotio 2.0 Calendar Settings API
-  description: '
-
-    The controller is responsible for managing calendar settings. Setup for company users calendar.
-
-    '
+  description: The controller is responsible for managing calendar settings. Setup for company users calendar.
   contact:
     name: Contact us
     url: https://spotio.com/contact/
@@ -20,11 +16,7 @@ security:
 - Bearer: []
 tags:
 - name: CalendarSettings
-  description: '
-
-    The controller is responsible for managing calendar settings. Setup for company users calendar.
-
-    '
+  description: The controller is responsible for managing calendar settings. Setup for company users calendar.
 paths:
   /api/CalendarSettings:
     get:
@@ -74,6 +66,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: getApiCalendarSettings
+      x-operation-id-source: derived
     put:
       tags:
       - CalendarSettings
@@ -170,6 +164,8 @@ paths:
         description: Production
       - url: https://app-test.spotio2.com
         description: Test
+      operationId: putApiCalendarSettings
+      x-operation-id-source: derived
 components:
   schemas:
     Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest:
