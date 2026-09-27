@@ -748,26 +748,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-    Spotio.Dashboard.Contract.RequestProjection:
-      type: object
-      additionalProperties: false
-      properties:
-        data:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
     Spotio.Exports.Client.Model.Export:
       type: object
       additionalProperties: false
@@ -876,6 +856,26 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Dashboard.Contract.RequestProjection'
+    Spotio.Dashboard.Contract.RequestProjection:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
     Spotio.Exports.Client.Model.ExportState:
       type: string
       enum:

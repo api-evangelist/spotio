@@ -843,22 +843,31 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest:
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
       properties:
-        includeInCompanyDocs:
-          type: boolean
-        includeInAiChat:
-          type: boolean
-    Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
+        errors:
+          readOnly: true
+    Spotio.Documents.Client.DTO.AiIndexingStatusDto:
+      type: string
+      enum:
+      - NotSynced
+      - Processing
+      - Active
+      - Failed
+    Spotio.Documents.Client.DTO.DocumentState:
+      type: string
+      enum:
+      - Uploading
+      - Ready
+    Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel:
+      type: string
+      enum:
+      - Company
+      - Lead
+      - CommunicationTemplate
+      - Activity
     Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest:
       type: object
       description: The request object for retrieving documents with pagination.
@@ -890,17 +899,65 @@ components:
           - string
           - 'null'
           description: Pagination cursor for retrieving the next page. Null for the first page.
-    Spotio.Documents.Client.DTO.DocumentState:
-      type: string
-      enum:
-      - Uploading
-      - Ready
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+    Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest:
       type: object
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
+        includeInCompanyDocs:
+          type: boolean
+        includeInAiChat:
+          type: boolean
+    Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse:
+      type: object
+      description: The response object for paginated documents.
+      additionalProperties: false
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          description: The list of documents for the current page.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Pagination cursor for retrieving the next page. Null if this is the last page.
+    Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest:
+      type: object
+      description: The request object for uploading a document.
+      additionalProperties: false
+      properties:
+        tempTitle:
+          type:
+          - string
+          - 'null'
+          description: The temporary title of the document.
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the document file.
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object the document is associated with.
+        activityId:
+          type:
+          - integer
+          - 'null'
+          description: The ID of the activity the document is associated with.
+          format: int32
+    Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Documents.Document:
       type: object
       additionalProperties: false
@@ -970,63 +1027,6 @@ components:
         deletable:
           type: boolean
           description: Indicates whether the document can be deleted
-    Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel:
-      type: string
-      enum:
-      - Company
-      - Lead
-      - CommunicationTemplate
-      - Activity
-    Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse:
-      type: object
-      description: The response object for paginated documents.
-      additionalProperties: false
-      properties:
-        items:
-          type:
-          - array
-          - 'null'
-          description: The list of documents for the current page.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.Document'
-        scrollId:
-          type:
-          - string
-          - 'null'
-          description: Pagination cursor for retrieving the next page. Null if this is the last page.
-    Spotio.Documents.Client.DTO.AiIndexingStatusDto:
-      type: string
-      enum:
-      - NotSynced
-      - Processing
-      - Active
-      - Failed
-    Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest:
-      type: object
-      description: The request object for uploading a document.
-      additionalProperties: false
-      properties:
-        tempTitle:
-          type:
-          - string
-          - 'null'
-          description: The temporary title of the document.
-        url:
-          type:
-          - string
-          - 'null'
-          description: The URL of the document file.
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the data object the document is associated with.
-        activityId:
-          type:
-          - integer
-          - 'null'
-          description: The ID of the activity the document is associated with.
-          format: int32
   securitySchemes:
     Bearer:
       type: apiKey

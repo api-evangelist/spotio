@@ -316,32 +316,6 @@ components:
       - DataObject
       - UserMailIntegration
       - UserPhoneIntegration
-    Spotio.Notifications.Client.Models.NotificationType:
-      type: string
-      enum:
-      - MissedCall
-      - Text
-      - Email
-      - VoiceMail
-      - Reminder
-      - AutoplayIssue
-      - AssignedToDataObject
-      - AssignedToTerritory
-      - AssignedToRoute
-      - AssignedToTeam
-      - TodayAgenda
-      - EndOfDay
-      - EmailOpened
-      - BusinessCardOpened
-      - EngagementMondayToFridayOnly
-      - TextOptedIn
-      - TextOptedOut
-      - AssignedToActivity
-      - ActivityUpdated
-      - ActivityDeleted
-      - DataObjectUpdated
-      - DataObjectDeleted
-      - InviteResponded
     Spotio.Frontend.ViewModel.Notifications.NotificationV2Dto:
       type: object
       additionalProperties: false
@@ -443,6 +417,32 @@ components:
           - string
           - 'null'
           description: Id of the appointment associated with the notification
+    Spotio.Notifications.Client.Models.NotificationType:
+      type: string
+      enum:
+      - MissedCall
+      - Text
+      - Email
+      - VoiceMail
+      - Reminder
+      - AutoplayIssue
+      - AssignedToDataObject
+      - AssignedToTerritory
+      - AssignedToRoute
+      - AssignedToTeam
+      - TodayAgenda
+      - EndOfDay
+      - EmailOpened
+      - BusinessCardOpened
+      - EngagementMondayToFridayOnly
+      - TextOptedIn
+      - TextOptedOut
+      - AssignedToActivity
+      - ActivityUpdated
+      - ActivityDeleted
+      - DataObjectUpdated
+      - DataObjectDeleted
+      - InviteResponded
   securitySchemes:
     Bearer:
       type: apiKey

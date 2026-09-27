@@ -1746,16 +1746,42 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Activities.Client.Model.Direction:
-      type: string
-      enum:
-      - In
-      - Out
     Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
       properties:
         errors:
+          readOnly: true
+    Spotio.Activities.Client.Model.Type:
+      type: string
+      enum:
+      - Note
+      - Event
+      - Transition
+      - Create
+      - OwnerChanged
+      - Update
+    Spotio.Frontend.ViewModel.Activity.OwnerChanged:
+      type: object
+      additionalProperties: false
+      properties:
+        previousLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        newLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        previousDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        newDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
           readOnly: true
     Spotio.Frontend.ViewModel.Activity.Transition:
       type: object
@@ -1775,6 +1801,11 @@ components:
           - 'null'
           items:
             type: string
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
     Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
       type: object
       additionalProperties: false
@@ -2124,37 +2155,6 @@ components:
           - string
           - 'null'
           description: The date of the all-day event, if applicable.
-    Spotio.Frontend.ViewModel.Activity.OwnerChanged:
-      type: object
-      additionalProperties: false
-      properties:
-        previousLeadOwnerId:
-          type:
-          - string
-          - 'null'
-        newLeadOwnerId:
-          type:
-          - string
-          - 'null'
-        previousDataObjectOwnerId:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        newDataObjectOwnerId:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-    Spotio.Activities.Client.Model.Type:
-      type: string
-      enum:
-      - Note
-      - Event
-      - Transition
-      - Create
-      - OwnerChanged
-      - Update
   securitySchemes:
     Bearer:
       type: apiKey

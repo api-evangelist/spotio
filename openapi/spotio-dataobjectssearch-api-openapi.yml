@@ -530,6 +530,93 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto:
+      type: object
+      additionalProperties: false
+      properties:
+        queryText:
+          type:
+          - string
+          - 'null'
+          description: Text that can be used in a search of objects
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Cursor for pagination (next page)
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: Returns objects filtered by filter with given Id
+        sortBy:
+          type:
+          - string
+          - 'null'
+          description: By what property objects should be sorted by
+        hasAddress:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with address
+        hasPhoneOrEmail:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with phone or email
+        hasPhone:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with phone
+        hasEmail:
+          type:
+          - boolean
+          - 'null'
+          description: If true, will return objects with email
+        typeId:
+          type:
+          - integer
+          - 'null'
+          description: Returns objects filtered by given type id
+          format: int32
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: Phone number
+        placeIds:
+          type:
+          - array
+          - 'null'
+          description: Google place ids
+          items:
+            type: string
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: Data object ids
+          items:
+            type: string
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          description: Page size
+          format: int32
+        lat:
+          type:
+          - number
+          - 'null'
+          description: Latitude
+          format: double
+        lng:
+          type:
+          - number
+          - 'null'
+          description: Longitude
+          format: double
     Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto:
       type: object
       additionalProperties: false
@@ -652,93 +739,6 @@ components:
           - boolean
           - 'null'
           description: If true, will add information about parent to the response
-    Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto:
-      type: object
-      additionalProperties: false
-      properties:
-        queryText:
-          type:
-          - string
-          - 'null'
-          description: Text that can be used in a search of objects
-        scrollId:
-          type:
-          - string
-          - 'null'
-          description: Cursor for pagination (next page)
-        filterId:
-          type:
-          - string
-          - 'null'
-          description: Returns objects filtered by filter with given Id
-        sortBy:
-          type:
-          - string
-          - 'null'
-          description: By what property objects should be sorted by
-        hasAddress:
-          type:
-          - boolean
-          - 'null'
-          description: If true, will return objects with address
-        hasPhoneOrEmail:
-          type:
-          - boolean
-          - 'null'
-          description: If true, will return objects with phone or email
-        hasPhone:
-          type:
-          - boolean
-          - 'null'
-          description: If true, will return objects with phone
-        hasEmail:
-          type:
-          - boolean
-          - 'null'
-          description: If true, will return objects with email
-        typeId:
-          type:
-          - integer
-          - 'null'
-          description: Returns objects filtered by given type id
-          format: int32
-        phoneNumber:
-          type:
-          - string
-          - 'null'
-          description: Phone number
-        placeIds:
-          type:
-          - array
-          - 'null'
-          description: Google place ids
-          items:
-            type: string
-        dataObjectIds:
-          type:
-          - array
-          - 'null'
-          description: Data object ids
-          items:
-            type: string
-        pageSize:
-          type:
-          - integer
-          - 'null'
-          description: Page size
-          format: int32
-        lat:
-          type:
-          - number
-          - 'null'
-          description: Latitude
-          format: double
-        lng:
-          type:
-          - number
-          - 'null'
-          description: Longitude
-          format: double
     Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.PolygonPoint:
       type: object
       additionalProperties: false

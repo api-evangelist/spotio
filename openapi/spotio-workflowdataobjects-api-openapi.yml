@@ -552,45 +552,38 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType:
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings:
+      type: object
+      additionalProperties: false
+      properties:
+        allowAutoplays:
+          type: boolean
+          description: Determines if you are able to create autoplays for this type
+        enableLeadMachine:
+          type: boolean
+          description: Enable LeadMachine for this data object
+        allowEcontracts:
+          type: boolean
+          description: Allow eContracts for this data object
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto:
       type: string
       enum:
-      - Email
-      - Text
+      - Company
+      - FirstName
+      - LastName
       - Phone
-      - SingleChoice
-      - MultiChoice
-      - Date
-      - Number
+      - Email
+      - Value
+      - Unit
       - Address
-      - Currency
-      - DateTime
-      - MultiLine
-      - Attachment
-    Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        active:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
-        won:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
-        lost:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
-    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        active:
-          type: boolean
-          description: Indicates if the stage group is active
-        stages:
-          type:
-          - array
-          - 'null'
-          description: List of stages in the group
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+      - LossReasons
+      - LeadMachine
     Spotio.Frontend.ViewModel.Workflow.Stages.Stage:
       type: object
       additionalProperties: false
@@ -619,17 +612,108 @@ components:
             type: string
         scoringType:
           $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
-    Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto:
-      type: string
-      enum:
-      - Name
-      - Location
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest:
       type: object
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
+        allowAutoplays:
+          type: boolean
+          description: Determines if you are able to create autoplays for this type
+        enableLeadMachine:
+          type: boolean
+          description: Should you be able to generate this objects using lead machine
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: Parent data object ID, in case if new data object definition should be nested inside other data object type
+        extraSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest'
+        inheritOwnerFromParent:
+          type: boolean
+          description: Should objects created from this definition inherit owner from parent objects
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+        parentRequired:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if a parent is required for the data object
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          type: boolean
+          description: Indicates if the stage group is active
+        stages:
+          type:
+          - array
+          - 'null'
+          description: List of stages in the group
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectUpdateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        extraSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest'
+        inheritOwnerFromParent:
+          type: boolean
+          description: Inherit owner from parent data object
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+        parentRequired:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if a parent is required for the data object
+    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the data object
+        name:
+          type:
+          - string
+          - 'null'
+          description: Name of the data object
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: Parent data object ID
+        extraSettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings'
+        inheritOwnerFromParent:
+          type: boolean
+          description: Inherit owner from parent data object
+        scoringType:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+        parentRequired:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates if a parent is required for the data object
     Spotio.Frontend.ViewModel.Workflow.Settings.DataObjectDefinition:
       type: object
       additionalProperties: false
@@ -681,6 +765,21 @@ components:
           - boolean
           - 'null'
           description: Indicates if a parent is required for the data object
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        won:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+        lost:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
+    Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto:
+      type: string
+      enum:
+      - Lead
+      - Churn
     Spotio.Frontend.ViewModel.Workflow.Fields.Field:
       type: object
       description: Represents a field for a data object
@@ -756,94 +855,26 @@ components:
         inheritable:
           type: boolean
           description: Indicates if the field's value can be inherited from parent object
-    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the data object
-        parentId:
-          type:
-          - string
-          - 'null'
-          description: Parent data object ID, in case if new data object definition should be nested inside other data object type
-        extraSettings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest'
-        inheritOwnerFromParent:
-          type: boolean
-          description: Should objects created from this definition inherit owner from parent objects
-        scoringType:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
-        parentRequired:
-          type:
-          - boolean
-          - 'null'
-          description: Indicates if a parent is required for the data object
-    Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto:
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto:
       type: string
       enum:
-      - Company
-      - FirstName
-      - LastName
-      - Phone
+      - Name
+      - Location
+    Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType:
+      type: string
+      enum:
       - Email
-      - Value
-      - Unit
+      - Text
+      - Phone
+      - SingleChoice
+      - MultiChoice
+      - Date
+      - Number
       - Address
-      - LossReasons
-      - LeadMachine
-    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings:
-      type: object
-      additionalProperties: false
-      properties:
-        allowAutoplays:
-          type: boolean
-          description: Determines if you are able to create autoplays for this type
-        enableLeadMachine:
-          type: boolean
-          description: Enable LeadMachine for this data object
-        allowEcontracts:
-          type: boolean
-          description: Allow eContracts for this data object
-    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        allowAutoplays:
-          type: boolean
-          description: Determines if you are able to create autoplays for this type
-        enableLeadMachine:
-          type: boolean
-          description: Should you be able to generate this objects using lead machine
-    Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto:
-      type: string
-      enum:
-      - Lead
-      - Churn
-    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectUpdateRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the data object
-        extraSettings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraRequest'
-        inheritOwnerFromParent:
-          type: boolean
-          description: Inherit owner from parent data object
-        scoringType:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
-        parentRequired:
-          type:
-          - boolean
-          - 'null'
-          description: Indicates if a parent is required for the data object
+      - Currency
+      - DateTime
+      - MultiLine
+      - Attachment
     Spotio.Frontend.ViewModel.Workflow.DataObjects.SetDefaultDataObjectRequest:
       type: object
       additionalProperties: false
@@ -853,37 +884,6 @@ components:
           - string
           - 'null'
           description: Unique identifier of the data object definition
-    Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObject:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier of the data object
-        name:
-          type:
-          - string
-          - 'null'
-          description: Name of the data object
-        parentId:
-          type:
-          - string
-          - 'null'
-          description: Parent data object ID
-        extraSettings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.DataObjects.DataObjectExtraSettings'
-        inheritOwnerFromParent:
-          type: boolean
-          description: Inherit owner from parent data object
-        scoringType:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
-        parentRequired:
-          type:
-          - boolean
-          - 'null'
-          description: Indicates if a parent is required for the data object
   securitySchemes:
     Bearer:
       type: apiKey

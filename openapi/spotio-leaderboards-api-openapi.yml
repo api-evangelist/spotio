@@ -397,24 +397,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.MyReports.Leaderboards.MetricTitle:
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-    Spotio.Reports.Client.Leaderboards.LeaderboardTypeDto:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.MyReports.MyReportType:
       type: string
       enum:
-      - Users
-      - Teams
-      - Territories
+      - MyReport
+      - Leaderboard
     Spotio.Frontend.ViewModel.MyReports.Leaderboards.LeaderboardResult:
       type: object
       additionalProperties: false
@@ -451,12 +444,51 @@ components:
           - number
           - 'null'
           format: double
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+    Spotio.Frontend.ViewModel.MyReports.Leaderboards.ContributionStatistics:
       type: object
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
+        total:
+          type:
+          - string
+          - 'null'
+        contributors:
+          type:
+          - string
+          - 'null'
+        percentage:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Exports.ExportIdDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the export.
+    Spotio.Utils.Client.DTO.Filters.PeriodShortcut:
+      type: string
+      enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YTD
+      - CUSTOM
+      - ALL
+      - LASTWEEK
+      - LASTMONTH
+      - LASTYEAR
+      - YESTERDAY
+      - TODAY
+      - LAST30DAYS
+      - DEFAULT
+      - QUARTER
+      - LASTQUARTER
+      - THISWORKWEEK
+      - LASTWORKWEEK
     Spotio.Frontend.ViewModel.MyReports.Leaderboards.RenderedLeaderboard:
       type: object
       additionalProperties: false
@@ -511,7 +543,13 @@ components:
           - string
           - 'null'
           description: The scroll id of the rendered leaderboard.
-    Spotio.Frontend.ViewModel.Exports.ExportIdDto:
+    Spotio.Reports.Client.Leaderboards.LeaderboardTypeDto:
+      type: string
+      enum:
+      - Users
+      - Teams
+      - Territories
+    Spotio.Frontend.ViewModel.MyReports.Leaderboards.MetricTitle:
       type: object
       additionalProperties: false
       properties:
@@ -519,28 +557,10 @@ components:
           type:
           - string
           - 'null'
-          description: The ID of the export.
-    Spotio.Frontend.ViewModel.MyReports.Leaderboards.ContributionStatistics:
-      type: object
-      additionalProperties: false
-      properties:
-        total:
+        title:
           type:
           - string
           - 'null'
-        contributors:
-          type:
-          - string
-          - 'null'
-        percentage:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.MyReports.MyReportType:
-      type: string
-      enum:
-      - MyReport
-      - Leaderboard
     Spotio.Frontend.ViewModel.MyReports.MyReportForList:
       type: object
       additionalProperties: false
@@ -563,26 +583,6 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Utils.Client.DTO.Filters.PeriodShortcut:
-      type: string
-      enum:
-      - DAY
-      - WEEK
-      - MONTH
-      - YTD
-      - CUSTOM
-      - ALL
-      - LASTWEEK
-      - LASTMONTH
-      - LASTYEAR
-      - YESTERDAY
-      - TODAY
-      - LAST30DAYS
-      - DEFAULT
-      - QUARTER
-      - LASTQUARTER
-      - THISWORKWEEK
-      - LASTWORKWEEK
   securitySchemes:
     Bearer:
       type: apiKey

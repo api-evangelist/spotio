@@ -203,48 +203,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto:
-      type: object
-      description: A DTO for updating an existing webhook
-      additionalProperties: false
-      properties:
-        callback:
-          type:
-          - string
-          - 'null'
-          description: The updated callback URL for the webhook
-        scopes:
-          type:
-          - array
-          - 'null'
-          description: The updated list of webhook scopes
-          items:
-            type: string
-        active:
-          type: boolean
-          description: The updated active status of the webhook
-        customHeaders:
-          type:
-          - array
-          - 'null'
-          description: An optional updated list of custom headers for the webhook
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
-    Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto:
-      type: object
-      description: A DTO containing custom header information for a webhook
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the custom header
-        value:
-          type:
-          - string
-          - 'null'
-          description: The value of the custom header
     Spotio.Frontend.ViewModel.Webhooks.WebhooksDto:
       type: object
       description: A DTO containing webhook information
@@ -294,6 +252,33 @@ components:
           description: A list of custom headers for the webhook
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
+    Spotio.Frontend.ViewModel.Webhooks.UpdateWebhookDto:
+      type: object
+      description: A DTO for updating an existing webhook
+      additionalProperties: false
+      properties:
+        callback:
+          type:
+          - string
+          - 'null'
+          description: The updated callback URL for the webhook
+        scopes:
+          type:
+          - array
+          - 'null'
+          description: The updated list of webhook scopes
+          items:
+            type: string
+        active:
+          type: boolean
+          description: The updated active status of the webhook
+        customHeaders:
+          type:
+          - array
+          - 'null'
+          description: An optional updated list of custom headers for the webhook
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
     Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto:
       type: object
       description: A DTO for creating a new webhook
@@ -318,6 +303,21 @@ components:
           description: An optional list of custom headers for the new webhook
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
+    Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto:
+      type: object
+      description: A DTO containing custom header information for a webhook
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the custom header
+        value:
+          type:
+          - string
+          - 'null'
+          description: The value of the custom header
   securitySchemes:
     Bearer:
       type: apiKey

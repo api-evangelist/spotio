@@ -312,13 +312,32 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.AI.Client.Dto.CommunicationType:
-      type: string
-      enum:
-      - Email
-      - EmailTemplate
-      - Text
-      - TextTemplate
+    Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailTemplateRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        context:
+          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
+        action:
+          type:
+          - string
+          - 'null'
+        otherPrompt:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailRequest:
       type: object
       additionalProperties: false
@@ -351,6 +370,28 @@ components:
           type:
           - string
           - 'null'
+    Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        subject:
+          type:
+          - string
+          - 'null'
+        content:
+          type:
+          - string
+          - 'null'
+        suggestedActions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
+        feedbackId:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.GenerateContent.GeneratedRecordSummaryResponse:
       type: object
       additionalProperties: false
@@ -370,54 +411,31 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.GenerateContent.GenerateTextTemplateRequest:
+    Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse:
       type: object
       additionalProperties: false
       properties:
-        context:
-          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
-        action:
-          type:
-          - string
-          - 'null'
-        otherPrompt:
-          type:
-          - string
-          - 'null'
         content:
           type:
           - string
           - 'null'
-        dataObjectTypeId:
+        suggestedActions:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
+        feedbackId:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.GenerateContent.GenerateEmailTemplateRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        context:
-          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
-        action:
-          type:
-          - string
-          - 'null'
-        otherPrompt:
-          type:
-          - string
-          - 'null'
-        subject:
-          type:
-          - string
-          - 'null'
-        content:
-          type:
-          - string
-          - 'null'
-        dataObjectTypeId:
-          type:
-          - string
-          - 'null'
+    Spotio.AI.Client.Dto.CommunicationType:
+      type: string
+      enum:
+      - Email
+      - EmailTemplate
+      - Text
+      - TextTemplate
     Spotio.Frontend.ViewModel.GenerateContent.GenerateTextRequest:
       type: object
       additionalProperties: false
@@ -444,17 +462,17 @@ components:
           type:
           - string
           - 'null'
-    Spotio.AI.Client.Dto.GenerateContextAction:
-      type: string
-      enum:
-      - Compose
-      - Reply
-      - Forward
-    Spotio.Frontend.ViewModel.GenerateContent.GeneratedEmailResponse:
+    Spotio.Frontend.ViewModel.GenerateContent.GenerateTextTemplateRequest:
       type: object
       additionalProperties: false
       properties:
-        subject:
+        context:
+          $ref: '#/components/schemas/Spotio.AI.Client.Dto.GenerateContextAction'
+        action:
+          type:
+          - string
+          - 'null'
+        otherPrompt:
           type:
           - string
           - 'null'
@@ -462,16 +480,16 @@ components:
           type:
           - string
           - 'null'
-        suggestedActions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
-        feedbackId:
+        dataObjectTypeId:
           type:
           - string
           - 'null'
+    Spotio.AI.Client.Dto.GenerateContextAction:
+      type: string
+      enum:
+      - Compose
+      - Reply
+      - Forward
     Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction:
       type: object
       additionalProperties: false
@@ -489,24 +507,6 @@ components:
           - integer
           - 'null'
           format: int32
-    Spotio.Frontend.ViewModel.GenerateContent.GeneratedTextResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        content:
-          type:
-          - string
-          - 'null'
-        suggestedActions:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.GenerateContent.SuggestedAction'
-        feedbackId:
-          type:
-          - string
-          - 'null'
   securitySchemes:
     Bearer:
       type: apiKey

@@ -314,7 +314,39 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse:
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto:
+      type: string
+      enum:
+      - Always
+      - WorkingHours
+      - Never
+    Spotio.Frontend.ViewModel.UserTracking.TrackingActivity:
+      type: object
+      additionalProperties: false
+      properties:
+        userId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the user.
+        lat:
+          type: number
+          description: The latitude of the user's location.
+          format: double
+        lng:
+          type: number
+          description: The longitude of the user's location.
+          format: double
+        online:
+          type: boolean
+          description: Whether the user is currently online.
+    Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest:
       type: object
       additionalProperties: false
       properties:
@@ -322,6 +354,32 @@ components:
           $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto'
         workingHours:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.WorkingHours'
+    System.DayOfWeek:
+      type: string
+      enum:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    Spotio.Frontend.ViewModel.UserTracking.WorkingHours:
+      type: object
+      additionalProperties: false
+      properties:
+        days:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/System.DayOfWeek'
+        from:
+          type: string
+          format: time
+        to:
+          type: string
+          format: time
     Spotio.Frontend.ViewModel.UserTracking.Location:
       type: object
       additionalProperties: false
@@ -338,6 +396,22 @@ components:
           type: number
           description: The longitude of the location.
           format: double
+    Spotio.Frontend.ViewModel.UserTracking.GpsTrail:
+      type: object
+      additionalProperties: false
+      properties:
+        userId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the user.
+        userLocations:
+          type:
+          - array
+          - 'null'
+          description: The collection of GPS locations recorded by the user.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.Location'
     Spotio.Frontend.ViewModel.UserTracking.LastUserPosition:
       type: object
       additionalProperties: false
@@ -360,19 +434,7 @@ components:
           - 'null'
           description: When the position was recorded; null when unknown.
           format: date-time
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto:
-      type: string
-      enum:
-      - Always
-      - WorkingHours
-      - Never
-    Spotio.Frontend.ViewModel.UserTracking.UpdateLocationSharingSettingsRequest:
+    Spotio.Frontend.ViewModel.UserTracking.LocationSharingSettingsResponse:
       type: object
       additionalProperties: false
       properties:
@@ -380,68 +442,6 @@ components:
           $ref: '#/components/schemas/Spotio.UserTracking.Client.DTO.LocationSharing.TimeFrameDto'
         workingHours:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.WorkingHours'
-    Spotio.Frontend.ViewModel.UserTracking.GpsTrail:
-      type: object
-      additionalProperties: false
-      properties:
-        userId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the user.
-        userLocations:
-          type:
-          - array
-          - 'null'
-          description: The collection of GPS locations recorded by the user.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.UserTracking.Location'
-    Spotio.Frontend.ViewModel.UserTracking.TrackingActivity:
-      type: object
-      additionalProperties: false
-      properties:
-        userId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the user.
-        lat:
-          type: number
-          description: The latitude of the user's location.
-          format: double
-        lng:
-          type: number
-          description: The longitude of the user's location.
-          format: double
-        online:
-          type: boolean
-          description: Whether the user is currently online.
-    Spotio.Frontend.ViewModel.UserTracking.WorkingHours:
-      type: object
-      additionalProperties: false
-      properties:
-        days:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/System.DayOfWeek'
-        from:
-          type: string
-          format: time
-        to:
-          type: string
-          format: time
-    System.DayOfWeek:
-      type: string
-      enum:
-      - Sunday
-      - Monday
-      - Tuesday
-      - Wednesday
-      - Thursday
-      - Friday
-      - Saturday
   securitySchemes:
     Bearer:
       type: apiKey
