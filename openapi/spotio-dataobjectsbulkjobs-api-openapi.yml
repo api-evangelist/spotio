@@ -377,6 +377,32 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.DataObjects.Client.Contract.Bulks.BulkFieldValue:
+      type: object
+      additionalProperties: false
+      properties:
+        fieldId:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+        formattedValue:
+          type:
+          - string
+          - 'null'
+        values:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
     Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobProgress:
       type: object
       additionalProperties: false
@@ -426,16 +452,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFileProgress'
-    Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        dropDataTable:
-          type: boolean
-        deleteResultFiles:
-          type: boolean
-        deleteUploadedFiles:
-          type: boolean
     Spotio.DataObjects.Client.Contract.Bulks.BulkDataObjectRequest:
       type: object
       additionalProperties: false
@@ -494,6 +510,34 @@ components:
           items:
             type: integer
             format: int32
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFile:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        bulkJobId:
+          type:
+          - string
+          - 'null'
+        partNumber:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int64
+        recordCount:
+          type: integer
+          format: int32
+        state:
+          type:
+          - string
+          - 'null'
+        createdDate:
+          type: string
+          format: date-time
     Spotio.DataObjects.Client.Contract.Bulks.BulkPin:
       type: object
       additionalProperties: false
@@ -597,6 +641,16 @@ components:
           type:
           - string
           - 'null'
+    Spotio.Frontend.ViewModel.DataObjects.Bulk.CleanupBulkJobRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dropDataTable:
+          type: boolean
+        deleteResultFiles:
+          type: boolean
+        deleteUploadedFiles:
+          type: boolean
     Spotio.Frontend.ViewModel.DataObjects.Bulk.CreateBulkJobRequest:
       type: object
       additionalProperties: false
@@ -608,60 +662,6 @@ components:
         dataObjectTypeId:
           type: integer
           format: int32
-    Spotio.DataObjects.Client.Contract.Bulks.BulkFieldValue:
-      type: object
-      additionalProperties: false
-      properties:
-        fieldId:
-          type:
-          - string
-          - 'null'
-        label:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-        formattedValue:
-          type:
-          - string
-          - 'null'
-        values:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    Spotio.Frontend.ViewModel.DataObjects.Bulk.BulkJobFile:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        bulkJobId:
-          type:
-          - string
-          - 'null'
-        partNumber:
-          type: integer
-          format: int32
-        size:
-          type: integer
-          format: int64
-        recordCount:
-          type: integer
-          format: int32
-        state:
-          type:
-          - string
-          - 'null'
-        createdDate:
-          type: string
-          format: date-time
   securitySchemes:
     Bearer:
       type: apiKey

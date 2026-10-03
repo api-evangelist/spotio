@@ -617,6 +617,16 @@ components:
           - 'null'
           description: Longitude
           format: double
+    Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.PolygonPoint:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
     Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto:
       type: object
       additionalProperties: false
@@ -739,16 +749,6 @@ components:
           - boolean
           - 'null'
           description: If true, will add information about parent to the response
-    Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.PolygonPoint:
-      type: object
-      additionalProperties: false
-      properties:
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
   securitySchemes:
     Bearer:
       type: apiKey

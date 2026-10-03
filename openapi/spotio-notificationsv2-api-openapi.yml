@@ -304,18 +304,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Notifications.Client.Models.IssueSource:
-      type: string
-      enum:
-      - DataObject
-      - UserMailIntegration
-      - UserPhoneIntegration
     Spotio.Frontend.ViewModel.Notifications.NotificationV2Dto:
       type: object
       additionalProperties: false
@@ -443,6 +431,18 @@ components:
       - DataObjectUpdated
       - DataObjectDeleted
       - InviteResponded
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Notifications.Client.Models.IssueSource:
+      type: string
+      enum:
+      - DataObject
+      - UserMailIntegration
+      - UserPhoneIntegration
   securitySchemes:
     Bearer:
       type: apiKey

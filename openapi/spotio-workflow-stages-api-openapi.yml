@@ -578,12 +578,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
     Spotio.Frontend.ViewModel.Workflow.Stages.Stage:
       type: object
       additionalProperties: false
@@ -612,29 +606,6 @@ components:
             type: string
         scoringType:
           $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
-    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        active:
-          type: boolean
-          description: Indicates if the stage group is active
-        stages:
-          type:
-          - array
-          - 'null'
-          description: List of stages in the group
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
-    Spotio.Frontend.ViewModel.Workflow.Stages.StageDeleteRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        moveToStage:
-          type:
-          - string
-          - 'null'
-          description: Id of a stage that data objects should be moved to
     Spotio.Frontend.ViewModel.Workflow.Stages.StagesResponse:
       type: object
       additionalProperties: false
@@ -645,27 +616,6 @@ components:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
         lost:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse'
-    Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto:
-      type: string
-      enum:
-      - Lead
-      - Churn
-    Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup:
-      type: string
-      enum:
-      - Active
-      - Won
-      - Lost
-    Spotio.Frontend.ViewModel.Workflow.Stages.StageMoveRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        index:
-          type: integer
-          description: New stage position
-          format: int32
-        stagesGroup:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup'
     Spotio.Frontend.ViewModel.Workflow.Stages.StageCreateRequest:
       type: object
       additionalProperties: false
@@ -706,6 +656,15 @@ components:
           - string
           - 'null'
           description: Determines to which stage data will be migrated
+    Spotio.Frontend.ViewModel.Workflow.Stages.StageDeleteRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        moveToStage:
+          type:
+          - string
+          - 'null'
+          description: Id of a stage that data objects should be moved to
     Spotio.Frontend.ViewModel.Workflow.Stages.StageUpdateRequest:
       type: object
       additionalProperties: false
@@ -729,6 +688,12 @@ components:
             type: string
         scoringType:
           $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto'
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupRequest:
       type: object
       additionalProperties: false
@@ -742,6 +707,41 @@ components:
           description: When group is deactivated target stages have to be specified
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.StageDataMigrateRequest'
+    Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup:
+      type: string
+      enum:
+      - Active
+      - Won
+      - Lost
+    Spotio.Frontend.ViewModel.Workflow.Stages.StagesGroupResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        active:
+          type: boolean
+          description: Indicates if the stage group is active
+        stages:
+          type:
+          - array
+          - 'null'
+          description: List of stages in the group
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Stages.Stage'
+    Spotio.Frontend.ViewModel.Workflow.Stages.StageMoveRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        index:
+          type: integer
+          description: New stage position
+          format: int32
+        stagesGroup:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.Stage.StagesGroup'
+    Spotio.CompanySettings.Client.DTO.Workflow.ScoringTypeDto:
+      type: string
+      enum:
+      - Lead
+      - Churn
   securitySchemes:
     Bearer:
       type: apiKey

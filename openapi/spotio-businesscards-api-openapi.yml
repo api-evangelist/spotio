@@ -1095,21 +1095,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardShareLink:
-      type: object
-      additionalProperties: false
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-          description: URL of the shared business card
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
     Spotio.Frontend.ViewModel.BusinessCards.BusinessCardForList:
       type: object
       additionalProperties: false
@@ -1157,83 +1142,6 @@ components:
         active:
           type: boolean
           description: Indicates if the business card is active
-    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRender:
-      type: object
-      additionalProperties: false
-      properties:
-        cardTitle:
-          type:
-          - string
-          - 'null'
-          description: Title of the business card
-        imageUrl:
-          type:
-          - string
-          - 'null'
-          description: URL of the image
-        first:
-          type:
-          - string
-          - 'null'
-          description: First name of the contact
-        last:
-          type:
-          - string
-          - 'null'
-          description: Last name of the contact
-        phone:
-          type:
-          - string
-          - 'null'
-          description: Phone number of the contact
-        email:
-          type:
-          - string
-          - 'null'
-          description: Email address of the contact
-        title:
-          type:
-          - string
-          - 'null'
-          description: Title of the contact
-        headline:
-          type:
-          - string
-          - 'null'
-          description: Headline of the contact
-        companyLogoUrl:
-          type:
-          - string
-          - 'null'
-          description: URL of the company logo
-        companyName:
-          type:
-          - string
-          - 'null'
-          description: Name of the company
-        color:
-          type:
-          - string
-          - 'null'
-          description: Color of the business card
-        optInVisible:
-          type: boolean
-          description: Indicates whether opt-in section should be visible
-        optInKeyword:
-          type:
-          - string
-          - 'null'
-          description: Opt in keyword for initial sms
-        optInLandingPageUrl:
-          type:
-          - string
-          - 'null'
-          description: Link to opt in lading page
-        spotioPhoneNumber:
-          type:
-          - string
-          - 'null'
-          description: Spotio Phone number of the card owner
     Spotio.Frontend.ViewModel.BusinessCards.BusinessCard:
       type: object
       additionalProperties: false
@@ -1299,6 +1207,15 @@ components:
           items:
             type: integer
             format: int32
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardShareLink:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+          description: URL of the shared business card
     Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRequest:
       type: object
       additionalProperties: false
@@ -1354,6 +1271,12 @@ components:
           items:
             type: integer
             format: int32
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.BusinessCards.BusinessCardFull:
       type: object
       additionalProperties: false
@@ -1451,6 +1374,83 @@ components:
           - string
           - 'null'
           description: Title of the default business card
+    Spotio.Frontend.ViewModel.BusinessCards.BusinessCardRender:
+      type: object
+      additionalProperties: false
+      properties:
+        cardTitle:
+          type:
+          - string
+          - 'null'
+          description: Title of the business card
+        imageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the image
+        first:
+          type:
+          - string
+          - 'null'
+          description: First name of the contact
+        last:
+          type:
+          - string
+          - 'null'
+          description: Last name of the contact
+        phone:
+          type:
+          - string
+          - 'null'
+          description: Phone number of the contact
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address of the contact
+        title:
+          type:
+          - string
+          - 'null'
+          description: Title of the contact
+        headline:
+          type:
+          - string
+          - 'null'
+          description: Headline of the contact
+        companyLogoUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of the company logo
+        companyName:
+          type:
+          - string
+          - 'null'
+          description: Name of the company
+        color:
+          type:
+          - string
+          - 'null'
+          description: Color of the business card
+        optInVisible:
+          type: boolean
+          description: Indicates whether opt-in section should be visible
+        optInKeyword:
+          type:
+          - string
+          - 'null'
+          description: Opt in keyword for initial sms
+        optInLandingPageUrl:
+          type:
+          - string
+          - 'null'
+          description: Link to opt in lading page
+        spotioPhoneNumber:
+          type:
+          - string
+          - 'null'
+          description: Spotio Phone number of the card owner
     Spotio.Frontend.ViewModel.BusinessCards.ShareBusinessCardRequest:
       type: object
       description: Request object for sharing a business card.

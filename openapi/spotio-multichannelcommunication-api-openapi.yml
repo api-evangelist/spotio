@@ -55,27 +55,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.C3.DataObjectPhone:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-        phone:
-          type:
-          - string
-          - 'null'
-        existingActivityId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        activityDone:
-          type:
-          - boolean
-          - 'null'
     Spotio.Frontend.ViewModel.C3.SendMessagesRequestV2:
       type: object
       additionalProperties: false
@@ -109,6 +88,27 @@ components:
           description: A list of URLs for media attachments.
           items:
             type: string
+    Spotio.Frontend.ViewModel.C3.DataObjectPhone:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        existingActivityId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityDone:
+          type:
+          - boolean
+          - 'null'
   securitySchemes:
     Bearer:
       type: apiKey

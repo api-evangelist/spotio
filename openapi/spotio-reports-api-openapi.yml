@@ -793,6 +793,26 @@ components:
           - string
           - 'null'
           format: date-time
+    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+    Spotio.Dashboard.Contract.RequestProjection:
+      type: object
+      additionalProperties: false
+      properties:
+        data:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Reports.ChartLegacyRequestDto:
       type: object
       description: Represents the request data for legacy dashboard charts.
@@ -856,26 +876,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Dashboard.Contract.RequestProjection'
-    Spotio.Dashboard.Contract.RequestProjection:
-      type: object
-      additionalProperties: false
-      properties:
-        data:
-          type:
-          - string
-          - 'null'
-        type:
-          type:
-          - string
-          - 'null'
-    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
     Spotio.Exports.Client.Model.ExportState:
       type: string
       enum:

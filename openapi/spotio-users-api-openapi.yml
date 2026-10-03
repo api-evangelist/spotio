@@ -1518,54 +1518,13 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+    Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse:
       type: object
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.Users.TokenRequest:
-      type: object
-      description: The request for a new access token.
-      additionalProperties: false
-      properties:
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email address associated with the account.
-        fingerPrint:
-          type:
-          - string
-          - 'null'
-          description: The fingerprint of the device requesting the token.
-        source:
-          type:
-          - string
-          - 'null'
-          description: The source of the request (e.g. mobile app, web app).
-        password:
-          type:
-          - string
-          - 'null'
-          description: The password associated with the account.
-        refreshToken:
-          type:
-          - string
-          - 'null'
-          description: The refresh token used to obtain a new access token.
-        platform:
-          $ref: '#/components/schemas/Spotio.Authorization.Client.DTO.Platform'
-        phone:
-          type:
-          - string
-          - 'null'
-          description: The phone number associated with the account.
-        code:
-          type:
-          - string
-          - 'null'
-          description: The verification code associated with the account for mobile.
+        userCount:
+          type: integer
+          format: int32
     Spotio.Frontend.ViewModel.Users.UserSearchResponse:
       type: object
       additionalProperties: false
@@ -1581,6 +1540,12 @@ components:
           - integer
           - 'null'
           format: int32
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.Users.UserFull:
       type: object
       description: User with full details
@@ -1825,497 +1790,6 @@ components:
           description: The URL to the user's profile picture.
         authorizationProvider:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
-    Spotio.Frontend.ViewModel.Users.ChangeProfilePictureRequest:
-      type: object
-      description: Request to change a user's profile picture
-      additionalProperties: false
-      properties:
-        pictureUrl:
-          type:
-          - string
-          - 'null'
-          description: 'URL of the image to set as profile picture. Set to null to remove the profile picture. Maximum length: 2000 characters. Supported formats: JPEG, PNG. Maximum file size: 5MB.'
-    Spotio.Frontend.ViewModel.Users.UserDetails:
-      type: object
-      description: Represents a simple user object.
-      additionalProperties: false
-      properties:
-        companyId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the user's company.
-        phone:
-          type:
-          - string
-          - 'null'
-          description: The user's phone number.
-        territoryIds:
-          type:
-          - array
-          - 'null'
-          description: The IDs of the territories the user is assigned to.
-          items:
-            type: string
-        isGoogleAccount:
-          type: boolean
-          description: Indicates whether the user's account is a Google account.
-        updatedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time when the user's details were last updated.
-          format: date-time
-        createdAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time when the user's account was created.
-          format: date-time
-        os:
-          type:
-          - string
-          - 'null'
-          description: The operating system used by the user.
-        lastLoginAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time when the user last logged in.
-          format: date-time
-        inviter:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.SimpleUser'
-        timezone:
-          type:
-          - string
-          - 'null'
-          description: The user's timezone.
-        chatLogin:
-          type:
-          - string
-          - 'null'
-          description: The user's chat login.
-        chatPassword:
-          type:
-          - string
-          - 'null'
-          description: The user's chat password.
-        weeklyUpdates:
-          type: boolean
-          description: Indicates whether the user has opted in to receive weekly updates.
-        dailyUpdates:
-          type: boolean
-          description: Indicates whether the user has opted in to receive daily updates.
-        companyName:
-          type:
-          - string
-          - 'null'
-          description: The name of the company the user belongs to.
-        teamsIds:
-          type:
-          - array
-          - 'null'
-          description: The IDs of the teams the user is a member of.
-          items:
-            type: string
-        invitedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        deletable:
-          type: boolean
-        suspended:
-          type:
-          - boolean
-          - 'null'
-          description: Whether the user is suspended.
-        chatUserId:
-          type:
-          - integer
-          - 'null'
-          description: The chat user ID of the user.
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email address of the user.
-        status:
-          type:
-          - string
-          - 'null'
-          description: The status of the user.
-        isReadonly:
-          type: boolean
-          description: Whether the user is readonly.
-          readOnly: true
-        isInSalesforce:
-          type: boolean
-          description: Whether the user is in Salesforce.
-        territoryGlobalAccess:
-          type: boolean
-          description: Whether the user has global territory access.
-        visible:
-          type: boolean
-          description: Whether the user is visible.
-        visibleInReports:
-          type: boolean
-          description: Whether the user is visible in reports.
-        externalSystemUserId:
-          type:
-          - string
-          - 'null'
-          description: The external system user ID.
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier for the user.
-        role:
-          type:
-          - string
-          - 'null'
-          description: The role of the user. [Admin, Manager, Sales]
-        firstName:
-          type:
-          - string
-          - 'null'
-          description: The first name of the user.
-        lastName:
-          type:
-          - string
-          - 'null'
-          description: The last name of the user.
-        userPicUrl:
-          type:
-          - string
-          - 'null'
-          description: The URL to the user's profile picture.
-        authorizationProvider:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
-    Spotio.Frontend.ViewModel.Users.SimpleUser:
-      type: object
-      description: Represents a simple user object.
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier for the user.
-        role:
-          type:
-          - string
-          - 'null'
-          description: The role of the user. [Admin, Manager, Sales]
-        firstName:
-          type:
-          - string
-          - 'null'
-          description: The first name of the user.
-        lastName:
-          type:
-          - string
-          - 'null'
-          description: The last name of the user.
-        userPicUrl:
-          type:
-          - string
-          - 'null'
-          description: The URL to the user's profile picture.
-        authorizationProvider:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
-    Spotio.Frontend.ViewModel.Users.AuthorizationProvider:
-      type: string
-      enum:
-      - Spotio
-      - ActiveDirectory
-      - Saml
-    Spotio.Frontend.ViewModel.Users.User:
-      type: object
-      description: Represents a simple user object.
-      additionalProperties: false
-      properties:
-        suspended:
-          type:
-          - boolean
-          - 'null'
-          description: Whether the user is suspended.
-        chatUserId:
-          type:
-          - integer
-          - 'null'
-          description: The chat user ID of the user.
-          format: int32
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email address of the user.
-        status:
-          type:
-          - string
-          - 'null'
-          description: The status of the user.
-        isReadonly:
-          type: boolean
-          description: Whether the user is readonly.
-          readOnly: true
-        isInSalesforce:
-          type: boolean
-          description: Whether the user is in Salesforce.
-        territoryGlobalAccess:
-          type: boolean
-          description: Whether the user has global territory access.
-        visible:
-          type: boolean
-          description: Whether the user is visible.
-        visibleInReports:
-          type: boolean
-          description: Whether the user is visible in reports.
-        externalSystemUserId:
-          type:
-          - string
-          - 'null'
-          description: The external system user ID.
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier for the user.
-        role:
-          type:
-          - string
-          - 'null'
-          description: The role of the user. [Admin, Manager, Sales]
-        firstName:
-          type:
-          - string
-          - 'null'
-          description: The first name of the user.
-        lastName:
-          type:
-          - string
-          - 'null'
-          description: The last name of the user.
-        userPicUrl:
-          type:
-          - string
-          - 'null'
-          description: The URL to the user's profile picture.
-        authorizationProvider:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
-    Spotio.Frontend.ViewModel.Users.UserSearchRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        groups:
-          type:
-          - array
-          - 'null'
-          enum:
-          - active
-          - trialing
-          - pending
-          - idle
-          - suspended
-          - readonly
-          - sales
-          - manager
-          - admin
-          - null
-          uniqueItems: true
-          items:
-            type: string
-        territoryGlobalAccess:
-          type:
-          - boolean
-          - 'null'
-        hasSpotioPhone:
-          type:
-          - boolean
-          - 'null'
-        scrollId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        pageSize:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        visible:
-          type:
-          - boolean
-          - 'null'
-        visibleInReports:
-          type:
-          - boolean
-          - 'null'
-    Spotio.Frontend.ViewModel.Users.Tokens:
-      type: object
-      description: The response containing access and refresh tokens.
-      additionalProperties: false
-      properties:
-        accessToken:
-          type:
-          - string
-          - 'null'
-          description: The access token.
-        refreshToken:
-          type:
-          - string
-          - 'null'
-          description: The refresh token.
-        tokenExpiresIn:
-          type: integer
-          description: The time in seconds until the access token expires.
-          format: int64
-        refreshExpiresIn:
-          type: integer
-          description: The time in seconds until the refresh token expires.
-          format: int64
-        createdAt:
-          type: integer
-          description: The Unix timestamp in seconds when the tokens were created.
-          format: int64
-    Spotio.Frontend.ViewModel.Users.UsersSearchCountResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        userCount:
-          type: integer
-          format: int32
-    Spotio.Frontend.ViewModel.Users.UsersListResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        scrollId:
-          type:
-          - string
-          - 'null'
-          description: Scroll ID for pagination. Use this value in the next request to get the next page. Null if there are no more results.
-        items:
-          type:
-          - array
-          - 'null'
-          description: List of users for the current page
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
-    Spotio.Frontend.ViewModel.Users.Channels:
-      type: object
-      additionalProperties: false
-      properties:
-        leads:
-          type:
-          - string
-          - 'null'
-        mapUsers:
-          type:
-          - string
-          - 'null'
-        activities:
-          type:
-          - string
-          - 'null'
-        activitiesV2:
-          type:
-          - string
-          - 'null'
-        session:
-          type:
-          - string
-          - 'null'
-        notifications:
-          type:
-          - string
-          - 'null'
-        territories:
-          type:
-          - string
-          - 'null'
-        customFields:
-          type:
-          - string
-          - 'null'
-        users:
-          type:
-          - string
-          - 'null'
-        stages:
-          type:
-          - string
-          - 'null'
-        activityTemplates:
-          type:
-          - string
-          - 'null'
-        company:
-          type:
-          - string
-          - 'null'
-        appointments:
-          type:
-          - string
-          - 'null'
-        appointmentsV2:
-          type:
-          - string
-          - 'null'
-        activityResults:
-          type:
-          - string
-          - 'null'
-        refresh:
-          type:
-          - string
-          - 'null'
-        refreshUser:
-          type:
-          - string
-          - 'null'
-        notificationsFeed:
-          type:
-          - string
-          - 'null'
-        notificationsV2Feed:
-          type:
-          - string
-          - 'null'
-        autoplays:
-          type:
-          - string
-          - 'null'
-        imports:
-          type:
-          - string
-          - 'null'
-        dataObjectsUser:
-          type:
-          - string
-          - 'null'
-        dataObjectsCompany:
-          type:
-          - string
-          - 'null'
-        workflow:
-          type:
-          - string
-          - 'null'
-        refreshUsersList:
-          type:
-          - string
-          - 'null'
-        refreshUserData:
-          type:
-          - string
-          - 'null'
     Spotio.Frontend.ViewModel.Users.AvailableFeatures:
       type: object
       additionalProperties: false
@@ -2634,11 +2108,111 @@ components:
           type: boolean
         aiNextBestActionAccess:
           type: boolean
-    Spotio.Frontend.ViewModel.Users.ApiTokenResponse:
+    Spotio.Frontend.ViewModel.Users.Channels:
       type: object
       additionalProperties: false
       properties:
-        accessToken:
+        leads:
+          type:
+          - string
+          - 'null'
+        mapUsers:
+          type:
+          - string
+          - 'null'
+        activities:
+          type:
+          - string
+          - 'null'
+        activitiesV2:
+          type:
+          - string
+          - 'null'
+        session:
+          type:
+          - string
+          - 'null'
+        notifications:
+          type:
+          - string
+          - 'null'
+        territories:
+          type:
+          - string
+          - 'null'
+        customFields:
+          type:
+          - string
+          - 'null'
+        users:
+          type:
+          - string
+          - 'null'
+        stages:
+          type:
+          - string
+          - 'null'
+        activityTemplates:
+          type:
+          - string
+          - 'null'
+        company:
+          type:
+          - string
+          - 'null'
+        appointments:
+          type:
+          - string
+          - 'null'
+        appointmentsV2:
+          type:
+          - string
+          - 'null'
+        activityResults:
+          type:
+          - string
+          - 'null'
+        refresh:
+          type:
+          - string
+          - 'null'
+        refreshUser:
+          type:
+          - string
+          - 'null'
+        notificationsFeed:
+          type:
+          - string
+          - 'null'
+        notificationsV2Feed:
+          type:
+          - string
+          - 'null'
+        autoplays:
+          type:
+          - string
+          - 'null'
+        imports:
+          type:
+          - string
+          - 'null'
+        dataObjectsUser:
+          type:
+          - string
+          - 'null'
+        dataObjectsCompany:
+          type:
+          - string
+          - 'null'
+        workflow:
+          type:
+          - string
+          - 'null'
+        refreshUsersList:
+          type:
+          - string
+          - 'null'
+        refreshUserData:
           type:
           - string
           - 'null'
@@ -2649,6 +2223,12 @@ components:
       - Ios
       - Android
       - Api
+    Spotio.Frontend.ViewModel.Users.AuthorizationProvider:
+      type: string
+      enum:
+      - Spotio
+      - ActiveDirectory
+      - Saml
     Spotio.Frontend.ViewModel.Users.ApiTokenRequest:
       type: object
       description: A request object used to authenticate a client and get an API token.
@@ -2670,12 +2250,432 @@ components:
           - 'null'
           description: The ID of the user to impersonate.
           format: int32
+    Spotio.Frontend.ViewModel.Users.ApiTokenResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Users.UserDetails:
+      type: object
+      description: Represents a simple user object.
+      additionalProperties: false
+      properties:
+        companyId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the user's company.
+        phone:
+          type:
+          - string
+          - 'null'
+          description: The user's phone number.
+        territoryIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the territories the user is assigned to.
+          items:
+            type: string
+        isGoogleAccount:
+          type: boolean
+          description: Indicates whether the user's account is a Google account.
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user's details were last updated.
+          format: date-time
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user's account was created.
+          format: date-time
+        os:
+          type:
+          - string
+          - 'null'
+          description: The operating system used by the user.
+        lastLoginAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the user last logged in.
+          format: date-time
+        inviter:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.SimpleUser'
+        timezone:
+          type:
+          - string
+          - 'null'
+          description: The user's timezone.
+        chatLogin:
+          type:
+          - string
+          - 'null'
+          description: The user's chat login.
+        chatPassword:
+          type:
+          - string
+          - 'null'
+          description: The user's chat password.
+        weeklyUpdates:
+          type: boolean
+          description: Indicates whether the user has opted in to receive weekly updates.
+        dailyUpdates:
+          type: boolean
+          description: Indicates whether the user has opted in to receive daily updates.
+        companyName:
+          type:
+          - string
+          - 'null'
+          description: The name of the company the user belongs to.
+        teamsIds:
+          type:
+          - array
+          - 'null'
+          description: The IDs of the teams the user is a member of.
+          items:
+            type: string
+        invitedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        deletable:
+          type: boolean
+        suspended:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the user is suspended.
+        chatUserId:
+          type:
+          - integer
+          - 'null'
+          description: The chat user ID of the user.
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user.
+        status:
+          type:
+          - string
+          - 'null'
+          description: The status of the user.
+        isReadonly:
+          type: boolean
+          description: Whether the user is readonly.
+          readOnly: true
+        isInSalesforce:
+          type: boolean
+          description: Whether the user is in Salesforce.
+        territoryGlobalAccess:
+          type: boolean
+          description: Whether the user has global territory access.
+        visible:
+          type: boolean
+          description: Whether the user is visible.
+        visibleInReports:
+          type: boolean
+          description: Whether the user is visible in reports.
+        externalSystemUserId:
+          type:
+          - string
+          - 'null'
+          description: The external system user ID.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the user.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the user. [Admin, Manager, Sales]
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+        userPicUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL to the user's profile picture.
+        authorizationProvider:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
+    Spotio.Frontend.ViewModel.Users.UserSearchRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        groups:
+          type:
+          - array
+          - 'null'
+          enum:
+          - active
+          - trialing
+          - pending
+          - idle
+          - suspended
+          - readonly
+          - sales
+          - manager
+          - admin
+          - null
+          uniqueItems: true
+          items:
+            type: string
+        territoryGlobalAccess:
+          type:
+          - boolean
+          - 'null'
+        hasSpotioPhone:
+          type:
+          - boolean
+          - 'null'
+        scrollId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        pageSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        visible:
+          type:
+          - boolean
+          - 'null'
+        visibleInReports:
+          type:
+          - boolean
+          - 'null'
+    Spotio.Frontend.ViewModel.Users.TokenRequest:
+      type: object
+      description: The request for a new access token.
+      additionalProperties: false
+      properties:
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address associated with the account.
+        fingerPrint:
+          type:
+          - string
+          - 'null'
+          description: The fingerprint of the device requesting the token.
+        source:
+          type:
+          - string
+          - 'null'
+          description: The source of the request (e.g. mobile app, web app).
+        password:
+          type:
+          - string
+          - 'null'
+          description: The password associated with the account.
+        refreshToken:
+          type:
+          - string
+          - 'null'
+          description: The refresh token used to obtain a new access token.
+        platform:
+          $ref: '#/components/schemas/Spotio.Authorization.Client.DTO.Platform'
+        phone:
+          type:
+          - string
+          - 'null'
+          description: The phone number associated with the account.
+        code:
+          type:
+          - string
+          - 'null'
+          description: The verification code associated with the account for mobile.
+    Spotio.Frontend.ViewModel.Users.SimpleUser:
+      type: object
+      description: Represents a simple user object.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the user.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the user. [Admin, Manager, Sales]
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+        userPicUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL to the user's profile picture.
+        authorizationProvider:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
+    Spotio.Frontend.ViewModel.Users.ChangeProfilePictureRequest:
+      type: object
+      description: Request to change a user's profile picture
+      additionalProperties: false
+      properties:
+        pictureUrl:
+          type:
+          - string
+          - 'null'
+          description: 'URL of the image to set as profile picture. Set to null to remove the profile picture. Maximum length: 2000 characters. Supported formats: JPEG, PNG. Maximum file size: 5MB.'
     Spotio.Authorization.Client.DTO.WebStatus:
       type: string
       enum:
       - NotSet
       - NotConfirmed
       - Confirmed
+    Spotio.Frontend.ViewModel.Users.User:
+      type: object
+      description: Represents a simple user object.
+      additionalProperties: false
+      properties:
+        suspended:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the user is suspended.
+        chatUserId:
+          type:
+          - integer
+          - 'null'
+          description: The chat user ID of the user.
+          format: int32
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the user.
+        status:
+          type:
+          - string
+          - 'null'
+          description: The status of the user.
+        isReadonly:
+          type: boolean
+          description: Whether the user is readonly.
+          readOnly: true
+        isInSalesforce:
+          type: boolean
+          description: Whether the user is in Salesforce.
+        territoryGlobalAccess:
+          type: boolean
+          description: Whether the user has global territory access.
+        visible:
+          type: boolean
+          description: Whether the user is visible.
+        visibleInReports:
+          type: boolean
+          description: Whether the user is visible in reports.
+        externalSystemUserId:
+          type:
+          - string
+          - 'null'
+          description: The external system user ID.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the user.
+        role:
+          type:
+          - string
+          - 'null'
+          description: The role of the user. [Admin, Manager, Sales]
+        firstName:
+          type:
+          - string
+          - 'null'
+          description: The first name of the user.
+        lastName:
+          type:
+          - string
+          - 'null'
+          description: The last name of the user.
+        userPicUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL to the user's profile picture.
+        authorizationProvider:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.AuthorizationProvider'
+    Spotio.Frontend.ViewModel.Users.Tokens:
+      type: object
+      description: The response containing access and refresh tokens.
+      additionalProperties: false
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+          description: The access token.
+        refreshToken:
+          type:
+          - string
+          - 'null'
+          description: The refresh token.
+        tokenExpiresIn:
+          type: integer
+          description: The time in seconds until the access token expires.
+          format: int64
+        refreshExpiresIn:
+          type: integer
+          description: The time in seconds until the refresh token expires.
+          format: int64
+        createdAt:
+          type: integer
+          description: The Unix timestamp in seconds when the tokens were created.
+          format: int64
+    Spotio.Frontend.ViewModel.Users.UsersListResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll ID for pagination. Use this value in the next request to get the next page. Null if there are no more results.
+        items:
+          type:
+          - array
+          - 'null'
+          description: List of users for the current page
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Users.User'
   securitySchemes:
     Bearer:
       type: apiKey

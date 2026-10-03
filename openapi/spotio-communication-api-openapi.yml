@@ -651,55 +651,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Communication.EmailAccepted:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-    ResultType.Results.IError:
-      type: object
-      additionalProperties: false
-      properties:
-        message:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        memberName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        filePath:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        line:
-          type: integer
-          format: int32
-          readOnly: true
-    Spotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectAndActivityDto:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObject:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto'
-        email:
-          type:
-          - string
-          - 'null'
-        resultId:
-          type:
-          - string
-          - 'null'
-        activityId:
-          type:
-          - string
-          - 'null'
     Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto:
       type: object
       additionalProperties: false
@@ -725,43 +676,7 @@ components:
           type:
           - boolean
           - 'null'
-    Spotio.Frontend.ViewModel.MailSuite.SendRequestDto:
-      type: object
-      additionalProperties: false
-      properties:
-        subject:
-          type:
-          - string
-          - 'null'
-          description: The subject of the email.
-        body:
-          type:
-          - string
-          - 'null'
-          description: The body of the email.
-        to:
-          type:
-          - array
-          - 'null'
-          description: The list of email addresses to which the email will be sent.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto'
-        attachments:
-          type:
-          - array
-          - 'null'
-          description: The list of attachments to include with the email.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.AttachmentDto'
-        templateId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the email template to use for the email.
-        force:
-          type: boolean
-          description: Indicates whether to force sending the email even if not all template variables can be rendered.
-    Spotio.Frontend.ViewModel.Communication.FileDto:
+    Spotio.Frontend.ViewModel.Communication.TextMedia:
       type: object
       additionalProperties: false
       properties:
@@ -773,28 +688,62 @@ components:
           type:
           - string
           - 'null'
-        contentType:
+        url:
           type:
           - string
           - 'null'
-        size:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        contentId:
+        isImage:
+          type: boolean
+        mimeType:
           type:
           - string
           - 'null'
-        contentDisposition:
+    Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
           type:
           - string
           - 'null'
-    Spotio.Activities.Client.Model.Direction:
-      type: string
-      enum:
-      - In
-      - Out
+        typeId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectAndActivityDto:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto'
+        email:
+          type:
+          - string
+          - 'null'
+        resultId:
+          type:
+          - string
+          - 'null'
+        activityId:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.EmailAccepted:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Communication.V3.EmailFullWithDataObjectsDto:
       type: object
       additionalProperties: false
@@ -850,7 +799,7 @@ components:
         isRead:
           type: boolean
           description: Indicates whether the email has been read or not.
-    Spotio.Frontend.ViewModel.Communication.TextMedia:
+    Spotio.Frontend.ViewModel.Communication.FileDto:
       type: object
       additionalProperties: false
       properties:
@@ -862,38 +811,70 @@ components:
           type:
           - string
           - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+        size:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        contentId:
+          type:
+          - string
+          - 'null'
+        contentDisposition:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.MailSuite.AttachmentDto:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
         url:
           type:
           - string
           - 'null'
-        isImage:
-          type: boolean
-        mimeType:
+        contentType:
           type:
           - string
           - 'null'
-    ResultType.Results.Error:
+        id:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.TextThreadActivityV2:
       type: object
       additionalProperties: false
       properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the text activity.
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
         message:
           type:
           - string
           - 'null'
-          readOnly: true
-        memberName:
+          description: The text message content.
+        date:
+          type: string
+          description: The date and time when the text activity occurred.
+          format: date-time
+        media:
           type:
-          - string
+          - array
           - 'null'
-        filePath:
-          type:
-          - string
-          - 'null'
-        line:
-          type: integer
-          format: int32
-        aggregateError:
-          $ref: '#/components/schemas/ResultType.Results.IError'
+          description: The list of media associated with the text activity.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.TextMedia'
     Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto:
       type: object
       additionalProperties: false
@@ -926,53 +907,6 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        typeId:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        stageId:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Communication.TextThreadActivityV2:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the text activity.
-        direction:
-          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
-        message:
-          type:
-          - string
-          - 'null'
-          description: The text message content.
-        date:
-          type: string
-          description: The date and time when the text activity occurred.
-          format: date-time
-        media:
-          type:
-          - array
-          - 'null'
-          description: The list of media associated with the text activity.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.TextMedia'
     Spotio.Frontend.ViewModel.Communication.V2.UserTextThreadCommunicationFeed:
       type: object
       additionalProperties: false
@@ -992,26 +926,92 @@ components:
         textOptedIn:
           type: boolean
           description: Indicates whether record opted in for text messages.
-    Spotio.Frontend.ViewModel.MailSuite.AttachmentDto:
+    Spotio.Frontend.ViewModel.MailSuite.SendRequestDto:
       type: object
       additionalProperties: false
       properties:
-        name:
+        subject:
           type:
           - string
           - 'null'
-        url:
+          description: The subject of the email.
+        body:
           type:
           - string
           - 'null'
-        contentType:
+          description: The body of the email.
+        to:
+          type:
+          - array
+          - 'null'
+          description: The list of email addresses to which the email will be sent.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto'
+        attachments:
+          type:
+          - array
+          - 'null'
+          description: The list of attachments to include with the email.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MailSuite.AttachmentDto'
+        templateId:
           type:
           - string
           - 'null'
-        id:
+          description: The ID of the email template to use for the email.
+        force:
+          type: boolean
+          description: Indicates whether to force sending the email even if not all template variables can be rendered.
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    ResultType.Results.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
           type:
           - string
           - 'null'
+          readOnly: true
+        memberName:
+          type:
+          - string
+          - 'null'
+        filePath:
+          type:
+          - string
+          - 'null'
+        line:
+          type: integer
+          format: int32
+        aggregateError:
+          $ref: '#/components/schemas/ResultType.Results.IError'
+    ResultType.Results.IError:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        memberName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        filePath:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        line:
+          type: integer
+          format: int32
+          readOnly: true
   securitySchemes:
     Bearer:
       type: apiKey

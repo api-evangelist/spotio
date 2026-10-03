@@ -1746,70 +1746,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+    Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse:
       type: object
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
-    Spotio.Activities.Client.Model.Type:
-      type: string
-      enum:
-      - Note
-      - Event
-      - Transition
-      - Create
-      - OwnerChanged
-      - Update
-    Spotio.Frontend.ViewModel.Activity.OwnerChanged:
-      type: object
-      additionalProperties: false
-      properties:
-        previousLeadOwnerId:
+        verified:
           type:
-          - string
+          - boolean
           - 'null'
-        newLeadOwnerId:
-          type:
-          - string
-          - 'null'
-        previousDataObjectOwnerId:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        newDataObjectOwnerId:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-    Spotio.Frontend.ViewModel.Activity.Transition:
-      type: object
-      additionalProperties: false
-      properties:
-        fromStageId:
-          type:
-          - string
-          - 'null'
-        toStageId:
-          type:
-          - string
-          - 'null'
-        lossReasons:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    Spotio.Activities.Client.Model.Direction:
-      type: string
-      enum:
-      - In
-      - Out
-    Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
-      type: object
-      additionalProperties: false
-      properties:
+          description: True by default for all activities except from mobile client where server must track distance data object<->activity location.
         mobileId:
           type:
           - string
@@ -1978,15 +1923,70 @@ components:
           - string
           - 'null'
           description: The date of the all-day event, if applicable.
-    Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse:
+    Spotio.Frontend.ViewModel.Activity.OwnerChanged:
       type: object
       additionalProperties: false
       properties:
-        verified:
+        previousLeadOwnerId:
           type:
-          - boolean
+          - string
           - 'null'
-          description: True by default for all activities except from mobile client where server must track distance data object<->activity location.
+        newLeadOwnerId:
+          type:
+          - string
+          - 'null'
+        previousDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        newDataObjectOwnerId:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Activity.Transition:
+      type: object
+      additionalProperties: false
+      properties:
+        fromStageId:
+          type:
+          - string
+          - 'null'
+        toStageId:
+          type:
+          - string
+          - 'null'
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Activities.Client.Model.Type:
+      type: string
+      enum:
+      - Note
+      - Event
+      - Transition
+      - Create
+      - OwnerChanged
+      - Update
+    Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
         mobileId:
           type:
           - string

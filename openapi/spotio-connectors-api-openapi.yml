@@ -390,6 +390,64 @@ components:
           type:
           - string
           - 'null'
+    Spotio.Frontend.ViewModel.Connectors.ConnectorScope:
+      type: string
+      enum:
+      - DataObject
+      - Global
+      - Profile
+    Spotio.Frontend.ViewModel.Variables.Variable:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Connectors.ConnectorSimple:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier for the connector
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the connector
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorType'
+        url:
+          type:
+          - string
+          - 'null'
+          description: The URL of the connector
+        enabled:
+          type: boolean
+          description: Indicates whether the connector is enabled
+        availableInMobile:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the connector is available in mobile
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type from workflow settings
+        scope:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorScope'
     Spotio.Frontend.ViewModel.Connectors.ConnectorRequest:
       type: object
       additionalProperties: false
@@ -499,69 +557,11 @@ components:
       enum:
       - Web
       - App
-    Spotio.Frontend.ViewModel.Variables.Variable:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        label:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
     Spotio.Frontend.ViewModel.Connectors.SortDirection:
       type: string
       enum:
       - Asc
       - Desc
-    Spotio.Frontend.ViewModel.Connectors.ConnectorScope:
-      type: string
-      enum:
-      - DataObject
-      - Global
-      - Profile
-    Spotio.Frontend.ViewModel.Connectors.ConnectorSimple:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier for the connector
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the connector
-        type:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorType'
-        url:
-          type:
-          - string
-          - 'null'
-          description: The URL of the connector
-        enabled:
-          type: boolean
-          description: Indicates whether the connector is enabled
-        availableInMobile:
-          type:
-          - boolean
-          - 'null'
-          description: Indicates whether the connector is available in mobile
-        dataObjectTypeId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the data object type from workflow settings
-        scope:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorScope'
   securitySchemes:
     Bearer:
       type: apiKey
