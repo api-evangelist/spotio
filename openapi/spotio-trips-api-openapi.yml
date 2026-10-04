@@ -420,52 +420,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Common.ExportFileType:
-      type: string
-      enum:
-      - Csv
-      - Zip
-    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Dashboard.TripsSummaryResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        tripsCount:
-          type: integer
-          description: The number of trips.
-          format: int32
-        totalDistanceTraveled:
-          type: integer
-          description: The total distance traveled in meters.
-          format: int64
-        totalTimeTraveledInSeconds:
-          type: integer
-          description: The total time traveled in seconds.
-          format: int64
-    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Exports.ExportMultipleTripsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        ids:
-          type:
-          - array
-          - 'null'
-          items:
-            type: integer
-            format: int32
-    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Active.ActiveTrip:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Unique identifier of the active trip
-        routeId:
-          type:
-          - string
-          - 'null'
-          description: Route identifier of the active trip
     Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.GetList.TripForList:
       type: object
       additionalProperties: false
@@ -546,6 +500,70 @@ components:
           type: integer
           description: The time in seconds until the arrival at the stop
           format: int64
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Exports.ExportMultipleTripsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Active.ActiveTrip:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Unique identifier of the active trip
+        routeId:
+          type:
+          - string
+          - 'null'
+          description: Route identifier of the active trip
+    Spotio.Frontend.ViewModel.RoutesAndTrips.Trips.Dashboard.TripsSummaryResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        tripsCount:
+          type: integer
+          description: The number of trips.
+          format: int32
+        totalDistanceTraveled:
+          type: integer
+          description: The total distance traveled in meters.
+          format: int64
+        totalTimeTraveledInSeconds:
+          type: integer
+          description: The total time traveled in seconds.
+          format: int64
+    ResultType.Results.IError:
+      type: object
+      additionalProperties: false
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        memberName:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        filePath:
+          type:
+          - string
+          - 'null'
+          readOnly: true
+        line:
+          type: integer
+          format: int32
+          readOnly: true
     Spotio.UserTracking.Client.DTO.Routing.TripStatusDto:
       type: string
       enum:
@@ -573,29 +591,11 @@ components:
           format: int32
         aggregateError:
           $ref: '#/components/schemas/ResultType.Results.IError'
-    ResultType.Results.IError:
-      type: object
-      additionalProperties: false
-      properties:
-        message:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        memberName:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        filePath:
-          type:
-          - string
-          - 'null'
-          readOnly: true
-        line:
-          type: integer
-          format: int32
-          readOnly: true
+    Spotio.Frontend.ViewModel.Common.ExportFileType:
+      type: string
+      enum:
+      - Csv
+      - Zip
   securitySchemes:
     Bearer:
       type: apiKey

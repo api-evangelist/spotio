@@ -461,66 +461,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Layouts.MoveSectionRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        position:
-          type: integer
-          format: int32
-    Spotio.Frontend.ViewModel.Layouts.Properties:
-      type: object
-      additionalProperties: false
-      properties:
-        columnsCount:
-          type: integer
-          format: int32
-        highlightFirstSection:
-          type: boolean
-        tabs:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    Spotio.Frontend.ViewModel.Layouts.UpdateSectionRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Layouts.Layout:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        dataObjectTypeId:
-          type:
-          - string
-          - 'null'
-        properties:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Layouts.Properties'
-        sections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Layouts.Section'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     Spotio.Frontend.ViewModel.Layouts.AddSectionRequest:
       type: object
       additionalProperties: false
@@ -536,6 +476,44 @@ components:
         position:
           type: integer
           format: int32
+    Spotio.Frontend.ViewModel.Layouts.UpdatePropertiesRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        columnsCount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        highlightFirstSection:
+          type:
+          - boolean
+          - 'null'
+        tabs:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.Layouts.MoveSectionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        position:
+          type: integer
+          format: int32
+    Spotio.Frontend.ViewModel.Layouts.UpdateSectionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Layouts.MoveFieldRequest:
       type: object
       additionalProperties: false
@@ -572,25 +550,47 @@ components:
           - 'null'
           items:
             type: string
-    Spotio.Frontend.ViewModel.Layouts.UpdatePropertiesRequest:
+    Spotio.Frontend.ViewModel.Layouts.Properties:
       type: object
       additionalProperties: false
       properties:
         columnsCount:
-          type:
-          - integer
-          - 'null'
+          type: integer
           format: int32
         highlightFirstSection:
-          type:
-          - boolean
-          - 'null'
+          type: boolean
         tabs:
           type:
           - array
           - 'null'
           items:
             type: string
+    Spotio.Frontend.ViewModel.Layouts.Layout:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+        properties:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Layouts.Properties'
+        sections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Layouts.Section'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
   securitySchemes:
     Bearer:
       type: apiKey

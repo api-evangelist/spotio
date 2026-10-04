@@ -378,24 +378,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Connectors.ConnectorHeader:
-      type: object
-      additionalProperties: false
-      properties:
-        key:
-          type:
-          - string
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Connectors.ConnectorScope:
-      type: string
-      enum:
-      - DataObject
-      - Global
-      - Profile
     Spotio.Frontend.ViewModel.Variables.Variable:
       type: object
       additionalProperties: false
@@ -552,6 +534,24 @@ components:
           description: The ID of the data object type from workflow settings
         scope:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Connectors.ConnectorScope'
+    Spotio.Frontend.ViewModel.Connectors.ConnectorHeader:
+      type: object
+      additionalProperties: false
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Connectors.ConnectorScope:
+      type: string
+      enum:
+      - DataObject
+      - Global
+      - Profile
     Spotio.Frontend.ViewModel.Connectors.ConnectorType:
       type: string
       enum:

@@ -730,6 +730,25 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto:
+      type: string
+      enum:
+      - Name
+      - Location
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldUsedByIntegrationsDto:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+        integrations:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.IntegrationTypeDto'
     Spotio.CompanySettings.Client.DTO.Workflow.IntegrationTypeDto:
       type: string
       enum:
@@ -738,30 +757,70 @@ components:
       - Solo
       - SoloV3
       - Acculynx
-    Spotio.Frontend.ViewModel.Workflow.Fields.MoveFieldResponse:
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldCreateRequest:
       type: object
+      description: A request to create a new field for a data object
       additionalProperties: false
       properties:
-        field:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
-    Spotio.Frontend.ViewModel.Workflow.Fields.FieldMoveRequest:
-      type: object
-      additionalProperties: false
-      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the field
         index:
           type: integer
-          description: The new index for the field
+          description: The index position of the field
           format: int32
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType'
+        stageConstraints:
+          type:
+          - array
+          - 'null'
+          description: The list of stage constraints
+          items:
+            type: string
+        readonly:
+          type: boolean
+          description: Indicates if the field is read-only
+        useAsFilter:
+          type: boolean
+          description: Indicates if the field should be used as a filter
+        activeOptions:
+          type:
+          - array
+          - 'null'
+          description: The list of active options for the field
+          items:
+            type: string
+        showInActivityFeed:
+          type: boolean
+          description: Indicates if the field should be shown in the activity feed
         role:
           $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto'
-        active:
+        requiredWithoutStage:
           type: boolean
-          description: Indicates if the field is active
-    Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto:
+          description: Indicates if the field is required without a stage
+    Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto:
       type: string
       enum:
-      - Name
-      - Location
+      - Company
+      - FirstName
+      - LastName
+      - Phone
+      - Email
+      - Value
+      - Unit
+      - Address
+      - LossReasons
+      - LeadMachine
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldGroup:
+      type: string
+      enum:
+      - General
+      - LeadMachineB2B
+      - LeadMachineB2C
+      - InheritedFields
     Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
@@ -843,99 +902,6 @@ components:
         inheritable:
           type: boolean
           description: Indicates if the field's value can be inherited from parent object
-    Spotio.Frontend.ViewModel.Workflow.Fields.DeleteFieldReferenceFromMultipleObjectsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectIds:
-          type:
-          - array
-          - 'null'
-          description: List of data object IDs from which to delete the field reference
-          items:
-            type: integer
-            format: int32
-    Spotio.Frontend.ViewModel.Workflow.Fields.AvailableField:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the field
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the field
-        type:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType'
-        systemRole:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto'
-        group:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldGroup'
-        inheritable:
-          type: boolean
-          description: Indicates if the field is inherited
-    Spotio.Frontend.ViewModel.Workflow.Fields.FieldCreateRequest:
-      type: object
-      description: A request to create a new field for a data object
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the field
-        index:
-          type: integer
-          description: The index position of the field
-          format: int32
-        type:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType'
-        stageConstraints:
-          type:
-          - array
-          - 'null'
-          description: The list of stage constraints
-          items:
-            type: string
-        readonly:
-          type: boolean
-          description: Indicates if the field is read-only
-        useAsFilter:
-          type: boolean
-          description: Indicates if the field should be used as a filter
-        activeOptions:
-          type:
-          - array
-          - 'null'
-          description: The list of active options for the field
-          items:
-            type: string
-        showInActivityFeed:
-          type: boolean
-          description: Indicates if the field should be shown in the activity feed
-        role:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto'
-        requiredWithoutStage:
-          type: boolean
-          description: Indicates if the field is required without a stage
-    Spotio.Frontend.ViewModel.Workflow.Fields.FieldUsedByIntegrationsDto:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObjectTypeId:
-          type:
-          - string
-          - 'null'
-        integrations:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.IntegrationTypeDto'
     Spotio.Frontend.ViewModel.Workflow.Fields.FieldUpdateRequest:
       type: object
       description: A request to update an existing field for a data object
@@ -975,6 +941,35 @@ components:
         inherited:
           type: boolean
           description: Indicates if the field is inherited from parent
+    Spotio.Frontend.ViewModel.Workflow.Fields.MoveFieldResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        field:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.Field'
+    Spotio.Frontend.ViewModel.Workflow.Fields.AvailableField:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the field
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the field
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType'
+        systemRole:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto'
+        group:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.Fields.FieldGroup'
+        inheritable:
+          type: boolean
+          description: Indicates if the field is inherited
     Spotio.CompanySettings.Contract.DTO.CustomFields.CustomFieldType:
       type: string
       enum:
@@ -990,26 +985,31 @@ components:
       - DateTime
       - MultiLine
       - Attachment
-    Spotio.Frontend.ViewModel.Workflow.Fields.FieldGroup:
-      type: string
-      enum:
-      - General
-      - LeadMachineB2B
-      - LeadMachineB2C
-      - InheritedFields
-    Spotio.CompanySettings.Client.DTO.Workflow.FieldSystemRoleDto:
-      type: string
-      enum:
-      - Company
-      - FirstName
-      - LastName
-      - Phone
-      - Email
-      - Value
-      - Unit
-      - Address
-      - LossReasons
-      - LeadMachine
+    Spotio.Frontend.ViewModel.Workflow.Fields.DeleteFieldReferenceFromMultipleObjectsRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: List of data object IDs from which to delete the field reference
+          items:
+            type: integer
+            format: int32
+    Spotio.Frontend.ViewModel.Workflow.Fields.FieldMoveRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        index:
+          type: integer
+          description: The new index for the field
+          format: int32
+        role:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.FieldRoleDto'
+        active:
+          type: boolean
+          description: Indicates if the field is active
   securitySchemes:
     Bearer:
       type: apiKey

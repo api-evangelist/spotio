@@ -480,6 +480,47 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.Territories.TerritoryBasic:
+      type: object
+      description: Basic information about a territory.
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the territory.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the territory.
+        color:
+          type:
+          - string
+          - 'null'
+          description: The color associated with the territory.
+        parentId:
+          type:
+          - string
+          - 'null'
+          description: The identifier of the parent territory, if exists.
+        global:
+          type: boolean
+          description: A flag indicating whether the territory is global.
+        userIds:
+          type:
+          - array
+          - 'null'
+          description: The list of user IDs associated with the territory.
+          items:
+            type: string
+        updatedAt:
+          type:
+          - string
+          - 'null'
+          description: The date and time when the territory was last updated.
+          format: date-time
     Spotio.Frontend.ViewModel.Territories.TerritoryFull:
       type: object
       description: A complete territory object with polygons, area, locations, zips, and boundaries.
@@ -553,6 +594,47 @@ components:
           - 'null'
           description: The date and time when the territory was last updated.
           format: date-time
+    Spotio.Frontend.ViewModel.CommonModels.Polygon:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        geoId:
+          type:
+          - string
+          - 'null'
+        zip:
+          type:
+          - string
+          - 'null'
+        properties:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties'
+        points:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommonModels.PolygonPoint'
+    Spotio.Frontend.ViewModel.CommonModels.PolygonPoint:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.Territories.TerritoryToAddOrModify:
       type: object
       additionalProperties: false
@@ -607,12 +689,36 @@ components:
           description: Additional properties of the territory (e.g. country, state, etc.)
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties'
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+    Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties:
       type: object
+      description: Represents the properties of a location within a territory.
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
+        country:
+          type:
+          - string
+          - 'null'
+          description: The name of the country.
+        state:
+          type:
+          - string
+          - 'null'
+          description: The name of the state or province.
+        zipCode:
+          type:
+          - string
+          - 'null'
+          description: The postal code or zip code of the location.
+        city:
+          type:
+          - string
+          - 'null'
+          description: The name of the city or town.
+        county:
+          type:
+          - string
+          - 'null'
+          description: The name of the county or district.
     Spotio.Frontend.ViewModel.Territories.UpdateModel:
       type: object
       description: Model used to update a territory.
@@ -696,112 +802,6 @@ components:
           - 'null'
           description: The date and time when the territory was last updated.
           format: date-time
-    Spotio.Frontend.ViewModel.Territories.TerritoryBasic:
-      type: object
-      description: Basic information about a territory.
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the territory.
-        title:
-          type:
-          - string
-          - 'null'
-          description: The title of the territory.
-        color:
-          type:
-          - string
-          - 'null'
-          description: The color associated with the territory.
-        parentId:
-          type:
-          - string
-          - 'null'
-          description: The identifier of the parent territory, if exists.
-        global:
-          type: boolean
-          description: A flag indicating whether the territory is global.
-        userIds:
-          type:
-          - array
-          - 'null'
-          description: The list of user IDs associated with the territory.
-          items:
-            type: string
-        updatedAt:
-          type:
-          - string
-          - 'null'
-          description: The date and time when the territory was last updated.
-          format: date-time
-    Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties:
-      type: object
-      description: Represents the properties of a location within a territory.
-      additionalProperties: false
-      properties:
-        country:
-          type:
-          - string
-          - 'null'
-          description: The name of the country.
-        state:
-          type:
-          - string
-          - 'null'
-          description: The name of the state or province.
-        zipCode:
-          type:
-          - string
-          - 'null'
-          description: The postal code or zip code of the location.
-        city:
-          type:
-          - string
-          - 'null'
-          description: The name of the city or town.
-        county:
-          type:
-          - string
-          - 'null'
-          description: The name of the county or district.
-    Spotio.Frontend.ViewModel.CommonModels.Polygon:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        geoId:
-          type:
-          - string
-          - 'null'
-        zip:
-          type:
-          - string
-          - 'null'
-        properties:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Geolocation.BonduariesProperties'
-        points:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.CommonModels.PolygonPoint'
-    Spotio.Frontend.ViewModel.CommonModels.PolygonPoint:
-      type: object
-      additionalProperties: false
-      properties:
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
   securitySchemes:
     Bearer:
       type: apiKey

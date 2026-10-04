@@ -137,6 +137,20 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
+        expiresAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
     Spotio.Frontend.ViewModel.Mcp.McpKeyInfo:
       type: object
       additionalProperties: false
@@ -156,20 +170,6 @@ components:
           type:
           - string
           - 'null'
-          format: date-time
-    Spotio.Frontend.ViewModel.Mcp.GenerateMcpKeyResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-        expiresAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
           format: date-time
   securitySchemes:
     Bearer:

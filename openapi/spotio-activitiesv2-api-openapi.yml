@@ -1746,6 +1746,210 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Activities.Client.Model.Type:
+      type: string
+      enum:
+      - Note
+      - Event
+      - Transition
+      - Create
+      - OwnerChanged
+      - Update
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Frontend.ViewModel.Activity.Transition:
+      type: object
+      additionalProperties: false
+      properties:
+        fromStageId:
+          type:
+          - string
+          - 'null'
+        toStageId:
+          type:
+          - string
+          - 'null'
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        mobileId:
+          type:
+          - string
+          - 'null'
+          description: The mobile identifier of the activity.
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the associated data object.
+        type:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Type'
+        done:
+          type: boolean
+          description: Indicates whether the activity has been completed.
+        activityLat:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the activity.
+          format: double
+          minimum: -90
+          maximum: 90
+        activityLng:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the activity.
+          format: double
+          minimum: -180
+          maximum: 180
+        dataObjectLat:
+          type:
+          - number
+          - 'null'
+          description: The latitude of the associated data object.
+          format: double
+          minimum: -90
+          maximum: 90
+        dataObjectLng:
+          type:
+          - number
+          - 'null'
+          description: The longitude of the associated data object.
+          format: double
+          minimum: -180
+          maximum: 180
+        transition:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.Transition'
+        isNote:
+          type: boolean
+          description: Indicates whether the activity is a note.
+        ownerChanged:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.OwnerChanged'
+        resultId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity result.
+        direction:
+          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address associated with the activity.
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+          description: The phone number associated with the activity.
+        reference:
+          type:
+          - string
+          - 'null'
+          description: The reference of the activity.
+        isRead:
+          type:
+          - boolean
+          - 'null'
+          description: Indicates whether the activity has been read.
+        communicationTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the communication template.
+        autoplayDataObjectId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the autoplay data object.
+        autoplayDataObjectStepId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the autoplay data object step.
+        autoExecution:
+          type: boolean
+          description: Indicates whether the activity has an auto execution. False by default.
+        reminder:
+          type:
+          - string
+          - 'null'
+          description: The reminder time for the activity.
+          format: date-span
+        appointmentId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the appointment.
+        nbaId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the NBA recommendation.
+        id:
+          type:
+          - string
+          - 'null'
+          description: The short non-sequential URL-friendly unique identifier of the activity.
+        activityTemplateId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity template from workflow settings.
+        ownerId:
+          type:
+          - string
+          - 'null'
+          description: The unique identifier of the activity owner.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the activity.
+          maxLength: 128
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Additional notes for the activity.
+          maxLength: 512
+        date:
+          type:
+          - string
+          - 'null'
+          description: The date and time of the activity.
+          format: date-time
+        duration:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the activity in minutes.
+          format: int32
+        durationSeconds:
+          type:
+          - integer
+          - 'null'
+          description: The duration of the activity in seconds.
+          format: int32
+        allDay:
+          type: boolean
+          description: Indicates whether the activity is an all-day event.
+        allDayDate:
+          type:
+          - string
+          - 'null'
+          description: The date of the all-day event, if applicable.
     Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse:
       type: object
       additionalProperties: false
@@ -1923,6 +2127,12 @@ components:
           - string
           - 'null'
           description: The date of the all-day event, if applicable.
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
     Spotio.Frontend.ViewModel.Activity.OwnerChanged:
       type: object
       additionalProperties: false
@@ -1945,216 +2155,6 @@ components:
           - string
           - 'null'
           readOnly: true
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.Activity.Transition:
-      type: object
-      additionalProperties: false
-      properties:
-        fromStageId:
-          type:
-          - string
-          - 'null'
-        toStageId:
-          type:
-          - string
-          - 'null'
-        lossReasons:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    Spotio.Activities.Client.Model.Direction:
-      type: string
-      enum:
-      - In
-      - Out
-    Spotio.Activities.Client.Model.Type:
-      type: string
-      enum:
-      - Note
-      - Event
-      - Transition
-      - Create
-      - OwnerChanged
-      - Update
-    Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        mobileId:
-          type:
-          - string
-          - 'null'
-          description: The mobile identifier of the activity.
-        dataObjectId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the associated data object.
-        type:
-          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Type'
-        done:
-          type: boolean
-          description: Indicates whether the activity has been completed.
-        activityLat:
-          type:
-          - number
-          - 'null'
-          description: The latitude of the activity.
-          format: double
-          minimum: -90
-          maximum: 90
-        activityLng:
-          type:
-          - number
-          - 'null'
-          description: The longitude of the activity.
-          format: double
-          minimum: -180
-          maximum: 180
-        dataObjectLat:
-          type:
-          - number
-          - 'null'
-          description: The latitude of the associated data object.
-          format: double
-          minimum: -90
-          maximum: 90
-        dataObjectLng:
-          type:
-          - number
-          - 'null'
-          description: The longitude of the associated data object.
-          format: double
-          minimum: -180
-          maximum: 180
-        transition:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.Transition'
-        isNote:
-          type: boolean
-          description: Indicates whether the activity is a note.
-        ownerChanged:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Activity.OwnerChanged'
-        resultId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the activity result.
-        direction:
-          $ref: '#/components/schemas/Spotio.Activities.Client.Model.Direction'
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email address associated with the activity.
-        phoneNumber:
-          type:
-          - string
-          - 'null'
-          description: The phone number associated with the activity.
-        reference:
-          type:
-          - string
-          - 'null'
-          description: The reference of the activity.
-        isRead:
-          type:
-          - boolean
-          - 'null'
-          description: Indicates whether the activity has been read.
-        communicationTemplateId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the communication template.
-        autoplayDataObjectId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the autoplay data object.
-        autoplayDataObjectStepId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the autoplay data object step.
-        autoExecution:
-          type: boolean
-          description: Indicates whether the activity has an auto execution. False by default.
-        reminder:
-          type:
-          - string
-          - 'null'
-          description: The reminder time for the activity.
-          format: date-span
-        appointmentId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the appointment.
-        nbaId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the NBA recommendation.
-        id:
-          type:
-          - string
-          - 'null'
-          description: The short non-sequential URL-friendly unique identifier of the activity.
-        activityTemplateId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the activity template from workflow settings.
-        ownerId:
-          type:
-          - string
-          - 'null'
-          description: The unique identifier of the activity owner.
-        title:
-          type:
-          - string
-          - 'null'
-          description: The title of the activity.
-          maxLength: 128
-        notes:
-          type:
-          - string
-          - 'null'
-          description: Additional notes for the activity.
-          maxLength: 512
-        date:
-          type:
-          - string
-          - 'null'
-          description: The date and time of the activity.
-          format: date-time
-        duration:
-          type:
-          - integer
-          - 'null'
-          description: The duration of the activity in minutes.
-          format: int32
-        durationSeconds:
-          type:
-          - integer
-          - 'null'
-          description: The duration of the activity in seconds.
-          format: int32
-        allDay:
-          type: boolean
-          description: Indicates whether the activity is an all-day event.
-        allDayDate:
-          type:
-          - string
-          - 'null'
-          description: The date of the all-day event, if applicable.
   securitySchemes:
     Bearer:
       type: apiKey

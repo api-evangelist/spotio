@@ -843,6 +843,37 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest:
+      type: object
+      description: The request object for retrieving documents with pagination.
+      additionalProperties: false
+      properties:
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: Filter documents created/updated after this date.
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: Filter documents created/updated before this date.
+          format: date-time
+        documentContext:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel'
+        dataObjectIds:
+          type:
+          - array
+          - 'null'
+          description: Filter documents associated with specific data object IDs.
+          items:
+            type: string
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Pagination cursor for retrieving the next page. Null for the first page.
     Spotio.Frontend.ViewModel.Documents.DocumentsPagedResponse:
       type: object
       description: The response object for paginated documents.
@@ -860,14 +891,19 @@ components:
           - string
           - 'null'
           description: Pagination cursor for retrieving the next page. Null if this is the last page.
-    Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest:
+    Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel:
+      type: string
+      enum:
+      - Company
+      - Lead
+      - CommunicationTemplate
+      - Activity
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
       properties:
-        includeInCompanyDocs:
-          type: boolean
-        includeInAiChat:
-          type: boolean
+        errors:
+          readOnly: true
     Spotio.Documents.Client.DTO.AiIndexingStatusDto:
       type: string
       enum:
@@ -944,43 +980,27 @@ components:
         deletable:
           type: boolean
           description: Indicates whether the document can be deleted
-    Spotio.Frontend.ViewModel.Documents.GetDocumentsPagedRequest:
-      type: object
-      description: The request object for retrieving documents with pagination.
-      additionalProperties: false
-      properties:
-        startDate:
-          type:
-          - string
-          - 'null'
-          description: Filter documents created/updated after this date.
-          format: date-time
-        endDate:
-          type:
-          - string
-          - 'null'
-          description: Filter documents created/updated before this date.
-          format: date-time
-        documentContext:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel'
-        dataObjectIds:
-          type:
-          - array
-          - 'null'
-          description: Filter documents associated with specific data object IDs.
-          items:
-            type: string
-        scrollId:
-          type:
-          - string
-          - 'null'
-          description: Pagination cursor for retrieving the next page. Null for the first page.
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+    Spotio.Documents.Client.DTO.DocumentState:
+      type: string
+      enum:
+      - Uploading
+      - Ready
+    Spotio.Frontend.ViewModel.Documents.UpdateCompanyDocumentRequest:
       type: object
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
+        includeInCompanyDocs:
+          type: boolean
+        includeInAiChat:
+          type: boolean
+    Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Documents.DocumentUploadRequest:
       type: object
       description: The request object for uploading a document.
@@ -1007,26 +1027,6 @@ components:
           - 'null'
           description: The ID of the activity the document is associated with.
           format: int32
-    Spotio.Documents.Client.DTO.DocumentState:
-      type: string
-      enum:
-      - Uploading
-      - Ready
-    Spotio.Frontend.ViewModel.Documents.DocumentUrlResponse:
-      type: object
-      additionalProperties: false
-      properties:
-        url:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Documents.DocumentContextViewModel:
-      type: string
-      enum:
-      - Company
-      - Lead
-      - CommunicationTemplate
-      - Activity
   securitySchemes:
     Bearer:
       type: apiKey

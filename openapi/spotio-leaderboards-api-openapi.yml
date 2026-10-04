@@ -397,57 +397,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.MyReports.Leaderboards.MetricTitle:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.MyReports.MyReportType:
-      type: string
-      enum:
-      - MyReport
-      - Leaderboard
-    Spotio.Frontend.ViewModel.MyReports.MyReportForList:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.MyReportType'
-        isDefault:
-          type:
-          - boolean
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Reports.Client.Leaderboards.LeaderboardTypeDto:
-      type: string
-      enum:
-      - Users
-      - Teams
-      - Territories
     Spotio.Frontend.ViewModel.MyReports.Leaderboards.ContributionStatistics:
       type: object
       additionalProperties: false
@@ -464,7 +413,7 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.Exports.ExportIdDto:
+    Spotio.Frontend.ViewModel.MyReports.Leaderboards.LeaderboardResult:
       type: object
       additionalProperties: false
       properties:
@@ -472,7 +421,39 @@ components:
           type:
           - string
           - 'null'
-          description: The ID of the export.
+        rank:
+          type: integer
+          format: int32
+        label:
+          type:
+          - string
+          - 'null'
+        info:
+          type:
+          - string
+          - 'null'
+        picUrl:
+          type:
+          - string
+          - 'null'
+        me:
+          type:
+          - boolean
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+        delta:
+          type:
+          - number
+          - 'null'
+          format: double
+    Spotio.Frontend.ViewModel.MyReports.MyReportType:
+      type: string
+      enum:
+      - MyReport
+      - Leaderboard
     Spotio.Frontend.ViewModel.MyReports.Leaderboards.RenderedLeaderboard:
       type: object
       additionalProperties: false
@@ -527,42 +508,6 @@ components:
           - string
           - 'null'
           description: The scroll id of the rendered leaderboard.
-    Spotio.Frontend.ViewModel.MyReports.Leaderboards.LeaderboardResult:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        rank:
-          type: integer
-          format: int32
-        label:
-          type:
-          - string
-          - 'null'
-        info:
-          type:
-          - string
-          - 'null'
-        picUrl:
-          type:
-          - string
-          - 'null'
-        me:
-          type:
-          - boolean
-          - 'null'
-        value:
-          type:
-          - string
-          - 'null'
-        delta:
-          type:
-          - number
-          - 'null'
-          format: double
     Spotio.Utils.Client.DTO.Filters.PeriodShortcut:
       type: string
       enum:
@@ -583,6 +528,61 @@ components:
       - LASTQUARTER
       - THISWORKWEEK
       - LASTWORKWEEK
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Reports.Client.Leaderboards.LeaderboardTypeDto:
+      type: string
+      enum:
+      - Users
+      - Teams
+      - Territories
+    Spotio.Frontend.ViewModel.MyReports.Leaderboards.MetricTitle:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.MyReports.MyReportForList:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.MyReportType'
+        isDefault:
+          type:
+          - boolean
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Exports.ExportIdDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the export.
   securitySchemes:
     Bearer:
       type: apiKey

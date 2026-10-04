@@ -504,6 +504,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.Teams.TeamAssignmentLogsResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAssignmentLog'
+        scrollId:
+          type:
+          - integer
+          - 'null'
+          format: int32
     Spotio.Frontend.ViewModel.Teams.Team:
       type: object
       description: Represents a team in the system.
@@ -554,46 +569,17 @@ components:
           description: A list of user IDs that belong to the team.
           items:
             type: string
-    Spotio.Frontend.ViewModel.Teams.TeamAssignmentLog:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        userId:
-          type:
-          - string
-          - 'null'
-        teamId:
-          type:
-          - string
-          - 'null'
-        when:
-          type: string
-          format: date-time
-        who:
-          type:
-          - string
-          - 'null'
-        action:
-          $ref: '#/components/schemas/Spotio.Authorization.Client.Teams.TeamAssignmentTypeDto'
-        source:
-          type:
-          - string
-          - 'null'
     Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
       properties:
         errors:
           readOnly: true
-    Spotio.Frontend.ViewModel.Teams.AddUsersToTeamRequest:
+    Spotio.Frontend.ViewModel.Teams.DeleteManyTeamsRequest:
       type: object
       additionalProperties: false
       properties:
-        usersIds:
+        teamsIds:
           type:
           - array
           - 'null'
@@ -604,31 +590,11 @@ components:
       enum:
       - Added
       - Removed
-    Spotio.Frontend.ViewModel.Teams.TeamAssignmentLogsResponse:
+    Spotio.Frontend.ViewModel.Teams.TeamRequest:
       type: object
+      description: A request for creating a team.
       additionalProperties: false
       properties:
-        items:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Teams.TeamAssignmentLog'
-        scrollId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-    Spotio.Frontend.ViewModel.Teams.TeamAllList:
-      type: object
-      description: Represents a team in the list of all teams.
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the team.
         name:
           type:
           - string
@@ -638,21 +604,12 @@ components:
           type:
           - string
           - 'null'
-          description: The ID of the parent team, if any.
-        visible:
-          type: boolean
-          description: Indicates whether the team is visible.
-        assignable:
-          type: boolean
-          description: Indicates whether the team is assignable.
-    Spotio.Frontend.ViewModel.Teams.DeleteManyTeamsRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        teamsIds:
+          description: The ID of the parent team, if this team is a sub-team.
+        usersIds:
           type:
           - array
           - 'null'
+          description: The IDs of the users that belong to the team.
           items:
             type: string
     Spotio.Frontend.ViewModel.Teams.TeamList:
@@ -689,11 +646,16 @@ components:
           type: boolean
         visible:
           type: boolean
-    Spotio.Frontend.ViewModel.Teams.TeamRequest:
+    Spotio.Frontend.ViewModel.Teams.TeamAllList:
       type: object
-      description: A request for creating a team.
+      description: Represents a team in the list of all teams.
       additionalProperties: false
       properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the team.
         name:
           type:
           - string
@@ -703,12 +665,50 @@ components:
           type:
           - string
           - 'null'
-          description: The ID of the parent team, if this team is a sub-team.
+          description: The ID of the parent team, if any.
+        visible:
+          type: boolean
+          description: Indicates whether the team is visible.
+        assignable:
+          type: boolean
+          description: Indicates whether the team is assignable.
+    Spotio.Frontend.ViewModel.Teams.TeamAssignmentLog:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+        teamId:
+          type:
+          - string
+          - 'null'
+        when:
+          type: string
+          format: date-time
+        who:
+          type:
+          - string
+          - 'null'
+        action:
+          $ref: '#/components/schemas/Spotio.Authorization.Client.Teams.TeamAssignmentTypeDto'
+        source:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Teams.AddUsersToTeamRequest:
+      type: object
+      additionalProperties: false
+      properties:
         usersIds:
           type:
           - array
           - 'null'
-          description: The IDs of the users that belong to the team.
           items:
             type: string
   securitySchemes:

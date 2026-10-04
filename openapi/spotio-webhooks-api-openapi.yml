@@ -262,6 +262,38 @@ components:
           description: A list of custom headers for the webhook
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
+    Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto:
+      type: object
+      description: A DTO containing custom header information for a webhook
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the custom header
+        value:
+          type:
+          - string
+          - 'null'
+          description: The value of the custom header
+    Spotio.Frontend.ViewModel.Webhooks.WebhooksDto:
+      type: object
+      description: A DTO containing webhook information
+      additionalProperties: false
+      properties:
+        secret:
+          type:
+          - string
+          - 'null'
+          description: The webhook secret
+        endpoints:
+          type:
+          - array
+          - 'null'
+          description: A list of webhook endpoints
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
     Spotio.Frontend.ViewModel.Webhooks.NewWebhookDto:
       type: object
       description: A DTO for creating a new webhook
@@ -286,38 +318,6 @@ components:
           description: An optional list of custom headers for the new webhook
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto'
-    Spotio.Frontend.ViewModel.Webhooks.WebhooksDto:
-      type: object
-      description: A DTO containing webhook information
-      additionalProperties: false
-      properties:
-        secret:
-          type:
-          - string
-          - 'null'
-          description: The webhook secret
-        endpoints:
-          type:
-          - array
-          - 'null'
-          description: A list of webhook endpoints
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Webhooks.WebhookEndpointDto'
-    Spotio.Frontend.ViewModel.Webhooks.CustomHeaderDto:
-      type: object
-      description: A DTO containing custom header information for a webhook
-      additionalProperties: false
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the custom header
-        value:
-          type:
-          - string
-          - 'null'
-          description: The value of the custom header
   securitySchemes:
     Bearer:
       type: apiKey

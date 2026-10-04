@@ -785,6 +785,74 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Reports.Client.MyReports.Filters.ActivityCategoryFilterValuesDto:
+      type: string
+      enum:
+      - InPerson
+      - Virtual
+    Spotio.Reports.Client.MyReports.Types.MetricTypeDto:
+      type: string
+      enum:
+      - Activities
+      - Stages
+      - Calculation
+    Spotio.Frontend.ViewModel.MyReports.DefaultDate:
+      type: object
+      additionalProperties: false
+      properties:
+        dateRange:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Types.DefaultDatesDto'
+        startDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        endDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+    Spotio.Frontend.ViewModel.MyReports.PreviewReportRequestDto:
+      type: object
+      additionalProperties: false
+      properties:
+        categoriesWithMetrics:
+          type:
+          - array
+          - 'null'
+          description: The categories with metrics of the MyReport.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.CategoriesWithMetrics'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type to associate from workflow settings
+        dataObjectTypeIds:
+          type:
+          - array
+          - 'null'
+          description: The list of IDs of the data object types to associate from workflow settings
+          items:
+            type: string
+        defaultDate:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.DefaultDate'
+        sortByColumn:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.SortByColumn'
+    Spotio.Reports.Client.MyReports.Filters.StateFilterValuesDto:
+      type: string
+      enum:
+      - Scheduled
+      - Done
+    Spotio.Reports.Client.MyReports.MyReportVisibilityDto:
+      type: string
+      enum:
+      - Private
+      - Public
+      - ByRole
+      - ByTeam
+      - ByTerritory
+      - ByUser
     Spotio.Frontend.ViewModel.MyReports.SortByColumn:
       type: object
       additionalProperties: false
@@ -793,6 +861,85 @@ components:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.ColumnRef'
         asc:
           type: boolean
+    Spotio.Frontend.ViewModel.MyReports.MyReportForList:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.MyReportType'
+        isDefault:
+          type:
+          - boolean
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Exports.ExportIdDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the export.
+    Spotio.Frontend.ViewModel.MyReports.ColumnRef:
+      type: object
+      additionalProperties: false
+      properties:
+        metricId:
+          type:
+          - string
+          - 'null'
+        dataObjectTypeId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        stageId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        activityTemplateId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        direction:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.DirectionFilterValuesDto'
+        state:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.StateFilterValuesDto'
+        resultId:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        noResult:
+          type:
+          - boolean
+          - 'null'
+        dateFrom:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        dateTo:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        category:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.ActivityCategoryFilterValuesDto'
     Spotio.Frontend.ViewModel.MyReports.MyReport:
       type: object
       description: The definition of a MyReport object.
@@ -852,33 +999,31 @@ components:
           description: The id of my report owner.
         visibilitySettings:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.VisibilitySettings'
-    Spotio.Frontend.ViewModel.MyReports.PreviewReportRequestDto:
+    Spotio.Frontend.ViewModel.MyReports.GroupValue:
       type: object
       additionalProperties: false
       properties:
-        categoriesWithMetrics:
-          type:
-          - array
-          - 'null'
-          description: The categories with metrics of the MyReport.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.CategoriesWithMetrics'
-        dataObjectTypeId:
+        value:
           type:
           - string
           - 'null'
-          description: The ID of the data object type to associate from workflow settings
-        dataObjectTypeIds:
+          description: The value for this group.
+        important:
+          type: boolean
+          description: Whether or not this value is important.
+        isTotal:
+          type: boolean
+          description: Whether or not this value is a total.
+        level:
           type:
-          - array
+          - string
           - 'null'
-          description: The list of IDs of the data object types to associate from workflow settings
-          items:
-            type: string
-        defaultDate:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.DefaultDate'
-        sortByColumn:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.SortByColumn'
+          description: The level of this value.
+        summary:
+          type: boolean
+          description: Indicates if the group is a summary.
+        valueRef:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.ValueRef'
     Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
@@ -901,61 +1046,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.Metric'
-    Spotio.Frontend.ViewModel.MyReports.RenderedMyReport:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the rendered report.
-        title:
-          type:
-          - string
-          - 'null'
-          description: The title of the rendered report.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The description of the rendered report.
-        filterId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the filter used to generate the report.
-        categories:
-          type:
-          - array
-          - 'null'
-          description: The categories included in the rendered report.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.RenderedMyReportCategory'
-        dataObjectTypeId:
-          type:
-          - string
-          - 'null'
-          description: The ID of the data object type the report was generated for.
-        dataObjectTypeIds:
-          type:
-          - array
-          - 'null'
-          description: The list of IDs of the data object types to associate from workflow settings
-          items:
-            type: string
-        visibility:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.MyReportVisibilityDto'
-        scrollId:
-          type:
-          - string
-          - 'null'
-          description: Cursor for pagination (next page)
-        isSortable:
-          type: boolean
-          description: The information if the report is sortable by backend
-        visibilitySettings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.VisibilitySettings'
     Spotio.Frontend.ViewModel.MyReports.ValueRef:
       type: object
       additionalProperties: false
@@ -1022,6 +1112,102 @@ components:
           format: date-time
         category:
           $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.ActivityCategoryFilterValuesDto'
+    Spotio.Reports.Client.MyReports.IdTypeDto:
+      type: string
+      enum:
+      - Territory
+      - User
+      - Team
+      - Record
+    Spotio.Frontend.ViewModel.MyReports.RenderedMyReport:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the rendered report.
+        title:
+          type:
+          - string
+          - 'null'
+          description: The title of the rendered report.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The description of the rendered report.
+        filterId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the filter used to generate the report.
+        categories:
+          type:
+          - array
+          - 'null'
+          description: The categories included in the rendered report.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.RenderedMyReportCategory'
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the data object type the report was generated for.
+        dataObjectTypeIds:
+          type:
+          - array
+          - 'null'
+          description: The list of IDs of the data object types to associate from workflow settings
+          items:
+            type: string
+        visibility:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.MyReportVisibilityDto'
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Cursor for pagination (next page)
+        isSortable:
+          type: boolean
+          description: The information if the report is sortable by backend
+        visibilitySettings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.VisibilitySettings'
+    Spotio.Reports.Client.MyReports.Types.CategoryTypeDto:
+      type: string
+      enum:
+      - Reps
+      - Managers
+      - Teams
+      - Territories
+      - Records
+      - Users
+    Spotio.Frontend.ViewModel.MyReports.Group:
+      type: object
+      additionalProperties: false
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+          description: The label for this group.
+        values:
+          type:
+          - array
+          - 'null'
+          description: The values in this group.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.GroupValue'
+        columnRef:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.ColumnRef'
+        isSortable:
+          type: boolean
+    Spotio.Frontend.ViewModel.MyReports.MyReportType:
+      type: string
+      enum:
+      - MyReport
+      - Leaderboard
     Spotio.Frontend.ViewModel.MyReports.VisibilitySettings:
       type: object
       additionalProperties: false
@@ -1044,31 +1230,93 @@ components:
           - 'null'
           items:
             type: string
-    Spotio.Frontend.ViewModel.MyReports.GroupValue:
+    Spotio.Reports.Client.MyReports.Filters.DateFilterFieldDto:
+      type: string
+      enum:
+      - CreatedOn
+      - DueDate
+      - CompletedOn
+    Spotio.Reports.Client.MyReports.Types.DefaultDatesDto:
+      type: string
+      enum:
+      - Today
+      - ThisWeek
+      - LastWeek
+      - ThisMonth
+      - LastMonth
+      - ThisQuarter
+      - LastQuarter
+      - ThisYear
+      - LastYear
+      - All
+      - Yesterday
+      - Custom
+      - ThisWorkWeek
+      - LastWorkWeek
+    Spotio.Reports.Client.MyReports.Filters.UserFilterFieldDto:
+      type: string
+      enum:
+      - ActivityCreatedBy
+      - ActivityAssignedTo
+      - DataObjectCreatedBy
+      - DataObjectAssignedTo
+    Spotio.Frontend.ViewModel.MyReports.Metric:
       type: object
       additionalProperties: false
       properties:
-        value:
+        id:
           type:
           - string
           - 'null'
-          description: The value for this group.
-        important:
-          type: boolean
-          description: Whether or not this value is important.
-        isTotal:
-          type: boolean
-          description: Whether or not this value is a total.
-        level:
+        type:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Types.MetricTypeDto'
+        position:
+          type: integer
+          format: int32
+        title:
           type:
           - string
           - 'null'
-          description: The level of this value.
-        summary:
-          type: boolean
-          description: Indicates if the group is a summary.
-        valueRef:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.ValueRef'
+        settings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.Metric%2BMetricSettings'
+    Spotio.Reports.Client.MyReports.Filters.DirectionFilterValuesDto:
+      type: string
+      enum:
+      - Inbound
+      - Outbound
+      - Unknown
+    Spotio.Frontend.ViewModel.MyReports.Category:
+      type: object
+      additionalProperties: false
+      properties:
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Types.CategoryTypeDto'
+        settings:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.Category%2BCategorySettings'
+    Spotio.Frontend.ViewModel.MyReports.Column:
+      type: object
+      additionalProperties: false
+      properties:
+        header:
+          type:
+          - string
+          - 'null'
+          description: The header for this column.
+        groups:
+          type:
+          - array
+          - 'null'
+          description: The groups in this column.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.Group'
+        dateFilterField:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.DateFilterFieldDto'
+        userFilterField:
+          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.UserFilterFieldDto'
     Spotio.Frontend.ViewModel.MyReports.RenderedMyReportCategory:
       type: object
       additionalProperties: false
@@ -1148,260 +1396,12 @@ components:
           description: The id of my report owner.
         visibilitySettings:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.VisibilitySettings'
-    Spotio.Frontend.ViewModel.MyReports.Group:
-      type: object
-      additionalProperties: false
-      properties:
-        label:
-          type:
-          - string
-          - 'null'
-          description: The label for this group.
-        values:
-          type:
-          - array
-          - 'null'
-          description: The values in this group.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.GroupValue'
-        columnRef:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.ColumnRef'
-        isSortable:
-          type: boolean
-    Spotio.Reports.Client.MyReports.Filters.StateFilterValuesDto:
-      type: string
-      enum:
-      - Scheduled
-      - Done
-    Spotio.Reports.Client.MyReports.Filters.DirectionFilterValuesDto:
-      type: string
-      enum:
-      - Inbound
-      - Outbound
-      - Unknown
-    Spotio.Frontend.ViewModel.MyReports.DefaultDate:
-      type: object
-      additionalProperties: false
-      properties:
-        dateRange:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Types.DefaultDatesDto'
-        startDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        endDate:
-          type:
-          - string
-          - 'null'
-          format: date-time
-    Spotio.Frontend.ViewModel.MyReports.Category:
-      type: object
-      additionalProperties: false
-      properties:
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Types.CategoryTypeDto'
-        settings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.Category%2BCategorySettings'
     Spotio.Frontend.ViewModel.MyReports.RenderReportRequestDto:
       type: object
       additionalProperties: false
       properties:
         sortByColumn:
           $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.SortByColumn'
-    Spotio.Reports.Client.MyReports.Types.MetricTypeDto:
-      type: string
-      enum:
-      - Activities
-      - Stages
-      - Calculation
-    Spotio.Reports.Client.MyReports.Types.DefaultDatesDto:
-      type: string
-      enum:
-      - Today
-      - ThisWeek
-      - LastWeek
-      - ThisMonth
-      - LastMonth
-      - ThisQuarter
-      - LastQuarter
-      - ThisYear
-      - LastYear
-      - All
-      - Yesterday
-      - Custom
-      - ThisWorkWeek
-      - LastWorkWeek
-    Spotio.Reports.Client.MyReports.IdTypeDto:
-      type: string
-      enum:
-      - Territory
-      - User
-      - Team
-      - Record
-    Spotio.Frontend.ViewModel.MyReports.MyReportType:
-      type: string
-      enum:
-      - MyReport
-      - Leaderboard
-    Spotio.Reports.Client.MyReports.Filters.ActivityCategoryFilterValuesDto:
-      type: string
-      enum:
-      - InPerson
-      - Virtual
-    Spotio.Frontend.ViewModel.MyReports.ColumnRef:
-      type: object
-      additionalProperties: false
-      properties:
-        metricId:
-          type:
-          - string
-          - 'null'
-        dataObjectTypeId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        stageId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        activityTemplateId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        direction:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.DirectionFilterValuesDto'
-        state:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.StateFilterValuesDto'
-        resultId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        noResult:
-          type:
-          - boolean
-          - 'null'
-        dateFrom:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        dateTo:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        category:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.ActivityCategoryFilterValuesDto'
-    Spotio.Reports.Client.MyReports.Types.CategoryTypeDto:
-      type: string
-      enum:
-      - Reps
-      - Managers
-      - Teams
-      - Territories
-      - Records
-      - Users
-    Spotio.Frontend.ViewModel.MyReports.Metric:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Types.MetricTypeDto'
-        position:
-          type: integer
-          format: int32
-        title:
-          type:
-          - string
-          - 'null'
-        settings:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.Metric%2BMetricSettings'
-    Spotio.Frontend.ViewModel.MyReports.MyReportForList:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        type:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.MyReportType'
-        isDefault:
-          type:
-          - boolean
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Exports.ExportIdDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the export.
-    Spotio.Reports.Client.MyReports.Filters.UserFilterFieldDto:
-      type: string
-      enum:
-      - ActivityCreatedBy
-      - ActivityAssignedTo
-      - DataObjectCreatedBy
-      - DataObjectAssignedTo
-    Spotio.Reports.Client.MyReports.MyReportVisibilityDto:
-      type: string
-      enum:
-      - Private
-      - Public
-      - ByRole
-      - ByTeam
-      - ByTerritory
-      - ByUser
-    Spotio.Frontend.ViewModel.MyReports.Column:
-      type: object
-      additionalProperties: false
-      properties:
-        header:
-          type:
-          - string
-          - 'null'
-          description: The header for this column.
-        groups:
-          type:
-          - array
-          - 'null'
-          description: The groups in this column.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.MyReports.Group'
-        dateFilterField:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.DateFilterFieldDto'
-        userFilterField:
-          $ref: '#/components/schemas/Spotio.Reports.Client.MyReports.Filters.UserFilterFieldDto'
-    Spotio.Reports.Client.MyReports.Filters.DateFilterFieldDto:
-      type: string
-      enum:
-      - CreatedOn
-      - DueDate
-      - CompletedOn
   securitySchemes:
     Bearer:
       type: apiKey

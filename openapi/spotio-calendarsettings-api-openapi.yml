@@ -173,6 +173,20 @@ components:
       enum:
       - Seven
       - Five
+    Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest:
+      type: object
+      description: Represents a request for updating calendar settings.
+      additionalProperties: false
+      properties:
+        allowForDoubleBooking:
+          type: boolean
+          description: Indicates whether double booking is allowed. Users can create a few appointments for one date.
+        daysPerWeek:
+          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.DaysPerWeekDto'
+        defaultReminderInSeconds:
+          type: integer
+          description: The default reminder time in seconds.
+          format: int32
     Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettings:
       type: object
       description: Represents calendar settings.
@@ -186,20 +200,6 @@ components:
         allowForDoubleBooking:
           type: boolean
           description: Indicates whether double booking is allowed.  Users can create a few appointments for one date.
-        daysPerWeek:
-          $ref: '#/components/schemas/Spotio.Appointments.Client.Model.DaysPerWeekDto'
-        defaultReminderInSeconds:
-          type: integer
-          description: The default reminder time in seconds.
-          format: int32
-    Spotio.Frontend.ViewModel.CalendarSettings.CalendarSettingsRequest:
-      type: object
-      description: Represents a request for updating calendar settings.
-      additionalProperties: false
-      properties:
-        allowForDoubleBooking:
-          type: boolean
-          description: Indicates whether double booking is allowed. Users can create a few appointments for one date.
         daysPerWeek:
           $ref: '#/components/schemas/Spotio.Appointments.Client.Model.DaysPerWeekDto'
         defaultReminderInSeconds:

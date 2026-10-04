@@ -748,6 +748,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Exports.Client.Model.ExportState:
+      type: string
+      enum:
+      - Preparing
+      - Ready
     Spotio.Exports.Client.Model.Export:
       type: object
       additionalProperties: false
@@ -876,11 +881,6 @@ components:
           - 'null'
           items:
             $ref: '#/components/schemas/Spotio.Dashboard.Contract.RequestProjection'
-    Spotio.Exports.Client.Model.ExportState:
-      type: string
-      enum:
-      - Preparing
-      - Ready
   securitySchemes:
     Bearer:
       type: apiKey
