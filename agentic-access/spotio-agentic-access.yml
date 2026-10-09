@@ -1,38 +1,39 @@
-generated: '2026-08-13'
+generated: '2026-09-23'
 method: generated
 source: openapi/spotio-activitiesv2-api-openapi.yml, openapi/spotio-appointmentsv2-api-openapi.yml,
   openapi/spotio-autoplays-api-openapi.yml, openapi/spotio-businesscards-api-openapi.yml, openapi/spotio-calendarsettings-api-openapi.yml,
-  openapi/spotio-communication-api-openapi.yml, openapi/spotio-communicationtemplates-api-openapi.yml,
+  openapi/spotio-communication-api-openapi.yml, openapi/spotio-communication-templates-api-openapi.yml,
   openapi/spotio-connectors-api-openapi.yml, openapi/spotio-contracts-api-openapi.yml, openapi/spotio-dataobjects-api-openapi.yml,
   openapi/spotio-dataobjectsbulkjobs-api-openapi.yml, openapi/spotio-dataobjectssearch-api-openapi.yml,
   openapi/spotio-documents-api-openapi.yml, openapi/spotio-exports-api-openapi.yml, openapi/spotio-filters-api-openapi.yml,
-  openapi/spotio-filtersv2-api-openapi.yml, openapi/spotio-generatecontent-api-openapi.yml,
+  openapi/spotio-filters-v2-api-openapi.yml, openapi/spotio-generatecontent-api-openapi.yml,
   openapi/spotio-layouts-api-openapi.yml, openapi/spotio-leaderboards-api-openapi.yml, openapi/spotio-mcp-api-openapi.yml,
   openapi/spotio-multichannelcommunication-api-openapi.yml, openapi/spotio-myreports-api-openapi.yml,
   openapi/spotio-notificationsv2-api-openapi.yml, openapi/spotio-pinsv2-api-openapi.yml, openapi/spotio-reports-api-openapi.yml,
   openapi/spotio-routesv2-api-openapi.yml, openapi/spotio-teams-api-openapi.yml, openapi/spotio-territories-api-openapi.yml,
   openapi/spotio-trips-api-openapi.yml, openapi/spotio-tripsv2-api-openapi.yml, openapi/spotio-uploadcare-api-openapi.yml,
-  openapi/spotio-users-api-openapi.yml, openapi/spotio-usertracking-api-openapi.yml, openapi/spotio-webhooks-api-openapi.yml,
-  openapi/spotio-workflowactivitytemplates-api-openapi.yml, openapi/spotio-workflowdataobjects-api-openapi.yml,
-  openapi/spotio-workflowfields-api-openapi.yml, openapi/spotio-workflowsettings-api-openapi.yml,
-  openapi/spotio-workflowstages-api-openapi.yml
+  openapi/spotio-user-tracking-api-openapi.yml, openapi/spotio-users-api-openapi.yml, openapi/spotio-webhooks-api-openapi.yml,
+  openapi/spotio-workflow-stages-api-openapi.yml, openapi/spotio-workflowactivitytemplates-api-openapi.yml,
+  openapi/spotio-workflowdataobjects-api-openapi.yml, openapi/spotio-workflowfields-api-openapi.yml,
+  openapi/spotio-workflowsettings-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 295
   by_action_class:
-    acting: 164
-    connected: 131
+    acting: 153
+    connected: 142
   by_consequence:
-    write: 155
-    read: 131
+    write: 145
+    read: 142
     physical: 5
-    safety-critical: 4
-  human_in_the_loop_required: 4
+    safety-critical: 3
+  human_in_the_loop_required: 3
 operations:
 - path: /api/v2/activities
   method: post
+  operationId: postApiV2Activities
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -48,6 +49,7 @@ operations:
     audit: required
 - path: /api/ActivitiesV2
   method: post
+  operationId: postApiActivitiesV2
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -63,6 +65,7 @@ operations:
     audit: required
 - path: /api/v2/activities/{activityId}
   method: put
+  operationId: putApiV2ActivitiesByActivityId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -78,6 +81,7 @@ operations:
     audit: required
 - path: /api/v2/activities/{activityId}
   method: patch
+  operationId: patchApiV2ActivitiesByActivityId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -93,6 +97,7 @@ operations:
     audit: required
 - path: /api/v2/activities/{activityId}
   method: get
+  operationId: getApiV2ActivitiesByActivityId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -102,6 +107,7 @@ operations:
     audit: none
 - path: /api/ActivitiesV2/{activityId}
   method: put
+  operationId: putApiActivitiesV2ByActivityId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -117,6 +123,7 @@ operations:
     audit: required
 - path: /api/ActivitiesV2/{activityId}
   method: patch
+  operationId: patchApiActivitiesV2ByActivityId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -132,6 +139,7 @@ operations:
     audit: required
 - path: /api/ActivitiesV2/{activityId}
   method: get
+  operationId: getApiActivitiesV2ByActivityId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -141,6 +149,7 @@ operations:
     audit: none
 - path: /api/v2/activities/many
   method: post
+  operationId: postApiV2ActivitiesMany
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -156,6 +165,7 @@ operations:
     audit: required
 - path: /api/ActivitiesV2/many
   method: post
+  operationId: postApiActivitiesV2Many
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -171,6 +181,7 @@ operations:
     audit: required
 - path: /api/v2/activities/feed
   method: get
+  operationId: getApiV2ActivitiesFeed
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -180,6 +191,7 @@ operations:
     audit: none
 - path: /api/ActivitiesV2/feed
   method: get
+  operationId: getApiActivitiesV2Feed
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -189,6 +201,7 @@ operations:
     audit: none
 - path: /api/v2/appointments/{appointmentId}
   method: get
+  operationId: getApiV2AppointmentsByAppointmentId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -198,6 +211,7 @@ operations:
     audit: none
 - path: /api/v2/appointments/{appointmentId}
   method: put
+  operationId: putApiV2AppointmentsByAppointmentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -213,6 +227,7 @@ operations:
     audit: required
 - path: /api/v2/appointments/{appointmentId}
   method: patch
+  operationId: patchApiV2AppointmentsByAppointmentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -228,6 +243,7 @@ operations:
     audit: required
 - path: /api/v2/appointments/byActivity/{activityId}
   method: get
+  operationId: getApiV2AppointmentsByActivityByActivityId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -237,6 +253,7 @@ operations:
     audit: none
 - path: /api/v2/appointments
   method: post
+  operationId: postApiV2Appointments
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -252,6 +269,7 @@ operations:
     audit: required
 - path: /api/v2/appointments/bulk/create
   method: post
+  operationId: postApiV2AppointmentsBulkCreate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -267,6 +285,7 @@ operations:
     audit: required
 - path: /api/v2/appointments/multiple
   method: post
+  operationId: postApiV2AppointmentsMultiple
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -282,6 +301,7 @@ operations:
     audit: required
 - path: /api/Autoplays/{autoplayId}/bulk/enroll
   method: post
+  operationId: postApiAutoplaysByAutoplayIdBulkEnroll
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -297,6 +317,7 @@ operations:
     audit: required
 - path: /api/Autoplays/{autoplayId}/dataObjects
   method: post
+  operationId: postApiAutoplaysByAutoplayIdDataObjects
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -312,6 +333,7 @@ operations:
     audit: required
 - path: /api/Autoplays/{autoplayId}/dataobjects
   method: get
+  operationId: getApiAutoplaysByAutoplayIdDataobjects
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -321,6 +343,7 @@ operations:
     audit: none
 - path: /api/Autoplays/dataObjects/{autoplayContactId}/steps/{autoplayContactStepId}
   method: patch
+  operationId: patchApiAutoplaysDataObjectsByAutoplayContactIdStepsByAutoplayContactStepId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -336,6 +359,7 @@ operations:
     audit: required
 - path: /api/Autoplays/contacts/{autoplayContactId}/steps/{autoplayContactStepId}
   method: patch
+  operationId: patchApiAutoplaysContactsByAutoplayContactIdStepsByAutoplayContactStepId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -351,6 +375,7 @@ operations:
     audit: required
 - path: /api/BusinessCards/{id}
   method: get
+  operationId: getApiBusinessCardsById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -360,6 +385,7 @@ operations:
     audit: none
 - path: /api/BusinessCards/{id}
   method: put
+  operationId: putApiBusinessCardsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -375,6 +401,7 @@ operations:
     audit: required
 - path: /api/BusinessCards/{id}
   method: patch
+  operationId: patchApiBusinessCardsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -390,6 +417,7 @@ operations:
     audit: required
 - path: /api/BusinessCards/{id}
   method: delete
+  operationId: deleteApiBusinessCardsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -405,6 +433,7 @@ operations:
     audit: required
 - path: /api/BusinessCards
   method: get
+  operationId: getApiBusinessCards
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -414,6 +443,7 @@ operations:
     audit: none
 - path: /api/BusinessCards
   method: post
+  operationId: postApiBusinessCards
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -429,6 +459,7 @@ operations:
     audit: required
 - path: /api/BusinessCards/{id}/clone
   method: post
+  operationId: postApiBusinessCardsByIdClone
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -444,6 +475,7 @@ operations:
     audit: required
 - path: /api/BusinessCards/{id}/shareWithTeammate
   method: post
+  operationId: postApiBusinessCardsByIdShareWithTeammate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -459,6 +491,7 @@ operations:
     audit: required
 - path: /api/BusinessCards/{id}/preview
   method: post
+  operationId: postApiBusinessCardsByIdPreview
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -474,6 +507,7 @@ operations:
     audit: required
 - path: /api/BusinessCards/{id}/share
   method: post
+  operationId: postApiBusinessCardsByIdShare
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -489,6 +523,7 @@ operations:
     audit: required
 - path: /api/BusinessCards/{id}/render
   method: get
+  operationId: getApiBusinessCardsByIdRender
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -498,6 +533,7 @@ operations:
     audit: none
 - path: /api/BusinessCards/{id}/download
   method: get
+  operationId: getApiBusinessCardsByIdDownload
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -507,6 +543,7 @@ operations:
     audit: none
 - path: /api/BusinessCards/settings
   method: get
+  operationId: getApiBusinessCardsSettings
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -516,6 +553,7 @@ operations:
     audit: none
 - path: /api/BusinessCards/settings
   method: put
+  operationId: putApiBusinessCardsSettings
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -531,6 +569,7 @@ operations:
     audit: required
 - path: /api/CalendarSettings
   method: get
+  operationId: getApiCalendarSettings
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -540,6 +579,7 @@ operations:
     audit: none
 - path: /api/CalendarSettings
   method: put
+  operationId: putApiCalendarSettings
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -555,6 +595,7 @@ operations:
     audit: required
 - path: /api/Communication/v3/calls
   method: get
+  operationId: getApiCommunicationV3Calls
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -564,6 +605,7 @@ operations:
     audit: none
 - path: /api/Communication/v2/calls/seen
   method: post
+  operationId: postApiCommunicationV2CallsSeen
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -579,6 +621,7 @@ operations:
     audit: required
 - path: /api/Communication/v3/texts
   method: get
+  operationId: getApiCommunicationV3Texts
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -588,6 +631,7 @@ operations:
     audit: none
 - path: /api/Communication/v2/mails
   method: post
+  operationId: postApiCommunicationV2Mails
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -605,6 +649,7 @@ operations:
     audit: required
 - path: /api/Communication/v3/mails
   method: get
+  operationId: getApiCommunicationV3Mails
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -614,6 +659,7 @@ operations:
     audit: none
 - path: /api/Communication/texts/{id}/read
   method: post
+  operationId: postApiCommunicationTextsByIdRead
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -629,6 +675,7 @@ operations:
     audit: required
 - path: /api/Communication/mails/{id}/read
   method: post
+  operationId: postApiCommunicationMailsByIdRead
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -644,6 +691,7 @@ operations:
     audit: required
 - path: /api/Communication/v2/texts/{phone}
   method: get
+  operationId: getApiCommunicationV2TextsByPhone
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -653,6 +701,7 @@ operations:
     audit: none
 - path: /api/Communication/v2/log
   method: get
+  operationId: getApiCommunicationV2Log
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -662,6 +711,7 @@ operations:
     audit: none
 - path: /api/Communication/v3/mails/{id}
   method: get
+  operationId: getApiCommunicationV3MailsById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -671,6 +721,7 @@ operations:
     audit: none
 - path: /api/Communication/attachments/{id}
   method: get
+  operationId: getApiCommunicationAttachmentsById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -680,6 +731,7 @@ operations:
     audit: none
 - path: /api/Communication/search
   method: get
+  operationId: getApiCommunicationSearch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -689,6 +741,7 @@ operations:
     audit: none
 - path: /api/communication/templates
   method: get
+  operationId: getApiCommunicationTemplates
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -698,6 +751,7 @@ operations:
     audit: none
 - path: /api/communication/templates
   method: post
+  operationId: postApiCommunicationTemplates
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -713,6 +767,7 @@ operations:
     audit: required
 - path: /api/communication/templates/{id}
   method: get
+  operationId: getApiCommunicationTemplatesById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -722,6 +777,7 @@ operations:
     audit: none
 - path: /api/communication/templates/{id}
   method: patch
+  operationId: patchApiCommunicationTemplatesById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -737,6 +793,7 @@ operations:
     audit: required
 - path: /api/communication/templates/{id}
   method: delete
+  operationId: deleteApiCommunicationTemplatesById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -752,6 +809,7 @@ operations:
     audit: required
 - path: /api/communication/templates/simple
   method: get
+  operationId: getApiCommunicationTemplatesSimple
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -761,6 +819,7 @@ operations:
     audit: none
 - path: /api/communication/templates/simple/{id}
   method: get
+  operationId: getApiCommunicationTemplatesSimpleById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -770,6 +829,7 @@ operations:
     audit: none
 - path: /api/communication/templates/variables
   method: get
+  operationId: getApiCommunicationTemplatesVariables
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -779,6 +839,7 @@ operations:
     audit: none
 - path: /api/communication/templates/variables/all
   method: get
+  operationId: getApiCommunicationTemplatesVariablesAll
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -788,6 +849,7 @@ operations:
     audit: none
 - path: /api/communication/templates/all
   method: get
+  operationId: getApiCommunicationTemplatesAll
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -797,6 +859,7 @@ operations:
     audit: none
 - path: /api/communication/templates/{id}/autoplays
   method: get
+  operationId: getApiCommunicationTemplatesByIdAutoplays
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -806,6 +869,7 @@ operations:
     audit: none
 - path: /api/Connectors
   method: post
+  operationId: postApiConnectors
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -821,6 +885,7 @@ operations:
     audit: required
 - path: /api/Connectors
   method: get
+  operationId: getApiConnectors
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -830,6 +895,7 @@ operations:
     audit: none
 - path: /api/Connectors/{id}
   method: patch
+  operationId: patchApiConnectorsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -845,6 +911,7 @@ operations:
     audit: required
 - path: /api/Connectors/{id}
   method: delete
+  operationId: deleteApiConnectorsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -860,6 +927,7 @@ operations:
     audit: required
 - path: /api/Connectors/{id}
   method: get
+  operationId: getApiConnectorsById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -869,6 +937,7 @@ operations:
     audit: none
 - path: /api/Connectors/profile
   method: get
+  operationId: getApiConnectorsProfile
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -878,6 +947,7 @@ operations:
     audit: none
 - path: /api/Connectors/variables
   method: get
+  operationId: getApiConnectorsVariables
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -887,6 +957,7 @@ operations:
     audit: none
 - path: /api/Connectors/variables/all
   method: get
+  operationId: getApiConnectorsVariablesAll
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -896,6 +967,7 @@ operations:
     audit: none
 - path: /api/econtracts/v2/templates
   method: get
+  operationId: getApiEcontractsV2Templates
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -905,6 +977,7 @@ operations:
     audit: none
 - path: /api/econtracts/templates/all
   method: get
+  operationId: getApiEcontractsTemplatesAll
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -914,6 +987,7 @@ operations:
     audit: none
 - path: /api/econtracts/templates/{id}/sign
   method: post
+  operationId: postApiEcontractsTemplatesByIdSign
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -929,6 +1003,7 @@ operations:
     audit: required
 - path: /api/econtracts/signature/{signatureId}/signurl
   method: get
+  operationId: getApiEcontractsSignatureBySignatureIdSignurl
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -938,6 +1013,7 @@ operations:
     audit: none
 - path: /api/econtracts/signature/{id}
   method: get
+  operationId: getApiEcontractsSignatureById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -947,6 +1023,7 @@ operations:
     audit: none
 - path: /api/econtracts/signature/dataObject/{dataObjectId}
   method: get
+  operationId: getApiEcontractsSignatureDataObjectByDataObjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -956,6 +1033,7 @@ operations:
     audit: none
 - path: /api/econtracts/{id}/cancel
   method: post
+  operationId: postApiEcontractsByIdCancel
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -971,6 +1049,7 @@ operations:
     audit: required
 - path: /api/econtracts/{id}/download
   method: get
+  operationId: getApiEcontractsByIdDownload
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -980,6 +1059,7 @@ operations:
     audit: none
 - path: /api/DataObjects
   method: post
+  operationId: postApiDataObjects
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -995,6 +1075,7 @@ operations:
     audit: required
 - path: /api/DataObjects/{dataObjectId}
   method: get
+  operationId: getApiDataObjectsByDataObjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1004,6 +1085,7 @@ operations:
     audit: none
 - path: /api/DataObjects/{dataObjectId}
   method: delete
+  operationId: deleteApiDataObjectsByDataObjectId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1019,6 +1101,7 @@ operations:
     audit: required
 - path: /api/DataObjects/{dataObjectId}/jsonp
   method: patch
+  operationId: patchApiDataObjectsByDataObjectIdJsonp
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1034,6 +1117,7 @@ operations:
     audit: required
 - path: /api/DataObjects/{dataObjectId}/jsonp/withActivity
   method: patch
+  operationId: patchApiDataObjectsByDataObjectIdJsonpWithActivity
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1049,6 +1133,7 @@ operations:
     audit: required
 - path: /api/DataObjects/bulk
   method: post
+  operationId: postApiDataObjectsBulk
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1064,6 +1149,7 @@ operations:
     audit: required
 - path: /api/DataObjects/bulk/validate
   method: post
+  operationId: postApiDataObjectsBulkValidate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1079,6 +1165,7 @@ operations:
     audit: required
 - path: /api/DataObjects/bulk/import/{importId}
   method: delete
+  operationId: deleteApiDataObjectsBulkImportByImportId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1094,6 +1181,7 @@ operations:
     audit: required
 - path: /api/DataObjects/deleted
   method: get
+  operationId: getApiDataObjectsDeleted
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1103,6 +1191,7 @@ operations:
     audit: none
 - path: /api/DataObjects/withChildren
   method: post
+  operationId: postApiDataObjectsWithChildren
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1118,6 +1207,7 @@ operations:
     audit: required
 - path: /api/DataObjects/move
   method: post
+  operationId: postApiDataObjectsMove
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1133,6 +1223,7 @@ operations:
     audit: required
 - path: /api/DataObjects/withChildren/{dataObjectId}
   method: get
+  operationId: getApiDataObjectsWithChildrenByDataObjectId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1142,6 +1233,7 @@ operations:
     audit: none
 - path: /api/DataObjects/withChildren/many
   method: get
+  operationId: getApiDataObjectsWithChildrenMany
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1151,6 +1243,7 @@ operations:
     audit: none
 - path: /api/DataObjects/many
   method: get
+  operationId: getApiDataObjectsMany
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1160,6 +1253,7 @@ operations:
     audit: none
 - path: /api/DataObjects/withChildren/{dataObjectId}/jsonp
   method: patch
+  operationId: patchApiDataObjectsWithChildrenByDataObjectIdJsonp
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1175,6 +1269,7 @@ operations:
     audit: required
 - path: /api/DataObjects/withChildren/{dataObjectId}/jsonp/withActivity
   method: patch
+  operationId: patchApiDataObjectsWithChildrenByDataObjectIdJsonpWithActivity
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1190,6 +1285,7 @@ operations:
     audit: required
 - path: /api/DataObjects/{dataObjectId}/activities/historical
   method: post
+  operationId: postApiDataObjectsByDataObjectIdActivitiesHistorical
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1205,6 +1301,7 @@ operations:
     audit: required
 - path: /api/DataObjects/{dataObjectId}/activities/historical
   method: get
+  operationId: getApiDataObjectsByDataObjectIdActivitiesHistorical
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1214,6 +1311,7 @@ operations:
     audit: none
 - path: /api/DataObjects/{dataObjectId}/activities/{activityId}
   method: get
+  operationId: getApiDataObjectsByDataObjectIdActivitiesByActivityId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1223,6 +1321,7 @@ operations:
     audit: none
 - path: /api/DataObjects/{dataObjectId}/appointments/upcoming
   method: get
+  operationId: getApiDataObjectsByDataObjectIdAppointmentsUpcoming
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1232,6 +1331,7 @@ operations:
     audit: none
 - path: /api/DataObjects/{dataObjectId}/appointments/upcoming
   method: post
+  operationId: postApiDataObjectsByDataObjectIdAppointmentsUpcoming
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1247,6 +1347,7 @@ operations:
     audit: required
 - path: /api/DataObjects/{dataObjectId}/related
   method: get
+  operationId: getApiDataObjectsByDataObjectIdRelated
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1256,6 +1357,7 @@ operations:
     audit: none
 - path: /api/DataObjects/{dataObjectId}/related/{relatedDataObjectsTypeId}
   method: get
+  operationId: getApiDataObjectsByDataObjectIdRelatedByRelatedDataObjectsTypeId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1265,6 +1367,7 @@ operations:
     audit: none
 - path: /api/DataObjects/bulkActions/status
   method: get
+  operationId: getApiDataObjectsBulkActionsStatus
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1274,6 +1377,7 @@ operations:
     audit: none
 - path: /api/DataObjects/{dataObjectId}/duplicatesByAddress
   method: get
+  operationId: getApiDataObjectsByDataObjectIdDuplicatesByAddress
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1283,6 +1387,7 @@ operations:
     audit: none
 - path: /api/jobs/dataObjects/bulk
   method: post
+  operationId: postApiJobsDataObjectsBulk
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1298,6 +1403,7 @@ operations:
     audit: required
 - path: /api/jobs/dataObjects/bulk/inprogress
   method: get
+  operationId: getApiJobsDataObjectsBulkInprogress
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1307,6 +1413,7 @@ operations:
     audit: none
 - path: /api/jobs/dataObjects/bulk/{id}
   method: get
+  operationId: getApiJobsDataObjectsBulkById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1316,6 +1423,7 @@ operations:
     audit: none
 - path: /api/jobs/dataObjects/bulk/{id}/data
   method: put
+  operationId: putApiJobsDataObjectsBulkByIdData
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1331,6 +1439,7 @@ operations:
     audit: required
 - path: /api/jobs/dataObjects/bulk/{id}/start
   method: post
+  operationId: postApiJobsDataObjectsBulkByIdStart
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1346,6 +1455,7 @@ operations:
     audit: required
 - path: /api/jobs/dataObjects/bulk/{id}/progress
   method: get
+  operationId: getApiJobsDataObjectsBulkByIdProgress
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1355,6 +1465,7 @@ operations:
     audit: none
 - path: /api/jobs/dataObjects/bulk/{id}/results/succeeded
   method: get
+  operationId: getApiJobsDataObjectsBulkByIdResultsSucceeded
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1364,6 +1475,7 @@ operations:
     audit: none
 - path: /api/jobs/dataObjects/bulk/{id}/results/failed
   method: get
+  operationId: getApiJobsDataObjectsBulkByIdResultsFailed
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1373,6 +1485,7 @@ operations:
     audit: none
 - path: /api/jobs/dataObjects/bulk/{id}/cleanup
   method: delete
+  operationId: deleteApiJobsDataObjectsBulkByIdCleanup
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1388,6 +1501,7 @@ operations:
     audit: required
 - path: /api/DataObjectsSearch/simple
   method: get
+  operationId: getApiDataObjectsSearchSimple
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1397,21 +1511,17 @@ operations:
     audit: none
 - path: /api/DataObjectsSearch/simple
   method: post
+  operationId: postApiDataObjectsSearchSimple
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/DataObjectsSearch
   method: get
+  operationId: getApiDataObjectsSearch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1421,21 +1531,17 @@ operations:
     audit: none
 - path: /api/DataObjectsSearch
   method: post
+  operationId: postApiDataObjectsSearch
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/DataObjectsSearch/list
   method: get
+  operationId: getApiDataObjectsSearchList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1445,6 +1551,7 @@ operations:
     audit: none
 - path: /api/Documents
   method: post
+  operationId: postApiDocuments
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1460,6 +1567,7 @@ operations:
     audit: required
 - path: /api/Documents
   method: get
+  operationId: getApiDocuments
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1469,6 +1577,7 @@ operations:
     audit: none
 - path: /api/Documents/paged
   method: get
+  operationId: getApiDocumentsPaged
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1478,21 +1587,17 @@ operations:
     audit: none
 - path: /api/Documents/paged
   method: post
+  operationId: postApiDocumentsPaged
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/Documents/company
   method: get
+  operationId: getApiDocumentsCompany
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1502,6 +1607,7 @@ operations:
     audit: none
 - path: /api/Documents/{documentId}
   method: get
+  operationId: getApiDocumentsByDocumentId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1511,6 +1617,7 @@ operations:
     audit: none
 - path: /api/Documents/{documentId}
   method: delete
+  operationId: deleteApiDocumentsByDocumentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1526,6 +1633,7 @@ operations:
     audit: required
 - path: /api/Documents/{documentId}/url
   method: get
+  operationId: getApiDocumentsByDocumentIdUrl
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1535,6 +1643,7 @@ operations:
     audit: none
 - path: /api/Documents/company/{documentId}
   method: put
+  operationId: putApiDocumentsCompanyByDocumentId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1550,6 +1659,7 @@ operations:
     audit: required
 - path: /api/Exports/dataObjects
   method: post
+  operationId: postApiExportsDataObjects
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1565,6 +1675,7 @@ operations:
     audit: required
 - path: /api/Exports/activities
   method: post
+  operationId: postApiExportsActivities
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1580,6 +1691,7 @@ operations:
     audit: required
 - path: /api/Exports/activities/data
   method: post
+  operationId: postApiExportsActivitiesData
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1595,6 +1707,7 @@ operations:
     audit: required
 - path: /api/Exports/activities/data/flexible
   method: post
+  operationId: postApiExportsActivitiesDataFlexible
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1610,6 +1723,7 @@ operations:
     audit: required
 - path: /api/Exports/dataObjects/data
   method: get
+  operationId: getApiExportsDataObjectsData
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1619,6 +1733,7 @@ operations:
     audit: none
 - path: /api/Filters
   method: get
+  operationId: getApiFilters
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1628,6 +1743,7 @@ operations:
     audit: none
 - path: /api/Filters/{filterId}
   method: delete
+  operationId: deleteApiFiltersByFilterId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1643,6 +1759,7 @@ operations:
     audit: required
 - path: /api/dashboard/filters/{filterId}
   method: delete
+  operationId: deleteApiDashboardFiltersByFilterId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1658,6 +1775,7 @@ operations:
     audit: required
 - path: /api/Filters/reorder/{filterType}
   method: put
+  operationId: putApiFiltersReorderByFilterType
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -1675,6 +1793,7 @@ operations:
     audit: required
 - path: /api/Filters/reorder
   method: put
+  operationId: putApiFiltersReorder
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -1692,6 +1811,7 @@ operations:
     audit: required
 - path: /api/Filters/changeFilterTitle/{filterId}
   method: put
+  operationId: putApiFiltersChangeFilterTitleByFilterId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1707,6 +1827,7 @@ operations:
     audit: required
 - path: /api/Filters/changeFilter/{filterId}
   method: put
+  operationId: putApiFiltersChangeFilterByFilterId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1722,6 +1843,7 @@ operations:
     audit: required
 - path: /api/v2/filters
   method: post
+  operationId: postApiV2Filters
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1737,6 +1859,7 @@ operations:
     audit: required
 - path: /api/v2/filters/{filterId}
   method: get
+  operationId: getApiV2FiltersByFilterId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1746,6 +1869,7 @@ operations:
     audit: none
 - path: /api/v2/filters/options
   method: get
+  operationId: getApiV2FiltersOptions
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1755,6 +1879,7 @@ operations:
     audit: none
 - path: /api/v2/filters/shared
   method: get
+  operationId: getApiV2FiltersShared
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1764,6 +1889,7 @@ operations:
     audit: none
 - path: /api/generatecontent/{type}/suggestions
   method: get
+  operationId: getApiGeneratecontentByTypeSuggestions
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1773,6 +1899,7 @@ operations:
     audit: none
 - path: /api/generatecontent/email
   method: post
+  operationId: postApiGeneratecontentEmail
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1788,6 +1915,7 @@ operations:
     audit: required
 - path: /api/generatecontent/emailTemplate
   method: post
+  operationId: postApiGeneratecontentEmailTemplate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1803,6 +1931,7 @@ operations:
     audit: required
 - path: /api/generatecontent/text
   method: post
+  operationId: postApiGeneratecontentText
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1818,6 +1947,7 @@ operations:
     audit: required
 - path: /api/generatecontent/textTemplate
   method: post
+  operationId: postApiGeneratecontentTextTemplate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1833,6 +1963,7 @@ operations:
     audit: required
 - path: /api/generatecontent/dataObjects/{dataObjectId}/summary
   method: post
+  operationId: postApiGeneratecontentDataObjectsByDataObjectIdSummary
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1848,6 +1979,7 @@ operations:
     audit: required
 - path: /api/layouts/all
   method: get
+  operationId: getApiLayoutsAll
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1857,6 +1989,7 @@ operations:
     audit: none
 - path: /api/layouts/dataObject/{typeId}
   method: get
+  operationId: getApiLayoutsDataObjectByTypeId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1866,6 +1999,7 @@ operations:
     audit: none
 - path: /api/layouts/{id}/properties
   method: patch
+  operationId: patchApiLayoutsByIdProperties
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1881,6 +2015,7 @@ operations:
     audit: required
 - path: /api/layouts/{id}/section
   method: post
+  operationId: postApiLayoutsByIdSection
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1896,6 +2031,7 @@ operations:
     audit: required
 - path: /api/layouts/{id}/section/{sectionId}
   method: patch
+  operationId: patchApiLayoutsByIdSectionBySectionId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1911,6 +2047,7 @@ operations:
     audit: required
 - path: /api/layouts/{id}/section/{sectionId}
   method: delete
+  operationId: deleteApiLayoutsByIdSectionBySectionId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1926,6 +2063,7 @@ operations:
     audit: required
 - path: /api/layouts/{id}/section/{sectionId}/move
   method: post
+  operationId: postApiLayoutsByIdSectionBySectionIdMove
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1941,6 +2079,7 @@ operations:
     audit: required
 - path: /api/layouts/{id}/field/{fieldId}/move
   method: post
+  operationId: postApiLayoutsByIdFieldByFieldIdMove
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1956,6 +2095,7 @@ operations:
     audit: required
 - path: /api/layouts/{id}/field/{fieldId}
   method: delete
+  operationId: deleteApiLayoutsByIdFieldByFieldId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1971,6 +2111,7 @@ operations:
     audit: required
 - path: /api/Leaderboards
   method: get
+  operationId: getApiLeaderboards
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1980,6 +2121,7 @@ operations:
     audit: none
 - path: /api/Leaderboards/{id}
   method: get
+  operationId: getApiLeaderboardsById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1989,6 +2131,7 @@ operations:
     audit: none
 - path: /api/Leaderboards/{id}
   method: post
+  operationId: postApiLeaderboardsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2004,6 +2147,7 @@ operations:
     audit: required
 - path: /api/Leaderboards/{id}/export
   method: post
+  operationId: postApiLeaderboardsByIdExport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2019,6 +2163,7 @@ operations:
     audit: required
 - path: /api/Mcp/keys/generate
   method: post
+  operationId: postApiMcpKeysGenerate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2034,6 +2179,7 @@ operations:
     audit: required
 - path: /api/Mcp/keys/current
   method: get
+  operationId: getApiMcpKeysCurrent
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2043,6 +2189,7 @@ operations:
     audit: none
 - path: /api/Mcp/keys/current
   method: delete
+  operationId: deleteApiMcpKeysCurrent
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2058,6 +2205,7 @@ operations:
     audit: required
 - path: /api/Mcp/keys/regenerate
   method: put
+  operationId: putApiMcpKeysRegenerate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2073,6 +2221,7 @@ operations:
     audit: required
 - path: /api/c3/v2/messages
   method: post
+  operationId: postApiC3V2Messages
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -2090,6 +2239,7 @@ operations:
     audit: required
 - path: /api/MyReports
   method: get
+  operationId: getApiMyReports
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2099,6 +2249,7 @@ operations:
     audit: none
 - path: /api/MyReports
   method: post
+  operationId: postApiMyReports
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2114,6 +2265,7 @@ operations:
     audit: required
 - path: /api/MyReports/{id}
   method: get
+  operationId: getApiMyReportsById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2123,6 +2275,7 @@ operations:
     audit: none
 - path: /api/MyReports/{id}
   method: put
+  operationId: putApiMyReportsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2138,6 +2291,7 @@ operations:
     audit: required
 - path: /api/MyReports/{id}
   method: delete
+  operationId: deleteApiMyReportsById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2153,6 +2307,7 @@ operations:
     audit: required
 - path: /api/MyReports/{id}/render
   method: get
+  operationId: getApiMyReportsByIdRender
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2162,6 +2317,7 @@ operations:
     audit: none
 - path: /api/MyReports/{id}/render
   method: post
+  operationId: postApiMyReportsByIdRender
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2177,6 +2333,7 @@ operations:
     audit: required
 - path: /api/MyReports/preview
   method: post
+  operationId: postApiMyReportsPreview
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2192,21 +2349,17 @@ operations:
     audit: required
 - path: /api/MyReports/{id}/details
   method: post
+  operationId: postApiMyReportsByIdDetails
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/MyReports/{id}/details/export
   method: post
+  operationId: postApiMyReportsByIdDetailsExport
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2222,6 +2375,7 @@ operations:
     audit: required
 - path: /api/NotificationsV2
   method: get
+  operationId: getApiNotificationsV2
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2231,6 +2385,7 @@ operations:
     audit: none
 - path: /api/NotificationsV2/filtered
   method: get
+  operationId: getApiNotificationsV2Filtered
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2240,6 +2395,7 @@ operations:
     audit: none
 - path: /api/NotificationsV2/{id}
   method: get
+  operationId: getApiNotificationsV2ById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2249,6 +2405,7 @@ operations:
     audit: none
 - path: /api/PinsV2
   method: get
+  operationId: getApiPinsV2
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2258,6 +2415,7 @@ operations:
     audit: none
 - path: /api/PinsV2/{pinId}
   method: get
+  operationId: getApiPinsV2ByPinId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2267,6 +2425,7 @@ operations:
     audit: none
 - path: /api/PinsV2/search
   method: get
+  operationId: getApiPinsV2Search
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2276,6 +2435,7 @@ operations:
     audit: none
 - path: /api/PinsV2/nearest
   method: get
+  operationId: getApiPinsV2Nearest
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2285,6 +2445,7 @@ operations:
     audit: none
 - path: /api/PinsV2/format-address
   method: post
+  operationId: postApiPinsV2FormatAddress
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2300,21 +2461,17 @@ operations:
     audit: required
 - path: /api/PinsV2/move/summary
   method: post
+  operationId: postApiPinsV2MoveSummary
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/Reports/export/{type}
   method: post
+  operationId: postApiReportsExportByType
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2330,21 +2487,17 @@ operations:
     audit: required
 - path: /api/Reports/{type}
   method: post
+  operationId: postApiReportsByType
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/Reports/{type}
   method: get
+  operationId: getApiReportsByType
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2354,36 +2507,27 @@ operations:
     audit: none
 - path: /api/Reports/{type}/records
   method: post
+  operationId: postApiReportsByTypeRecords
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/Reports/dataObject/{type}
   method: post
+  operationId: postApiReportsDataObjectByType
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/Reports/dataObject/{type}
   method: get
+  operationId: getApiReportsDataObjectByType
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2393,6 +2537,7 @@ operations:
     audit: none
 - path: /api/routes/v2
   method: post
+  operationId: postApiRoutesV2
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2408,6 +2553,7 @@ operations:
     audit: required
 - path: /api/routes/v2/{id}
   method: patch
+  operationId: patchApiRoutesV2ById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2423,6 +2569,7 @@ operations:
     audit: required
 - path: /api/routes/v2/{id}
   method: get
+  operationId: getApiRoutesV2ById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2432,6 +2579,7 @@ operations:
     audit: none
 - path: /api/routes/v2/preview
   method: get
+  operationId: getApiRoutesV2Preview
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2441,6 +2589,7 @@ operations:
     audit: none
 - path: /api/routes/v2/calculate
   method: post
+  operationId: postApiRoutesV2Calculate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2456,6 +2605,7 @@ operations:
     audit: required
 - path: /api/routes/v2/enhance
   method: post
+  operationId: postApiRoutesV2Enhance
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2471,6 +2621,7 @@ operations:
     audit: required
 - path: /api/routes/v2/{id}/start
   method: post
+  operationId: postApiRoutesV2ByIdStart
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2486,21 +2637,17 @@ operations:
     audit: required
 - path: /api/routes/v2/recommended-stops
   method: post
+  operationId: postApiRoutesV2RecommendedStops
   x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
-    escalation:
-      human-in-the-loop: required
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/Teams
   method: post
+  operationId: postApiTeams
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2516,6 +2663,7 @@ operations:
     audit: required
 - path: /api/Teams/{teamId}
   method: put
+  operationId: putApiTeamsByTeamId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2531,6 +2679,7 @@ operations:
     audit: required
 - path: /api/Teams/{teamId}
   method: delete
+  operationId: deleteApiTeamsByTeamId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2546,6 +2695,7 @@ operations:
     audit: required
 - path: /api/Teams/{teamId}
   method: get
+  operationId: getApiTeamsByTeamId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2555,6 +2705,7 @@ operations:
     audit: none
 - path: /api/Teams/list
   method: get
+  operationId: getApiTeamsList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2564,6 +2715,7 @@ operations:
     audit: none
 - path: /api/Teams/{teamId}/addUsers
   method: put
+  operationId: putApiTeamsByTeamIdAddUsers
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2579,6 +2731,7 @@ operations:
     audit: required
 - path: /api/Teams/all
   method: get
+  operationId: getApiTeamsAll
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2588,6 +2741,7 @@ operations:
     audit: none
 - path: /api/Teams/many
   method: delete
+  operationId: deleteApiTeamsMany
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2603,6 +2757,7 @@ operations:
     audit: required
 - path: /api/Teams/users
   method: get
+  operationId: getApiTeamsUsers
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2612,6 +2767,7 @@ operations:
     audit: none
 - path: /api/Teams/logs
   method: get
+  operationId: getApiTeamsLogs
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2621,6 +2777,7 @@ operations:
     audit: none
 - path: /api/Territories/all
   method: get
+  operationId: getApiTerritoriesAll
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2630,6 +2787,7 @@ operations:
     audit: none
 - path: /api/Territories
   method: post
+  operationId: postApiTerritories
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2645,6 +2803,7 @@ operations:
     audit: required
 - path: /api/Territories/{id}
   method: get
+  operationId: getApiTerritoriesById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2654,6 +2813,7 @@ operations:
     audit: none
 - path: /api/Territories/{id}
   method: put
+  operationId: putApiTerritoriesById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2669,6 +2829,7 @@ operations:
     audit: required
 - path: /api/Territories/{id}/geojson
   method: get
+  operationId: getApiTerritoriesByIdGeojson
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2678,6 +2839,7 @@ operations:
     audit: none
 - path: /api/Trips
   method: get
+  operationId: getApiTrips
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2687,6 +2849,7 @@ operations:
     audit: none
 - path: /api/Trips/summary
   method: get
+  operationId: getApiTripsSummary
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2696,6 +2859,7 @@ operations:
     audit: none
 - path: /api/Trips/active
   method: get
+  operationId: getApiTripsActive
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2705,6 +2869,7 @@ operations:
     audit: none
 - path: /api/Trips/{id}/arriving-time
   method: get
+  operationId: getApiTripsByIdArrivingTime
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2714,6 +2879,7 @@ operations:
     audit: none
 - path: /api/Trips/{id}/export/pdf
   method: get
+  operationId: getApiTripsByIdExportPdf
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2723,6 +2889,7 @@ operations:
     audit: none
 - path: /api/Trips/{id}/export/csv
   method: get
+  operationId: getApiTripsByIdExportCsv
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2732,6 +2899,7 @@ operations:
     audit: none
 - path: /api/Trips/export/{type}
   method: post
+  operationId: postApiTripsExportByType
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2747,6 +2915,7 @@ operations:
     audit: required
 - path: /api/trips/v2/start
   method: post
+  operationId: postApiTripsV2Start
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2762,6 +2931,7 @@ operations:
     audit: required
 - path: /api/trips/v2/active
   method: delete
+  operationId: deleteApiTripsV2Active
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2777,6 +2947,7 @@ operations:
     audit: required
 - path: /api/trips/v2/{id}/stops/polygon
   method: post
+  operationId: postApiTripsV2ByIdStopsPolygon
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -2792,6 +2963,7 @@ operations:
     audit: required
 - path: /api/trips/v2/{id}
   method: patch
+  operationId: patchApiTripsV2ById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2807,6 +2979,7 @@ operations:
     audit: required
 - path: /api/trips/v2/{id}
   method: get
+  operationId: getApiTripsV2ById
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2816,6 +2989,7 @@ operations:
     audit: none
 - path: /api/trips/v2/{id}/stops/{stopId}
   method: patch
+  operationId: patchApiTripsV2ByIdStopsByStopId
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -2831,6 +3005,7 @@ operations:
     audit: required
 - path: /api/trips/v2/{id}/stops/{stopId}/skip
   method: post
+  operationId: postApiTripsV2ByIdStopsByStopIdSkip
   x-agentic-access:
     action-class: acting
     consequence: safety-critical
@@ -2846,6 +3021,7 @@ operations:
     audit: required
 - path: /api/trips/v2/prepare/daily
   method: post
+  operationId: postApiTripsV2PrepareDaily
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2861,6 +3037,7 @@ operations:
     audit: required
 - path: /api/trips/v2/prepare/by-date
   method: post
+  operationId: postApiTripsV2PrepareByDate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2876,6 +3053,7 @@ operations:
     audit: required
 - path: /api/trips/v2/prepare/polygon
   method: post
+  operationId: postApiTripsV2PreparePolygon
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2891,6 +3069,7 @@ operations:
     audit: required
 - path: /api/trips/v2/quickMessageTemplates
   method: get
+  operationId: getApiTripsV2QuickMessageTemplates
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2900,6 +3079,7 @@ operations:
     audit: none
 - path: /api/UploadCare/signature
   method: get
+  operationId: getApiUploadCareSignature
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2907,8 +3087,65 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /api/UserTracking/map/users
+  method: get
+  operationId: getApiUserTrackingMapUsers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/UserTracking/map/gpstrails
+  method: get
+  operationId: getApiUserTrackingMapGpstrails
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/UserTracking/last-position
+  method: get
+  operationId: getApiUserTrackingLastPosition
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/UserTracking/settings
+  method: get
+  operationId: getApiUserTrackingSettings
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/UserTracking/settings
+  method: put
+  operationId: putApiUserTrackingSettings
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /api/Users
   method: post
+  operationId: postApiUsers
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2924,6 +3161,7 @@ operations:
     audit: required
 - path: /api/auth/token
   method: post
+  operationId: postApiAuthToken
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2939,6 +3177,7 @@ operations:
     audit: required
 - path: /api/users/{id}
   method: put
+  operationId: putApiUsersById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2954,6 +3193,7 @@ operations:
     audit: required
 - path: /api/users/{id}/block
   method: post
+  operationId: postApiUsersByIdBlock
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -2969,6 +3209,7 @@ operations:
     audit: required
 - path: /api/users/details
   method: get
+  operationId: getApiUsersDetails
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2978,6 +3219,7 @@ operations:
     audit: none
 - path: /api/users
   method: get
+  operationId: getApiUsers
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2987,6 +3229,7 @@ operations:
     audit: none
 - path: /api/users/list
   method: get
+  operationId: getApiUsersList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -2996,6 +3239,7 @@ operations:
     audit: none
 - path: /api/v2/users/list
   method: get
+  operationId: getApiV2UsersList
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -3005,6 +3249,7 @@ operations:
     audit: none
 - path: /api/users/externalSystemUserId
   method: get
+  operationId: getApiUsersExternalSystemUserId
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -3014,6 +3259,7 @@ operations:
     audit: none
 - path: /api/users/search
   method: get
+  operationId: getApiUsersSearch
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -3023,21 +3269,17 @@ operations:
     audit: none
 - path: /api/users/search
   method: post
+  operationId: postApiUsersSearch
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/users/search/totalCount
   method: get
+  operationId: getApiUsersSearchTotalCount
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -3047,21 +3289,17 @@ operations:
     audit: none
 - path: /api/users/search/totalCount
   method: post
+  operationId: postApiUsersSearchTotalCount
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /api/users/{id}/invite
   method: post
+  operationId: postApiUsersByIdInvite
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -3079,6 +3317,7 @@ operations:
     audit: required
 - path: /api/users/{userId}/profile-picture
   method: put
+  operationId: putApiUsersByUserIdProfilePicture
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3094,57 +3333,7 @@ operations:
     audit: required
 - path: /api/users/apitoken
   method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/UserTracking/map/users
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/UserTracking/map/gpstrails
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/UserTracking/last-position
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/UserTracking/settings
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/UserTracking/settings
-  method: put
+  operationId: postApiUsersApitoken
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3160,6 +3349,7 @@ operations:
     audit: required
 - path: /api/Webhooks/scopes
   method: get
+  operationId: getApiWebhooksScopes
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -3169,6 +3359,7 @@ operations:
     audit: none
 - path: /api/Webhooks
   method: get
+  operationId: getApiWebhooks
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -3178,6 +3369,7 @@ operations:
     audit: none
 - path: /api/Webhooks
   method: post
+  operationId: postApiWebhooks
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3193,6 +3385,7 @@ operations:
     audit: required
 - path: /api/Webhooks/{id}
   method: put
+  operationId: putApiWebhooksById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3208,381 +3401,7 @@ operations:
     audit: required
 - path: /api/Webhooks/{id}
   method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/activityTemplates
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/activityTemplates
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/activityTemplates/{id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/activityTemplates/{id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataObjects/full
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/dataObjects
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/dataObjects
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataObjects/{id}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/dataObjects/{id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataObjects/{id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataObjects/default
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataobjects/{dataObjectId}/fields/available
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/dataobjects/{dataObjectId}/fields
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/dataobjects/{dataObjectId}/fields
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataobjects/{dataObjectId}/fields/{id}
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataobjects/{dataObjectId}/fields/{id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/fields/{id}
-  method: delete
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataobjects/{dataObjectId}/fields/{id}/move
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataobjects/fields/{id}/deleteReference
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/dataobjects/fields/{id}/integrations
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/properties
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/properties
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/properties
-  method: patch
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/permissions/sales
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/permissions/manager
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/permissions/security
-  method: put
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /api/workflow/categorization
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /api/workflow/categorization
-  method: put
+  operationId: deleteApiWebhooksById
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3598,6 +3417,7 @@ operations:
     audit: required
 - path: /api/workflow/dataObjects/{dataObjectId}/stages
   method: get
+  operationId: getApiWorkflowDataObjectsByDataObjectIdStages
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -3607,6 +3427,7 @@ operations:
     audit: none
 - path: /api/workflow/dataObjects/{dataObjectId}/stages/{group}
   method: put
+  operationId: putApiWorkflowDataObjectsByDataObjectIdStagesByGroup
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3622,6 +3443,7 @@ operations:
     audit: required
 - path: /api/workflow/dataObjects/{dataObjectId}/stages/{group}
   method: post
+  operationId: postApiWorkflowDataObjectsByDataObjectIdStagesByGroup
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3637,6 +3459,7 @@ operations:
     audit: required
 - path: /api/workflow/dataObjects/{dataObjectId}/stages/{group}/{stageId}
   method: put
+  operationId: putApiWorkflowDataObjectsByDataObjectIdStagesByGroupByStageId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3652,6 +3475,7 @@ operations:
     audit: required
 - path: /api/workflow/dataObjects/{dataObjectId}/stages/{group}/{stageId}
   method: delete
+  operationId: deleteApiWorkflowDataObjectsByDataObjectIdStagesByGroupByStageId
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -3667,6 +3491,411 @@ operations:
     audit: required
 - path: /api/workflow/dataObjects/{dataObjectId}/stages/{group}/{stageId}/move
   method: post
+  operationId: postApiWorkflowDataObjectsByDataObjectIdStagesByGroupByStageIdMove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/activityTemplates
+  method: get
+  operationId: getApiWorkflowActivityTemplates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/activityTemplates
+  method: post
+  operationId: postApiWorkflowActivityTemplates
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/activityTemplates/{id}
+  method: put
+  operationId: putApiWorkflowActivityTemplatesById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/activityTemplates/{id}
+  method: delete
+  operationId: deleteApiWorkflowActivityTemplatesById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataObjects/full
+  method: get
+  operationId: getApiWorkflowDataObjectsFull
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/dataObjects
+  method: get
+  operationId: getApiWorkflowDataObjects
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/dataObjects
+  method: post
+  operationId: postApiWorkflowDataObjects
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataObjects/{id}
+  method: get
+  operationId: getApiWorkflowDataObjectsById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/dataObjects/{id}
+  method: put
+  operationId: putApiWorkflowDataObjectsById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataObjects/{id}
+  method: delete
+  operationId: deleteApiWorkflowDataObjectsById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataObjects/default
+  method: put
+  operationId: putApiWorkflowDataObjectsDefault
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataobjects/{dataObjectId}/fields/available
+  method: get
+  operationId: getApiWorkflowDataobjectsByDataObjectIdFieldsAvailable
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/dataobjects/{dataObjectId}/fields
+  method: get
+  operationId: getApiWorkflowDataobjectsByDataObjectIdFields
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/dataobjects/{dataObjectId}/fields
+  method: post
+  operationId: postApiWorkflowDataobjectsByDataObjectIdFields
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataobjects/{dataObjectId}/fields/{id}
+  method: put
+  operationId: putApiWorkflowDataobjectsByDataObjectIdFieldsById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataobjects/{dataObjectId}/fields/{id}
+  method: delete
+  operationId: deleteApiWorkflowDataobjectsByDataObjectIdFieldsById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/fields/{id}
+  method: delete
+  operationId: deleteApiWorkflowFieldsById
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataobjects/{dataObjectId}/fields/{id}/move
+  method: post
+  operationId: postApiWorkflowDataobjectsByDataObjectIdFieldsByIdMove
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataobjects/fields/{id}/deleteReference
+  method: post
+  operationId: postApiWorkflowDataobjectsFieldsByIdDeleteReference
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/dataobjects/fields/{id}/integrations
+  method: get
+  operationId: getApiWorkflowDataobjectsFieldsByIdIntegrations
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow
+  method: get
+  operationId: getApiWorkflow
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/properties
+  method: get
+  operationId: getApiWorkflowProperties
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/properties
+  method: put
+  operationId: putApiWorkflowProperties
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/properties
+  method: patch
+  operationId: patchApiWorkflowProperties
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/permissions/sales
+  method: put
+  operationId: putApiWorkflowPermissionsSales
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/permissions/manager
+  method: put
+  operationId: putApiWorkflowPermissionsManager
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/permissions/security
+  method: put
+  operationId: putApiWorkflowPermissionsSecurity
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/workflow/categorization
+  method: get
+  operationId: getApiWorkflowCategorization
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/workflow/categorization
+  method: put
+  operationId: putApiWorkflowCategorization
   x-agentic-access:
     action-class: acting
     consequence: write
