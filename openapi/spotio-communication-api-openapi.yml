@@ -651,35 +651,11 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Frontend.ViewModel.Communication.EmailAccepted:
+    Spotio.Frontend.ViewModel.Communication.TextMedia:
       type: object
       additionalProperties: false
       properties:
         id:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto:
-      type: object
-      additionalProperties: false
-      properties:
-        navigationId:
-          type:
-          - string
-          - 'null'
-        textOptedInPhoneNumbers:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        parent:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto'
-        id:
-          type:
-          - string
-          - 'null'
-        typeId:
           type:
           - string
           - 'null'
@@ -687,80 +663,13 @@ components:
           type:
           - string
           - 'null'
-        stageId:
+        url:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.Communication.V2.UserTextThreadCommunicationFeed:
-      type: object
-      additionalProperties: false
-      properties:
-        scrollId:
-          type:
-          - string
-          - 'null'
-          description: Scroll id for pagination.
-        items:
-          type:
-          - array
-          - 'null'
-          description: The list of items in the communication feed.
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.TextThreadActivityV2'
-        textOptedIn:
+        isImage:
           type: boolean
-          description: Indicates whether record opted in for text messages.
-    Spotio.Activities.Client.Model.Direction:
-      type: string
-      enum:
-      - In
-      - Out
-    Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        typeId:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        stageId:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Communication.FileDto:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        contentType:
-          type:
-          - string
-          - 'null'
-        size:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        contentId:
-          type:
-          - string
-          - 'null'
-        contentDisposition:
+        mimeType:
           type:
           - string
           - 'null'
@@ -800,48 +709,28 @@ components:
         force:
           type: boolean
           description: Indicates whether to force sending the email even if not all template variables can be rendered.
-    Spotio.Frontend.ViewModel.MailSuite.AttachmentDto:
+    ResultType.Results.Error:
       type: object
       additionalProperties: false
       properties:
-        name:
+        message:
           type:
           - string
           - 'null'
-        url:
+          readOnly: true
+        memberName:
           type:
           - string
           - 'null'
-        contentType:
+        filePath:
           type:
           - string
           - 'null'
-        id:
-          type:
-          - string
-          - 'null'
-    Spotio.Frontend.ViewModel.Communication.TextMedia:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        name:
-          type:
-          - string
-          - 'null'
-        url:
-          type:
-          - string
-          - 'null'
-        isImage:
-          type: boolean
-        mimeType:
-          type:
-          - string
-          - 'null'
+        line:
+          type: integer
+          format: int32
+        aggregateError:
+          $ref: '#/components/schemas/ResultType.Results.IError'
     ResultType.Results.IError:
       type: object
       additionalProperties: false
@@ -865,6 +754,50 @@ components:
           type: integer
           format: int32
           readOnly: true
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
+    Spotio.Frontend.ViewModel.Communication.V2.UserTextThreadCommunicationFeed:
+      type: object
+      additionalProperties: false
+      properties:
+        scrollId:
+          type:
+          - string
+          - 'null'
+          description: Scroll id for pagination.
+        items:
+          type:
+          - array
+          - 'null'
+          description: The list of items in the communication feed.
+          items:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.TextThreadActivityV2'
+        textOptedIn:
+          type: boolean
+          description: Indicates whether record opted in for text messages.
+    Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        typeId:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        stageId:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Communication.TextThreadActivityV2:
       type: object
       additionalProperties: false
@@ -892,28 +825,106 @@ components:
           description: The list of media associated with the text activity.
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.TextMedia'
-    ResultType.Results.Error:
+    Spotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectAndActivityDto:
       type: object
       additionalProperties: false
       properties:
-        message:
+        dataObject:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto'
+        email:
           type:
           - string
           - 'null'
-          readOnly: true
-        memberName:
+        resultId:
           type:
           - string
           - 'null'
-        filePath:
+        activityId:
           type:
           - string
           - 'null'
-        line:
-          type: integer
+    Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectId:
+          type:
+          - string
+          - 'null'
+        leadId:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        existingActivityId:
+          type:
+          - integer
+          - 'null'
           format: int32
-        aggregateError:
-          $ref: '#/components/schemas/ResultType.Results.IError'
+        activityDone:
+          type:
+          - boolean
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.FileDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+        size:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        contentId:
+          type:
+          - string
+          - 'null'
+        contentDisposition:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.MailSuite.AttachmentDto:
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        url:
+          type:
+          - string
+          - 'null'
+        contentType:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+    Spotio.Frontend.ViewModel.Communication.EmailAccepted:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
     Spotio.Frontend.ViewModel.Communication.V3.EmailFullWithDataObjectsDto:
       type: object
       additionalProperties: false
@@ -969,46 +980,35 @@ components:
         isRead:
           type: boolean
           description: Indicates whether the email has been read or not.
-    Spotio.Frontend.ViewModel.MailSuite.DataObjectEmailAddressDto:
+    Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto:
       type: object
       additionalProperties: false
       properties:
-        dataObjectId:
+        navigationId:
           type:
           - string
           - 'null'
-        leadId:
+        textOptedInPhoneNumbers:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        parent:
+          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectDto'
+        id:
           type:
           - string
           - 'null'
-        email:
+        typeId:
           type:
           - string
           - 'null'
-        existingActivityId:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        activityDone:
-          type:
-          - boolean
-          - 'null'
-    Spotio.Frontend.ViewModel.Communication.V3.EmailWithDataObjectAndActivityDto:
-      type: object
-      additionalProperties: false
-      properties:
-        dataObject:
-          $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Communication.V3.DataObjectWithParentDto'
-        email:
+        name:
           type:
           - string
           - 'null'
-        resultId:
-          type:
-          - string
-          - 'null'
-        activityId:
+        stageId:
           type:
           - string
           - 'null'

@@ -397,6 +397,24 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.Frontend.ViewModel.MyReports.Leaderboards.MetricTitle:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+    Spotio.Reports.Client.Leaderboards.LeaderboardTypeDto:
+      type: string
+      enum:
+      - Users
+      - Teams
+      - Territories
     Spotio.Frontend.ViewModel.MyReports.Leaderboards.ContributionStatistics:
       type: object
       additionalProperties: false
@@ -413,6 +431,15 @@ components:
           type:
           - string
           - 'null'
+    Spotio.Frontend.ViewModel.Exports.ExportIdDto:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: The ID of the export.
     Spotio.Frontend.ViewModel.MyReports.Leaderboards.LeaderboardResult:
       type: object
       additionalProperties: false
@@ -508,50 +535,6 @@ components:
           - string
           - 'null'
           description: The scroll id of the rendered leaderboard.
-    Spotio.Utils.Client.DTO.Filters.PeriodShortcut:
-      type: string
-      enum:
-      - DAY
-      - WEEK
-      - MONTH
-      - YTD
-      - CUSTOM
-      - ALL
-      - LASTWEEK
-      - LASTMONTH
-      - LASTYEAR
-      - YESTERDAY
-      - TODAY
-      - LAST30DAYS
-      - DEFAULT
-      - QUARTER
-      - LASTQUARTER
-      - THISWORKWEEK
-      - LASTWORKWEEK
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
-      type: object
-      additionalProperties: false
-      properties:
-        errors:
-          readOnly: true
-    Spotio.Reports.Client.Leaderboards.LeaderboardTypeDto:
-      type: string
-      enum:
-      - Users
-      - Teams
-      - Territories
-    Spotio.Frontend.ViewModel.MyReports.Leaderboards.MetricTitle:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
     Spotio.Frontend.ViewModel.MyReports.MyReportForList:
       type: object
       additionalProperties: false
@@ -574,15 +557,32 @@ components:
           type:
           - string
           - 'null'
-    Spotio.Frontend.ViewModel.Exports.ExportIdDto:
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
       properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: The ID of the export.
+        errors:
+          readOnly: true
+    Spotio.Utils.Client.DTO.Filters.PeriodShortcut:
+      type: string
+      enum:
+      - DAY
+      - WEEK
+      - MONTH
+      - YTD
+      - CUSTOM
+      - ALL
+      - LASTWEEK
+      - LASTMONTH
+      - LASTYEAR
+      - YESTERDAY
+      - TODAY
+      - LAST30DAYS
+      - DEFAULT
+      - QUARTER
+      - LASTQUARTER
+      - THISWORKWEEK
+      - LASTWORKWEEK
   securitySchemes:
     Bearer:
       type: apiKey

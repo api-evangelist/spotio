@@ -322,58 +322,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto:
-      type: string
-      enum:
-      - InPerson
-      - Virtual
     Spotio.CompanySettings.Client.DTO.Workflow.ActivityTypeDto:
       type: string
       enum:
       - Event
       - Task
-    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateCreateRequest:
+    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResultCreateRequest:
       type: object
       additionalProperties: false
       properties:
-        index:
-          type: integer
-          description: The index of the activity template
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the activity template
-        defaultDuration:
-          type:
-          - integer
-          - 'null'
-          description: The default duration of the activity template, optional for Task
-          format: int32
-        active:
-          type: boolean
-          description: Whether the activity template is active or not
-        activityResults:
-          type:
-          - array
-          - 'null'
-          description: Array of results that can be assigned to this activity
-          items:
-            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResultCreateRequest'
-        type:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityTypeDto'
-        category:
-          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto'
-    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResultRequest:
-      type: object
-      additionalProperties: false
-      properties:
-        id:
-          type:
-          - string
-          - 'null'
-          description: Id of result to update if not specified it creates new
         name:
           type:
           - string
@@ -441,30 +398,66 @@ components:
           description: Required fields for the activity template based on integrations
           items:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateRequiredFields'
-    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateRequiredFields:
+    Spotio.CompanySettings.Contract.DTO.Activities.SystemRole:
+      type: string
+      enum:
+      - Note
+      - Visit
+      - Call
+      - Email
+      - Text
+      - Appointment
+      - BusinessCard
+      - OptInText
+      - RecordSummary
+      - RecordMerge
+    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateCreateRequest:
       type: object
       additionalProperties: false
       properties:
-        dataObjectTypeId:
+        index:
+          type: integer
+          description: The index of the activity template
+          format: int32
+        name:
           type:
           - string
           - 'null'
-        fieldIds:
+          description: The name of the activity template
+        defaultDuration:
+          type:
+          - integer
+          - 'null'
+          description: The default duration of the activity template, optional for Task
+          format: int32
+        active:
+          type: boolean
+          description: Whether the activity template is active or not
+        activityResults:
           type:
           - array
           - 'null'
+          description: Array of results that can be assigned to this activity
           items:
-            type: string
-    Spotio.Infrastructure.Common.DataModel.Error.Error:
+            $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResultCreateRequest'
+        type:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityTypeDto'
+        category:
+          $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto'
+    Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto:
+      type: string
+      enum:
+      - InPerson
+      - Virtual
+    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResultRequest:
       type: object
       additionalProperties: false
       properties:
-        errors:
-          readOnly: true
-    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResultCreateRequest:
-      type: object
-      additionalProperties: false
-      properties:
+        id:
+          type:
+          - string
+          - 'null'
+          description: Id of result to update if not specified it creates new
         name:
           type:
           - string
@@ -534,19 +527,26 @@ components:
             $ref: '#/components/schemas/Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityResultRequest'
         category:
           $ref: '#/components/schemas/Spotio.CompanySettings.Client.DTO.Workflow.ActivityCategoryDto'
-    Spotio.CompanySettings.Contract.DTO.Activities.SystemRole:
-      type: string
-      enum:
-      - Note
-      - Visit
-      - Call
-      - Email
-      - Text
-      - Appointment
-      - BusinessCard
-      - OptInText
-      - RecordSummary
-      - RecordMerge
+    Spotio.Infrastructure.Common.DataModel.Error.Error:
+      type: object
+      additionalProperties: false
+      properties:
+        errors:
+          readOnly: true
+    Spotio.Frontend.ViewModel.Workflow.ActivityTemplates.ActivityTemplateRequiredFields:
+      type: object
+      additionalProperties: false
+      properties:
+        dataObjectTypeId:
+          type:
+          - string
+          - 'null'
+        fieldIds:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
   securitySchemes:
     Bearer:
       type: apiKey

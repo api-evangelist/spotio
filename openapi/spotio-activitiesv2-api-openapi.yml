@@ -1746,38 +1746,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Activities.Client.Model.Type:
-      type: string
-      enum:
-      - Note
-      - Event
-      - Transition
-      - Create
-      - OwnerChanged
-      - Update
-    Spotio.Activities.Client.Model.Direction:
-      type: string
-      enum:
-      - In
-      - Out
-    Spotio.Frontend.ViewModel.Activity.Transition:
-      type: object
-      additionalProperties: false
-      properties:
-        fromStageId:
-          type:
-          - string
-          - 'null'
-        toStageId:
-          type:
-          - string
-          - 'null'
-        lossReasons:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
     Spotio.Frontend.ViewModel.ActivityV2.ActivityRequest:
       type: object
       additionalProperties: false
@@ -1950,6 +1918,11 @@ components:
           - string
           - 'null'
           description: The date of the all-day event, if applicable.
+    Spotio.Activities.Client.Model.Direction:
+      type: string
+      enum:
+      - In
+      - Out
     Spotio.Frontend.ViewModel.ActivityV2.ActivityResponse:
       type: object
       additionalProperties: false
@@ -2127,6 +2100,24 @@ components:
           - string
           - 'null'
           description: The date of the all-day event, if applicable.
+    Spotio.Frontend.ViewModel.Activity.Transition:
+      type: object
+      additionalProperties: false
+      properties:
+        fromStageId:
+          type:
+          - string
+          - 'null'
+        toStageId:
+          type:
+          - string
+          - 'null'
+        lossReasons:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
     Spotio.Infrastructure.Common.DataModel.Error.Error:
       type: object
       additionalProperties: false
@@ -2155,6 +2146,15 @@ components:
           - string
           - 'null'
           readOnly: true
+    Spotio.Activities.Client.Model.Type:
+      type: string
+      enum:
+      - Note
+      - Event
+      - Transition
+      - Create
+      - OwnerChanged
+      - Update
   securitySchemes:
     Bearer:
       type: apiKey

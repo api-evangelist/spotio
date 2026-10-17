@@ -530,6 +530,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.PolygonPoint:
+      type: object
+      additionalProperties: false
+      properties:
+        lat:
+          type: number
+          format: double
+        lng:
+          type: number
+          format: double
     Spotio.Frontend.ViewModel.DataObjects.Search.SearchDataObjectRequestDto:
       type: object
       additionalProperties: false
@@ -652,16 +662,6 @@ components:
           - boolean
           - 'null'
           description: If true, will add information about parent to the response
-    Spotio.ElasticSearch.Client.Contract.DataObjects.Filter.PolygonPoint:
-      type: object
-      additionalProperties: false
-      properties:
-        lat:
-          type: number
-          format: double
-        lng:
-          type: number
-          format: double
     Spotio.Frontend.ViewModel.DataObjects.Search.SearchSimpleDataObjectRequestDto:
       type: object
       additionalProperties: false

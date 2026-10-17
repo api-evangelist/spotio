@@ -748,11 +748,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Spotio.Exports.Client.Model.ExportState:
-      type: string
-      enum:
-      - Preparing
-      - Ready
     Spotio.Exports.Client.Model.Export:
       type: object
       additionalProperties: false
@@ -798,14 +793,11 @@ components:
           - string
           - 'null'
           format: date-time
-    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
-      type: object
-      additionalProperties: false
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
+    Spotio.Exports.Client.Model.ExportState:
+      type: string
+      enum:
+      - Preparing
+      - Ready
     Spotio.Dashboard.Contract.RequestProjection:
       type: object
       additionalProperties: false
@@ -814,6 +806,14 @@ components:
           type:
           - string
           - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+    Spotio.Dashboard.Contract.Legacy.ILegacyFilter:
+      type: object
+      additionalProperties: false
+      properties:
         type:
           type:
           - string
