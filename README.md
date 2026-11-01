@@ -1,4 +1,4 @@
-# SPOTIO (spotio)
+# SPOTIO
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,84 +64,231 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-SPOTIO is a field sales engagement and territory management platform for outside sales teams - lead and prospect tracking, activity logging, territory mapping and assignment, route optimization, appointment setting, and pipeline visibility - delivered through a mobile-first field app and a web console.
+SPOTIO is a field sales engagement and territory management platform for outside sales teams - lead and prospect tracking, activity logging, territory mapping and assignment, route optimization, appointment setting, and pipeline visibility, delivered through a mobile-first field app and a web console. Behind that product is a substantial and genuinely public API: SPOTIO 2.0 is an OpenAPI 3.0.1 contract of 238 paths and 295 operations across 39 capabilities, published from SPOTIO's own Stoplight project at developer.spotio2.com and exportable without authentication. Authentication is a bearer JWT minted from a clientId/secret pair; collections page on a scrollId cursor; and SPOTIO's data model is polymorphic - there is no fixed Lead entity, only a tenant-defined DataObject whose types, stages and fields are read from a Workflow before anything can be written. SPOTIO also operates a first-party remote MCP server at app.spotio2.com/mcp, authenticated with a SPOTIO-MCP-KEY that the API itself mints, plus a signed outbound webhook system covering ten lead, activity and appointment events. It publishes no SDK in any language, no idempotency contract, no rate limits and no security.txt.
 
-For custom integrations beyond its native Salesforce, HubSpot, Microsoft Dynamics 365, Pipedrive, and Zapier connectors, SPOTIO publishes a documented **Open REST API** and **outbound webhooks**.
+**Areas:** Field Sales · Sales Engagement · Territory Management · CRM · Lead Tracking · Outside Sales · Sales Enablement · Route Optimization · Geospatial · Webhook · MCP · Door to Door
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/spotio/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/spotio/refs/heads/main/apis.yml)
+## SPOTIO on APIs.io
 
-## Access Model (read this first)
+Everything profiled for SPOTIO is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/spotio/](https://apis.io/providers/spotio/)** — or go straight to one of the APIs or properties below.
 
-SPOTIO's API is **real and documented, but not fully self-serve**:
+### APIs (39)
 
-- The developer portal at [developer.spotio2.com](https://developer.spotio2.com/) (hosted on Stoplight) documents a REST Open API with a curl quickstart and token authentication.
-- The full endpoint reference is oriented toward enterprise customers with an API key; the exact REST path surface is **not publicly extractable** from unauthenticated pages.
-- API and webhook access is an entitlement of the SPOTIO SaaS subscription (most associated with the higher Pro / Enterprise tiers for custom integrations), **not** a separately metered, sign-up-and-go API product.
-- SPOTIO also documents [outbound webhooks](https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks) that POST signed (HMAC-SHA256, `X-Signature`) event payloads to a customer endpoint.
+- [SPOTIO Activities V2 API](https://apis.io/apis/spotio/spotio-activitiesv2-api/) — The controller is responsible for handling the creation, updating, and retrieval of activities. Mainly the controller allow to manage activities (current…
+- [SPOTIO Appointments V2 API](https://apis.io/apis/spotio/spotio-appointmentsv2-api/) — The controller is responsible for handling the creation, updating, deleting and retrieval of appointment. Mainly the controller allow to manage appointment…
+- [SPOTIO Autoplays API](https://apis.io/apis/spotio/spotio-autoplays-api/) — The controller provides various endpoints for managing autoplays, which are automated workflows that can be triggered for dataObject in application. Allowed…
+- [SPOTIO Business Cards API](https://apis.io/apis/spotio/spotio-businesscards-api/) — The Business Cards API allows managing business card and their related operations, such as fetching details, listing, creating, updating, cloning, sharing,…
+- [SPOTIO Calendar Settings API](https://apis.io/apis/spotio/spotio-calendarsettings-api/) — The controller is responsible for managing calendar settings. Setup for company users calendar.
+- [SPOTIO Communication API](https://apis.io/apis/spotio/spotio-communication-api/) — API for communication activities. You can retrieve data about communication activities. You can also marks calls, emails, texts as seen/read.
+- [SPOTIO Connectors API](https://apis.io/apis/spotio/spotio-connectors-api/) — The controller is responsible for managing company links (connectors). The controller allows creating new connectors which user can use them on web or…
+- [SPOTIO Contracts API](https://apis.io/apis/spotio/spotio-contracts-api/) — The controller is responsible for gets information about contracts templates and signed documents / files.
+- [SPOTIO Data Objects API](https://apis.io/apis/spotio/spotio-dataobjects-api/) — The controller is responsible for manages the data objects and their related operations like creating, retrieving, updating, and deleting data objects, as…
+- [SPOTIO Data Objects Bulk Jobs API](https://apis.io/apis/spotio/spotio-dataobjectsbulkjobs-api/) — Bulk operations on data objects. Flow: Create job -> Upload NDJSON data -> Start processing -> Poll progress -> Download results -> Cleanup.
+- [SPOTIO Data Objects Search API](https://apis.io/apis/spotio/spotio-dataobjectssearch-api/) — This controller is responsible for searching data objects. There are available endpoints for: * simple global searches - return only basic information about…
+- [SPOTIO Documents API](https://apis.io/apis/spotio/spotio-documents-api/) — The controller is responsible for handling the upload and retrieval of documents. Documents can be attached to data object, activity or be available company…
+- [SPOTIO Exports API](https://apis.io/apis/spotio/spotio-exports-api/) — The controller is responsible for exporting data from the application, such as exporting dataObjects (leads) and activities. The result of the export is a…
+- [SPOTIO Filters API](https://apis.io/apis/spotio/spotio-filters-api/) — The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data. It can be passed wherever…
+- [SPOTIO Generate Content API](https://apis.io/apis/spotio/spotio-generatecontent-api/) — The controller is responsible for content generating for text messages and emails.
+- [SPOTIO Layouts API](https://apis.io/apis/spotio/spotio-layouts-api/) — The Layouts API from SPOTIO — 8 operation(s) for layouts.
+- [SPOTIO Leaderboards API](https://apis.io/apis/spotio/spotio-leaderboards-api/) — The controller is responsible for leaderboards.
+- [SPOTIO MCP API](https://apis.io/apis/spotio/spotio-mcp-api/) — The controller is responsible for handling operations related to MCP. It provides endpoints for generating, retrieving, deactivating, and regenerating MCP…
+- [SPOTIO Multi Channel Communication API](https://apis.io/apis/spotio/spotio-multichannelcommunication-api/) — The controller is responsible for text messages management. Sending messages to customers
+- [SPOTIO My Reports API](https://apis.io/apis/spotio/spotio-myreports-api/) — The controller is responsible for managing MyReports in a web application, creation, updating and rendering MyReports.
+- [SPOTIO Notifications V2 API](https://apis.io/apis/spotio/spotio-notificationsv2-api/) — The controller is responsible for handling operations on notification objects. Notifications are created automatically when creating appointments with…
+- [SPOTIO Pins V2 API](https://apis.io/apis/spotio/spotio-pinsv2-api/) — Pins API handles searching and retrieving pins with details. It provides operations including fetching pins by viewport, getting pin details with data…
+- [SPOTIO Reports API](https://apis.io/apis/spotio/spotio-reports-api/) — The controller is responsible exporting data by selected report type.
+- [SPOTIO Routes V2 API](https://apis.io/apis/spotio/spotio-routesv2-api/) — API for routes. You can manage routes and calculate route based on stops list. You can also start a new trip based on the route.
+- [SPOTIO Teams API](https://apis.io/apis/spotio/spotio-teams-api/) — The controller is responsible for handling operations on teams creating, updating, deleting, and retrieving team data. The controller also handles adding…
+- [SPOTIO Territories API](https://apis.io/apis/spotio/spotio-territories-api/) — The controller is responsible for getting all territories for a company.
+- [SPOTIO Trips API](https://apis.io/apis/spotio/spotio-trips-api/) — The controller is responsible for handling operations on trip objects. Trips are created from routes and record places that user visited during the trip.…
+- [SPOTIO Trips V2 API](https://apis.io/apis/spotio/spotio-tripsv2-api/) — The controller is responsible for handling operations on trip objects. Trips are created from routes and record places that user visited during the trip.…
+- [SPOTIO Upload Care API](https://apis.io/apis/spotio/spotio-uploadcare-api/) — Handles file upload operations
+- [SPOTIO Users API](https://apis.io/apis/spotio/spotio-users-api/) — The controller is responsible for handling the creation, updating, deleting Spotio Users. This controller allow users to exchange of credentials for a token.
+- [SPOTIO Webhooks API](https://apis.io/apis/spotio/spotio-webhooks-api/) — The controller is responsible for handling webhooks related operations. It provides methods for retrieving available webhook scopes, getting all webhooks…
+- [SPOTIO Workflow Activity Templates API](https://apis.io/apis/spotio/spotio-workflowactivitytemplates-api/) — Activity templates are used to define type of activities in the system. To create activity from the activity template refer to the ActivitiesController.…
+- [SPOTIO Workflow Data Objects API](https://apis.io/apis/spotio/spotio-workflowdataobjects-api/) — This controller is responsible for managing data object definitions. Data object definition consists of field and stages definitions. To create records from…
+- [SPOTIO Workflow Fields API](https://apis.io/apis/spotio/spotio-workflowfields-api/) — Api is responsible for the comprehensive management of fields associated with data objects within a workflow. This includes functionality for retrieving…
+- [SPOTIO Workflow Settings API](https://apis.io/apis/spotio/spotio-workflowsettings-api/) — Workflow Settings API provides operations including fetching full workflow settings for company as well as retrieving and updating workflow company properties.
+- [SPOTIO Communication Templates API](https://apis.io/apis/spotio/spotio-communication-templates-api/) — The controller is responsible for managing company templates. Templates for text messages and emails. The controller allows creating new templates which can…
+- [SPOTIO Filters V2 API](https://apis.io/apis/spotio/spotio-filters-v2-api/) — The controller is responsible for handling operations on filter objects. Filter can be used throughout the system to filter data. It can be passed wherever…
+- [SPOTIO User Tracking API](https://apis.io/apis/spotio/spotio-user-tracking-api/) — User tracking API. You can configure Spotio to track users which using the app. Using the following methods you can retrieve tracking data.
+- [SPOTIO Workflow Stages API](https://apis.io/apis/spotio/spotio-workflow-stages-api/) — This controller is responsible for managing stages definitions. You can split stages in 3 groups, each group can have different set of stages. The available…
 
-Because of this, the APIs listed below are **honestly modeled** from SPOTIO's documented product surface and its public webhook event catalog rather than from a published OpenAPI definition. Leads, Activities, and Appointments are directly evidenced by webhook events; Territories, Users/Reps, and Pipelines/Data Objects are core documented product features inferred to have API coverage. No `openapi/` artifact was created and no exact endpoint paths were fabricated. See `review.yml` for details (`endpointsModeled: true`).
+### Published properties
 
-## Tags
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-- Field Sales
-- Sales Engagement
-- Territory Management
-- CRM
-- Lead Tracking
-- Outside Sales
-- Sales Enablement
+#### AsyncAPI (1)
 
-## Timestamps
+Event-driven and webhook contracts.
 
-- **Created:** 2026-07-04
-- **Modified:** 2026-07-04
+- [Spotio Webhooks](https://apis.io/asyncapis/spotio/spotio-webhooks/)
 
-## APIs (modeled)
+#### MCP servers (1)
 
-### SPOTIO Leads API
+Model Context Protocol servers that expose the API to agents.
 
-Create, read, update, and delete leads and prospects, including custom data-object fields, stages, and location. Confirmed by webhook events `lead.added`, `lead.updated`, `lead.deleted`.
+- [spotio](https://apis.io/servers/spotio/spotio/)
 
-### SPOTIO Activities API
+#### Agentic access (1)
 
-Log and retrieve rep activities - visits, calls, notes, and stage changes. Confirmed by webhook events `activity.created`, `activity.updated`, `activity.deleted`, `activity.done`.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### SPOTIO Appointments API
+- [Spotio Agentic Access](https://apis.io/agentic-access/spotio/spotio-agentic-access/)
 
-Schedule and manage field appointments tied to leads and reps. Confirmed by webhook events `appointment.created`, `appointment.updated`, `appointment.deleted`.
+#### Collections (39)
 
-### SPOTIO Territories API
+Postman and Open Collection request collections.
 
-Define and manage sales territories - geographic boundaries, coverage, and rep assignment. Modeled from the documented product surface.
+- [Spotio 2.0 Activities V2 API](https://apis.io/collections/spotio/open-spotio-activitiesv2-api/)
+- [Spotio 2.0 Appointments V2 API](https://apis.io/collections/spotio/open-spotio-appointmentsv2-api/)
+- [Spotio 2.0 Autoplays API](https://apis.io/collections/spotio/open-spotio-autoplays-api/)
+- [Spotio 2.0 Business Cards API](https://apis.io/collections/spotio/open-spotio-businesscards-api/)
+- [Spotio 2.0 Calendar Settings API](https://apis.io/collections/spotio/open-spotio-calendarsettings-api/)
+- [Spotio 2.0 Communication API](https://apis.io/collections/spotio/open-spotio-communication-api/)
+- [Spotio 2.0 Communication Templates API](https://apis.io/collections/spotio/open-spotio-communicationtemplates-api/)
+- [Spotio 2.0 Connectors API](https://apis.io/collections/spotio/open-spotio-connectors-api/)
+- [Spotio 2.0 Contracts API](https://apis.io/collections/spotio/open-spotio-contracts-api/)
+- [Spotio 2.0 Data Objects API](https://apis.io/collections/spotio/open-spotio-dataobjects-api/)
+- [Spotio 2.0 Data Objects Bulk Jobs API](https://apis.io/collections/spotio/open-spotio-dataobjectsbulkjobs-api/)
+- [Spotio 2.0 Data Objects Search API](https://apis.io/collections/spotio/open-spotio-dataobjectssearch-api/)
+- [Spotio 2.0 Documents API](https://apis.io/collections/spotio/open-spotio-documents-api/)
+- [Spotio 2.0 Exports API](https://apis.io/collections/spotio/open-spotio-exports-api/)
+- [Spotio 2.0 Filters API](https://apis.io/collections/spotio/open-spotio-filters-api/)
+- [Spotio 2.0 Filters V2 API](https://apis.io/collections/spotio/open-spotio-filtersv2-api/)
+- [Spotio 2.0 Generate Content API](https://apis.io/collections/spotio/open-spotio-generatecontent-api/)
+- [Spotio 2.0 Layouts API](https://apis.io/collections/spotio/open-spotio-layouts-api/)
+- [Spotio 2.0 Leaderboards API](https://apis.io/collections/spotio/open-spotio-leaderboards-api/)
+- [Spotio 2.0 MCP API](https://apis.io/collections/spotio/open-spotio-mcp-api/)
+- [Spotio 2.0 Multi Channel Communication API](https://apis.io/collections/spotio/open-spotio-multichannelcommunication-api/)
+- [Spotio 2.0 My Reports API](https://apis.io/collections/spotio/open-spotio-myreports-api/)
+- [Spotio 2.0 Notifications V2 API](https://apis.io/collections/spotio/open-spotio-notificationsv2-api/)
+- [Spotio 2.0 Pins V2 API](https://apis.io/collections/spotio/open-spotio-pinsv2-api/)
+- [Spotio 2.0 Reports API](https://apis.io/collections/spotio/open-spotio-reports-api/)
+- …and 14 more published on APIs.io
 
-### SPOTIO Users & Reps API
+#### Overlays (39)
 
-Manage users and field reps - roles, team membership, and territory assignment. Modeled from the documented product surface.
+OpenAPI overlays, including conversational phrasing for each operation.
 
-### SPOTIO Pipelines & Data Objects API
+- [Spotio Activitiesv2 Overlay](https://apis.io/overlays/spotio/spotio-activitiesv2-overlay/)
+- [Spotio Appointmentsv2 Overlay](https://apis.io/overlays/spotio/spotio-appointmentsv2-overlay/)
+- [Spotio Autoplays Overlay](https://apis.io/overlays/spotio/spotio-autoplays-overlay/)
+- [Spotio Businesscards Overlay](https://apis.io/overlays/spotio/spotio-businesscards-overlay/)
+- [Spotio Calendarsettings Overlay](https://apis.io/overlays/spotio/spotio-calendarsettings-overlay/)
+- [Spotio Communication Overlay](https://apis.io/overlays/spotio/spotio-communication-overlay/)
+- [Spotio Communicationtemplates Overlay](https://apis.io/overlays/spotio/spotio-communicationtemplates-overlay/)
+- [Spotio Connectors Overlay](https://apis.io/overlays/spotio/spotio-connectors-overlay/)
+- [Spotio Contracts Overlay](https://apis.io/overlays/spotio/spotio-contracts-overlay/)
+- [Spotio Dataobjects Overlay](https://apis.io/overlays/spotio/spotio-dataobjects-overlay/)
+- [Spotio Dataobjectsbulkjobs Overlay](https://apis.io/overlays/spotio/spotio-dataobjectsbulkjobs-overlay/)
+- [Spotio Dataobjectssearch Overlay](https://apis.io/overlays/spotio/spotio-dataobjectssearch-overlay/)
+- [Spotio Documents Overlay](https://apis.io/overlays/spotio/spotio-documents-overlay/)
+- [Spotio Exports Overlay](https://apis.io/overlays/spotio/spotio-exports-overlay/)
+- [Spotio Filters Overlay](https://apis.io/overlays/spotio/spotio-filters-overlay/)
+- [Spotio Filtersv2 Overlay](https://apis.io/overlays/spotio/spotio-filtersv2-overlay/)
+- [Spotio Generatecontent Overlay](https://apis.io/overlays/spotio/spotio-generatecontent-overlay/)
+- [Spotio Layouts Overlay](https://apis.io/overlays/spotio/spotio-layouts-overlay/)
+- [Spotio Leaderboards Overlay](https://apis.io/overlays/spotio/spotio-leaderboards-overlay/)
+- [Spotio Mcp Overlay](https://apis.io/overlays/spotio/spotio-mcp-overlay/)
+- [Spotio Multichannelcommunication Overlay](https://apis.io/overlays/spotio/spotio-multichannelcommunication-overlay/)
+- [Spotio Myreports Overlay](https://apis.io/overlays/spotio/spotio-myreports-overlay/)
+- [Spotio Notificationsv2 Overlay](https://apis.io/overlays/spotio/spotio-notificationsv2-overlay/)
+- [Spotio Pinsv2 Overlay](https://apis.io/overlays/spotio/spotio-pinsv2-overlay/)
+- [Spotio Reports Overlay](https://apis.io/overlays/spotio/spotio-reports-overlay/)
+- …and 14 more published on APIs.io
 
-Read and configure pipelines, stages, and custom [data objects](https://support.spotio.com/hc/en-us/articles/11712242070807-Configuring-Data-Objects) that structure how leads move through a sales process. Modeled from the documented product surface.
+#### Security (4)
 
-## Webhook Events (documented)
+Authentication, trust centre, and vulnerability disclosure.
 
-`lead.added`, `lead.updated`, `lead.deleted`, `activity.created`, `activity.updated`, `activity.deleted`, `activity.done`, `appointment.created`, `appointment.updated`, `appointment.deleted`
+- [Spotio Authentication](https://apis.io/security/spotio/spotio-authentication/)
+- [Spotio Domain Security](https://apis.io/security/spotio/spotio-domain-security/)
+- [Spotio Trust Center](https://apis.io/security/spotio/spotio-trust-center/)
+- [Spotio Vulnerability Disclosure](https://apis.io/security/spotio/spotio-vulnerability-disclosure/)
 
-Payloads are signed with an HMAC-SHA256 `X-Signature` header, retried up to three times, time out after 10 seconds, and expect an HTTP 200 response.
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- [LinkedIn](https://www.linkedin.com/company/spotio)
+- [Spotio Plans Pricing](https://apis.io/plans/spotio/spotio-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Spotio Rate Limits](https://apis.io/rate-limits/spotio/spotio-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://spotio.com)
 - [Documentation](https://developer.spotio2.com/)
-- [Webhooks](https://support.spotio.com/hc/en-us/articles/360057063834-Webhooks)
-- [Integrations](https://spotio.com/integrations/)
-- [Plans](plans/spotio-plans-pricing.yml)
+- [Getting started](https://developer.spotio2.com/docs/spotio2/a4cpj8d1knctg-quickstart-for-the-spotio-api)
+- [API reference](https://developer.spotio2.com/docs/spotio2/c977e70019695-spotio-2-0)
+- [Pricing](https://spotio.com/plans/)
+- [Sign up](https://spotio.com/request-a-demo/)
+- [Support](https://support.spotio.com/)
+- [Changelog](https://support.spotio.com/release-notes)
+- [Blog](https://spotio.com/resources/)
+- [Compliance](https://spotio.com/features/security-compliance/)
+- [Terms of service](https://spotio.com/terms-of-service/)
+- [Privacy policy](https://spotio.com/privacy-policy/)
+- [GitHub](https://github.com/Spotio)
+- [Status](https://status.spotio2.com/)
 
-## Pricing
+## API Evangelist rating
 
-Per-user SaaS subscription with a five-user minimum and annual/quarterly billing (custom quote typical). Publicly reported approximate tiers: Team ~$39/user/mo, Business ~$69/user/mo, Pro ~$129/user/mo, and a custom Enterprise tier. See `plans/spotio-plans-pricing.yml`. Figures come from third-party pricing directories and should be reconciled against a current SPOTIO quote.
+**Kin Score 68.7** — exemplar · rubric 0.25.0 · scored 2026-10-23
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 57.7 |
+| Contract governance | 18.2 |
+| Operational transparency | 42.1 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 92.1 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 36.4** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/spotio/](https://apis.io/providers/spotio/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for SPOTIO: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/spotio/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
